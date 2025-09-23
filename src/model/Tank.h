@@ -7,18 +7,24 @@ class Projectile;
 
 class Tank : public GameObject {
 protected:
-    int speed;
     int fireRate;
-    int reloadTimer;
+    int reloadTime;
     bool hasShield;
     bool doubleFire;
 
 public:
-    Tank(int x, int y, Constants::Direction dir, char displayChar);
-    virtual void update() override;
-    virtual Projectile* fire();
-    void applyBonus(Constants::BonusType bonus);
-    void move(Constants::Direction newDirection);
+    Tank(Point pos, Direction dir, int health, int speed);
+    virtual ~Tank() = default;
+    
+    // Методы танка
+    virtual Projectile* fire() = 0;
+    void applyBonus(int bonusType);
+    void setShield(bool active);
+    void setDoubleFire(bool active);
+    
+    // Виртуальные методы
+    virtual void update() override = 0;
+    virtual char getDisplayChar() const override = 0;
 };
 
-#endif
+#endif // TANK_H

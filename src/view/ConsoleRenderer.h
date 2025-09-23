@@ -1,16 +1,24 @@
 #ifndef CONSOLERENDERER_H
 #define CONSOLERENDERER_H
 
-#include <vector>
-#include <string>
+#include "..\model\GameWorld.h"
 
 class ConsoleRenderer {
+private:
+    static const int WIDTH = 40;
+    static const int HEIGHT = 20;
+    char buffer[HEIGHT][WIDTH];
+
 public:
-    static void drawChar(int x, int y, char ch, int color = 7);
-    static void drawString(int x, int y, const std::string& text);
-    static void drawRect(int x, int y, int width, int height, char borderChar);
-    static void clear();
-    static void setCursorPosition(int x, int y);
+    ConsoleRenderer();
+    
+    // Методы отрисовки
+    void clearBuffer();
+    void drawGameWorld(const GameWorld& world);
+    void drawMenu();
+    void drawPauseScreen();
+    void drawGameOverScreen(bool win);
+    void render();
 };
 
-#endif
+#endif // CONSOLERENDERER_H

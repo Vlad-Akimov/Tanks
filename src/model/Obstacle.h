@@ -1,32 +1,27 @@
-// src/model/Obstacle.h
 #ifndef OBSTACLE_H
 #define OBSTACLE_H
 
 #include "GameObject.h"
-#include "../utils/Constants.h"
+
+enum class ObstacleType { BRICK, STEEL, WATER, FOREST };
 
 class Obstacle : public GameObject {
 private:
-    Constants::ObstacleType type;
+    ObstacleType type;
     bool movable;
-    bool permeable; // Can projectiles pass through?
 
 public:
-    Obstacle(int x, int y, Constants::ObstacleType obstacleType);
-    virtual ~Obstacle() = default;
+    Obstacle(Point pos, ObstacleType type, bool movable = false);
     
-    virtual void update() override;
-    virtual void takeDamage(int damage) override;
+    // Методы препятствий
+    ObstacleType getType() const;
+    bool isMovable() const;
+    bool isPassable() const;
     
-    // Getters
-    Constants::ObstacleType getType() const { return type; }
-    bool isMovable() const { return movable; }
-    bool isPermeable() const { return permeable; }
-    
-    // Specific obstacle behaviors
-    bool canBeDestroyed() const;
-    bool canTankPass() const;
-    bool canProjectilePass() const;
+    // Реализация виртуальных методов
+    void update() override;
+    void takeDamage(int damage) override;
+    char getDisplayChar() const override;
 };
 
-#endif
+#endif // OBSTACLE_H

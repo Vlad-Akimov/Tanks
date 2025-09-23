@@ -1,34 +1,32 @@
-// src/controller/InputHandler.h
 #ifndef INPUTHANDLER_H
 #define INPUTHANDLER_H
 
 #include <map>
-#include <vector>
-#include <functional>
-#include "Command.h"
-#include "../utils/Constants.h"
+
+enum class Command {
+    MOVE_UP,
+    MOVE_DOWN,
+    MOVE_LEFT,
+    MOVE_RIGHT,
+    FIRE,
+    PAUSE,
+    MENU,
+    EXIT,
+    NONE
+};
 
 class InputHandler {
 private:
-    std::map<int, Command> keyBindings; // key code to command mapping
-    std::map<Constants::GameState, std::function<void(Command)>> commandHandlers;
-    bool exitRequested;
+    std::map<char, Command> keyBindings;
 
 public:
     InputHandler();
-    ~InputHandler() = default;
     
-    void initializeDefaultBindings();
-    std::vector<Command> handleInput();
-    void remapKey(int keyCode, Command command);
-    void setCommandHandler(Constants::GameState state, std::function<void(Command)> handler);
-    
-    void setExitRequested(bool exit) { exitRequested = exit; }
-    bool getExitRequested() const { return exitRequested; }
-    
-    // Key detection methods (platform-specific implementations would be in .cpp)
-    bool isKeyPressed(int keyCode) const;
-    int getPressedKey() const;
+    // Обработка ввода
+    Command getInput();
+    void remapKey(char key, Command command);
+    void loadKeyBindings();
+    void saveKeyBindings();
 };
 
-#endif
+#endif // INPUTHANDLER_H
