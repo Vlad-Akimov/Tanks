@@ -2,8 +2,8 @@
 #define TANK_H
 
 #include "GameObject.h"
-
-class Projectile;
+#include "Projectile.h"
+#include "Bonus.h"
 
 class Tank : public GameObject {
 protected:
@@ -13,18 +13,23 @@ protected:
     bool doubleFire;
 
 public:
-    Tank(Point pos, Direction dir, int health, int speed);
+    Tank(Point pos, Direction dir, int spd, int hp, int fireRate);
     virtual ~Tank() = default;
     
     // Методы танка
-    virtual Projectile* fire() = 0;
-    void applyBonus(int bonusType);
-    void setShield(bool active);
-    void setDoubleFire(bool active);
+    virtual Projectile* fire();
+    void applyBonus(BonusType bonus);
+    void reload();
+    bool canFire() const;
     
-    // Виртуальные методы
+    // Геттеры
+    bool getHasShield() const { return hasShield; }
+    bool getDoubleFire() const { return doubleFire; }
+    
+    // Абстрактные методы
     virtual void update() override = 0;
-    virtual char getDisplayChar() const override = 0;
+    virtual Point getBounds() const override = 0;
+    virtual char getSymbol() const override = 0;
 };
 
 #endif // TANK_H

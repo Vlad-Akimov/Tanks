@@ -15,13 +15,15 @@ public:
     void addScore(int points);
     void loseLife();
     bool hasLives() const;
-    int getLives() const;
-    int getScore() const;
     
-    // Реализация виртуальных методов
+    // Геттеры
+    int getLives() const { return lives; }
+    int getScore() const { return score; }
+    
+    // Реализация абстрактных методов
     void update() override;
-    char getDisplayChar() const override;
-    Projectile* fire() override;
+    Point getBounds() const override;
+    char getSymbol() const override;
 };
 
 #endif // PLAYERTANK_H

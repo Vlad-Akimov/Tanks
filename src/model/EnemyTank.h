@@ -3,22 +3,26 @@
 
 #include "Tank.h"
 
+enum class AIBehavior { RANDOM, AGGRESSIVE, DEFENSIVE };
+
 class EnemyTank : public Tank {
 private:
+    AIBehavior behavior;
     int difficulty;
-    Point targetPosition;
+    Point playerLastPosition;
+    
+    void decideNextMove();
 
 public:
-    EnemyTank(Point pos, int difficulty);
+    EnemyTank(Point pos, AIBehavior behav, int diff);
     
     // Методы ИИ
-    void decideNextMove(const Point& playerPosition);
-    void setTarget(Point target);
+    void setPlayerPosition(Point playerPos);
     
-    // Реализация виртуальных методов
+    // Реализация абстрактных методов
     void update() override;
-    char getDisplayChar() const override;
-    Projectile* fire() override;
+    Point getBounds() const override;
+    char getSymbol() const override;
 };
 
 #endif // ENEMYTANK_H

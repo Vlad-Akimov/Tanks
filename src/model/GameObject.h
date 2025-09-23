@@ -12,23 +12,21 @@ protected:
     int speed;
     int health;
     bool destructible;
-    bool destroyed;
 
 public:
-    GameObject(Point pos, Direction dir, int health, bool destructible);
+    GameObject(Point pos, Direction dir, int spd, int hp, bool destruct);
     virtual ~GameObject() = default;
     
     // Базовые методы
-    virtual void move(Direction newDirection);
+    virtual void move(Direction dir);
     void rotate(Direction newDirection);
     virtual void takeDamage(int damage);
     bool isDestroyed() const;
-    Point getPosition() const;
-    Direction getDirection() const;
+    virtual Point getBounds() const = 0; // Абстрактный метод
     
     // Виртуальные методы для переопределения
     virtual void update() = 0;
-    virtual char getDisplayChar() const = 0;
+    virtual char getSymbol() const = 0; // Для отрисовки в консоли
 };
 
 #endif // GAMEOBJECT_H

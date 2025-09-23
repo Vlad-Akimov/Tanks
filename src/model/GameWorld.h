@@ -7,36 +7,46 @@
 #include "PlayerTank.h"
 #include "EnemyTank.h"
 #include "Obstacle.h"
+#include "Bonus.h"
+#include "Projectile.h"
 
-class Projectile;
+enum class GameState { MENU, PLAYING, PAUSED, GAME_OVER, SETTINGS };
 
 class GameWorld {
 private:
     std::vector<std::unique_ptr<GameObject>> objects;
+    std::vector<std::unique_ptr<Bonus>> bonuses;
     std::vector<std::unique_ptr<Projectile>> projectiles;
-    PlayerTank* player;
+    GameState state;
     int currentLevel;
-    bool gameOver;
-    bool levelCompleted;
+    int fieldWidth, fieldHeight;
+    PlayerTank* player;
 
 public:
-    GameWorld();
-    ~GameWorld() = default;
+    GameWorld(int width, int height);
     
-    // Управление игровым миром
-    void initializeLevel(int level);
+    // Основные методы игры
     void update();
+    void loadLevel(int level);
     void checkCollisions();
-    void spawnEnemies(int count);
-    void spawnObstacles();
-    void cleanupDestroyedObjects();
+    void spawnBonus();
+    std::vector<GameObject*> getObjectsInRadius(Point center, int radius) const;
+    
+    // Управление состоянием игры
+    void setState(GameState newState);
+    GameState getState() const { return state; }
     
     // Геттеры
-    const std::vector<std::unique_ptr<GameObject>>& getObjects() const;
-    PlayerTank* getPlayer() const;
-    bool isGameOver() const;
-    bool isLevelCompleted() const;
-    int getCurrentLevel() const;
+    int getWidth() const { return fieldWidth; }
+    int getHeight() const { return fieldHeight; }
+    PlayerTank* getPlayer() const { return player; }
+    const auto& getObjects() const { return objects; }
+    const auto& getProjectiles() const { return projectiles; }
+    
+    // Добавление объектов
+    void addObject(std::unique_ptr<GameObject> obj);
+    void addProjectile(std::unique_ptr<Projectile> proj);
+    void addBonus(std::unique_ptr<Bonus> bonus);
 };
 
 #endif // GAMEWORLD_H

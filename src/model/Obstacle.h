@@ -11,17 +11,18 @@ private:
     bool movable;
 
 public:
-    Obstacle(Point pos, ObstacleType type, bool movable = false);
+    Obstacle(Point pos, ObstacleType obsType, bool movable = false);
     
-    // Методы препятствий
-    ObstacleType getType() const;
-    bool isMovable() const;
+    // Геттеры
+    ObstacleType getType() const { return type; }
+    bool isMovable() const { return movable; }
+    bool isDestructible() const;
     bool isPassable() const;
     
-    // Реализация виртуальных методов
+    // Реализация абстрактных методов
     void update() override;
-    void takeDamage(int damage) override;
-    char getDisplayChar() const override;
+    Point getBounds() const override;
+    char getSymbol() const override;
 };
 
 #endif // OBSTACLE_H
