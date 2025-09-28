@@ -28,6 +28,9 @@ class GameObject {
         virtual void takeDamage(int damage);
         bool isDestroyed() const;
         virtual Point getBounds() const = 0; // Абстрактный метод
+
+        Point getPosition() const { return position; }
+        Direction getDirection() const { return direction; }
         
         // Виртуальные методы для переопределения
         virtual void update() = 0;
