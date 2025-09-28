@@ -1,3 +1,4 @@
+// src/controller/GameController.cpp
 #ifndef GAMECONTROLLER_CPP
 #define GAMECONTROLLER_CPP
 
@@ -13,42 +14,41 @@ enum class Command {
 };
 
 class InputHandler {
-private:
-    std::map<int, Command> keyBindings; // int для кодов клавиш
+    private:
+        std::map<int, Command> keyBindings; // int для кодов клавиш
 
-public:
-    InputHandler();
-    
-    // Обработка ввода
-    std::vector<Command> handleEvents();
-    void remapKey(int keyCode, Command command);
-    
-    // Статические методы для кодов клавиш
-    static int getKeyCode(char c);
+    public:
+        InputHandler();
+        
+        // Обработка ввода
+        std::vector<Command> handleEvents();
+        void remapKey(int keyCode, Command command);
+        
+        // Статические методы для кодов клавиш
+        static int getKeyCode(char c);
 };
 
 class GameController {
-private:
-    GameWorld model;
-    ConsoleRenderer view;
-    InputHandler inputHandler;
-    bool running;
+    private:
+        GameWorld model;
+        ConsoleRenderer view;
+        InputHandler inputHandler;
+        bool running;
 
-public:
-    GameController(int width, int height);
-    
-    // Основной цикл игры
-    void runGame();
-    void pauseGame();
-    void saveSettings();
-    
-private:
-    // Вспомогательные методы
-    void handleInput();
-    void processGameLogic();
-    void processCommand(Command cmd);
-    void showMenu();
-    void showSettings();
+        // Вспомогательные методы
+        void handleInput();
+        void processGameLogic();
+        void processCommand(Command cmd);
+        void showMenu();
+        void showSettings();
+
+    public:
+        GameController(int width, int height);
+        
+        // Основной цикл игры
+        void runGame();
+        void pauseGame();
+        void saveSettings();
 };
 
 #endif // GAMECONTROLLER_CPP
