@@ -1,4 +1,3 @@
-// src/model/PlayerTank.cpp
 #ifndef PLAYERTANK_CPP
 #define PLAYERTANK_CPP
 

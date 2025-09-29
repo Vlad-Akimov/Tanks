@@ -1,4 +1,3 @@
-// src/model/Bonus.cpp
 #ifndef BONUS_CPP
 #define BONUS_CPP
 

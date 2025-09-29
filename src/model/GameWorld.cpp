@@ -1,4 +1,3 @@
-// src/model/GameWorld.cpp
 #ifndef GAMEWORLD_CPP
 #define GAMEWORLD_CPP
 
@@ -31,23 +30,7 @@ class GameWorld {
         void loadLevel(int level);
         void checkCollisions();
         void spawnBonus();
-        std::vector<GameObject*> GameWorld::getObjectsInRadius(Point center, int radius) const {
-        std::vector<GameObject*> result;
-        
-        for (const auto& obj : objects) {
-            if (!obj->isDestroyed()) {
-                int dx = obj->getPosition().x - center.x;
-                int dy = obj->getPosition().y - center.y;
-                int distanceSquared = dx * dx + dy * dy;
-                
-                if (distanceSquared <= radius * radius) {
-                    result.push_back(obj.get());
-                }
-            }
-        }
-        
-        return result;
-    }
+        std::vector<GameObject*> getObjectsInRadius(Point center, int radius) const;
         
         // Управление состоянием игры
         void setState(GameState newState);

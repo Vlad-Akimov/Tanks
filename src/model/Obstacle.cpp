@@ -1,4 +1,3 @@
-// src/model/Obstacle.cpp
 #ifndef OBSTACLE_CPP
 #define OBSTACLE_CPP
 

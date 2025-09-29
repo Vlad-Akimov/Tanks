@@ -1,4 +1,3 @@
-// src/main.cpp
 #include <iostream>
 #include "controller/GameController.cpp"
 

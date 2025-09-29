@@ -1,4 +1,3 @@
-// src/controller/GameController.cpp
 #ifndef GAMECONTROLLER_CPP
 #define GAMECONTROLLER_CPP
 

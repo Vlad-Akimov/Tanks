@@ -1,4 +1,3 @@
-// src/view/ConsoleRenderer.cpp
 #ifndef CONSOLERENDERER_CPP
 #define CONSOLERENDERER_CPP
 

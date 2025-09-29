@@ -1,4 +1,3 @@
-// src/model/Projectile.cpp
 #ifndef PROJECTILE_CPP
 #define PROJECTILE_CPP
 

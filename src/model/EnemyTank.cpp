@@ -1,4 +1,3 @@
-// src/model/EnemyTank.cpp
 #ifndef ENEMYTANK_CPP
 #define ENEMYTANK_CPP
 
