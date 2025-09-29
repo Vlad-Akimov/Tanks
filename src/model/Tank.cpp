@@ -1,12 +1,10 @@
+// src/model/Tank.cpp
 #ifndef TANK_CPP
 #define TANK_CPP
 
 #include "GameObject.cpp"
 #include "Projectile.cpp"
 #include "Bonus.cpp"
-
-class GameWorld;
-class Obstacle;
 
 class Tank : public GameObject {
     protected:
