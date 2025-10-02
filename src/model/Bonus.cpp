@@ -2,10 +2,10 @@
 #define BONUS_CPP
 
 #include "GameObject.cpp"
+#include "Tank.cpp"
+#include "PlayerTank.cpp"
 
 enum class BonusType { SHIELD, DOUBLE_FIRE, SPEED_BOOST, LIFE_UP };
-
-class Tank; // Forward declaration
 
 class Bonus : public GameObject {
     private:
@@ -20,7 +20,7 @@ class Bonus : public GameObject {
               type(bonusType), duration(dur), active(true), activationTime(0) {}
         
         // Методы бонуса
-        void applyEffect(Tank* tank);
+        void applyEffect(PlayerTank* playerTank);
         void deactivate() { active = false; }
         bool isActive() const { return active; }
         BonusType getType() const { return type; }
@@ -47,33 +47,25 @@ class Bonus : public GameObject {
         }
 };
 
-void Bonus::applyEffect(Tank* tank) {
-    if (!tank || !active) return;
+void Bonus::applyEffect(PlayerTank* playerTank) {
+    if (!playerTank || !active) return;
     
     switch(type) {
         case BonusType::SHIELD:
-            // Устанавливаем щит на танк
-            // В пошаговой игре щит действует определенное количество ходов
-            tank->applyBonus(BonusType::SHIELD);
+            playerTank->applyBonus(BonusType::SHIELD);
             break;
             
         case BonusType::DOUBLE_FIRE:
-            // Активируем двойной огонь
-            tank->applyBonus(BonusType::DOUBLE_FIRE);
+            playerTank->applyBonus(BonusType::DOUBLE_FIRE);
             break;
             
         case BonusType::SPEED_BOOST:
-            // Увеличиваем скорость танка
-            tank->applyBonus(BonusType::SPEED_BOOST);
+            playerTank->applyBonus(BonusType::SPEED_BOOST);
             break;
             
         case BonusType::LIFE_UP:
-            // Добавляем жизнь (только для PlayerTank)
-            if (auto* playerTank = dynamic_cast<PlayerTank*>(tank)) {
-                // В пошаговой игре добавляем одну жизнь
-                // В реальной реализации нужно добавить метод addLife()
-                playerTank->setHealth(playerTank->getHealth() + 1);
-            }
+            // Добавляем жизнь игроку
+            playerTank->setHealth(playerTank->getHealth() + 1);
             break;
     }
     
