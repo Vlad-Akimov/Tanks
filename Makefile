@@ -48,6 +48,7 @@ debug: CXXFLAGS += -DDEBUG -O0 -ggdb3
 debug: $(TARGET)
 
 release: CXXFLAGS += -O3 -DNDEBUG
+release: LDFLAGS += -s  # Убираем символы в релизе
 release: $(TARGET)
 
 clean:
@@ -57,20 +58,11 @@ clean:
 distclean: clean
 	rm -f *~ .*~
 
-# Установка (опционально)
-install: $(TARGET)
-	@mkdir -p /usr/local/games/
-	cp $(TARGET) /usr/local/games/tanks_game
-	@echo "Игра установлена в /usr/local/games/tanks_game"
-
-uninstall:
-	rm -f /usr/local/games/tanks_game
-	@echo "Игра удалена"
-
 info:
 	@echo "=== Информация о проекте ==="
 	@echo "Компилятор: $(CXX)"
-	@echo "Флаги: $(CXXFLAGS)"
+	@echo "Флаги компиляции: $(CXXFLAGS)"
+	@echo "Флаги линковки: $(LDFLAGS)"
 	@echo "Исходники: $(words $(SOURCES)) файлов"
 	@echo "Цель: $(TARGET)"
 	@echo "============================="
@@ -83,6 +75,4 @@ help:
 	@echo "  release  - релизная сборка"
 	@echo "  clean    - очистка"
 	@echo "  info     - информация о проекте"
-	@echo "  install  - установка в систему"
-	@echo "  uninstall- удаление из системы"
 	@echo "  help     - эта справка"
