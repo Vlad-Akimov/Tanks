@@ -7,7 +7,15 @@
 #include <map>
 #include <vector>
 #include <iostream>
+
+#ifdef _WIN32
 #include <conio.h>
+#else
+#include <termios.h>
+#include <unistd.h>
+#include <fcntl.h>
+#endif
+
 #include <ctime>
 
 enum class Command { 
@@ -16,76 +24,148 @@ enum class Command {
 };
 
 class InputHandler {
-    private:
-        std::map<int, Command> keyBindings;
+private:
+    std::map<int, Command> keyBindings;
 
-    public:
-        InputHandler() {
-            // Стандартные привязки клавиш
-            keyBindings['w'] = Command::MOVE_UP;
-            keyBindings['W'] = Command::MOVE_UP;
-            keyBindings['s'] = Command::MOVE_DOWN;
-            keyBindings['S'] = Command::MOVE_DOWN;
-            keyBindings['a'] = Command::MOVE_LEFT;
-            keyBindings['A'] = Command::MOVE_LEFT;
-            keyBindings['d'] = Command::MOVE_RIGHT;
-            keyBindings['D'] = Command::MOVE_RIGHT;
-            keyBindings[' '] = Command::FIRE;
-            keyBindings['f'] = Command::FIRE;
-            keyBindings['F'] = Command::FIRE;
-            keyBindings['p'] = Command::PAUSE;
-            keyBindings['P'] = Command::PAUSE;
-            keyBindings['m'] = Command::MENU;
-            keyBindings['M'] = Command::MENU;
-            keyBindings['\r'] = Command::CONFIRM; // Enter
-            keyBindings[27] = Command::BACK; // Escape
-            keyBindings['q'] = Command::EXIT;
-            keyBindings['Q'] = Command::EXIT;
+    // Кроссплатформенная функция проверки нажатия клавиши
+    bool kbhit() {
+#ifdef _WIN32
+        return _kbhit();
+#else
+        struct termios oldt, newt;
+        int ch;
+        int oldf;
+
+        tcgetattr(STDIN_FILENO, &oldt);
+        newt = oldt;
+        newt.c_lflag &= ~(ICANON | ECHO);
+        tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+        oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
+        fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
+
+        ch = getchar();
+
+        tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+        fcntl(STDIN_FILENO, F_SETFL, oldf);
+
+        if (ch != EOF) {
+            ungetc(ch, stdin);
+            return true;
         }
+
+        return false;
+#endif
+    }
+
+    // Кроссплатформенная функция получения символа
+    int getch() {
+#ifdef _WIN32
+        return _getch();
+#else
+        struct termios oldt, newt;
+        int ch;
+        tcgetattr(STDIN_FILENO, &oldt);
+        newt = oldt;
+        newt.c_lflag &= ~(ICANON | ECHO);
+        tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+        ch = getchar();
+        tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+        return ch;
+#endif
+    }
+
+public:
+    InputHandler() {
+        // Стандартные привязки клавиш
+        keyBindings['w'] = Command::MOVE_UP;
+        keyBindings['W'] = Command::MOVE_UP;
+        keyBindings['s'] = Command::MOVE_DOWN;
+        keyBindings['S'] = Command::MOVE_DOWN;
+        keyBindings['a'] = Command::MOVE_LEFT;
+        keyBindings['A'] = Command::MOVE_LEFT;
+        keyBindings['d'] = Command::MOVE_RIGHT;
+        keyBindings['D'] = Command::MOVE_RIGHT;
+        keyBindings[' '] = Command::FIRE;
+        keyBindings['f'] = Command::FIRE;
+        keyBindings['F'] = Command::FIRE;
+        keyBindings['p'] = Command::PAUSE;
+        keyBindings['P'] = Command::PAUSE;
+        keyBindings['m'] = Command::MENU;
+        keyBindings['M'] = Command::MENU;
+        keyBindings['\r'] = Command::CONFIRM; // Enter
+        keyBindings[27] = Command::BACK; // Escape
+        keyBindings['q'] = Command::EXIT;
+        keyBindings['Q'] = Command::EXIT;
+    }
+    
+    std::vector<Command> handleEvents() {
+        std::vector<Command> commands;
         
-        std::vector<Command> handleEvents() {
-            std::vector<Command> commands;
+        if (kbhit()) {
+            int key = getch();
             
-            if (_kbhit()) {
-                int key = _getch();
-                
-                // Обработка специальных клавиш
-                if (key == 0 || key == 224) {
-                    // Специальные клавиши (стрелки и т.д.)
-                    key = _getch();
-                    switch (key) {
-                        case 72: // Стрелка вверх
-                            commands.push_back(Command::MOVE_UP);
-                            break;
-                        case 80: // Стрелка вниз
-                            commands.push_back(Command::MOVE_DOWN);
-                            break;
-                        case 75: // Стрелка влево
-                            commands.push_back(Command::MOVE_LEFT);
-                            break;
-                        case 77: // Стрелка вправо
-                            commands.push_back(Command::MOVE_RIGHT);
-                            break;
-                    }
-                } else {
-                    // Обычные клавиши
-                    auto it = keyBindings.find(key);
-                    if (it != keyBindings.end()) {
-                        commands.push_back(it->second);
+#ifdef _WIN32
+            // Обработка специальных клавиш для Windows
+            if (key == 0 || key == 224) {
+                key = getch();
+                switch (key) {
+                    case 72: // Стрелка вверх
+                        commands.push_back(Command::MOVE_UP);
+                        break;
+                    case 80: // Стрелка вниз
+                        commands.push_back(Command::MOVE_DOWN);
+                        break;
+                    case 75: // Стрелка влево
+                        commands.push_back(Command::MOVE_LEFT);
+                        break;
+                    case 77: // Стрелка вправо
+                        commands.push_back(Command::MOVE_RIGHT);
+                        break;
+                }
+            } else {
+#else
+            // Обработка специальных клавиш для Linux/macOS
+            if (key == 27) { // Escape sequence
+                if (kbhit()) {
+                    int key2 = getch();
+                    if (key2 == 91) { // [
+                        int key3 = getch();
+                        switch (key3) {
+                            case 65: // Стрелка вверх
+                                commands.push_back(Command::MOVE_UP);
+                                break;
+                            case 66: // Стрелка вниз
+                                commands.push_back(Command::MOVE_DOWN);
+                                break;
+                            case 68: // Стрелка влево
+                                commands.push_back(Command::MOVE_LEFT);
+                                break;
+                            case 67: // Стрелка вправо
+                                commands.push_back(Command::MOVE_RIGHT);
+                                break;
+                        }
                     }
                 }
+            } else {
+#endif
+                // Обычные клавиши
+                auto it = keyBindings.find(key);
+                if (it != keyBindings.end()) {
+                    commands.push_back(it->second);
+                }
             }
-            
-            return commands;
         }
         
-        void remapKey(int keyCode, Command command) {
-            keyBindings[keyCode] = command;
-        }
-        
-        static int getKeyCode(char c) {
-            return static_cast<int>(c);
-        }
+        return commands;
+    }
+    
+    void remapKey(int keyCode, Command command) {
+        keyBindings[keyCode] = command;
+    }
+    
+    static int getKeyCode(char c) {
+        return static_cast<int>(c);
+    }
 };
 
 class GameController {
