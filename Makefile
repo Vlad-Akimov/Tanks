@@ -1,6 +1,7 @@
 # Компилятор и флаги
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++11 -g -I src
+CXXFLAGS = -Wall -Wextra -std=c++14 -g -I src
+CXXFLAGS += -Wno-unused-variable -Wno-sign-compare
 LDFLAGS = -pthread
 
 # Директории
@@ -14,6 +15,10 @@ SOURCES := $(shell find $(SRCDIR) -name '*.cpp')
 OBJECTS := $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 TARGET = $(BINDIR)/tanks_game
 
+# Создание списка поддиректорий для зависимостей
+DEPDIRS := $(sort $(dir $(OBJECTS)))
+DEPDIRS += $(DEPDIR)/controller/ $(DEPDIR)/model/ $(DEPDIR)/view/
+
 # Флаги для генерации зависимостей
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
 
@@ -23,13 +28,13 @@ $(TARGET): $(OBJECTS) | $(BINDIR)
 	@echo "Сборка завершена: $(TARGET)"
 
 # Компиляция с учетом зависимостей
-$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(DEPDIR)
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(DEPDIRS)
 	@mkdir -p $(dir $@)
 	$(CXX) $(DEPFLAGS) $(CXXFLAGS) -c $< -o $@
 	@mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d && touch $@
 
-# Создание директорий
-$(BINDIR) $(OBJDIR) $(DEPDIR):
+# Создание всех необходимых директорий
+$(BINDIR) $(OBJDIR) $(DEPDIRS):
 	@mkdir -p $@
 
 # Включение файлов зависимостей
@@ -65,6 +70,7 @@ info:
 	@echo "Флаги линковки: $(LDFLAGS)"
 	@echo "Исходники: $(words $(SOURCES)) файлов"
 	@echo "Цель: $(TARGET)"
+	@echo "Директории зависимостей: $(DEPDIRS)"
 	@echo "============================="
 
 help:
