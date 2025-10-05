@@ -16,6 +16,19 @@ class ConsoleRenderer {
 private:
     int screenWidth, screenHeight;
 
+    void drawBorder() {
+        // Верхняя граница
+        std::cout << "+";
+        for (int i = 0; i < screenWidth; i++) {
+            std::cout << "-";
+        }
+        std::cout << "+\n";
+    }
+
+public:
+    ConsoleRenderer(int width, int height) 
+        : screenWidth(width), screenHeight(height) {}
+    
     // Вспомогательные методы для работы с консолью
     void clearScreen() {
         #ifdef _WIN32
@@ -36,19 +49,6 @@ private:
         #endif
     }
 
-    void drawBorder() {
-        // Верхняя граница
-        std::cout << "+";
-        for (int i = 0; i < screenWidth; i++) {
-            std::cout << "-";
-        }
-        std::cout << "+\n";
-    }
-
-public:
-    ConsoleRenderer(int width, int height) 
-        : screenWidth(width), screenHeight(height) {}
-    
     // Основные методы отрисовки
     void render(const GameWorld& world) {
         clearScreen();
@@ -238,26 +238,6 @@ public:
         std::cout << "=================================\n";
         std::cout << "  Настройки сохраняются автоматически\n";
         std::cout << "=================================\n";
-    }
-
-    // Вспомогательные методы (уже реализованы выше как private)
-    void clearScreen() {
-        #ifdef _WIN32
-                system("cls");
-        #else
-                system("clear");
-        #endif
-    }
-    
-    void setCursorPosition(int x, int y) {
-        #ifdef _WIN32
-                COORD coord;
-                coord.X = x;
-                coord.Y = y;
-                SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-        #else
-                std::cout << "\033[" << y + 1 << ";" << x + 1 << "H";
-        #endif
     }
 };
 
