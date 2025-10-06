@@ -146,9 +146,6 @@ class EnemyTank : public Tank {
         }
 
         void findCover() {
-            // Простой алгоритм поиска укрытия
-            // В реальной реализации нужно анализировать карту
-            
             Direction toPlayer = getDirectionToPlayer();
             
             // 50% шанс движения перпендикулярно направлению к игроку
@@ -181,8 +178,6 @@ class EnemyTank : public Tank {
             }
             
             if (hasClearShot() && (rand() % 100 < shotChance)) {
-                // Выстрел произойдет автоматически в GameWorld
-                // Здесь просто отмечаем намерение
                 rotate(getDirectionToPlayer());
             }
         }
@@ -214,8 +209,6 @@ class EnemyTank : public Tank {
         bool hasClearShot() const {
             if (playerLastPosition.x == -1) return false;
             
-            // Простая проверка прямой видимости
-            // В реальной реализации нужно проверять препятствия на линии огня
             return (position.x == playerLastPosition.x || 
                     position.y == playerLastPosition.y);
         }
@@ -231,9 +224,7 @@ class EnemyTank : public Tank {
         }
         
         // Методы ИИ
-        void setPlayerPosition(Point playerPos) {
-            playerLastPosition = playerPos;
-        }
+        void setPlayerPosition(Point playerPos) { playerLastPosition = playerPos; }
         
         // Реализация абстрактных методов
         void update() override {
@@ -246,8 +237,8 @@ class EnemyTank : public Tank {
         }
         
         Point getBounds() const override {
-            // Вражеский танк занимает 2x2 клетки
-            return Point(2, 2);
+            // Вражеский танк занимает 1x1 клетки
+            return Point(1, 1);
         }
         
         char getSymbol() const override {

@@ -41,14 +41,10 @@ public:
         if (state != GameState::PLAYING) return;
         
         // Обновляем все объекты
-        for (auto& obj : objects) {
-            obj->update();
-        }
+        for (auto& obj : objects) { obj->update(); }
         
         // Обновляем бонусы
-        for (auto& bonus : bonuses) {
-            bonus->update();
-        }
+        for (auto& bonus : bonuses) { bonus->update(); }
         
         // Проверяем столкновения
         checkCollisions();
@@ -56,10 +52,8 @@ public:
         // Удаляем уничтоженные объекты
         cleanupDestroyedObjects();
         
-        // Спауним бонусы с случайным шансом
-        if (rand() % 100 < 5) { // 5% шанс каждый ход
-            spawnBonus();
-        }
+        // Спауним бонусы с случайным шансом, 5% на каждый ход
+        if (rand() % 100 < 5) { spawnBonus(); }
         
         // Обновляем позиции игрока для врагов
         updateEnemyAI();
@@ -230,18 +224,14 @@ public:
             Point objPos = obj->getPosition();
             int distance = abs(objPos.x - center.x) + abs(objPos.y - center.y);
             
-            if (distance <= radius) {
-                result.push_back(obj.get());
-            }
+            if (distance <= radius) { result.push_back(obj.get()); }
         }
         
         return result;
     }
     
     // Управление состоянием игры
-    void setState(GameState newState) {
-        state = newState;
-    }
+    void setState(GameState newState) { state = newState; }
     
     GameState getState() const { return state; }
     
@@ -259,27 +249,19 @@ public:
         objects.push_back(std::move(obj));
         
         // Обновляем счетчик врагов
-        if (dynamic_cast<EnemyTank*>(objects.back().get())) {
-            enemyCount++;
-        }
+        if (dynamic_cast<EnemyTank*>(objects.back().get())) { enemyCount++; }
     }
     
-    void addProjectile(std::unique_ptr<Projectile> proj) {
-        projectiles.push_back(std::move(proj));
-    }
+    void addProjectile(std::unique_ptr<Projectile> proj) { projectiles.push_back(std::move(proj)); }
     
-    void addBonus(std::unique_ptr<Bonus> bonus) {
-        bonuses.push_back(std::move(bonus));
-    }
+    void addBonus(std::unique_ptr<Bonus> bonus) { bonuses.push_back(std::move(bonus)); }
     
     // Метод для обработки выстрела игрока
     void playerFire() {
         if (state != GameState::PLAYING) return;
         
         Projectile* projectile = player->fire();
-        if (projectile) {
-            projectiles.emplace_back(projectile);
-        }
+        if (projectile) { projectiles.emplace_back(projectile); }
     }
     
     // Метод для движения игрока
@@ -328,9 +310,7 @@ private:
             
             // Проверяем, чтобы препятствие не спаунилось на игроке
             Point playerPos = player->getPosition();
-            if (abs(pos.x - playerPos.x) < 3 && abs(pos.y - playerPos.y) < 3) {
-                continue;
-            }
+            if (abs(pos.x - playerPos.x) < 3 && abs(pos.y - playerPos.y) < 3) continue;
             
             ObstacleType type = static_cast<ObstacleType>(typeDist(gen));
             objects.emplace_back(new Obstacle(pos, type));
@@ -397,9 +377,6 @@ private:
             if (enemy && !enemy->isDestroyed()) {
                 // Обновляем позицию игрока для ИИ врага
                 enemy->setPlayerPosition(playerPos);
-                
-                // Враги автоматически стреляют в своем update()
-                // Здесь мы можем добавить дополнительную логику если нужно
             }
         }
     }

@@ -9,15 +9,10 @@ class PlayerTank : public Tank {
         int score;
 
     public:
-        PlayerTank(Point pos) 
-            : Tank(pos, Direction::UP, 1, 3, 2), lives(3), score(0) {
-            setReloadTime(1); // Перезарядка 1 ход
-        }
+        PlayerTank(Point pos): Tank(pos, Direction::UP, 1, 3, 2), lives(3), score(0) {setReloadTime(1);}
         
         // Методы игрока
-        void addScore(int points) {
-            score += points;
-        }
+        void addScore(int points) { score += points; }
         
         void loseLife() {
             if (lives > 0) {
@@ -32,9 +27,7 @@ class PlayerTank : public Tank {
             }
         }
         
-        bool hasLives() const {
-            return lives > 0;
-        }
+        bool hasLives() const { return lives > 0; }
         
         // Геттеры
         int getLives() const { return lives; }
@@ -48,8 +41,8 @@ class PlayerTank : public Tank {
         }
         
         Point getBounds() const override {
-            // Танк игрока занимает 2x2 клетки
-            return Point(2, 2);
+            // Танк игрока занимает 1x1 клетки
+            return Point(1, 1);
         }
         
         char getSymbol() const override {

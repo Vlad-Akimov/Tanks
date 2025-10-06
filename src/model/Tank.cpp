@@ -90,23 +90,13 @@ class Tank : public GameObject {
             }
         }
         
-        void reload() {
-            if (currentReload > 0) {
-                currentReload--;
-            }
-        }
+        void reload() { if (currentReload > 0) { currentReload--;} }
         
-        bool canFire() const {
-            return currentReload == 0;
-        }
+        bool canFire() const { return currentReload == 0; }
         
         // Переопределение метода получения урона с учетом щита
         void takeDamage(int damage) override {
-            if (hasShield) {
-                // Щит поглощает урон
-                return;
-            }
-            
+            if (hasShield) { return; } // Щит поглощает урон
             GameObject::takeDamage(damage);
         }
         

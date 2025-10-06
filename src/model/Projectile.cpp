@@ -19,10 +19,7 @@ class Projectile : public GameObject {
         int getDamage() const { return damage; }
         
         // Реализация абстрактных методов
-        void update() override {
-            // В пошаговой игре снаряд мгновенно проверяет попадание
-            // Основная логика обработки выстрела будет в GameWorld::checkCollisions()
-        }
+        void update() override {}
         
         Point getBounds() const override {
             // Снаряд занимает одну клетку
@@ -68,9 +65,7 @@ class Projectile : public GameObject {
                 }
                 
                 // Если вышли за границы поля - возвращаем последнюю валидную позицию
-                if (testPos.x < 0 || testPos.y < 0) {
-                    return impactPos;
-                }
+                if (testPos.x < 0 || testPos.y < 0) { return impactPos; }
                 
                 impactPos = testPos;
             }

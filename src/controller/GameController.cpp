@@ -138,7 +138,6 @@ class GameController {
         bool running;
         bool waitingForInput;
 
-        // НОВЫЙ МЕТОД: Основной цикл обработки одного хода
         void processGameTurn() {
             // Фаза ВЫВОДА: отрисовка текущего состояния
             view.clearScreen();
@@ -327,13 +326,9 @@ class GameController {
         }
         
         void runGame() {
-            // Показываем главное меню при запуске
             showMenu();
             
-            // Основной игровой цикл - теперь строго пошаговый
-            while (running) {
-                processGameTurn();
-            }
+            while (running) { processGameTurn(); }
             
             // Завершение игры
             view.clearScreen();

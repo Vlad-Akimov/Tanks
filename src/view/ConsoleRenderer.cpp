@@ -19,15 +19,12 @@ private:
     void drawBorder() {
         // Верхняя граница
         std::cout << "+";
-        for (int i = 0; i < screenWidth; i++) {
-            std::cout << "-";
-        }
+        for (int i = 0; i < screenWidth; i++) { std::cout << "-"; }
         std::cout << "+\n";
     }
 
 public:
-    ConsoleRenderer(int width, int height) 
-        : screenWidth(width), screenHeight(height) {}
+    ConsoleRenderer(int width, int height): screenWidth(width), screenHeight(height) {}
     
     void clearScreen() {
 #ifdef _WIN32
@@ -49,8 +46,6 @@ public:
     }
 
     void render(const GameWorld& world) {
-        // Очистка экрана теперь выполняется в GameController
-        
         // Рисуем верхнюю границу с информацией
         std::cout << "Уровень: " << world.getCurrentLevel() 
                   << " | Очки: " << world.getPlayer()->getScore()
@@ -60,8 +55,7 @@ public:
         drawBorder();
         
         // Создаем буфер для отрисовки
-        std::vector<std::vector<char>> buffer(screenHeight, 
-                                            std::vector<char>(screenWidth, ' '));
+        std::vector<std::vector<char>> buffer(screenHeight, std::vector<char>(screenWidth, ' '));
         
         // Заполняем буфер объектами
         for (const auto& obj : world.getObjects()) {
@@ -110,9 +104,7 @@ public:
         // Выводим буфер на экран
         for (int y = 0; y < screenHeight; y++) {
             std::cout << "|"; // Левая граница
-            for (int x = 0; x < screenWidth; x++) {
-                std::cout << buffer[y][x];
-            }
+            for (int x = 0; x < screenWidth; x++) { std::cout << buffer[y][x]; }
             std::cout << "|\n"; // Правая граница
         }
         
@@ -122,15 +114,9 @@ public:
         PlayerTank* player = world.getPlayer();
         if (player) {
             std::cout << "Бонусы: ";
-            if (player->getHasShield()) {
-                std::cout << "[Щит] ";
-            }
-            if (player->getDoubleFire()) {
-                std::cout << "[Двойной огонь] ";
-            }
-            if (player->getBonusDuration() > 0) {
-                std::cout << "(осталось ходов: " << player->getBonusDuration() << ")";
-            }
+            if (player->getHasShield()) { std::cout << "[Щит] "; }
+            if (player->getDoubleFire()) { std::cout << "[Двойной огонь] "; }
+            if (player->getBonusDuration() > 0) { std::cout << "(осталось ходов: " << player->getBonusDuration() << ")"; }
             std::cout << "\n";
         }
     }

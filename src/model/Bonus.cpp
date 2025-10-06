@@ -27,10 +27,7 @@ class Bonus : public GameObject {
         BonusType getType() const { return type; }
         
         // Реализация абстрактных методов
-        void update() override {
-            // В пошаговой игре бонус не требует постоянного обновления
-            // Время действия обрабатывается в GameWorld
-        }
+        void update() override {}
         
         Point getBounds() const override {
             // Бонус занимает одну клетку

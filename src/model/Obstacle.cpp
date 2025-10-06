@@ -37,9 +37,7 @@ class Obstacle : public GameObject {
         ObstacleType getType() const { return type; }
         bool isMovable() const { return movable; }
         
-        bool isDestructible() const {
-            return destructible;
-        }
+        bool isDestructible() const { return destructible; }
         
         bool isPassable() const {
             // Вода непроходима для танков, но проходима для снарядов
@@ -58,10 +56,7 @@ class Obstacle : public GameObject {
         }
         
         // Реализация абстрактных методов
-        void update() override {
-            // В пошаговой игре препятствия не требуют постоянного обновления
-            // Основная логика будет обрабатываться в GameWorld::checkCollisions()
-        }
+        void update() override {}
         
         Point getBounds() const override {
             // Все препятствия занимают одну клетку
@@ -89,7 +84,6 @@ class Obstacle : public GameObject {
                 health -= damage;
                 if (health < 0) health = 0;
                 
-                // Дополнительные эффекты при разрушении
                 if (isDestroyed()) {
                     // Можно добавить эффекты разрушения или анимацию
                 }
