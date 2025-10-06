@@ -7,6 +7,7 @@
 #include <map>
 #include <vector>
 #include <iostream>
+#include <string>
 
 #ifdef _WIN32
 #include <conio.h>
@@ -20,42 +21,12 @@
 
 enum class Command { 
     MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, 
-    FIRE, PAUSE, MENU, CONFIRM, BACK, EXIT 
+    FIRE, PAUSE, MENU, CONFIRM, BACK, EXIT, NONE
 };
 
 class InputHandler {
 private:
     std::map<int, Command> keyBindings;
-
-    // Кроссплатформенная функция проверки нажатия клавиши
-    bool kbhit() {
-#ifdef _WIN32
-        return _kbhit();
-#else
-        struct termios oldt, newt;
-        int ch;
-        int oldf;
-
-        tcgetattr(STDIN_FILENO, &oldt);
-        newt = oldt;
-        newt.c_lflag &= ~(ICANON | ECHO);
-        tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-        oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
-        fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
-
-        ch = getchar();
-
-        tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-        fcntl(STDIN_FILENO, F_SETFL, oldf);
-
-        if (ch != EOF) {
-            ungetc(ch, stdin);
-            return true;
-        }
-
-        return false;
-#endif
-    }
 
     // Кроссплатформенная функция получения символа
     int getch() {
@@ -92,71 +63,62 @@ public:
         keyBindings['P'] = Command::PAUSE;
         keyBindings['m'] = Command::MENU;
         keyBindings['M'] = Command::MENU;
-        keyBindings['\r'] = Command::CONFIRM; // Enter
+        keyBindings['\n'] = Command::CONFIRM; // Enter
         keyBindings[27] = Command::BACK; // Escape
         keyBindings['q'] = Command::EXIT;
         keyBindings['Q'] = Command::EXIT;
     }
     
-    std::vector<Command> handleEvents() {
-        std::vector<Command> commands;
+    // НОВЫЙ МЕТОД: ожидание одной команды от пользователя
+    Command waitForCommand() {
+        int key = getch();
         
-        if (kbhit()) {
-            int key = getch();
-            
 #ifdef _WIN32
-            // Обработка специальных клавиш для Windows
-            if (key == 0 || key == 224) {
-                key = getch();
-                switch (key) {
-                    case 72: // Стрелка вверх
-                        commands.push_back(Command::MOVE_UP);
-                        break;
-                    case 80: // Стрелка вниз
-                        commands.push_back(Command::MOVE_DOWN);
-                        break;
-                    case 75: // Стрелка влево
-                        commands.push_back(Command::MOVE_LEFT);
-                        break;
-                    case 77: // Стрелка вправо
-                        commands.push_back(Command::MOVE_RIGHT);
-                        break;
-                }
-            } else {
+        // Обработка специальных клавиш для Windows
+        if (key == 0 || key == 224) {
+            key = getch();
+            switch (key) {
+                case 72: // Стрелка вверх
+                    return Command::MOVE_UP;
+                case 80: // Стрелка вниз
+                    return Command::MOVE_DOWN;
+                case 75: // Стрелка влево
+                    return Command::MOVE_LEFT;
+                case 77: // Стрелка вправо
+                    return Command::MOVE_RIGHT;
+                default:
+                    return Command::NONE;
+            }
+        } else {
 #else
-            // Обработка специальных клавиш для Linux/macOS
-            if (key == 27) { // Escape sequence
-                if (kbhit()) {
-                    int key2 = getch();
-                    if (key2 == 91) { // [
-                        int key3 = getch();
-                        switch (key3) {
-                            case 65: // Стрелка вверх
-                                commands.push_back(Command::MOVE_UP);
-                                break;
-                            case 66: // Стрелка вниз
-                                commands.push_back(Command::MOVE_DOWN);
-                                break;
-                            case 68: // Стрелка влево
-                                commands.push_back(Command::MOVE_LEFT);
-                                break;
-                            case 67: // Стрелка вправо
-                                commands.push_back(Command::MOVE_RIGHT);
-                                break;
-                        }
-                    }
+        // Обработка специальных клавиш для Linux/macOS
+        if (key == 27) { // Escape sequence
+            if (getch() == 91) { // [
+                int key3 = getch();
+                switch (key3) {
+                    case 65: // Стрелка вверх
+                        return Command::MOVE_UP;
+                    case 66: // Стрелка вниз
+                        return Command::MOVE_DOWN;
+                    case 68: // Стрелка влево
+                        return Command::MOVE_LEFT;
+                    case 67: // Стрелка вправо
+                        return Command::MOVE_RIGHT;
+                    default:
+                        return Command::NONE;
                 }
-            } else {
+            }
+            return Command::BACK;
+        } else {
 #endif
-                // Обычные клавиши
-                auto it = keyBindings.find(key);
-                if (it != keyBindings.end()) {
-                    commands.push_back(it->second);
-                }
+            // Обычные клавиши
+            auto it = keyBindings.find(key);
+            if (it != keyBindings.end()) {
+                return it->second;
             }
         }
         
-        return commands;
+        return Command::NONE;
     }
     
     void remapKey(int keyCode, Command command) {
@@ -174,26 +136,46 @@ class GameController {
         ConsoleRenderer view;
         InputHandler inputHandler;
         bool running;
+        bool waitingForInput;
 
-        void handleInput() {
-            auto commands = inputHandler.handleEvents();
+        // НОВЫЙ МЕТОД: Основной цикл обработки одного хода
+        void processGameTurn() {
+            // Фаза ВЫВОДА: отрисовка текущего состояния
+            view.clearScreen();
             
-            for (Command cmd : commands) {
-                processCommand(cmd);
-                
-                // Если команда требует немедленного обновления (например, движение или выстрел)
-                if (cmd == Command::MOVE_UP || cmd == Command::MOVE_DOWN || 
-                    cmd == Command::MOVE_LEFT || cmd == Command::MOVE_RIGHT ||
-                    cmd == Command::FIRE) {
+            switch (model.getState()) {
+                case GameState::PLAYING:
+                    view.render(model);
+                    std::cout << "Введите команду (WASD - движение, SPACE/F - выстрел, P - пауза, M - меню, Q - выход): ";
+                    break;
                     
-                    // Завершаем ход после действия игрока
-                    processGameLogic();
-                }
+                case GameState::PAUSED:
+                    view.drawPauseScreen();
+                    break;
+                    
+                case GameState::GAME_OVER:
+                    view.drawGameOver(model.getPlayer()->getScore());
+                    std::cout << "Нажмите M для возврата в меню или Q для выхода: ";
+                    break;
+                    
+                default:
+                    break;
             }
-        }
-
-        void processGameLogic() {
-            if (model.getState() == GameState::PLAYING) {
+            
+            std::cout.flush();
+            
+            // Фаза ВВОДА: ожидание команды от пользователя
+            Command cmd = inputHandler.waitForCommand();
+            
+            // Фаза ОБРАБОТКИ: выполнение команды и обновление игрового мира
+            processCommand(cmd);
+            
+            // Если мы в игровом режиме и команда была игровой - обновляем мир
+            if (model.getState() == GameState::PLAYING && 
+                (cmd == Command::MOVE_UP || cmd == Command::MOVE_DOWN || 
+                 cmd == Command::MOVE_LEFT || cmd == Command::MOVE_RIGHT ||
+                 cmd == Command::FIRE)) {
+                
                 // Обновляем игровой мир (движение врагов, проверка столкновений и т.д.)
                 model.update();
                 
@@ -268,6 +250,10 @@ class GameController {
                 case Command::EXIT:
                     running = false;
                     break;
+                    
+                case Command::NONE:
+                    // Ничего не делаем для нераспознанных команд
+                    break;
             }
         }
 
@@ -278,28 +264,28 @@ class GameController {
             while (inMenu && running) {
                 view.clearScreen();
                 view.drawMenu();
+                std::cout << "Введите команду: ";
+                std::cout.flush();
                 
-                auto commands = inputHandler.handleEvents();
-                for (Command cmd : commands) {
-                    switch (cmd) {
-                        case Command::CONFIRM:
-                            // Начать игру
-                            model.loadLevel(1);
-                            inMenu = false;
-                            break;
-                            
-                        case Command::MENU:
-                            showSettings();
-                            break;
-                            
-                        case Command::EXIT:
-                            running = false;
-                            inMenu = false;
-                            break;
-                            
-                        default:
-                            break;
-                    }
+                Command cmd = inputHandler.waitForCommand();
+                switch (cmd) {
+                    case Command::CONFIRM:
+                        // Начать игру
+                        model.loadLevel(1);
+                        inMenu = false;
+                        break;
+                        
+                    case Command::MENU:
+                        showSettings();
+                        break;
+                        
+                    case Command::EXIT:
+                        running = false;
+                        inMenu = false;
+                        break;
+                        
+                    default:
+                        break;
                 }
             }
         }
@@ -311,22 +297,22 @@ class GameController {
             while (inSettings && running) {
                 view.clearScreen();
                 view.drawSettings();
+                std::cout << "Введите команду: ";
+                std::cout.flush();
                 
-                auto commands = inputHandler.handleEvents();
-                for (Command cmd : commands) {
-                    switch (cmd) {
-                        case Command::BACK:
-                            inSettings = false;
-                            break;
-                            
-                        case Command::EXIT:
-                            running = false;
-                            inSettings = false;
-                            break;
-                            
-                        default:
-                            break;
-                    }
+                Command cmd = inputHandler.waitForCommand();
+                switch (cmd) {
+                    case Command::BACK:
+                        inSettings = false;
+                        break;
+                        
+                    case Command::EXIT:
+                        running = false;
+                        inSettings = false;
+                        break;
+                        
+                    default:
+                        break;
                 }
             }
             
@@ -335,7 +321,7 @@ class GameController {
 
     public:
         GameController(int width, int height) 
-            : model(width, height), view(width, height), running(true) {
+            : model(width, height), view(width, height), running(true), waitingForInput(false) {
             // Инициализация случайного генератора
             srand(static_cast<unsigned int>(time(nullptr)));
         }
@@ -344,40 +330,9 @@ class GameController {
             // Показываем главное меню при запуске
             showMenu();
             
-            // Основной игровой цикл
+            // Основной игровой цикл - теперь строго пошаговый
             while (running) {
-                // Очистка экрана
-                view.clearScreen();
-                
-                // Отрисовка текущего состояния
-                switch (model.getState()) {
-                    case GameState::PLAYING:
-                        view.render(model);
-                        std::cout << "Введите команду (WASD - движение, SPACE/F - выстрел, P - пауза, Q - выход): ";
-                        break;
-                        
-                    case GameState::PAUSED:
-                        view.drawPauseScreen();
-                        break;
-                        
-                    case GameState::GAME_OVER:
-                        view.drawGameOver(model.getPlayer()->getScore());
-                        std::cout << "Нажмите M для возврата в меню или Q для выхода: ";
-                        break;
-                        
-                    default:
-                        break;
-                }
-                
-                // Обработка ввода
-                handleInput();
-                
-                // Небольшая задержка для уменьшения нагрузки на CPU
-                #ifdef _WIN32
-                    Sleep(50);
-                #else
-                    usleep(50000);
-                #endif
+                processGameTurn();
             }
             
             // Завершение игры
@@ -388,34 +343,31 @@ class GameController {
         void pauseGame() {
             if (model.getState() == GameState::PLAYING) {
                 model.setState(GameState::PAUSED);
-                view.drawPauseScreen();
                 
-                // Ожидание снятия с паузы
                 bool paused = true;
                 while (paused && running) {
-                    auto commands = inputHandler.handleEvents();
-                    for (Command cmd : commands) {
-                        if (cmd == Command::PAUSE || cmd == Command::CONFIRM) {
-                            model.setState(GameState::PLAYING);
-                            paused = false;
-                        } else if (cmd == Command::EXIT) {
-                            running = false;
-                            paused = false;
-                        }
-                    }
+                    view.clearScreen();
+                    view.drawPauseScreen();
+                    std::cout << "Введите команду: ";
+                    std::cout.flush();
                     
-                    #ifdef _WIN32
-                        Sleep(50);
-                    #else
-                        usleep(50000);
-                    #endif
+                    Command cmd = inputHandler.waitForCommand();
+                    if (cmd == Command::PAUSE || cmd == Command::CONFIRM) {
+                        model.setState(GameState::PLAYING);
+                        paused = false;
+                    } else if (cmd == Command::EXIT) {
+                        running = false;
+                        paused = false;
+                    } else if (cmd == Command::MENU) {
+                        showMenu();
+                        paused = false;
+                    }
                 }
             }
         }
         
         void saveSettings() {
             // Сохранение настроек управления и т.д.
-            // В реальной реализации здесь можно сохранять в файл
         }
 };
 
