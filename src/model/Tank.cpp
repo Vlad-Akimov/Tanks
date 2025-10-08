@@ -140,6 +140,11 @@ class Tank : public GameObject {
         // Сеттеры для настройки параметров
         void setReloadTime(int reload) { reloadTime = reload; }
         void setFireRate(int rate) { fireRate = rate; }
+
+        void setHasShield(bool shield) { hasShield = shield; }
+        void setDoubleFire(bool doubleF) { doubleFire = doubleF; }
+        void setSpeedBoost(int boost) { speedBoost = boost; }
+        void setBonusDuration(int duration) { bonusDuration = duration; }
         
         // Абстрактные методы
         virtual void update() override = 0;

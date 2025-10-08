@@ -62,6 +62,12 @@ class GameObject {
         bool isDestroyed() const {
             return destructible && health <= 0;
         }
+
+        void setDestroyed(bool destroyed) {
+            if (destructible) {
+                health = destroyed ? 0 : 3; // Восстанавливаем здоровье
+            }
+        }
         
         virtual Point getBounds() const = 0; // Абстрактный метод
         

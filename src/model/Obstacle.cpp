@@ -94,12 +94,19 @@ class Obstacle : public GameObject {
         bool isProjectilePassable() const {
             switch(type) {
                 case ObstacleType::WATER:
-                    return true;  // Снаряды проходят через воду
                 case ObstacleType::FOREST:
-                    return true;  // Снаряды проходят через лес
-                default:
+                    return true;  // Снаряды проходят через воду и лес
+                case ObstacleType::BRICK:
+                case ObstacleType::STEEL:
                     return false; // Снаряды не проходят через стены
+                default:
+                    return false;
             }
+        }
+
+        // Метод для проверки, является ли препятствие полностью игнорируемым для снарядов
+        bool isProjectileTransparent() const {
+            return type == ObstacleType::WATER || type == ObstacleType::FOREST;
         }
         
         // Метод для проверки, скрывает ли препятствие объекты за собой

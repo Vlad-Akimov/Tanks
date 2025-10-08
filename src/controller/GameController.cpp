@@ -11,6 +11,7 @@
 
 #ifdef _WIN32
 #include <conio.h>
+#include <windows.h>
 #else
 #include <termios.h>
 #include <unistd.h>
@@ -25,110 +26,262 @@ enum class Command {
 };
 
 class InputHandler {
-private:
-    std::map<int, Command> keyBindings;
-
-    // Кроссплатформенная функция получения символа
-    int getch() {
-#ifdef _WIN32
-        return _getch();
-#else
-        struct termios oldt, newt;
-        int ch;
-        tcgetattr(STDIN_FILENO, &oldt);
-        newt = oldt;
-        newt.c_lflag &= ~(ICANON | ECHO);
-        tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-        ch = getchar();
-        tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-        return ch;
-#endif
-    }
-
-public:
-    InputHandler() {
-        // Стандартные привязки клавиш
-        keyBindings['w'] = Command::MOVE_UP;
-        keyBindings['W'] = Command::MOVE_UP;
-        keyBindings['s'] = Command::MOVE_DOWN;
-        keyBindings['S'] = Command::MOVE_DOWN;
-        keyBindings['a'] = Command::MOVE_LEFT;
-        keyBindings['A'] = Command::MOVE_LEFT;
-        keyBindings['d'] = Command::MOVE_RIGHT;
-        keyBindings['D'] = Command::MOVE_RIGHT;
-        keyBindings[' '] = Command::FIRE;
-        keyBindings['f'] = Command::FIRE;
-        keyBindings['F'] = Command::FIRE;
-        keyBindings['p'] = Command::PAUSE;
-        keyBindings['P'] = Command::PAUSE;
-        keyBindings['m'] = Command::MENU;
-        keyBindings['M'] = Command::MENU;
-        keyBindings['\n'] = Command::CONFIRM; // Enter
-        keyBindings[27] = Command::BACK; // Escape
-        keyBindings['q'] = Command::EXIT;
-        keyBindings['Q'] = Command::EXIT;
-    }
+    private:
+        std::map<int, Command> keyBindings;
+        std::map<std::string, Command> utf8KeyBindings;
     
-    // НОВЫЙ МЕТОД: ожидание одной команды от пользователя
-    Command waitForCommand() {
-        int key = getch();
-        
-#ifdef _WIN32
-        // Обработка специальных клавиш для Windows
-        if (key == 0 || key == 224) {
-            key = getch();
-            switch (key) {
-                case 72: // Стрелка вверх
-                    return Command::MOVE_UP;
-                case 80: // Стрелка вниз
-                    return Command::MOVE_DOWN;
-                case 75: // Стрелка влево
-                    return Command::MOVE_LEFT;
-                case 77: // Стрелка вправо
-                    return Command::MOVE_RIGHT;
-                default:
-                    return Command::NONE;
+    #ifdef _WIN32
+        // Для Windows: функция чтения UTF-8 символов
+        std::string readUTF8Char() {
+            std::string result;
+            int ch = _getch();
+            
+            // Если это начало UTF-8 последовательности
+            if ((ch & 0xE0) == 0xC0) { // 2-byte sequence
+                result += static_cast<char>(ch);
+                result += static_cast<char>(_getch());
             }
-        } else {
-#else
-        // Обработка специальных клавиш для Linux/macOS
-        if (key == 27) { // Escape sequence
-            if (getch() == 91) { // [
-                int key3 = getch();
-                switch (key3) {
-                    case 65: // Стрелка вверх
-                        return Command::MOVE_UP;
-                    case 66: // Стрелка вниз
-                        return Command::MOVE_DOWN;
-                    case 68: // Стрелка влево
-                        return Command::MOVE_LEFT;
-                    case 67: // Стрелка вправо
-                        return Command::MOVE_RIGHT;
-                    default:
-                        return Command::NONE;
+            else if ((ch & 0xF0) == 0xE0) { // 3-byte sequence
+                result += static_cast<char>(ch);
+                result += static_cast<char>(_getch());
+                result += static_cast<char>(_getch());
+            }
+            else if ((ch & 0xF8) == 0xF0) { // 4-byte sequence
+                result += static_cast<char>(ch);
+                result += static_cast<char>(_getch());
+                result += static_cast<char>(_getch());
+                result += static_cast<char>(_getch());
+            }
+            else {
+                // Одиночный ASCII символ
+                result += static_cast<char>(ch);
+            }
+            
+            return result;
+        }
+    #else
+        // Для Linux/macOS: проверка, доступен ли символ для чтения
+        bool kbhit() {
+            struct termios oldt, newt;
+            int ch;
+            int oldf;
+    
+            tcgetattr(STDIN_FILENO, &oldt);
+            newt = oldt;
+            newt.c_lflag &= ~(ICANON | ECHO);
+            tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+            oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
+            fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
+    
+            ch = getchar();
+    
+            tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+            fcntl(STDIN_FILENO, F_SETFL, oldf);
+    
+            if(ch != EOF) {
+                ungetc(ch, stdin);
+                return true;
+            }
+    
+            return false;
+        }
+    
+        // Для Linux/macOS: функция чтения UTF-8 символов
+        std::string readUTF8Char() {
+            std::string result;
+            struct termios oldt, newt;
+            
+            tcgetattr(STDIN_FILENO, &oldt);
+            newt = oldt;
+            newt.c_lflag &= ~(ICANON | ECHO);
+            tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+            
+            // Читаем первый байт
+            int firstByte = getchar();
+            if (firstByte == EOF) {
+                tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+                return result;
+            }
+            
+            result += static_cast<char>(firstByte);
+            
+            // Определяем длину UTF-8 последовательности по первому байту
+            int numBytes = 1;
+            if ((firstByte & 0xE0) == 0xC0) numBytes = 2;
+            else if ((firstByte & 0xF0) == 0xE0) numBytes = 3;
+            else if ((firstByte & 0xF8) == 0xF0) numBytes = 4;
+            
+            // Читаем оставшиеся байты
+            for (int i = 1; i < numBytes; ++i) {
+                if (!kbhit()) {
+                    // Если данных нет, ждем небольшое время
+                    usleep(1000);
+                }
+                int nextByte = getchar();
+                if (nextByte != EOF) {
+                    result += static_cast<char>(nextByte);
                 }
             }
-            return Command::BACK;
-        } else {
-#endif
-            // Обычные клавиши
-            auto it = keyBindings.find(key);
-            if (it != keyBindings.end()) {
-                return it->second;
-            }
+            
+            tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+            return result;
+        }
+    #endif
+    
+    public:
+        InputHandler() {
+            // Стандартные привязки клавиш для латиницы
+            keyBindings['w'] = Command::MOVE_UP;
+            keyBindings['W'] = Command::MOVE_UP;
+            keyBindings['s'] = Command::MOVE_DOWN;
+            keyBindings['S'] = Command::MOVE_DOWN;
+            keyBindings['a'] = Command::MOVE_LEFT;
+            keyBindings['A'] = Command::MOVE_LEFT;
+            keyBindings['d'] = Command::MOVE_RIGHT;
+            keyBindings['D'] = Command::MOVE_RIGHT;
+            keyBindings[' '] = Command::FIRE;
+            keyBindings['f'] = Command::FIRE;
+            keyBindings['F'] = Command::FIRE;
+            keyBindings['p'] = Command::PAUSE;
+            keyBindings['P'] = Command::PAUSE;
+            keyBindings['m'] = Command::MENU;
+            keyBindings['M'] = Command::MENU;
+            keyBindings['\n'] = Command::CONFIRM; // Enter
+            keyBindings[27] = Command::BACK; // Escape
+            keyBindings['q'] = Command::EXIT;
+            keyBindings['Q'] = Command::EXIT;
+    
+            // Привязки для кириллицы (UTF-8)
+            utf8KeyBindings["ц"] = Command::MOVE_UP;      // w -> ц
+            utf8KeyBindings["Ц"] = Command::MOVE_UP;      // W -> Ц
+            utf8KeyBindings["ы"] = Command::MOVE_DOWN;    // s -> ы
+            utf8KeyBindings["Ы"] = Command::MOVE_DOWN;    // S -> Ы
+            utf8KeyBindings["ф"] = Command::MOVE_LEFT;    // a -> ф
+            utf8KeyBindings["Ф"] = Command::MOVE_LEFT;    // A -> Ф
+            utf8KeyBindings["в"] = Command::MOVE_RIGHT;   // d -> в
+            utf8KeyBindings["В"] = Command::MOVE_RIGHT;   // D -> В
+            utf8KeyBindings["а"] = Command::FIRE;         // f -> а
+            utf8KeyBindings["А"] = Command::FIRE;         // F -> А
+            utf8KeyBindings["з"] = Command::PAUSE;        // p -> з
+            utf8KeyBindings["З"] = Command::PAUSE;        // P -> З
+            utf8KeyBindings["ь"] = Command::MENU;         // m -> ь
+            utf8KeyBindings["Ь"] = Command::MENU;         // M -> Ь
+            utf8KeyBindings["й"] = Command::EXIT;         // q -> й
+            utf8KeyBindings["Й"] = Command::EXIT;         // Q -> Й
         }
         
-        return Command::NONE;
-    }
-    
-    void remapKey(int keyCode, Command command) {
-        keyBindings[keyCode] = command;
-    }
-    
-    static int getKeyCode(char c) {
-        return static_cast<int>(c);
-    }
-};
+        // НОВЫЙ МЕТОД: ожидание одной команды от пользователя
+        Command waitForCommand() {
+    #ifdef _WIN32
+            // Для Windows используем нашу функцию чтения UTF-8
+            std::string input = readUTF8Char();
+            if (input.length() == 1) {
+                int key = static_cast<unsigned char>(input[0]);
+    #else
+            // Для Linux/macOS сначала проверяем специальные клавиши
+            struct termios oldt, newt;
+            tcgetattr(STDIN_FILENO, &oldt);
+            newt = oldt;
+            newt.c_lflag &= ~(ICANON | ECHO);
+            tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+            
+            int firstByte = getchar();
+            
+            // Обработка специальных клавиш для Linux/macOS
+            if (firstByte == 27) { // Escape sequence
+                if (kbhit()) {
+                    int secondByte = getchar();
+                    if (secondByte == 91) { // [
+                        if (kbhit()) {
+                            int thirdByte = getchar();
+                            tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+                            switch (thirdByte) {
+                                case 65: // Стрелка вверх
+                                    return Command::MOVE_UP;
+                                case 66: // Стрелка вниз
+                                    return Command::MOVE_DOWN;
+                                case 68: // Стрелка влево
+                                    return Command::MOVE_LEFT;
+                                case 67: // Стрелка вправо
+                                    return Command::MOVE_RIGHT;
+                                default:
+                                    return Command::NONE;
+                            }
+                        }
+                    }
+                }
+                tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+                return Command::BACK;
+            }
+            
+            tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+            
+            // Если это не escape sequence, обрабатываем как UTF-8
+            std::string input;
+            input += static_cast<char>(firstByte);
+            
+            // Определяем длину UTF-8 последовательности
+            int numBytes = 1;
+            if ((firstByte & 0xE0) == 0xC0) numBytes = 2;
+            else if ((firstByte & 0xF0) == 0xE0) numBytes = 3;
+            else if ((firstByte & 0xF8) == 0xF0) numBytes = 4;
+            
+            // Читаем оставшиеся байты если нужно
+            for (int i = 1; i < numBytes && kbhit(); ++i) {
+                int nextByte = getchar();
+                if (nextByte != EOF) {
+                    input += static_cast<char>(nextByte);
+                }
+            }
+            
+            if (input.length() == 1) {
+                int key = static_cast<unsigned char>(input[0]);
+    #endif
+                // Обработка специальных клавиш для Windows
+                if (key == 0 || key == 224) {
+                    int specialKey = getchar();
+                    switch (specialKey) {
+                        case 72: // Стрелка вверх
+                            return Command::MOVE_UP;
+                        case 80: // Стрелка вниз
+                            return Command::MOVE_DOWN;
+                        case 75: // Стрелка влево
+                            return Command::MOVE_LEFT;
+                        case 77: // Стрелка вправо
+                            return Command::MOVE_RIGHT;
+                        default:
+                            return Command::NONE;
+                    }
+                }
+                
+                // Обычные клавиши латиницы
+                auto it = keyBindings.find(key);
+                if (it != keyBindings.end()) {
+                    return it->second;
+                }
+            }
+            
+            // Проверяем UTF-8 последовательности (кириллица)
+            auto utf8It = utf8KeyBindings.find(input);
+            if (utf8It != utf8KeyBindings.end()) {
+                return utf8It->second;
+            }
+            
+            return Command::NONE;
+        }
+        
+        void remapKey(int keyCode, Command command) {
+            keyBindings[keyCode] = command;
+        }
+        
+        void remapUTF8Key(const std::string& utf8Char, Command command) {
+            utf8KeyBindings[utf8Char] = command;
+        }
+        
+        static int getKeyCode(char c) {
+            return static_cast<int>(c);
+        }
+    };
 
 class GameController {
     private:
@@ -154,7 +307,7 @@ class GameController {
                     
                 case GameState::GAME_OVER:
                     view.drawGameOver(model.getPlayer()->getScore());
-                    std::cout << "Нажмите M для возврата в меню или Q для выхода: ";
+                    std::cout << "Введите команду (ENTER - новая игра, M - меню, Q - выход): ";
                     break;
                     
                 default:
@@ -224,17 +377,22 @@ class GameController {
                 case Command::MENU:
                     if (model.getState() == GameState::PLAYING) {
                         model.setState(GameState::PAUSED);
+                    } else if (model.getState() == GameState::GAME_OVER) {
+                        // Возврат в меню после Game Over
+                        showMenu();
                     }
-                    showMenu();
                     break;
                     
                 case Command::CONFIRM:
                     if (model.getState() == GameState::MENU) {
-                        // Начать игру
+                        // Начать новую игру - сбросить всё состояние
                         model.loadLevel(1);
                     } else if (model.getState() == GameState::PAUSED) {
                         // Продолжить игру
                         model.setState(GameState::PLAYING);
+                    } else if (model.getState() == GameState::GAME_OVER) {
+                        // Начать новую игру после Game Over
+                        model.loadLevel(1);
                     }
                     break;
                     

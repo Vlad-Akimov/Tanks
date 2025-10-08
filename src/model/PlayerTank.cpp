@@ -11,6 +11,29 @@ class PlayerTank : public Tank {
     public:
         PlayerTank(Point pos): Tank(pos, Direction::UP, 1, 3, 2), lives(3), score(0) {setReloadTime(1);}
         
+        void reset() {
+            // Сбрасываем позицию и направление
+            setPosition(Point(40 / 2, 20 - 3));
+            rotate(Direction::UP);
+            
+            // Сбрасываем здоровье и жизни
+            setHealth(3);
+            lives = 3;
+            
+            // Сбрасываем счет
+            score = 0;
+            
+            // Сбрасываем бонусы
+            hasShield = false;
+            doubleFire = false;
+            speedBoost = 0;
+            bonusDuration = 0;
+            currentReload = 0;
+            
+            // Сбрасываем флаг уничтожения
+            setDestroyed(false);
+        }
+
         // Методы игрока
         void addScore(int points) { score += points; }
         

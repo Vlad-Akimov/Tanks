@@ -16,6 +16,91 @@ class ConsoleRenderer {
 private:
     int screenWidth, screenHeight;
 
+    // Коды цветов для консоли
+    enum class Color {
+        DEFAULT = 0,
+        RED = 1,
+        GREEN = 2,
+        YELLOW = 3,
+        BLUE = 4,
+        MAGENTA = 5,
+        CYAN = 6,
+        WHITE = 7
+    };
+
+    void setColor(Color color) {
+#ifdef _WIN32
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        WORD attributes = 0;
+        
+        switch (color) {
+            case Color::RED:
+                attributes = FOREGROUND_RED | FOREGROUND_INTENSITY;
+                break;
+            case Color::GREEN:
+                attributes = FOREGROUND_GREEN | FOREGROUND_INTENSITY;
+                break;
+            case Color::YELLOW:
+                attributes = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY;
+                break;
+            case Color::BLUE:
+                attributes = FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+                break;
+            case Color::MAGENTA:
+                attributes = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+                break;
+            case Color::CYAN:
+                attributes = FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+                break;
+            case Color::WHITE:
+                attributes = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+                break;
+            default:
+                attributes = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
+                break;
+        }
+        
+        SetConsoleTextAttribute(hConsole, attributes);
+#else
+        const char* colorCode = "";
+        switch (color) {
+            case Color::RED:
+                colorCode = "\033[91m"; // Ярко-красный
+                break;
+            case Color::GREEN:
+                colorCode = "\033[92m"; // Ярко-зелёный (ядовито-зелёный)
+                break;
+            case Color::YELLOW:
+                colorCode = "\033[93m";
+                break;
+            case Color::BLUE:
+                colorCode = "\033[94m";
+                break;
+            case Color::MAGENTA:
+                colorCode = "\033[95m";
+                break;
+            case Color::CYAN:
+                colorCode = "\033[96m";
+                break;
+            case Color::WHITE:
+                colorCode = "\033[97m";
+                break;
+            default:
+                colorCode = "\033[0m"; // Сброс цвета
+                break;
+        }
+        std::cout << colorCode;
+#endif
+    }
+
+    void resetColor() {
+#ifdef _WIN32
+        setColor(Color::DEFAULT);
+#else
+        std::cout << "\033[0m";
+#endif
+    }
+
     void drawBorder() {
         // Верхняя граница
         std::cout << "+";
@@ -101,10 +186,33 @@ public:
             }
         }
         
-        // Выводим буфер на экран
+        // Выводим буфер на экран с цветами
         for (int y = 0; y < screenHeight; y++) {
             std::cout << "|"; // Левая граница
-            for (int x = 0; x < screenWidth; x++) { std::cout << buffer[y][x]; }
+            for (int x = 0; x < screenWidth; x++) { 
+                char symbol = buffer[y][x];
+                
+                // Определяем цвет для символа
+                bool colored = false;
+                
+                // Проверяем, является ли символ танком игрока
+                if (symbol == '^' || symbol == 'v' || symbol == '<' || symbol == '>') {
+                    setColor(Color::GREEN);
+                    colored = true;
+                }
+                // Проверяем, является ли символ вражеским танком
+                else if (symbol == 'A' || symbol == 'V' || symbol == '[' || symbol == ']' || symbol == 'E') {
+                    setColor(Color::RED);
+                    colored = true;
+                }
+                
+                std::cout << symbol;
+                
+                // Сбрасываем цвет после вывода символа
+                if (colored) {
+                    resetColor();
+                }
+            }
             std::cout << "|\n"; // Правая граница
         }
         
@@ -182,6 +290,7 @@ public:
         std::cout << "    Ваш счет: " << score << "\n\n";
         
         std::cout << "---------------------------------\n";
+        std::cout << "   [ENTER] - Новая игра\n";
         std::cout << "   [M] - Главное меню\n";
         std::cout << "   [Q] - Выход\n";
         std::cout << "---------------------------------\n\n";

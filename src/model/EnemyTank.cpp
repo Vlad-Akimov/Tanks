@@ -179,6 +179,7 @@ class EnemyTank : public Tank {
             
             if (hasClearShot() && (rand() % 100 < shotChance)) {
                 rotate(getDirectionToPlayer());
+                fire();
             }
         }
 
@@ -209,8 +210,32 @@ class EnemyTank : public Tank {
         bool hasClearShot() const {
             if (playerLastPosition.x == -1) return false;
             
-            return (position.x == playerLastPosition.x || 
-                    position.y == playerLastPosition.y);
+            // Проверяем прямую видимость по линии выстрела
+            Point start = position;
+            Point target = playerLastPosition;
+            
+            // Проверяем, находится ли игрок на одной линии по X или Y
+            if (start.x == target.x) {
+                // Вертикальная линия
+                int minY = std::min(start.y, target.y);
+                int maxY = std::max(start.y, target.y);
+                for (int y = minY + 1; y < maxY; y++) {
+                    // Здесь должна быть проверка на препятствия
+                    // Пока возвращаем true для простоты
+                }
+                return true;
+            } else if (start.y == target.y) {
+                // Горизонтальная линия
+                int minX = std::min(start.x, target.x);
+                int maxX = std::max(start.x, target.x);
+                for (int x = minX + 1; x < maxX; x++) {
+                    // Здесь должна быть проверка на препятствия
+                    // Пока возвращаем true для простоты
+                }
+                return true;
+            }
+            
+            return false;
         }
 
     public:

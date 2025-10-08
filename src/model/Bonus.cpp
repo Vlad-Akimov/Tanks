@@ -24,6 +24,7 @@ class Bonus : public GameObject {
         
         void deactivate() { active = false; }
         bool isActive() const { return active; }
+        bool isProjectilePassable() const { return true; }
         BonusType getType() const { return type; }
         
         // Реализация абстрактных методов

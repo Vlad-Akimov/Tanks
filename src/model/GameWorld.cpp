@@ -47,6 +47,17 @@ public:
             }
         }
         
+        // ОБРАБОТКА ВЫСТРЕЛОВ ВРАЖЕСКИХ ТАНКОВ
+        for (auto& obj : objects) {
+            EnemyTank* enemy = dynamic_cast<EnemyTank*>(obj.get());
+            if (enemy && !enemy->isDestroyed()) {
+                Projectile* projectile = enemy->fire();
+                if (projectile) {
+                    projectiles.emplace_back(projectile);
+                }
+            }
+        }
+        
         // Обновляем бонусы
         for (auto& bonus : bonuses) { 
             if (bonus->isActive()) {
@@ -84,9 +95,11 @@ public:
         bonuses.clear();
         projectiles.clear();
         
-        // Устанавливаем позицию игрока
-        player->setPosition(Point(fieldWidth / 2, fieldHeight - 3));
-        player->setHealth(3);
+        // Полностью сбрасываем состояние игрока при загрузке нового уровня
+        if (player) {
+            player->reset(); // Используем новый метод reset()
+            player->setPosition(Point(fieldWidth / 2, fieldHeight - 3));
+        }
         
         // Создаем препятствия в зависимости от уровня
         createLevelObstacles(level);
@@ -98,6 +111,8 @@ public:
     }
     
     void checkCollisions() {
+        if (!player) return;
+        
         // Обрабатываем снаряды
         for (auto& projectile : projectiles) {
             if (!projectile || projectile->isDestroyed() || projectile->isProcessed()) continue;
@@ -112,7 +127,13 @@ public:
             
             // Проверяем каждую точку траектории
             for (const auto& point : trajectory) {
-                // Проверяем столкновение с объектами
+                // Проверяем выход за границы поля
+                if (point.x < 0 || point.x >= fieldWidth || point.y < 0 || point.y >= fieldHeight) {
+                    hit = true;
+                    break;
+                }
+                
+                // Проверяем столкновение с объектами (кроме владельца снаряда)
                 for (auto& obj : objects) {
                     if (!obj || obj->isDestroyed() || obj.get() == owner) continue;
                     
@@ -123,43 +144,45 @@ public:
                     if (point.x >= objPos.x && point.x < objPos.x + objBounds.x &&
                         point.y >= objPos.y && point.y < objPos.y + objBounds.y) {
                         
-                        // Применяем урон
-                        obj->takeDamage(damage);
-                        
-                        // Начисляем очки игроку
-                        if (obj.get() != player && obj->isDestroyed() && 
-                            dynamic_cast<EnemyTank*>(obj.get()) && owner == player) {
-                            player->addScore(100);
-                        }
-                        
-                        hit = true;
-                        break;
-                    }
-                }
-                
-                // Проверяем столкновение с препятствиями
-                if (!hit) {
-                    for (auto& obj : objects) {
+                        // Проверяем, является ли объект препятствием
                         Obstacle* obstacle = dynamic_cast<Obstacle*>(obj.get());
-                        if (!obstacle || obstacle->isDestroyed()) continue;
-                        
-                        Point objPos = obj->getPosition();
-                        Point objBounds = obj->getBounds();
-                        
-                        if (point.x >= objPos.x && point.x < objPos.x + objBounds.x &&
-                            point.y >= objPos.y && point.y < objPos.y + objBounds.y) {
+                        if (obstacle) {
+                            // Если препятствие проходимо для снарядов - пропускаем
+                            if (obstacle->isProjectilePassable()) {
+                                continue; // Продолжаем проверять другие объекты в этой точке
+                            }
                             
-                            // Если препятствие может быть повреждено
+                            // Если препятствие НЕ проходимо - наносим урон и останавливаем снаряд
                             if (obstacle->isDestructible()) {
                                 obstacle->takeDamage(damage);
-                                hit = true;
                                 
                                 // Начисляем очки за разрушение препятствия
                                 if (owner == player) {
                                     player->addScore(10);
                                 }
                             }
+                            hit = true;
                             break;
+                        }
+                        
+                        // Если это танк (игрок или враг)
+                        Tank* tank = dynamic_cast<Tank*>(obj.get());
+                        if (tank) {
+                            // Наносим урон танку
+                            tank->takeDamage(damage);
+                            
+                            // Начисляем очки игроку за уничтожение врага
+                            if (tank != player && tank->isDestroyed() && owner == player) {
+                                player->addScore(100);
+                            }
+                            hit = true;
+                            break;
+                        }
+                        
+                        // Для других типов объектов (бонусов и т.д.) снаряд проходит насквозь
+                        Bonus* bonus = dynamic_cast<Bonus*>(obj.get());
+                        if (bonus) {
+                            continue; // Снаряд проходит сквозь бонусы
                         }
                     }
                 }
@@ -459,27 +482,106 @@ private:
             objects.emplace_back(new Obstacle(Point(fieldWidth - 1, y), ObstacleType::STEEL));
         }
         
-        // Создаем случайные препятствия в зависимости от уровня
-        int obstacleCount = 10 + level * 3;
+        // Количество объектов каждого типа
+        int brickCount = 40;    // Кирпичи
+        int steelCount = 30;    // Сталь
+        int forestCount = 20;   // Лес
+        int waterCount = 20;    // Вода
         
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_int_distribution<> xDist(2, fieldWidth - 3);
         std::uniform_int_distribution<> yDist(2, fieldHeight - 3);
-        std::uniform_int_distribution<> typeDist(0, 3);
         
-        for (int i = 0; i < obstacleCount; i++) {
-            Point pos(xDist(gen), yDist(gen));
-            
-            // Проверяем, чтобы препятствие не спаунилось на игроке
+        // Функция для проверки валидности позиции
+        auto isValidSpawnPosition = [this](const Point& pos) {
+            // Проверяем, чтобы объект не спавнился на игроке
             Point playerPos = player->getPosition();
-            if (abs(pos.x - playerPos.x) < 3 && abs(pos.y - playerPos.y) < 3) continue;
+            if (abs(pos.x - playerPos.x) < 3 && abs(pos.y - playerPos.y) < 3) {
+                return false;
+            }
             
-            ObstacleType type = static_cast<ObstacleType>(typeDist(gen));
-            objects.emplace_back(new Obstacle(pos, type));
+            // Проверяем, чтобы позиция не была занята другим объектом
+            for (const auto& obj : objects) {
+                if (!obj) continue;
+                
+                Point objPos = obj->getPosition();
+                Point objBounds = obj->getBounds();
+                
+                if (pos.x >= objPos.x && pos.x < objPos.x + objBounds.x &&
+                    pos.y >= objPos.y && pos.y < objPos.y + objBounds.y) {
+                    return false;
+                }
+            }
+            
+            return true;
+        };
+        
+        // Генерация кирпичей (40 штук)
+        for (int i = 0; i < brickCount; i++) {
+            int attempts = 0;
+            bool placed = false;
+            
+            while (attempts < 50 && !placed) { // Максимум 50 попыток
+                Point pos(xDist(gen), yDist(gen));
+                
+                if (isValidSpawnPosition(pos)) {
+                    objects.emplace_back(new Obstacle(pos, ObstacleType::BRICK));
+                    placed = true;
+                }
+                attempts++;
+            }
         }
         
-        // Создаем базовые стены вокруг центра
+        // Генерация стальных стен (30 штук)
+        for (int i = 0; i < steelCount; i++) {
+            int attempts = 0;
+            bool placed = false;
+            
+            while (attempts < 50 && !placed) {
+                Point pos(xDist(gen), yDist(gen));
+                
+                if (isValidSpawnPosition(pos)) {
+                    objects.emplace_back(new Obstacle(pos, ObstacleType::STEEL));
+                    placed = true;
+                }
+                attempts++;
+            }
+        }
+        
+        // Генерация леса (20 штук)
+        for (int i = 0; i < forestCount; i++) {
+            int attempts = 0;
+            bool placed = false;
+            
+            while (attempts < 50 && !placed) {
+                Point pos(xDist(gen), yDist(gen));
+                
+                if (isValidSpawnPosition(pos)) {
+                    objects.emplace_back(new Obstacle(pos, ObstacleType::FOREST));
+                    placed = true;
+                }
+                attempts++;
+            }
+        }
+        
+        // Генерация воды (20 штук)
+        for (int i = 0; i < waterCount; i++) {
+            int attempts = 0;
+            bool placed = false;
+            
+            while (attempts < 50 && !placed) {
+                Point pos(xDist(gen), yDist(gen));
+                
+                if (isValidSpawnPosition(pos)) {
+                    objects.emplace_back(new Obstacle(pos, ObstacleType::WATER));
+                    placed = true;
+                }
+                attempts++;
+            }
+        }
+        
+        // Создаем базовые стены вокруг центра (опционально - можно убрать если мешает)
         int centerX = fieldWidth / 2;
         int centerY = fieldHeight / 2;
         
@@ -488,7 +590,26 @@ private:
                 if (x == centerX && y == centerY) continue; // Оставляем проход в центре
                 if ((x == centerX - 2 || x == centerX + 2) && (y == centerY - 2 || y == centerY + 2)) continue; // Углы
                 
-                objects.emplace_back(new Obstacle(Point(x, y), ObstacleType::BRICK));
+                // Проверяем, не занята ли позиция
+                Point pos(x, y);
+                bool positionOccupied = false;
+                
+                for (const auto& obj : objects) {
+                    if (!obj) continue;
+                    
+                    Point objPos = obj->getPosition();
+                    Point objBounds = obj->getBounds();
+                    
+                    if (pos.x >= objPos.x && pos.x < objPos.x + objBounds.x &&
+                        pos.y >= objPos.y && pos.y < objPos.y + objBounds.y) {
+                        positionOccupied = true;
+                        break;
+                    }
+                }
+                
+                if (!positionOccupied) {
+                    objects.emplace_back(new Obstacle(pos, ObstacleType::BRICK));
+                }
             }
         }
     }
@@ -545,10 +666,10 @@ private:
     }
     
     void cleanupDestroyedObjects() {
-        // Удаляем уничтоженные объекты
+        // Удаляем уничтоженные объекты, но НЕ игрока
         objects.erase(std::remove_if(objects.begin(), objects.end(),
-            [](const std::unique_ptr<GameObject>& obj) {
-                return obj->isDestroyed();
+            [this](const std::unique_ptr<GameObject>& obj) {
+                return obj->isDestroyed() && obj.get() != player; // Исключаем игрока
             }), objects.end());
         
         // Обновляем счетчик врагов
@@ -573,13 +694,18 @@ private:
     }
     
     void checkGameConditions() {
+        // Проверяем, что player валиден
+        if (!player) return;
+        
         // Проверяем смерть игрока
         if (player->isDestroyed()) {
             player->loseLife();
-            if (player->hasLives()) {
+            
+            if (player && player->hasLives()) {
                 // Респавн игрока
                 player->setPosition(Point(fieldWidth / 2, fieldHeight - 3));
                 player->setHealth(3);
+                player->setDestroyed(false);
             } else {
                 state = GameState::GAME_OVER;
             }
