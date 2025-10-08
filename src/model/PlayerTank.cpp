@@ -64,18 +64,6 @@ class PlayerTank : public Tank {
                 // Создаем второй снаряд для двойного огня
                 Point secondPos = firstShot->getPosition();
                 
-                // Смещаем второй снаряд в сторону
-                switch (direction) {
-                    case Direction::UP:
-                    case Direction::DOWN:
-                        secondPos.x += 1; // Справа от первого
-                        break;
-                    case Direction::LEFT:
-                    case Direction::RIGHT:
-                        secondPos.y += 1; // Снизу от первого
-                        break;
-                }
-                
                 // Второй снаряд создается, но не влияет на перезарядку
                 return new Projectile(secondPos, direction, 1, this);
             }

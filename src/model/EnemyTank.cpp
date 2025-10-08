@@ -292,17 +292,32 @@ class EnemyTank : public Tank {
             if (!canFire()) return nullptr;
             
             // Вражеские танки имеют разную точность в зависимости от сложности
-            // Случайный шанс промаха для низкой сложности
             if (difficulty == 1 && rand() % 3 == 0) { // 33% шанс промаха
-                return nullptr;
+                // Стреляем в случайном направлении
+                Direction randomDir = static_cast<Direction>(rand() % 4);
+                rotate(randomDir);
+            } else if (difficulty == 2 && rand() % 5 == 0) { // 20% шанс промаха
+                // Небольшое отклонение
+                Direction nearDir = getDirectionToPlayer();
+                if (rand() % 2 == 0) {
+                    // Слегка отклоняемся
+                    switch (nearDir) {
+                        case Direction::UP: 
+                        case Direction::DOWN:
+                            rotate(rand() % 2 == 0 ? Direction::LEFT : Direction::RIGHT);
+                            break;
+                        case Direction::LEFT:
+                        case Direction::RIGHT:
+                            rotate(rand() % 2 == 0 ? Direction::UP : Direction::DOWN);
+                            break;
+                    }
+                }
+            }
+            // Высокая сложность - всегда стреляет точно к игроку
+            else if (difficulty == 3) {
+                rotate(getDirectionToPlayer());
             }
             
-            // Для средней сложности - небольшой шанс промаха
-            if (difficulty == 2 && rand() % 5 == 0) { // 20% шанс промаха
-                return nullptr;
-            }
-            
-            // Высокая сложность - всегда стреляет точно
             return Tank::fire();
         }
         

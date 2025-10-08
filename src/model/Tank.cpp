@@ -50,7 +50,7 @@ class Tank : public GameObject {
             // Сбрасываем перезарядку
             currentReload = reloadTime;
             
-            // Создаем снаряд
+            // Создаем снаряд (он сам вычислит свою целевую позицию)
             return new Projectile(projectilePos, direction, 1, this);
         }
         
@@ -110,6 +110,9 @@ class Tank : public GameObject {
             
             // Вычисляем фактическую скорость с учетом бонуса
             int actualSpeed = speed + speedBoost;
+            
+            // Ограничиваем максимальную скорость для предотвращения прохождения сквозь объекты
+            if (actualSpeed > 2) actualSpeed = 2;
             
             // Вычисляем новую позицию в зависимости от направления
             switch (dir) {
