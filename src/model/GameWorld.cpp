@@ -19,9 +19,9 @@ private:
     std::vector<std::unique_ptr<GameObject>> objects;
     std::vector<std::unique_ptr<Bonus>> bonuses;
     std::vector<std::unique_ptr<Projectile>> projectiles;
+    int fieldWidth, fieldHeight;
     GameState state;
     int currentLevel;
-    int fieldWidth, fieldHeight;
     PlayerTank* player;
     int enemyCount;
     int maxEnemies;
@@ -483,8 +483,8 @@ private:
         }
         
         // Количество объектов каждого типа
-        int brickCount = 40;    // Кирпичи
-        int steelCount = 30;    // Сталь
+        int brickCount = 30 + level*2;    // Кирпичи
+        int steelCount = 20 + level*2;    // Сталь
         int forestCount = 20;   // Лес
         int waterCount = 20;    // Вода
         

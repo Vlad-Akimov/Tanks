@@ -88,7 +88,7 @@ class PlayerTank : public Tank {
                 Point secondPos = firstShot->getPosition();
                 
                 // Второй снаряд создается, но не влияет на перезарядку
-                return new Projectile(secondPos, direction, 1, this);
+                return new Projectile(secondPos, direction, 2, this);
             }
             
             return firstShot;

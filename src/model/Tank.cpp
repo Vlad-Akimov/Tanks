@@ -102,9 +102,6 @@ class Tank : public GameObject {
         
         // Переопределение метода движения с учетом ускорения
         void move(Direction dir) override {
-            // Сохраняем предыдущую позицию на случай столкновения
-            Point prevPosition = position;
-            
             // Обновляем направление
             direction = dir;
             

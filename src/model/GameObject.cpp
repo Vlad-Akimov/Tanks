@@ -25,9 +25,6 @@ class GameObject {
         
         // Базовые методы
         virtual void move(Direction dir) {
-            // Сохраняем предыдущую позицию на случай столкновения
-            Point prevPosition = position;
-            
             // Обновляем направление
             direction = dir;
             
