@@ -289,7 +289,6 @@ class GameController {
         ConsoleRenderer view;
         InputHandler inputHandler;
         bool running;
-        bool waitingForInput;
 
         void processGameTurn() {
             // Фаза ВЫВОДА: отрисовка текущего состояния
@@ -478,7 +477,7 @@ class GameController {
 
     public:
         GameController(int width, int height) 
-            : model(width, height), view(width, height), running(true), waitingForInput(false) {
+            : model(width, height), view(width, height), running(true) {
             // Инициализация случайного генератора
             srand(static_cast<unsigned int>(time(nullptr)));
         }

@@ -26,6 +26,62 @@ private:
     int enemyCount;
     int maxEnemies;
 
+    // Структура для параметров сложности
+    struct DifficultyParams {
+        int brickCount;
+        int steelCount;
+        int waterCount;
+        int forestCount;
+        int brickClusters;
+        int steelClusters;
+        int waterClusters;
+        int forestClusters;
+        bool organicClusters;
+    };
+    
+    // Метод для настройки параметров сложности
+    DifficultyParams adjustDifficulty(int level) {
+        DifficultyParams params;
+        
+        // Базовые значения для уровня 1
+        int baseObstacles = 60;
+        
+        // Прогрессия количества препятствий
+        params.brickCount = 40 + level * 8;
+        params.steelCount = 15 + level * 4;
+        params.waterCount = 25 + level * 6;
+        params.forestCount = 20 + level * 5;
+        
+        // Прогрессия количества кластеров
+        params.brickClusters = 3 + level / 2;
+        params.steelClusters = std::max(0, (level - 2) / 2); // Сталь появляется с 3 уровня
+        params.waterClusters = 2 + level / 3;
+        params.forestClusters = 2 + level / 3;
+        
+        // Органичные кластеры включаются с 2 уровня
+        params.organicClusters = (level >= 2);
+        
+        // Корректировка для очень высоких уровней
+        if (level >= 8) {
+            params.steelCount += 10;
+            params.brickCount -= 5; // Заменяем часть кирпича на сталь
+        }
+        
+        // Ограничение максимального количества препятствий
+        int totalObstacles = params.brickCount + params.steelCount + params.waterCount + params.forestCount;
+        int maxObstacles = 200; // Максимум чтобы поле не было переполнено
+        
+        if (totalObstacles > maxObstacles) {
+            float scale = static_cast<float>(maxObstacles) / totalObstacles;
+            params.brickCount = static_cast<int>(params.brickCount * scale);
+            params.steelCount = static_cast<int>(params.steelCount * scale);
+            params.waterCount = static_cast<int>(params.waterCount * scale);
+            params.forestCount = static_cast<int>(params.forestCount * scale);
+        }
+        
+        return params;
+    }
+
 public:
     GameWorld(int width, int height) 
         : fieldWidth(width), fieldHeight(height), state(GameState::MENU), 
@@ -97,7 +153,7 @@ public:
         
         // Полностью сбрасываем состояние игрока при загрузке нового уровня
         if (player) {
-            player->reset(); // Используем новый метод reset()
+            player->reset();
             player->setPosition(Point(fieldWidth / 2, fieldHeight - 3));
         }
         
@@ -468,151 +524,7 @@ private:
         return true;
     }
 
-    void createLevelObstacles(int level) {
-        // Создаем границы поля
-        for (int x = 0; x < fieldWidth; x++) {
-            // Верхняя и нижняя границы
-            objects.emplace_back(new Obstacle(Point(x, 0), ObstacleType::STEEL));
-            objects.emplace_back(new Obstacle(Point(x, fieldHeight - 1), ObstacleType::STEEL));
-        }
-        
-        for (int y = 1; y < fieldHeight - 1; y++) {
-            // Левая и правая границы
-            objects.emplace_back(new Obstacle(Point(0, y), ObstacleType::STEEL));
-            objects.emplace_back(new Obstacle(Point(fieldWidth - 1, y), ObstacleType::STEEL));
-        }
-        
-        // Количество объектов каждого типа
-        int brickCount = 30 + level*2;    // Кирпичи
-        int steelCount = 20 + level*2;    // Сталь
-        int forestCount = 20;   // Лес
-        int waterCount = 20;    // Вода
-        
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_int_distribution<> xDist(2, fieldWidth - 3);
-        std::uniform_int_distribution<> yDist(2, fieldHeight - 3);
-        
-        // Функция для проверки валидности позиции
-        auto isValidSpawnPosition = [this](const Point& pos) {
-            // Проверяем, чтобы объект не спавнился на игроке
-            Point playerPos = player->getPosition();
-            if (abs(pos.x - playerPos.x) < 3 && abs(pos.y - playerPos.y) < 3) {
-                return false;
-            }
-            
-            // Проверяем, чтобы позиция не была занята другим объектом
-            for (const auto& obj : objects) {
-                if (!obj) continue;
-                
-                Point objPos = obj->getPosition();
-                Point objBounds = obj->getBounds();
-                
-                if (pos.x >= objPos.x && pos.x < objPos.x + objBounds.x &&
-                    pos.y >= objPos.y && pos.y < objPos.y + objBounds.y) {
-                    return false;
-                }
-            }
-            
-            return true;
-        };
-        
-        // Генерация кирпичей (40 штук)
-        for (int i = 0; i < brickCount; i++) {
-            int attempts = 0;
-            bool placed = false;
-            
-            while (attempts < 50 && !placed) { // Максимум 50 попыток
-                Point pos(xDist(gen), yDist(gen));
-                
-                if (isValidSpawnPosition(pos)) {
-                    objects.emplace_back(new Obstacle(pos, ObstacleType::BRICK));
-                    placed = true;
-                }
-                attempts++;
-            }
-        }
-        
-        // Генерация стальных стен (30 штук)
-        for (int i = 0; i < steelCount; i++) {
-            int attempts = 0;
-            bool placed = false;
-            
-            while (attempts < 50 && !placed) {
-                Point pos(xDist(gen), yDist(gen));
-                
-                if (isValidSpawnPosition(pos)) {
-                    objects.emplace_back(new Obstacle(pos, ObstacleType::STEEL));
-                    placed = true;
-                }
-                attempts++;
-            }
-        }
-        
-        // Генерация леса (20 штук)
-        for (int i = 0; i < forestCount; i++) {
-            int attempts = 0;
-            bool placed = false;
-            
-            while (attempts < 50 && !placed) {
-                Point pos(xDist(gen), yDist(gen));
-                
-                if (isValidSpawnPosition(pos)) {
-                    objects.emplace_back(new Obstacle(pos, ObstacleType::FOREST));
-                    placed = true;
-                }
-                attempts++;
-            }
-        }
-        
-        // Генерация воды (20 штук)
-        for (int i = 0; i < waterCount; i++) {
-            int attempts = 0;
-            bool placed = false;
-            
-            while (attempts < 50 && !placed) {
-                Point pos(xDist(gen), yDist(gen));
-                
-                if (isValidSpawnPosition(pos)) {
-                    objects.emplace_back(new Obstacle(pos, ObstacleType::WATER));
-                    placed = true;
-                }
-                attempts++;
-            }
-        }
-        
-        // Создаем базовые стены вокруг центра (опционально - можно убрать если мешает)
-        int centerX = fieldWidth / 2;
-        int centerY = fieldHeight / 2;
-        
-        for (int x = centerX - 2; x <= centerX + 2; x++) {
-            for (int y = centerY - 2; y <= centerY + 2; y++) {
-                if (x == centerX && y == centerY) continue; // Оставляем проход в центре
-                if ((x == centerX - 2 || x == centerX + 2) && (y == centerY - 2 || y == centerY + 2)) continue; // Углы
-                
-                // Проверяем, не занята ли позиция
-                Point pos(x, y);
-                bool positionOccupied = false;
-                
-                for (const auto& obj : objects) {
-                    if (!obj) continue;
-                    
-                    Point objPos = obj->getPosition();
-                    Point objBounds = obj->getBounds();
-                    
-                    if (pos.x >= objPos.x && pos.x < objPos.x + objBounds.x &&
-                        pos.y >= objPos.y && pos.y < objPos.y + objBounds.y) {
-                        positionOccupied = true;
-                        break;
-                    }
-                }
-                
-                if (!positionOccupied) {
-                    objects.emplace_back(new Obstacle(pos, ObstacleType::BRICK));
-                }
-            }
-        }
-    }
+    void createLevelObstacles(int level);
     
     void createEnemies(int level) {
         enemyCount = 0;

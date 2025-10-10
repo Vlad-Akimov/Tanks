@@ -18,7 +18,6 @@ class PlayerTank : public Tank {
             
             // Сбрасываем здоровье и жизни
             setHealth(3);
-            lives = 3;
             
             // Сбрасываем счет
             score = 0;

@@ -12,7 +12,6 @@ class EnemyTank : public Tank {
         int difficulty;
         Point playerLastPosition;
         int moveCooldown; // Задержка между движениями
-        int lastMoveDirection; // Для отслеживания последнего направления
         
         void decideNextMove() {
             if (moveCooldown > 0) {
@@ -243,7 +242,7 @@ class EnemyTank : public Tank {
             : Tank(pos, Direction::DOWN, 1, 2, 1), 
             behavior(behav), difficulty(diff), 
             playerLastPosition(Point(-1, -1)),
-            moveCooldown(0), lastMoveDirection(-1)
+            moveCooldown(0)
         {
             setReloadTime(2);
         }
