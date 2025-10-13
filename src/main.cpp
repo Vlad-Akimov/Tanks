@@ -1,5 +1,5 @@
 #include <iostream>
-#include "controller/GameController.cpp"
+#include "controller/GameController.h"
 
 int main() {
     try {
