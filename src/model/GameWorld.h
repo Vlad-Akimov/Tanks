@@ -45,8 +45,8 @@ private:
     void checkTankTankCollisions();
     void checkBoundaryCollisions();
     bool checkPointCollision(const Point& point, GameObject* excludeObj = nullptr);
-    void handleTankTankCollision(Tank* tank1, Tank* tank2);
-    void handleTankObstacleCollision(Tank* tank, GameObject* obstacle);
+    void handleTankTankCollision(Tank* tank1);
+    void handleTankObstacleCollision(Tank* tank);
     bool handleProjectileHit(GameObject* target, Projectile* projectile, int damage);
     
     DifficultyParams adjustDifficulty(int level);

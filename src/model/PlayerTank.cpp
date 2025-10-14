@@ -15,7 +15,7 @@ void PlayerTank::reset(int level) {
     // Сбрасываем здоровье и жизни
     setHealth(3);
     
-    if (!level) {
+    if (level == 1) {
         score = 0;
     }
     

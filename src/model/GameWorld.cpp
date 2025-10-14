@@ -257,14 +257,14 @@ void GameWorld::checkTankObstacleCollisions() {
                 
                 if (!obstacle->isPassable()) {
                     // Откатываем танк на предыдущую позицию
-                    handleTankObstacleCollision(tank, obstacleObj.get());
+                    handleTankObstacleCollision(tank);
                 }
             }
         }
     }
 }
 
-void GameWorld::handleTankObstacleCollision(Tank* tank, GameObject* obstacle) {
+void GameWorld::handleTankObstacleCollision(Tank* tank) {
     Point tankPos = tank->getPosition();
     Direction dir = tank->getDirection();
     
@@ -310,24 +310,20 @@ void GameWorld::checkTankTankCollisions() {
                 tank1Pos.y + tank1Bounds.y > tank2Pos.y) {
                 
                 // Обрабатываем столкновение танков
-                handleTankTankCollision(tank1, tank2);
+                handleTankTankCollision(tank1);
                 break;
             }
         }
     }
 }
 
-void GameWorld::handleTankTankCollision(Tank* tank1, Tank* tank2) {
+void GameWorld::handleTankTankCollision(Tank* tank1) {
     // Откатываем позицию первого танка
     Direction dir = tank1->getDirection();
     Point prevPos = tank1->getPosition();
     
     // Учитываем скорость для отката
-    int actualSpeed = tank1->getSpeed();
-    PlayerTank* playerTank1 = dynamic_cast<PlayerTank*>(tank1);
-    if (playerTank1 && playerTank1->getBonusDuration() > 0) {
-        actualSpeed += 1;
-    }
+    int actualSpeed = 1;
     
     switch (dir) {
         case Direction::UP:
