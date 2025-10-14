@@ -330,4 +330,74 @@ void ConsoleRenderer::drawSettings() {
     std::cout << "=================================\n";
 }
 
+void ConsoleRenderer::drawMapSelection(const MapInfo& currentMap, int currentIndex, int totalMaps) {
+    clearScreen();
+    
+    std::cout << "=================================\n";
+    std::cout << "        ВЫБОР КАРТЫ             \n";
+    std::cout << "=================================\n\n";
+    
+    std::cout << "   Текущая карта: " << currentMap.displayName << "\n";
+    std::cout << "   " << currentMap.description << "\n";
+    std::cout << "   Карта " << (currentIndex + 1) << " из " << totalMaps << "\n\n";
+    
+    std::cout << "---------------------------------\n";
+    std::cout << "        ПРЕВЬЮ КАРТЫ            \n";
+    std::cout << "---------------------------------\n";
+    
+    // Рисуем превью карты
+    drawMapPreview(currentMap, currentIndex, totalMaps);
+    
+    std::cout << "\n---------------------------------\n";
+    std::cout << "          УПРАВЛЕНИЕ           \n";
+    std::cout << "---------------------------------\n\n";
+    
+    std::cout << "   [A] - Предыдущая карта\n";
+    std::cout << "   [D] - Следующая карта\n";
+    std::cout << "   [F] - Случайная генерация\n";
+    std::cout << "   [ENTER] - Начать игру\n";
+    std::cout << "   [M] - Главное меню\n";
+    std::cout << "   [Q] - Выход\n\n";
+    
+    std::cout << "=================================\n";
+}
+
+void ConsoleRenderer::drawMapPreview(const MapInfo& map, int currentIndex, int totalMaps) {
+    // Простое ASCII превью карты
+    int previewWidth = std::min(map.width, 30);
+    int previewHeight = std::min(map.height, 10);
+    
+    std::cout << "   ";
+    for (int x = 0; x < previewWidth + 2; x++) {
+        std::cout << "#";
+    }
+    std::cout << "\n";
+    
+    for (int y = 0; y < previewHeight; y++) {
+        std::cout << "   #";
+        for (int x = 0; x < previewWidth; x++) {
+            // Простая логика отрисовки превью
+            if ((x + y) % 4 == 0) {
+                std::cout << "#"; // стены
+            } else if ((x + y) % 7 == 0) {
+                std::cout << "~"; // вода
+            } else if ((x + y) % 5 == 0) {
+                std::cout << "*"; // лес
+            } else {
+                std::cout << " "; // пустое пространство
+            }
+        }
+        std::cout << "#\n";
+    }
+    
+    std::cout << "   ";
+    for (int x = 0; x < previewWidth + 2; x++) {
+        std::cout << "#";
+    }
+    std::cout << "\n";
+    
+    // Показываем игровые элементы на превью
+    std::cout << "   Обозначения: # - стены, ~ - вода, * - лес\n";
+}
+
 #endif // CONSOLERENDERER_CPP

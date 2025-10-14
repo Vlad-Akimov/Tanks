@@ -2,6 +2,7 @@
 #define GAMECONTROLLER_H
 
 #include "../model/GameWorld.h"
+#include "../model/MapManager.h"
 #include "../view/ConsoleRenderer.h"
 #include "../utils/PlatformUtils.h"
 
@@ -36,10 +37,16 @@ private:
     InputHandler inputHandler;
     bool running;
 
+    MapManager mapManager;
+    int currentMapIndex;
+
     void processGameTurn();
     void processCommand(Command cmd);
     void showMenu();
     void showSettings();
+
+    void showMapSelection();
+    void loadSelectedMap();
 
 public:
     GameController(int width, int height);
