@@ -838,7 +838,7 @@ void GameWorld::createLevelObstacles(int level) {
         int maxIterations = targetCount * 5; // Ограничиваем количество итераций
         int iterations = 0;
         
-        while (!activePoints.empty() && clusterPoints.size() < targetCount && iterations < maxIterations) {
+        while (!activePoints.empty() && clusterPoints.size() < static_cast<size_t>(targetCount) && iterations < maxIterations) {
             iterations++;
             
             // Выбираем случайную активную точку
@@ -875,7 +875,7 @@ void GameWorld::createLevelObstacles(int level) {
                         targetIt->currentCount++;
                         addedNewPoint = true;
                         
-                        if (clusterPoints.size() >= targetCount) break;
+                        if (clusterPoints.size() >= static_cast<size_t>(targetCount)) break;
                     }
                 }
             }
@@ -885,7 +885,7 @@ void GameWorld::createLevelObstacles(int level) {
                 activePoints.erase(activePoints.begin() + randomIndex);
             }
             
-            if (clusterPoints.size() >= targetCount) break;
+            if (clusterPoints.size() >= static_cast<size_t>(targetCount)) break;
         }
     };
     
