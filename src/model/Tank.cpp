@@ -105,8 +105,6 @@ void Tank::move(Direction dir) {
     
     // Двигаемся пошагово, проверяя каждую клетку
     for (int step = 0; step < actualSpeed; step++) {
-        Point prevPos = position;
-        
         // Вычисляем новую позицию для одного шага
         switch (dir) {
             case Direction::UP:

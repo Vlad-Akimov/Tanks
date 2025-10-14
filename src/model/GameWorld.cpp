@@ -107,7 +107,6 @@ void GameWorld::checkCollisions() {
         
         Tank* owner = projectile->getOwner();
         int damage = projectile->getDamage();
-        Direction dir = projectile->getDirection();
         
         // Получаем всю траекторию снаряда
         auto trajectory = projectile->getTrajectory();
@@ -488,9 +487,6 @@ void GameWorld::playerMove(Direction dir) {
 
 GameWorld::DifficultyParams GameWorld::adjustDifficulty(int level) {
     DifficultyParams params;
-    
-    // Базовые значения для уровня 1
-    int baseObstacles = 60;
     
     // Прогрессия количества препятствий
     params.brickCount = 40 + level * 8;
