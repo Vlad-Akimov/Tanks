@@ -2,11 +2,13 @@
 #define TANK_CPP
 
 #include "Tank.h"
+#include <algorithm>
 
 Tank::Tank(Point pos, Direction dir, int spd, int hp, int fireRate)
     : GameObject(pos, dir, spd, hp, true), 
       fireRate(fireRate), reloadTime(0), currentReload(0),
-      hasShield(false), doubleFire(false), speedBoost(0), bonusDuration(0) {}
+      hasShield(false), doubleFire(false), speedBoost(0),
+      shieldDuration(0), doubleFireDuration(0), speedBoostDuration(0) {}
 
 // Методы танка
 Projectile* Tank::fire() {
@@ -42,33 +44,45 @@ void Tank::applyBonus(BonusType bonus) {
     switch (bonus) {
         case BonusType::SHIELD:
             hasShield = true;
-            bonusDuration = 10; // Действует 10 ходов
+            shieldDuration = 10;
             break;
             
         case BonusType::DOUBLE_FIRE:
             doubleFire = true;
-            bonusDuration = 15; // Действует 15 ходов
+            doubleFireDuration = 15;
             break;
             
         case BonusType::SPEED_BOOST:
-            speedBoost = 1; // Увеличиваем скорость на 1
-            bonusDuration = 20; // Действует 20 ходов
+            speedBoost = 1;
+            speedBoostDuration = 20;
             break;
             
         case BonusType::LIFE_UP:
-            // Увеличиваем здоровье
+            // Увеличиваем здоровье (мгновенный эффект)
             health += 1;
             break;
     }
 }
 
 void Tank::updateBonus() {
-    if (bonusDuration > 0) {
-        bonusDuration--;
-        if (bonusDuration == 0) {
-            // Снимаем все бонусы
+    // Обновляем каждый бонус отдельно
+    if (shieldDuration > 0) {
+        shieldDuration--;
+        if (shieldDuration == 0) {
             hasShield = false;
+        }
+    }
+    
+    if (doubleFireDuration > 0) {
+        doubleFireDuration--;
+        if (doubleFireDuration == 0) {
             doubleFire = false;
+        }
+    }
+    
+    if (speedBoostDuration > 0) {
+        speedBoostDuration--;
+        if (speedBoostDuration == 0) {
             speedBoost = 0;
         }
     }
@@ -133,7 +147,8 @@ bool Tank::getDoubleFire() const {
 }
 
 int Tank::getBonusDuration() const { 
-    return bonusDuration; 
+    // Возвращаем максимальную из активных длительностей
+    return std::max({shieldDuration, doubleFireDuration, speedBoostDuration});
 }
 
 // Сеттеры для настройки параметров
@@ -145,8 +160,17 @@ void Tank::setFireRate(int rate) {
     fireRate = rate; 
 }
 
-void Tank::setBonusDuration(int duration) { 
-    bonusDuration = duration; 
+// Новые методы для получения отдельных длительностей
+int Tank::getShieldDuration() const { 
+    return shieldDuration; 
+}
+
+int Tank::getDoubleFireDuration() const { 
+    return doubleFireDuration; 
+}
+
+int Tank::getSpeedBoostDuration() const { 
+    return speedBoostDuration; 
 }
 
 #endif // TANK_CPP

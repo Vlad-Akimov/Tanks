@@ -85,7 +85,7 @@ void GameWorld::loadLevel(int level) {
     
     // Полностью сбрасываем состояние игрока при загрузке нового уровня
     if (player) {
-        player->reset();
+        player->reset(currentLevel);
         player->setPosition(Point(fieldWidth / 2, fieldHeight - 3));
     }
     
@@ -101,6 +101,14 @@ void GameWorld::loadLevel(int level) {
 void GameWorld::checkCollisions() {
     if (!player) return;
     
+    checkProjectileCollisions();
+    checkBonusCollisions();
+    checkTankObstacleCollisions();
+    checkTankTankCollisions();
+    checkBoundaryCollisions();
+}
+
+void GameWorld::checkProjectileCollisions() {
     // Обрабатываем снаряды
     for (auto& projectile : projectiles) {
         if (!projectile || projectile->isDestroyed() || projectile->isProcessed()) continue;
@@ -131,52 +139,10 @@ void GameWorld::checkCollisions() {
                 if (point.x >= objPos.x && point.x < objPos.x + objBounds.x &&
                     point.y >= objPos.y && point.y < objPos.y + objBounds.y) {
                     
-                    // Проверяем, является ли объект препятствием
-                    Obstacle* obstacle = dynamic_cast<Obstacle*>(obj.get());
-                    if (obstacle) {
-                        // Если препятствие проходимо для снарядов - пропускаем
-                        if (obstacle->isProjectilePassable()) {
-                            continue; // Продолжаем проверять другие объекты в этой точке
-                        }
-                        
-                        // Если препятствие НЕ проходимо - наносим урон и останавливаем снаряд
-                        if (obstacle->isDestructible()) {
-                            obstacle->takeDamage(damage);
-                            
-                            // Начисляем очки за разрушение препятствия
-                            if (owner == player) {
-                                player->addScore(10);
-                            }
-                        }
+                    // Обрабатываем попадание
+                    if (handleProjectileHit(obj.get(), projectile.get(), damage)) {
                         hit = true;
                         break;
-                    }
-                    
-                    // Если это танк (игрок или враг)
-                    Tank* tank = dynamic_cast<Tank*>(obj.get());
-                    if (tank) {
-                        EnemyTank* enemyOwner = dynamic_cast<EnemyTank*>(owner);
-                        EnemyTank* hitEnemy = dynamic_cast<EnemyTank*>(tank);
-                        
-                        if (enemyOwner && hitEnemy) {
-                            continue;
-                        }
-                        
-                        // Наносим урон танку
-                        tank->takeDamage(damage);
-                        
-                        // Начисляем очки игроку за уничтожение врага
-                        if (tank != player && tank->isDestroyed() && owner == player) {
-                            player->addScore(100);
-                        }
-                        hit = true;
-                        break;
-                    }
-                    
-                    // Для других типов объектов (бонусов и т.д.) снаряд проходит насквозь
-                    Bonus* bonus = dynamic_cast<Bonus*>(obj.get());
-                    if (bonus) {
-                        continue; // Снаряд проходит сквозь бонусы
                     }
                 }
             }
@@ -187,7 +153,62 @@ void GameWorld::checkCollisions() {
         // Помечаем снаряд как обработанный
         projectile->markProcessed();
     }
+}
+
+bool GameWorld::handleProjectileHit(GameObject* target, Projectile* projectile, int damage) {
+    Tank* owner = projectile->getOwner();
     
+    // Проверяем, является ли объект препятствием
+    Obstacle* obstacle = dynamic_cast<Obstacle*>(target);
+    if (obstacle) {
+        // Если препятствие проходимо для снарядов - пропускаем
+        if (obstacle->isProjectilePassable()) {
+            return false; // Продолжаем проверять другие объекты в этой точке
+        }
+        
+        // Если препятствие НЕ проходимо - наносим урон и останавливаем снаряд
+        if (obstacle->isDestructible()) {
+            obstacle->takeDamage(damage);
+            
+            // Начисляем очки за разрушение препятствия
+            if (owner == player) {
+                player->addScore(10);
+            }
+        }
+        return true;
+    }
+    
+    // Если это танк (игрок или враг)
+    Tank* tank = dynamic_cast<Tank*>(target);
+    if (tank) {
+        EnemyTank* enemyOwner = dynamic_cast<EnemyTank*>(owner);
+        EnemyTank* hitEnemy = dynamic_cast<EnemyTank*>(tank);
+        
+        // Игнорируем столкновения снарядов врагов с другими врагами
+        if (enemyOwner && hitEnemy) {
+            return false;
+        }
+        
+        // Наносим урон танку
+        tank->takeDamage(damage);
+        
+        // Начисляем очки игроку за уничтожение врага
+        if (tank != player && tank->isDestroyed() && owner == player) {
+            player->addScore(100);
+        }
+        return true;
+    }
+    
+    // Для других типов объектов (бонусов и т.д.) снаряд проходит насквозь
+    Bonus* bonus = dynamic_cast<Bonus*>(target);
+    if (bonus) {
+        return false; // Снаряд проходит сквозь бонусы
+    }
+    
+    return false;
+}
+
+void GameWorld::checkBonusCollisions() {
     // Проверяем сбор бонусов игроком
     Point playerPos = player->getPosition();
     Point playerBounds = player->getBounds();
@@ -205,7 +226,9 @@ void GameWorld::checkCollisions() {
             player->addScore(50);
         }
     }
-    
+}
+
+void GameWorld::checkTankObstacleCollisions() {
     // Проверяем столкновения танков с препятствиями
     for (auto& obj : objects) {
         if (!obj || obj->isDestroyed()) continue;
@@ -234,29 +257,35 @@ void GameWorld::checkCollisions() {
                 
                 if (!obstacle->isPassable()) {
                     // Откатываем танк на предыдущую позицию
-                    // В реальной реализации нужно хранить предыдущую позицию
-                    Direction dir = tank->getDirection();
-                    
-                    // Простой откат на 1 клетку в противоположном направлении
-                    switch (dir) {
-                        case Direction::UP:
-                            tank->setPosition(Point(tankPos.x, tankPos.y + 1));
-                            break;
-                        case Direction::DOWN:
-                            tank->setPosition(Point(tankPos.x, tankPos.y - 1));
-                            break;
-                        case Direction::LEFT:
-                            tank->setPosition(Point(tankPos.x + 1, tankPos.y));
-                            break;
-                        case Direction::RIGHT:
-                            tank->setPosition(Point(tankPos.x - 1, tankPos.y));
-                            break;
-                    }
+                    handleTankObstacleCollision(tank, obstacleObj.get());
                 }
             }
         }
     }
+}
+
+void GameWorld::handleTankObstacleCollision(Tank* tank, GameObject* obstacle) {
+    Point tankPos = tank->getPosition();
+    Direction dir = tank->getDirection();
     
+    // Простой откат на 1 клетку в противоположном направлении
+    switch (dir) {
+        case Direction::UP:
+            tank->setPosition(Point(tankPos.x, tankPos.y + 1));
+            break;
+        case Direction::DOWN:
+            tank->setPosition(Point(tankPos.x, tankPos.y - 1));
+            break;
+        case Direction::LEFT:
+            tank->setPosition(Point(tankPos.x + 1, tankPos.y));
+            break;
+        case Direction::RIGHT:
+            tank->setPosition(Point(tankPos.x - 1, tankPos.y));
+            break;
+    }
+}
+
+void GameWorld::checkTankTankCollisions() {
     // Проверяем столкновения танков друг с другом
     for (auto& obj1 : objects) {
         Tank* tank1 = dynamic_cast<Tank*>(obj1.get());
@@ -280,38 +309,43 @@ void GameWorld::checkCollisions() {
                 tank1Pos.y < tank2Pos.y + tank2Bounds.y &&
                 tank1Pos.y + tank1Bounds.y > tank2Pos.y) {
                 
-                // Откатываем позицию первого танка
-                Direction dir = tank1->getDirection();
-                Point prevPos = tank1Pos;
-                
-                // Учитываем скорость для отката
-                int actualSpeed = tank1->getSpeed();
-                PlayerTank* playerTank1 = dynamic_cast<PlayerTank*>(tank1);
-                if (playerTank1 && playerTank1->getBonusDuration() > 0) {
-                    actualSpeed += 1;
-                }
-                
-                switch (dir) {
-                    case Direction::UP:
-                        tank1->setPosition(Point(prevPos.x, prevPos.y + actualSpeed));
-                        break;
-                    case Direction::DOWN:
-                        tank1->setPosition(Point(prevPos.x, prevPos.y - actualSpeed));
-                        break;
-                    case Direction::LEFT:
-                        tank1->setPosition(Point(prevPos.x + actualSpeed, prevPos.y));
-                        break;
-                    case Direction::RIGHT:
-                        tank1->setPosition(Point(prevPos.x - actualSpeed, prevPos.y));
-                        break;
-                }
-                
-                // Выходим из внутреннего цикла после обработки столкновения
+                // Обрабатываем столкновение танков
+                handleTankTankCollision(tank1, tank2);
                 break;
             }
         }
     }
+}
+
+void GameWorld::handleTankTankCollision(Tank* tank1, Tank* tank2) {
+    // Откатываем позицию первого танка
+    Direction dir = tank1->getDirection();
+    Point prevPos = tank1->getPosition();
     
+    // Учитываем скорость для отката
+    int actualSpeed = tank1->getSpeed();
+    PlayerTank* playerTank1 = dynamic_cast<PlayerTank*>(tank1);
+    if (playerTank1 && playerTank1->getBonusDuration() > 0) {
+        actualSpeed += 1;
+    }
+    
+    switch (dir) {
+        case Direction::UP:
+            tank1->setPosition(Point(prevPos.x, prevPos.y + actualSpeed));
+            break;
+        case Direction::DOWN:
+            tank1->setPosition(Point(prevPos.x, prevPos.y - actualSpeed));
+            break;
+        case Direction::LEFT:
+            tank1->setPosition(Point(prevPos.x + actualSpeed, prevPos.y));
+            break;
+        case Direction::RIGHT:
+            tank1->setPosition(Point(prevPos.x - actualSpeed, prevPos.y));
+            break;
+    }
+}
+
+void GameWorld::checkBoundaryCollisions() {
     // Проверяем столкновения танков с границами поля
     for (auto& obj : objects) {
         Tank* tank = dynamic_cast<Tank*>(obj.get());
@@ -330,6 +364,40 @@ void GameWorld::checkCollisions() {
     }
 }
 
+bool GameWorld::checkPointCollision(const Point& point, GameObject* excludeObj) {
+    // Проверяем границы поля
+    if (point.x < 0 || point.y < 0 || point.x >= fieldWidth || point.y >= fieldHeight) {
+        return true;
+    }
+    
+    // Проверяем столкновения с объектами
+    for (const auto& obj : objects) {
+        if (!obj || obj->isDestroyed() || obj.get() == excludeObj) continue;
+        
+        Point objPos = obj->getPosition();
+        Point objBounds = obj->getBounds();
+        
+        // Проверяем попадание в объект
+        if (point.x >= objPos.x && point.x < objPos.x + objBounds.x &&
+            point.y >= objPos.y && point.y < objPos.y + objBounds.y) {
+            
+            // Если это непроходимое препятствие - столкновение
+            Obstacle* obstacle = dynamic_cast<Obstacle*>(obj.get());
+            if (obstacle && !obstacle->isPassable()) {
+                return true;
+            }
+            
+            // Если это другой танк - столкновение
+            Tank* otherTank = dynamic_cast<Tank*>(obj.get());
+            if (otherTank) {
+                return true;
+            }
+        }
+    }
+    
+    return false;
+}
+
 void GameWorld::spawnBonus() {
     // Генерируем случайную позицию для бонуса
     std::random_device rd;
@@ -337,15 +405,122 @@ void GameWorld::spawnBonus() {
     std::uniform_int_distribution<> xDist(1, fieldWidth - 2);
     std::uniform_int_distribution<> yDist(1, fieldHeight - 2);
     
-    Point bonusPos(xDist(gen), yDist(gen));
-    
     // Выбираем случайный тип бонуса
     std::uniform_int_distribution<> typeDist(0, 3);
     BonusType type = static_cast<BonusType>(typeDist(gen));
     
+    // Пытаемся найти валидную позицию для бонуса
+    Point bonusPos;
+    bool validPositionFound = false;
+    int maxAttempts = 50; // Максимальное количество попыток
+    
+    for (int attempt = 0; attempt < maxAttempts; attempt++) {
+        bonusPos = Point(xDist(gen), yDist(gen));
+        
+        if (isValidBonusPosition(bonusPos)) {
+            validPositionFound = true;
+            break;
+        }
+    }
+    
+    // Если не нашли валидную позицию после всех попыток, пропускаем спавн
+    if (!validPositionFound) {
+        return;
+    }
+    
     // Создаем бонус
     auto bonus = std::make_unique<Bonus>(bonusPos, type);
     bonuses.push_back(std::move(bonus));
+}
+
+bool GameWorld::isValidBonusPosition(const Point& pos) const {
+    // Проверяем границы поля
+    if (pos.x < 1 || pos.x >= fieldWidth - 1 || 
+        pos.y < 1 || pos.y >= fieldHeight - 1) {
+        return false;
+    }
+    
+    // Проверяем, что позиция доступна для игрока (не на непроходимом препятствии)
+    for (const auto& obj : objects) {
+        if (!obj || obj->isDestroyed()) continue;
+        
+        Point objPos = obj->getPosition();
+        Point objBounds = obj->getBounds();
+        
+        // Проверяем, находится ли позиция бонуса внутри объекта
+        if (pos.x >= objPos.x && pos.x < objPos.x + objBounds.x &&
+            pos.y >= objPos.y && pos.y < objPos.y + objBounds.y) {
+            
+            // Если это непроходимое препятствие - позиция невалидна
+            Obstacle* obstacle = dynamic_cast<Obstacle*>(obj.get());
+            if (obstacle && !obstacle->isPassable()) {
+                return false;
+            }
+            
+            // Если это другой бонус - позиция невалидна (избегаем наложения)
+            Bonus* existingBonus = dynamic_cast<Bonus*>(obj.get());
+            if (existingBonus && existingBonus->isActive()) {
+                return false;
+            }
+            
+            // Если это танк - позиция невалидна
+            Tank* tank = dynamic_cast<Tank*>(obj.get());
+            if (tank) {
+                return false;
+            }
+        }
+    }
+    
+    // Проверяем, что вокруг позиции есть достаточно места для подбора
+    std::vector<Point> adjacentPositions = {
+        Point(pos.x - 1, pos.y),    // слева
+        Point(pos.x + 1, pos.y),    // справа
+        Point(pos.x, pos.y - 1),    // сверху
+        Point(pos.x, pos.y + 1)     // снизу
+    };
+    
+    int accessiblePositions = 0;
+    for (const auto& adjacentPos : adjacentPositions) {
+        if (isPositionAccessible(adjacentPos)) {
+            accessiblePositions++;
+        }
+    }
+    
+    return accessiblePositions >= 1;
+}
+
+bool GameWorld::isPositionAccessible(const Point& pos) const {
+    // Проверяем границы поля
+    if (pos.x < 0 || pos.x >= fieldWidth || pos.y < 0 || pos.y >= fieldHeight) {
+        return false;
+    }
+    
+    // Проверяем, что позиция проходима для танка
+    for (const auto& obj : objects) {
+        if (!obj || obj->isDestroyed()) continue;
+        
+        Point objPos = obj->getPosition();
+        Point objBounds = obj->getBounds();
+        
+        // Проверяем, находится ли позиция внутри объекта
+        if (pos.x >= objPos.x && pos.x < objPos.x + objBounds.x &&
+            pos.y >= objPos.y && pos.y < objPos.y + objBounds.y) {
+            
+            // Если это непроходимое препятствие - позиция недоступна
+            Obstacle* obstacle = dynamic_cast<Obstacle*>(obj.get());
+            if (obstacle && !obstacle->isPassable()) {
+                return false;
+            }
+            
+            // Если это танк - позиция недоступна
+            Tank* tank = dynamic_cast<Tank*>(obj.get());
+            if (tank) {
+                return false;
+            }
+        }
+    }
+    
+    return true;
 }
 
 std::vector<GameObject*> GameWorld::getObjectsInRadius(Point center, int radius) const {

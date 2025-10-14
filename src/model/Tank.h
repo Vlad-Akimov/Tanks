@@ -13,7 +13,10 @@ protected:
     bool hasShield;
     bool doubleFire;
     int speedBoost;
-    int bonusDuration;
+    
+    int shieldDuration;
+    int doubleFireDuration;
+    int speedBoostDuration;
 
 public:
     Tank(Point pos, Direction dir, int spd, int hp, int fireRate);
@@ -34,7 +37,10 @@ public:
     
     void setReloadTime(int reload);
     void setFireRate(int rate);
-    void setBonusDuration(int duration);
+    
+    int getShieldDuration() const;
+    int getDoubleFireDuration() const;
+    int getSpeedBoostDuration() const;
     
     virtual void update() override = 0;
     virtual Point getBounds() const override = 0;

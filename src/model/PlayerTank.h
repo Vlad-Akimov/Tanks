@@ -10,7 +10,7 @@ private:
 
 public:
     PlayerTank(Point pos);
-    void reset();
+    void reset(int level);
     void addScore(int points);
     void loseLife();
     bool hasLives() const;

@@ -38,6 +38,17 @@ private:
         bool organicClusters;
     };
     
+    // Приватные методы для обработки столкновений
+    void checkProjectileCollisions();
+    void checkBonusCollisions();
+    void checkTankObstacleCollisions();
+    void checkTankTankCollisions();
+    void checkBoundaryCollisions();
+    bool checkPointCollision(const Point& point, GameObject* excludeObj = nullptr);
+    void handleTankTankCollision(Tank* tank1, Tank* tank2);
+    void handleTankObstacleCollision(Tank* tank, GameObject* obstacle);
+    bool handleProjectileHit(GameObject* target, Projectile* projectile, int damage);
+    
     DifficultyParams adjustDifficulty(int level);
     bool isValidPosition(const Point& pos, const Point& bounds, const GameObject* excludeObj = nullptr) const;
     void createLevelObstacles(int level);
@@ -55,6 +66,8 @@ public:
     void loadLevel(int level);
     void checkCollisions();
     void spawnBonus();
+    bool isValidBonusPosition(const Point& pos) const;
+    bool isPositionAccessible(const Point& pos) const;
     std::vector<GameObject*> getObjectsInRadius(Point center, int radius) const;
     
     void setState(GameState newState);

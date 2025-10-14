@@ -7,7 +7,7 @@ PlayerTank::PlayerTank(Point pos): Tank(pos, Direction::UP, 1, 3, 2), lives(3), 
     setReloadTime(1);
 }
 
-void PlayerTank::reset() {
+void PlayerTank::reset(int level) {
     // Сбрасываем позицию и направление
     setPosition(Point(40 / 2, 20 - 3));
     rotate(Direction::UP);
@@ -15,14 +15,17 @@ void PlayerTank::reset() {
     // Сбрасываем здоровье и жизни
     setHealth(3);
     
-    // Сбрасываем счет
-    score = 0;
+    if (!level) {
+        score = 0;
+    }
     
     // Сбрасываем бонусы
     hasShield = false;
     doubleFire = false;
     speedBoost = 0;
-    bonusDuration = 0;
+    shieldDuration = 0;
+    doubleFireDuration = 0;
+    speedBoostDuration = 0;
     currentReload = 0;
     
     // Сбрасываем флаг уничтожения
@@ -43,7 +46,9 @@ void PlayerTank::loseLife() {
         hasShield = false;
         doubleFire = false;
         speedBoost = 0;
-        bonusDuration = 0;
+        shieldDuration = 0;
+        doubleFireDuration = 0;
+        speedBoostDuration = 0;
     }
 }
 
