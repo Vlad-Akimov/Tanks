@@ -6,8 +6,100 @@
 
 GameController::GameController(int width, int height) 
     : model(width, height), view(width, height), running(true), 
-      mapManager("resources/maps"), currentMapIndex(0) {
+      mapManager("../resources/maps"), currentMapIndex(0) {
     srand(static_cast<unsigned int>(time(nullptr)));
+    mapManager.loadMaps();
+}
+
+void GameController::showMapSelection() {
+    bool inMapSelection = true;
+    
+    if (mapManager.getMapCount() == 0) {
+        mapManager.loadMaps();
+    }
+    
+    if (mapManager.getMapCount() == 0) {
+        std::cout << "Карты не найдены! Используется случайная генерация." << std::endl;
+        model.loadLevel(1);
+        return;
+    }
+    
+    while (inMapSelection && running) {
+        // Получаем текущую карту
+        const MapInfo& currentMap = mapManager.getMap(currentMapIndex);
+        
+        // Отрисовываем экран выбора карты
+        view.clearScreen();
+        view.drawMapSelection(currentMap, currentMapIndex, mapManager.getMapCount());
+        std::cout << "Введите команду: ";
+        std::cout.flush();
+        
+        Command cmd = inputHandler.waitForCommand();
+        switch (cmd) {
+            case Command::MOVE_LEFT: // A
+                // Предыдущая карта
+                currentMapIndex--;
+                if (currentMapIndex < 0) {
+                    currentMapIndex = mapManager.getMapCount() - 1;
+                }
+                break;
+                
+            case Command::MOVE_RIGHT: // D
+                // Следующая карта
+                currentMapIndex++;
+                if (currentMapIndex >= mapManager.getMapCount()) {
+                    currentMapIndex = 0;
+                }
+                break;
+                
+            case Command::FIRE: // R - случайная генерация
+                // Используем стандартную генерацию карты
+                model.loadLevel(1);
+                inMapSelection = false;
+                break;
+                
+            case Command::CONFIRM: // ENTER - начать игру с выбранной картой
+                loadSelectedMap();
+                inMapSelection = false;
+                break;
+                
+            case Command::MENU: // M - вернуться в главное меню
+                inMapSelection = false;
+                break;
+                
+            case Command::EXIT: // Q - выход
+                running = false;
+                inMapSelection = false;
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
+void GameController::loadSelectedMap() {
+    if (mapManager.isValidMapIndex(currentMapIndex)) {
+        const MapInfo& selectedMap = mapManager.getMap(currentMapIndex);
+        
+        std::cout << "Загрузка карты: " << selectedMap.displayName << std::endl;
+        std::cout << "Размер: " << selectedMap.width << "x" << selectedMap.height << std::endl;
+        
+        // Создаем новый игровой мир с размерами выбранной карты
+        model = GameWorld(selectedMap.width, selectedMap.height);
+        
+        // Загружаем объекты из карты
+        mapManager.createWorldFromMap(model, selectedMap);
+        
+        // Устанавливаем состояние игры
+        model.setState(GameState::PLAYING);
+        
+        std::cout << "Карта успешно загружена: " << selectedMap.displayName << std::endl;
+    } else {
+        // Если что-то пошло не так, используем стандартную карту
+        std::cout << "Ошибка загрузки карты, используется случайная генерация" << std::endl;
+        model.loadLevel(1);
+    }
 }
 
 void GameController::runGame() {
@@ -234,94 +326,6 @@ void GameController::showSettings() {
     }
     
     model.setState(GameState::MENU);
-}
-
-void GameController::showMapSelection() {
-    model.setState(GameState::MENU);
-    bool inMapSelection = true;
-    
-    // Загружаем карты
-    mapManager.loadMaps();
-    
-    if (mapManager.getMapCount() == 0) {
-        std::cout << "Карты не найдены! Используется случайная генерация." << std::endl;
-        model.loadLevel(1); // Используем стандартную генерацию
-        return;
-    }
-    
-    while (inMapSelection && running) {
-        // Получаем текущую карту
-        const MapInfo& currentMap = mapManager.getMap(currentMapIndex);
-        
-        // Отрисовываем экран выбора карты
-        view.clearScreen();
-        view.drawMapSelection(currentMap, currentMapIndex, mapManager.getMapCount());
-        std::cout << "Введите команду: ";
-        std::cout.flush();
-        
-        Command cmd = inputHandler.waitForCommand();
-        switch (cmd) {
-            case Command::MOVE_LEFT: // A
-                // Предыдущая карта
-                currentMapIndex--;
-                if (currentMapIndex < 0) {
-                    currentMapIndex = mapManager.getMapCount() - 1;
-                }
-                break;
-                
-            case Command::MOVE_RIGHT: // D
-                // Следующая карта
-                currentMapIndex++;
-                if (currentMapIndex >= mapManager.getMapCount()) {
-                    currentMapIndex = 0;
-                }
-                break;
-                
-            case Command::FIRE: // R - случайная генерация
-                // Используем стандартную генерацию карты
-                model.loadLevel(1);
-                inMapSelection = false;
-                break;
-                
-            case Command::CONFIRM: // ENTER - начать игру с выбранной картой
-                loadSelectedMap();
-                inMapSelection = false;
-                break;
-                
-            case Command::MENU: // M - вернуться в главное меню
-                showMenu();
-                inMapSelection = false;
-                break;
-                
-            case Command::EXIT: // Q - выход
-                running = false;
-                inMapSelection = false;
-                break;
-                
-            default:
-                break;
-        }
-    }
-}
-
-void GameController::loadSelectedMap() {
-    if (mapManager.isValidMapIndex(currentMapIndex)) {
-        const MapInfo& selectedMap = mapManager.getMap(currentMapIndex);
-        
-        // Создаем игровой мир с размерами выбранной карты
-        model = GameWorld(selectedMap.width, selectedMap.height);
-        
-        // Загружаем объекты из карты
-        mapManager.createWorldFromMap(model, selectedMap);
-        
-        // Загружаем уровень (это добавит врагов и настроит игрока)
-        model.loadLevel(1);
-        
-        std::cout << "Загружена карта: " << selectedMap.displayName << std::endl;
-    } else {
-        // Если что-то пошло не так, используем стандартную карту
-        model.loadLevel(1);
-    }
 }
 
 #endif // GAMECONTROLLER_CPP

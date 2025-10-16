@@ -20,10 +20,8 @@ bool MapManager::loadMaps() {
     maps.clear();
     
     try {
-        // Создаем директорию, если она не существует
         std::filesystem::create_directories(mapsDirectory);
         
-        // Проверяем, существует ли директория
         if (!std::filesystem::exists(mapsDirectory)) {
             std::cerr << "Директория не существует: " << mapsDirectory << std::endl;
             createDefaultMaps();
@@ -328,7 +326,7 @@ bool MapManager::isValidMapIndex(int index) const {
 void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
     std::cout << "Создание мира из карты: " << map.displayName << std::endl;
     
-    // ВАЖНО: Полностью очищаем мир и создаем заново
+    // Получаем доступ к объектам мира для модификации
     auto& objects = const_cast<std::vector<std::unique_ptr<GameObject>>&>(world.getObjects());
     auto& projectiles = const_cast<std::vector<std::unique_ptr<Projectile>>&>(world.getProjectiles());
     auto& bonuses = const_cast<std::vector<std::unique_ptr<Bonus>>&>(world.getBonuses());
@@ -338,7 +336,7 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
     projectiles.clear();
     bonuses.clear();
     
-    // СОЗДАЕМ НОВОГО ИГРОКА
+    // СОЗДАЕМ НОВОГО ИГРОКА в центре нижней части карты
     Point playerPos(map.width / 2, map.height - 3);
     auto player = std::make_unique<PlayerTank>(playerPos);
     PlayerTank* playerPtr = player.get();
@@ -379,10 +377,25 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
                     break;
                 case 'E': // Враг
                     {
-                        AIBehavior behavior = AIBehavior::RANDOM; // Простое поведение для начала
+                        AIBehavior behavior = AIBehavior::RANDOM;
                         auto enemy = std::make_unique<EnemyTank>(pos, behavior, 1);
                         objects.push_back(std::move(enemy));
                         enemyCount++;
+                    }
+                    break;
+                case '^': // Игрок (альтернативное расположение)
+                case 'v':
+                case '<':
+                case '>':
+                    // Если на карте указана позиция игрока, используем ее
+                    if (y != playerPos.y || x != playerPos.x) {
+                        playerPtr->setPosition(pos);
+                        // Также устанавливаем направление based on symbol
+                        Direction dir = Direction::UP;
+                        if (cell == 'v') dir = Direction::DOWN;
+                        else if (cell == '<') dir = Direction::LEFT;
+                        else if (cell == '>') dir = Direction::RIGHT;
+                        playerPtr->rotate(dir);
                     }
                     break;
                 default:
@@ -392,13 +405,13 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
         }
     }
     
+    // Устанавливаем игрока в мире
     world.setPlayer(playerPtr);
-
+    
     std::cout << "Успешно создано: " << enemyCount << " врагов, " 
               << obstacleCount << " препятствий" << std::endl;
-    
-    // Сбрасываем состояние мира
-    world.setState(GameState::PLAYING);
+    std::cout << "Позиция игрока: " << playerPtr->getPosition().x << ", " 
+              << playerPtr->getPosition().y << std::endl;
 }
 
 #endif // MAPMANAGER_CPP
