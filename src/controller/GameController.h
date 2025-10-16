@@ -1,34 +1,16 @@
 #ifndef GAMECONTROLLER_H
 #define GAMECONTROLLER_H
 
+#include "../controller/InputHandler.h"
 #include "../model/GameWorld.h"
 #include "../utils/MapManager.h"
 #include "../view/ConsoleRenderer.h"
-#include "../utils/PlatformUtils.h"
 
 #include <map>
 #include <vector>
 #include <iostream>
 #include <string>
 #include <ctime>
-
-enum class Command { 
-    MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, 
-    FIRE, PAUSE, MENU, CONFIRM, BACK, EXIT, NONE
-};
-
-class InputHandler {
-private:
-    std::map<int, Command> keyBindings;
-    std::map<std::string, Command> utf8KeyBindings;
-
-public:
-    InputHandler();
-    Command waitForCommand();
-    void remapKey(int keyCode, Command command);
-    void remapUTF8Key(const std::string& utf8Char, Command command);
-    static int getKeyCode(char c);
-};
 
 class GameController {
 private:
