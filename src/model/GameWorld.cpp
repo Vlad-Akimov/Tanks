@@ -554,6 +554,10 @@ PlayerTank* GameWorld::getPlayer() const {
     return player; 
 }
 
+void GameWorld::setPlayer(PlayerTank* newPlayer) {
+    player = newPlayer;
+}
+
 const std::vector<std::unique_ptr<GameObject>>& GameWorld::getObjects() const { 
     return objects; 
 }

@@ -76,6 +76,7 @@ public:
     int getWidth() const;
     int getHeight() const;
     PlayerTank* getPlayer() const;
+    void setPlayer(PlayerTank* newPlayer);
 
     const std::vector<std::unique_ptr<GameObject>>& getObjects() const;
     const std::vector<std::unique_ptr<Projectile>>& getProjectiles() const;

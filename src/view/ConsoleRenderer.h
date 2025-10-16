@@ -2,7 +2,7 @@
 #define CONSOLERENDERER_H
 
 #include "../model/GameWorld.h"
-#include "../model/MapManager.h"
+#include "../utils/MapManager.h"
 #include "../utils/PlatformUtils.h"
 #include <iostream>
 #include <string>
@@ -15,7 +15,7 @@ private:
     void setColor(PlatformUtils::Color color);
     void resetColor();
     void drawBorder();
-    void drawMapPreview(const MapInfo& map, int currentIndex, int totalMaps);
+    void drawMapPreview(const MapInfo& map);
 
 public:
     ConsoleRenderer(int width, int height);

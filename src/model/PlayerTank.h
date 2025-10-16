@@ -17,6 +17,8 @@ public:
     
     int getLives() const;
     int getScore() const;
+
+    void setLives(int lvs);
     
     void update() override;
     Point getBounds() const override;

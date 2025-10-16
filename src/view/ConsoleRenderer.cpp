@@ -168,13 +168,6 @@ void ConsoleRenderer::drawSymbolLegend() {
     resetColor();
     std::cout << " - враги\n";
     
-    // Снаряды
-    std::cout << "Снаряды: ";
-    setColor(PlatformUtils::Color::WHITE);
-    std::cout << "| -";
-    resetColor();
-    std::cout << " (верт./гориз.)\n";
-    
     // Препятствия
     std::cout << "Препятствия: ";
     std::cout << "#";
@@ -346,7 +339,7 @@ void ConsoleRenderer::drawMapSelection(const MapInfo& currentMap, int currentInd
     std::cout << "---------------------------------\n";
     
     // Рисуем превью карты
-    drawMapPreview(currentMap, currentIndex, totalMaps);
+    drawMapPreview(currentMap);
     
     std::cout << "\n---------------------------------\n";
     std::cout << "          УПРАВЛЕНИЕ           \n";
@@ -362,42 +355,59 @@ void ConsoleRenderer::drawMapSelection(const MapInfo& currentMap, int currentInd
     std::cout << "=================================\n";
 }
 
-void ConsoleRenderer::drawMapPreview(const MapInfo& map, int currentIndex, int totalMaps) {
-    // Простое ASCII превью карты
-    int previewWidth = std::min(map.width, 30);
-    int previewHeight = std::min(map.height, 10);
-    
-    std::cout << "   ";
-    for (int x = 0; x < previewWidth + 2; x++) {
-        std::cout << "#";
-    }
-    std::cout << "\n";
-    
-    for (int y = 0; y < previewHeight; y++) {
-        std::cout << "   #";
-        for (int x = 0; x < previewWidth; x++) {
-            // Простая логика отрисовки превью
-            if ((x + y) % 4 == 0) {
-                std::cout << "#"; // стены
-            } else if ((x + y) % 7 == 0) {
-                std::cout << "~"; // вода
-            } else if ((x + y) % 5 == 0) {
-                std::cout << "*"; // лес
+void ConsoleRenderer::drawMapPreview(const MapInfo& map) {
+    // Отображаем каждую строку карты
+    for (int y = 0; y < map.height; y++) {
+        std::cout << "   ";
+        
+        for (int x = 0; x < map.width; x++) {
+            char symbol = map.layout[y][x];
+            
+            // Определяем цвет для символа
+            if (symbol == '#' || symbol == 'X') {
+                std::cout << symbol; // Стены
+            } else if (symbol == '~') {
+                setColor(PlatformUtils::Color::BLUE);
+                std::cout << symbol; // Вода
+                resetColor();
+            } else if (symbol == '*') {
+                setColor(PlatformUtils::Color::GREEN);
+                std::cout << symbol; // Лес
+                resetColor();
+            } else if (symbol == 'E') {
+                setColor(PlatformUtils::Color::RED);
+                std::cout << symbol; // Враги
+                resetColor();
+            } else if (symbol == '^' || symbol == 'v' || symbol == '<' || symbol == '>') {
+                setColor(PlatformUtils::Color::GREEN);
+                std::cout << "P"; // Игрок
+                resetColor();
             } else {
-                std::cout << " "; // пустое пространство
+                std::cout << " "; // Пустое пространство
             }
         }
-        std::cout << "#\n";
-    }
-    
-    std::cout << "   ";
-    for (int x = 0; x < previewWidth + 2; x++) {
-        std::cout << "#";
+        std::cout << "\n";
     }
     std::cout << "\n";
     
-    // Показываем игровые элементы на превью
-    std::cout << "   Обозначения: # - стены, ~ - вода, * - лес\n";
+    // Статистика карты
+    std::cout << "   Размер: " << map.width << "x" << map.height;
+    
+    // Подсчитываем объекты
+    int walls = 0, water = 0, forest = 0, enemies = 0, empty = 0;
+    for (const auto& row : map.layout) {
+        for (char cell : row) {
+            if (cell == '#' || cell == 'X') walls++;
+            else if (cell == '~') water++;
+            else if (cell == '*') forest++;
+            else if (cell == 'E') enemies++;
+            else if (cell == ' ') empty++;
+        }
+    }
+    
+    std::cout << " | Пустых клеток: " << empty << "\n";
+    std::cout << "   Объекты: " << walls << " стен, " << water << " воды, " 
+              << forest << " леса, " << enemies << " врагов\n";
 }
 
 #endif // CONSOLERENDERER_CPP

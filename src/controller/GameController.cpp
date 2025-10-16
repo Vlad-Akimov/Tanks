@@ -142,7 +142,7 @@ int InputHandler::getKeyCode(char c) {
 
 GameController::GameController(int width, int height) 
     : model(width, height), view(width, height), running(true), 
-      mapManager("../resources/maps"), currentMapIndex(0) {
+      mapManager("resources/maps"), currentMapIndex(0) {
     srand(static_cast<unsigned int>(time(nullptr)));
 }
 
@@ -271,7 +271,8 @@ void GameController::processCommand(Command cmd) {
             
         case Command::MENU:
             if (model.getState() == GameState::PLAYING) {
-                model.setState(GameState::PAUSED);
+                model.setState(GameState::GAME_OVER);
+                showMenu();
             } else if (model.getState() == GameState::GAME_OVER) {
                 // Возврат в меню после Game Over
                 showMenu();
@@ -443,9 +444,13 @@ void GameController::loadSelectedMap() {
     if (mapManager.isValidMapIndex(currentMapIndex)) {
         const MapInfo& selectedMap = mapManager.getMap(currentMapIndex);
         
-        // Здесь можно добавить загрузку конкретной карты из файла
-        // Пока используем стандартную генерацию, но с размерами выбранной карты
+        // Создаем игровой мир с размерами выбранной карты
         model = GameWorld(selectedMap.width, selectedMap.height);
+        
+        // Загружаем объекты из карты
+        mapManager.createWorldFromMap(model, selectedMap);
+        
+        // Загружаем уровень (это добавит врагов и настроит игрока)
         model.loadLevel(1);
         
         std::cout << "Загружена карта: " << selectedMap.displayName << std::endl;

@@ -2,7 +2,7 @@
 #define GAMECONTROLLER_H
 
 #include "../model/GameWorld.h"
-#include "../model/MapManager.h"
+#include "../utils/MapManager.h"
 #include "../view/ConsoleRenderer.h"
 #include "../utils/PlatformUtils.h"
 

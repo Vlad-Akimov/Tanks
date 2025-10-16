@@ -66,6 +66,10 @@ int PlayerTank::getScore() const {
     return score; 
 }
 
+void PlayerTank::setLives(int lvs) { 
+    lives = lvs; 
+}
+
 // Реализация абстрактных методов
 void PlayerTank::update() {
     // Обновляем перезарядку и бонусы каждый ход

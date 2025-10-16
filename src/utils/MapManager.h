@@ -4,19 +4,24 @@
 #include <string>
 #include <vector>
 #include <filesystem>
+#include "../model/GameObject.h"
+#include "../model/GameWorld.h"
+#include "../model/Obstacle.h"
 
 struct MapInfo {
     std::string filename;
     std::string displayName;
+    std::string description;
     int width;
     int height;
-    std::string description;
+    std::vector<std::vector<char>> layout; // Матрица объектов карты
 };
 
 class MapManager {
 private:
     std::vector<MapInfo> maps;
     std::string mapsDirectory;
+    void saveMapToFile(const MapInfo& map);
 
 public:
     MapManager(const std::string& directory = "maps");
@@ -26,6 +31,9 @@ public:
     const MapInfo& getMap(int index) const;
     int getMapCount() const;
     bool isValidMapIndex(int index) const;
+    
+    // Новый метод для создания игрового мира из карты
+    void createWorldFromMap(GameWorld& world, const MapInfo& map);
 };
 
 #endif // MAPMANAGER_H
