@@ -22,7 +22,6 @@ public:
     static std::string readUTF8Char();
     static void sleep(int milliseconds);
     
-    // Цветовая поддержка для консоли
     enum class Color {
         DEFAULT = 0,
         RED = 1,

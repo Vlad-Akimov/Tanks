@@ -38,7 +38,6 @@ private:
         bool organicClusters;
     };
     
-    // Приватные методы для обработки столкновений
     void checkProjectileCollisions();
     void checkBonusCollisions();
     void checkTankObstacleCollisions();

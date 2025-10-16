@@ -356,7 +356,6 @@ void ConsoleRenderer::drawMapSelection(const MapInfo& currentMap, int currentInd
 }
 
 void ConsoleRenderer::drawMapPreview(const MapInfo& map) {
-    // Отображаем каждую строку карты
     for (int y = 0; y < map.height; y++) {
         std::cout << "   ";
         

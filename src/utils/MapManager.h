@@ -14,7 +14,7 @@ struct MapInfo {
     std::string description;
     int width;
     int height;
-    std::vector<std::vector<char>> layout; // Матрица объектов карты
+    std::vector<std::vector<char>> layout;
 };
 
 class MapManager {
@@ -32,7 +32,6 @@ public:
     int getMapCount() const;
     bool isValidMapIndex(int index) const;
     
-    // Новый метод для создания игрового мира из карты
     void createWorldFromMap(GameWorld& world, const MapInfo& map);
 };
 
