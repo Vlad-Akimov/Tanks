@@ -603,7 +603,7 @@ void GameWorld::playerMove(Direction dir) {
     
     // Вычисляем фактическую скорость с учетом бонусов
     int actualSpeed = player->getSpeed();
-    if (player->getBonusDuration() > 0) {
+    if (player->getSpeedBoostDuration() > 0) {
         actualSpeed += 1; // Учитываем бонус скорости
     }
     if (actualSpeed > 2) actualSpeed = 2;
@@ -635,6 +635,8 @@ void GameWorld::playerMove(Direction dir) {
         if (isValidPosition(testPos, bounds, player)) {
             currentPos = testPos;
             stepsMoved++;
+
+            checkBonusCollisions();
         } else {
             // Если не можем двигаться дальше, останавливаемся
             break;

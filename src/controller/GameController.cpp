@@ -142,7 +142,7 @@ int InputHandler::getKeyCode(char c) {
 
 GameController::GameController(int width, int height) 
     : model(width, height), view(width, height), running(true), 
-      mapManager("../../resources/maps"), currentMapIndex(0) {
+      mapManager("../resources/maps"), currentMapIndex(0) {
     srand(static_cast<unsigned int>(time(nullptr)));
 }
 

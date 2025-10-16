@@ -17,6 +17,7 @@ void PlayerTank::reset(int level) {
     
     if (level == 1) {
         score = 0;
+        lives = 3;
     }
     
     // Сбрасываем бонусы
