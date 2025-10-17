@@ -66,6 +66,10 @@ int PlayerTank::getScore() const {
     return score; 
 }
 
+void PlayerTank::setScore(int savedScore) { 
+    score = savedScore; 
+}
+
 void PlayerTank::setLives(int lvs) { 
     lives = lvs; 
 }

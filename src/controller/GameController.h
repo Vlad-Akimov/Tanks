@@ -21,6 +21,8 @@ private:
 
     MapManager mapManager;
     int currentMapIndex;
+    bool useCustomMap;
+    MapInfo selectedMap;
 
     void processGameTurn();
     void processCommand(Command cmd);
@@ -29,6 +31,7 @@ private:
 
     void showMapSelection();
     void loadSelectedMap();
+    void loadNextLevel();
 
 public:
     GameController(int width, int height);

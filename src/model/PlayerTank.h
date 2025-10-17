@@ -18,6 +18,7 @@ public:
     int getLives() const;
     int getScore() const;
 
+    void setScore(int savedScore);
     void setLives(int lvs);
     
     void update() override;

@@ -6,7 +6,8 @@
 
 GameController::GameController(int width, int height) 
     : model(width, height), view(width, height), running(true), 
-      mapManager("../resources/maps"), currentMapIndex(0) {
+      mapManager("../resources/maps"), currentMapIndex(0), 
+      useCustomMap(false) {
     srand(static_cast<unsigned int>(time(nullptr)));
     mapManager.loadMaps();
 }
@@ -20,6 +21,7 @@ void GameController::showMapSelection() {
     
     if (mapManager.getMapCount() == 0) {
         std::cout << "Карты не найдены! Используется случайная генерация." << std::endl;
+        useCustomMap = false; // Явно устанавливаем флаг
         model.loadLevel(1);
         return;
     }
@@ -37,7 +39,6 @@ void GameController::showMapSelection() {
         Command cmd = inputHandler.waitForCommand();
         switch (cmd) {
             case Command::MOVE_LEFT: // A
-                // Предыдущая карта
                 currentMapIndex--;
                 if (currentMapIndex < 0) {
                     currentMapIndex = mapManager.getMapCount() - 1;
@@ -45,7 +46,6 @@ void GameController::showMapSelection() {
                 break;
                 
             case Command::MOVE_RIGHT: // D
-                // Следующая карта
                 currentMapIndex++;
                 if (currentMapIndex >= mapManager.getMapCount()) {
                     currentMapIndex = 0;
@@ -54,11 +54,13 @@ void GameController::showMapSelection() {
                 
             case Command::FIRE: // R - случайная генерация
                 // Используем стандартную генерацию карты
+                useCustomMap = false;
                 model.loadLevel(1);
                 inMapSelection = false;
                 break;
                 
             case Command::CONFIRM: // ENTER - начать игру с выбранной картой
+                useCustomMap = true;
                 loadSelectedMap();
                 inMapSelection = false;
                 break;
@@ -80,13 +82,33 @@ void GameController::showMapSelection() {
 
 void GameController::loadSelectedMap() {
     if (mapManager.isValidMapIndex(currentMapIndex)) {
-        const MapInfo& selectedMap = mapManager.getMap(currentMapIndex);
+        const MapInfo& map = mapManager.getMap(currentMapIndex);
         
-        std::cout << "Загрузка карты: " << selectedMap.displayName << std::endl;
-        std::cout << "Размер: " << selectedMap.width << "x" << selectedMap.height << std::endl;
+        std::cout << "Загрузка карты: " << map.displayName << std::endl;
+        std::cout << "Размер: " << map.width << "x" << map.height << std::endl;
+        
+        // Сохраняем выбранную карту
+        selectedMap = map;
+        useCustomMap = true;
+        
+        // СОХРАНЯЕМ состояние игрока перед созданием нового мира
+        int currentLevel = model.getCurrentLevel();
+        PlayerTank* oldPlayer = model.getPlayer();
+        int savedScore = oldPlayer ? oldPlayer->getScore() : 0;
+        int savedLives = oldPlayer ? oldPlayer->getLives() : 3;
+        int savedHealth = oldPlayer ? oldPlayer->getHealth() : 3;
         
         // Создаем новый игровой мир с размерами выбранной карты
         model = GameWorld(selectedMap.width, selectedMap.height);
+        
+        // ВОССТАНАВЛИВАЕМ состояние игрока
+        model.setCurrentLevel(currentLevel);
+        PlayerTank* newPlayer = model.getPlayer();
+        if (newPlayer && oldPlayer) {
+            newPlayer->setScore(savedScore);
+            newPlayer->setLives(savedLives);
+            newPlayer->setHealth(savedHealth);
+        }
         
         // Загружаем объекты из карты
         mapManager.createWorldFromMap(model, selectedMap);
@@ -94,11 +116,13 @@ void GameController::loadSelectedMap() {
         // Устанавливаем состояние игры
         model.setState(GameState::PLAYING);
         
-        std::cout << "Карта успешно загружена: " << selectedMap.displayName << std::endl;
+        std::cout << "Карта успешно загружена: " << selectedMap.displayName 
+                  << " Уровень: " << currentLevel << " Счет: " << savedScore << std::endl;
     } else {
         // Если что-то пошло не так, используем стандартную карту
         std::cout << "Ошибка загрузки карты, используется случайная генерация" << std::endl;
-        model.loadLevel(1);
+        useCustomMap = false;
+        model.loadLevel(model.getCurrentLevel()); // Загружаем текущий уровень, а не сбрасываем
     }
 }
 
@@ -150,6 +174,10 @@ void GameController::processGameTurn() {
         case GameState::PLAYING:
             view.render(model);
             std::cout << "Введите команду (WASD - движение, SPACE/F - выстрел, P - пауза, M - меню, Q - выход): ";
+            
+            if (model.getEnemyCount() == 0) {
+                loadNextLevel();
+            }
             break;
             
         case GameState::PAUSED:
@@ -237,14 +265,14 @@ void GameController::processCommand(Command cmd) {
             
         case Command::CONFIRM:
             if (model.getState() == GameState::MENU) {
-                // Начать новую игру - сбросить всё состояние
-                model.loadLevel(1);
+                useCustomMap = false;
+                showMapSelection();
             } else if (model.getState() == GameState::PAUSED) {
-                // Продолжить игру
                 model.setState(GameState::PLAYING);
             } else if (model.getState() == GameState::GAME_OVER) {
-                // Начать новую игру после Game Over
+                useCustomMap = false;
                 model.loadLevel(1);
+                model.setState(GameState::PLAYING);
             }
             break;
             
@@ -326,6 +354,20 @@ void GameController::showSettings() {
     }
     
     model.setState(GameState::MENU);
+}
+
+void GameController::loadNextLevel() {
+    int nextLevel = model.getCurrentLevel() + 1;
+    
+    if (useCustomMap) {
+        // Используем выбранную карту для следующего уровня
+        std::cout << "Загрузка уровня " << nextLevel - 1 << " на выбранной карте" << std::endl;
+        loadSelectedMap();
+    } else {
+        // Используем случайную генерацию
+        std::cout << "Загрузка случайно сгенерированного уровня " << nextLevel - 1 << std::endl;
+        model.loadLevel(nextLevel);
+    }
 }
 
 #endif // GAMECONTROLLER_CPP

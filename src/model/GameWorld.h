@@ -74,6 +74,8 @@ public:
     
     int getWidth() const;
     int getHeight() const;
+    int getEnemyCount() const;
+    void setCurrentLevel(int level);
     PlayerTank* getPlayer() const;
     void setPlayer(PlayerTank* newPlayer);
 

@@ -326,23 +326,35 @@ bool MapManager::isValidMapIndex(int index) const {
 void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
     std::cout << "Создание мира из карты: " << map.displayName << std::endl;
     
+    // СОХРАНЯЕМ состояние игрока
+    PlayerTank* oldPlayer = world.getPlayer();
+    int savedScore = oldPlayer ? oldPlayer->getScore() : 0;
+    int savedLives = oldPlayer ? oldPlayer->getLives() : 3;
+    int savedHealth = oldPlayer ? oldPlayer->getHealth() : 3;
+    int currentLevel = world.getCurrentLevel();
+    
     // Получаем доступ к объектам мира для модификации
     auto& objects = const_cast<std::vector<std::unique_ptr<GameObject>>&>(world.getObjects());
     auto& projectiles = const_cast<std::vector<std::unique_ptr<Projectile>>&>(world.getProjectiles());
     auto& bonuses = const_cast<std::vector<std::unique_ptr<Bonus>>&>(world.getBonuses());
     
-    // Очищаем ВСЕ объекты
-    objects.clear();
+    // Очищаем ВСЕ объекты КРОМЕ игрока
     projectiles.clear();
     bonuses.clear();
     
-    // СОЗДАЕМ НОВОГО ИГРОКА в центре нижней части карты
-    Point playerPos(map.width / 2, map.height - 3);
-    auto player = std::make_unique<PlayerTank>(playerPos);
-    PlayerTank* playerPtr = player.get();
+    // Удаляем все объекты кроме игрока
+    objects.erase(std::remove_if(objects.begin(), objects.end(),
+        [oldPlayer](const std::unique_ptr<GameObject>& obj) {
+            return obj.get() != oldPlayer;
+        }), objects.end());
     
-    // Добавляем игрока первым
-    objects.push_back(std::move(player));
+    // ВОССТАНАВЛИВАЕМ состояние игрока
+    if (oldPlayer) {
+        oldPlayer->setPosition(Point(map.width / 2, map.height - 3));
+        oldPlayer->setScore(savedScore);
+        oldPlayer->setLives(savedLives);
+        oldPlayer->setHealth(savedHealth);
+    }
     
     // Создаем объекты из layout карты
     int enemyCount = 0;
@@ -354,7 +366,7 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
             Point pos(x, y);
             
             // Пропускаем позицию игрока
-            if (pos.x == playerPos.x && pos.y == playerPos.y) {
+            if (oldPlayer && pos.x == oldPlayer->getPosition().x && pos.y == oldPlayer->getPosition().y) {
                 continue;
             }
             
@@ -378,7 +390,7 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
                 case 'E': // Враг
                     {
                         AIBehavior behavior = AIBehavior::RANDOM;
-                        auto enemy = std::make_unique<EnemyTank>(pos, behavior, 1);
+                        auto enemy = std::make_unique<EnemyTank>(pos, behavior, currentLevel);
                         objects.push_back(std::move(enemy));
                         enemyCount++;
                     }
@@ -388,14 +400,14 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
                 case '<':
                 case '>':
                     // Если на карте указана позиция игрока, используем ее
-                    if (y != playerPos.y || x != playerPos.x) {
-                        playerPtr->setPosition(pos);
+                    if (oldPlayer && (y != oldPlayer->getPosition().y || x != oldPlayer->getPosition().x)) {
+                        oldPlayer->setPosition(pos);
                         // Также устанавливаем направление based on symbol
                         Direction dir = Direction::UP;
                         if (cell == 'v') dir = Direction::DOWN;
                         else if (cell == '<') dir = Direction::LEFT;
                         else if (cell == '>') dir = Direction::RIGHT;
-                        playerPtr->rotate(dir);
+                        oldPlayer->rotate(dir);
                     }
                     break;
                 default:
@@ -405,13 +417,9 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
         }
     }
     
-    // Устанавливаем игрока в мире
-    world.setPlayer(playerPtr);
-    
     std::cout << "Успешно создано: " << enemyCount << " врагов, " 
               << obstacleCount << " препятствий" << std::endl;
-    std::cout << "Позиция игрока: " << playerPtr->getPosition().x << ", " 
-              << playerPtr->getPosition().y << std::endl;
+    std::cout << "Уровень: " << currentLevel << " Счет: " << savedScore << std::endl;
 }
 
 #endif // MAPMANAGER_CPP

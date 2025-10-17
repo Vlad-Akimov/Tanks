@@ -910,7 +910,6 @@ void GameWorld::checkGameConditions() {
     // Проверяем завершение уровня (все враги уничтожены)
     if (enemyCount == 0) {
         currentLevel++;
-        loadLevel(currentLevel);
     }
 }
 
@@ -1271,6 +1270,14 @@ void GameWorld::createLevelObstacles(int level) {
             }
         }
     }
+}
+
+int GameWorld::getEnemyCount() const { 
+    return enemyCount; 
+}
+
+void GameWorld::setCurrentLevel(int level) {
+    currentLevel = level;
 }
 
 #endif // GAMEWORLD_CPP
