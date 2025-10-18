@@ -324,14 +324,14 @@ bool MapManager::isValidMapIndex(int index) const {
 }
 
 void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
-    std::cout << "Создание мира из карты: " << map.displayName << std::endl;
+    int level = world.getCurrentLevel();
+    std::cout << "Создание мира из карты: " << map.displayName << " Уровень: " << level << std::endl;
     
     // СОХРАНЯЕМ состояние игрока
     PlayerTank* oldPlayer = world.getPlayer();
     int savedScore = oldPlayer ? oldPlayer->getScore() : 0;
     int savedLives = oldPlayer ? oldPlayer->getLives() : 3;
     int savedHealth = oldPlayer ? oldPlayer->getHealth() : 3;
-    int currentLevel = world.getCurrentLevel();
     
     // Получаем доступ к объектам мира для модификации
     auto& objects = const_cast<std::vector<std::unique_ptr<GameObject>>&>(world.getObjects());
@@ -356,17 +356,97 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
         oldPlayer->setHealth(savedHealth);
     }
     
-    // Создаем объекты из layout карты
+    int baseEnemyCount = countEnemiesInLayout(map.layout);
+    int adjustedEnemyCount = calculateAdjustedEnemyCount(baseEnemyCount, level);
+    int enemyDifficulty = calculateEnemyDifficulty(level);
+    
+    std::cout << "Базовое количество врагов: " << baseEnemyCount 
+              << ", скорректированное: " << adjustedEnemyCount 
+              << ", сложность: " << enemyDifficulty << std::endl;
+    
     int enemyCount = 0;
     int obstacleCount = 0;
+    std::vector<Point> allValidPositions;
+    std::vector<Point> originalEnemyPositions;
     
     for (int y = 0; y < map.height; y++) {
         for (int x = 0; x < map.width; x++) {
             char cell = map.layout[y][x];
             Point pos(x, y);
             
-            // Пропускаем позицию игрока
+            if (cell == 'E') {
+                originalEnemyPositions.push_back(pos);
+            }
+            
+            if (isValidEnemyPosition(pos, map, oldPlayer)) {
+                allValidPositions.push_back(pos);
+            }
+        }
+    }
+    
+    std::vector<Point> enemyPositions;
+    
+    for (const auto& pos : originalEnemyPositions) {
+        enemyPositions.push_back(pos);
+    }
+    
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    
+    std::shuffle(allValidPositions.begin(), allValidPositions.end(), gen);
+    
+    for (const auto& pos : allValidPositions) {
+        if (std::find(enemyPositions.begin(), enemyPositions.end(), pos) != enemyPositions.end()) {
+            continue;
+        }
+        
+        if (oldPlayer) {
+            Point playerPos = oldPlayer->getPosition();
+            int distance = abs(pos.x - playerPos.x) + abs(pos.y - playerPos.y);
+            if (distance < 5) {
+                continue;
+            }
+        }
+        
+        enemyPositions.push_back(pos);
+        
+        if (enemyPositions.size() >= static_cast<size_t>(adjustedEnemyCount)) {
+            break;
+        }
+    }
+    
+    if (enemyPositions.size() < static_cast<size_t>(adjustedEnemyCount)) {
+        for (const auto& pos : allValidPositions) {
+            if (std::find(enemyPositions.begin(), enemyPositions.end(), pos) == enemyPositions.end()) {
+                enemyPositions.push_back(pos);
+                if (enemyPositions.size() >= static_cast<size_t>(adjustedEnemyCount)) {
+                    break;
+                }
+            }
+        }
+    }
+    
+    if (enemyPositions.size() > static_cast<size_t>(adjustedEnemyCount)) {
+        enemyPositions.resize(adjustedEnemyCount);
+    }
+    
+    for (const auto& pos : enemyPositions) {
+        AIBehavior behavior = getAIBehaviorForDifficulty(enemyDifficulty, gen);
+        auto enemy = std::make_unique<EnemyTank>(pos, behavior, enemyDifficulty);
+        objects.push_back(std::move(enemy));
+        enemyCount++;
+    }
+    
+    for (int y = 0; y < map.height; y++) {
+        for (int x = 0; x < map.width; x++) {
+            char cell = map.layout[y][x];
+            Point pos(x, y);
+            
             if (oldPlayer && pos.x == oldPlayer->getPosition().x && pos.y == oldPlayer->getPosition().y) {
+                continue;
+            }
+            
+            if (std::find(enemyPositions.begin(), enemyPositions.end(), pos) != enemyPositions.end()) {
                 continue;
             }
             
@@ -387,22 +467,12 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
                     objects.emplace_back(new Obstacle(pos, ObstacleType::FOREST));
                     obstacleCount++;
                     break;
-                case 'E': // Враг
-                    {
-                        AIBehavior behavior = AIBehavior::RANDOM;
-                        auto enemy = std::make_unique<EnemyTank>(pos, behavior, currentLevel);
-                        objects.push_back(std::move(enemy));
-                        enemyCount++;
-                    }
-                    break;
-                case '^': // Игрок (альтернативное расположение)
+                case '^':
                 case 'v':
                 case '<':
                 case '>':
-                    // Если на карте указана позиция игрока, используем ее
                     if (oldPlayer && (y != oldPlayer->getPosition().y || x != oldPlayer->getPosition().x)) {
                         oldPlayer->setPosition(pos);
-                        // Также устанавливаем направление based on symbol
                         Direction dir = Direction::UP;
                         if (cell == 'v') dir = Direction::DOWN;
                         else if (cell == '<') dir = Direction::LEFT;
@@ -411,7 +481,6 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
                     }
                     break;
                 default:
-                    // Пустое пространство - ничего не создаем
                     break;
             }
         }
@@ -419,7 +488,94 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
     
     std::cout << "Успешно создано: " << enemyCount << " врагов, " 
               << obstacleCount << " препятствий" << std::endl;
-    std::cout << "Уровень: " << currentLevel << " Счет: " << savedScore << std::endl;
+    std::cout << "Уровень: " << level << " Счет: " << savedScore << std::endl;
+}
+
+bool MapManager::isValidEnemyPosition(const Point& pos, const MapInfo& map, const PlayerTank* player) const {
+    // Проверяем границы
+    if (pos.x <= 0 || pos.x >= map.width - 1 ||
+        pos.y <= 0 || pos.y >= map.height - 1 ||
+        pos.x == map.width / 2 || pos.y == map.height - 3) {
+        
+        return false;
+    }
+    
+    if (player) {
+        Point playerPos = player->getPosition();
+        int distance = abs(pos.x - playerPos.x) + abs(pos.y - playerPos.y);
+        if (distance < 4) {
+            return false;
+        }
+    }
+    
+    char cell = map.layout[pos.y][pos.x];
+    switch (cell) {
+        case '#':
+        case 'X': 
+        case '~':
+        case 'E':
+            return false;
+        case '*':
+        case ' ':
+        case '^':
+        case 'v':
+        case '<':
+        case '>':
+            return true;
+        default:
+            return false;
+    }
+}
+
+
+int MapManager::countEnemiesInLayout(const std::vector<std::vector<char>>& layout) const {
+    int count = 0;
+    for (const auto& row : layout) {
+        for (char cell : row) {
+            if (cell == 'E') {
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+int MapManager::calculateAdjustedEnemyCount(int baseCount, int level) const {
+    int adjusted = baseCount + (level - 1) * 2;
+    
+    int maxEnemies = 15;
+    return std::min(adjusted, maxEnemies);
+}
+
+int MapManager::calculateEnemyDifficulty(int level) const {
+    if (level <= 3) return 1;
+    if (level <= 6) return 2;
+    return 3;
+}
+
+AIBehavior MapManager::getAIBehaviorForDifficulty(int difficulty, std::mt19937& gen) const {
+    std::uniform_real_distribution<> dist(0.0, 1.0);
+    double random = dist(gen);
+    
+    switch (difficulty) {
+        case 1:
+            if (random < 0.7) return AIBehavior::RANDOM;
+            if (random < 0.9) return AIBehavior::DEFENSIVE;
+            return AIBehavior::AGGRESSIVE;
+            
+        case 2:
+            if (random < 0.4) return AIBehavior::RANDOM;
+            if (random < 0.7) return AIBehavior::DEFENSIVE;
+            return AIBehavior::AGGRESSIVE;
+            
+        case 3:
+            if (random < 0.2) return AIBehavior::RANDOM;
+            if (random < 0.5) return AIBehavior::DEFENSIVE;
+            return AIBehavior::AGGRESSIVE;
+            
+        default:
+            return AIBehavior::RANDOM;
+    }
 }
 
 #endif // MAPMANAGER_CPP
