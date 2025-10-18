@@ -96,7 +96,6 @@ void GameController::loadSelectedMap() {
         PlayerTank* oldPlayer = model.getPlayer();
         int savedScore = oldPlayer ? oldPlayer->getScore() : 0;
         int savedLives = oldPlayer ? oldPlayer->getLives() : 3;
-        int savedHealth = oldPlayer ? oldPlayer->getHealth() : 3;
         
         // Создаем новый игровой мир с размерами выбранной карты
         model = GameWorld(selectedMap.width, selectedMap.height);
@@ -107,7 +106,7 @@ void GameController::loadSelectedMap() {
         if (newPlayer && oldPlayer) {
             newPlayer->setScore(savedScore);
             newPlayer->setLives(savedLives);
-            newPlayer->setHealth(savedHealth);
+            newPlayer->setHealth(3);
         }
         
         // Загружаем объекты из карты
@@ -155,6 +154,8 @@ void GameController::pauseGame() {
                 running = false;
                 paused = false;
             } else if (cmd == Command::MENU) {
+                model.getPlayer()->setScore(0);
+                model.getPlayer()->setLives(3);
                 showMenu();
                 paused = false;
             }
@@ -256,22 +257,31 @@ void GameController::processCommand(Command cmd) {
         case Command::MENU:
             if (model.getState() == GameState::PLAYING) {
                 model.setState(GameState::GAME_OVER);
+                model.setCurrentLevel(1);
                 showMenu();
             } else if (model.getState() == GameState::GAME_OVER) {
-                // Возврат в меню после Game Over
+                model.setCurrentLevel(1);
                 showMenu();
             }
+            model.getPlayer()->setScore(0);
+            model.getPlayer()->setLives(3);
             break;
             
         case Command::CONFIRM:
             if (model.getState() == GameState::MENU) {
                 useCustomMap = false;
+                model.setCurrentLevel(1);
+                model.getPlayer()->setScore(0);
+                model.getPlayer()->setLives(3);
                 showMapSelection();
             } else if (model.getState() == GameState::PAUSED) {
                 model.setState(GameState::PLAYING);
             } else if (model.getState() == GameState::GAME_OVER) {
                 useCustomMap = false;
-                model.loadLevel(1);
+                model.setCurrentLevel(1);
+                model.getPlayer()->setScore(0);
+                model.getPlayer()->setLives(3);
+                showMapSelection();
                 model.setState(GameState::PLAYING);
             }
             break;
@@ -307,7 +317,9 @@ void GameController::showMenu() {
         Command cmd = inputHandler.waitForCommand();
         switch (cmd) {
             case Command::CONFIRM:
-                // Начать игру
+                model.setCurrentLevel(1);
+                model.getPlayer()->setScore(0);
+                model.getPlayer()->setLives(3);
                 showMapSelection();
                 inMenu = false;
                 break;
@@ -357,15 +369,14 @@ void GameController::showSettings() {
 }
 
 void GameController::loadNextLevel() {
-    int nextLevel = model.getCurrentLevel() + 1;
+    int nextLevel = model.getCurrentLevel();
     
     if (useCustomMap) {
-        // Используем выбранную карту для следующего уровня
-        std::cout << "Загрузка уровня " << nextLevel - 1 << " на выбранной карте" << std::endl;
+        std::cout << "Загрузка уровня " << nextLevel << " на выбранной карте" << std::endl;
         loadSelectedMap();
     } else {
         // Используем случайную генерацию
-        std::cout << "Загрузка случайно сгенерированного уровня " << nextLevel - 1 << std::endl;
+        std::cout << "Загрузка случайно сгенерированного уровня " << nextLevel << std::endl;
         model.loadLevel(nextLevel);
     }
 }
