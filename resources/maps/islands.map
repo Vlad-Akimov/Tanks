@@ -1,0 +1,24 @@
+Острова
+Несколько изолированных зон, разделённых водой
+40 20
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+X    ~~~~~         ~~~~~         ~~~~~ X
+X    ~ E ~         ~   ~         ~ E ~ X
+X    ~   ~         ~   ~         ~   ~ X
+X    ~~~~~         ~~~~~         ~~~~~ X
+X                                      X
+X    ~~~~~         ~~~~~         ~~~~~ X
+X    ~   ~         ~   ~         ~   ~ X
+X    ~   ~         ~ E ~         ~   ~ X
+X    ~   ~         ~   ~         ~   ~ X
+X    ~~~~~         ~~~~~         ~~~~~ X
+X                                      X
+X    ~~~~~         ~~~~~         ~~~~~ X
+X    ~   ~         ~   ~         ~   ~ X
+X    ~ E ~         ~   ~         ~ E ~ X
+X    ~   ~         ~   ~         ~   ~ X
+X    ~~~~~         ~~~~~         ~~~~~ X
+X                                      X
+X                                      X
+X                                      X
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
