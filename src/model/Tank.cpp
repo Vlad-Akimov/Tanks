@@ -1,6 +1,3 @@
-#ifndef TANK_CPP
-#define TANK_CPP
-
 #include "Tank.h"
 #include <algorithm>
 
@@ -172,5 +169,3 @@ int Tank::getDoubleFireDuration() const {
 int Tank::getSpeedBoostDuration() const { 
     return speedBoostDuration; 
 }
-
-#endif // TANK_CPP

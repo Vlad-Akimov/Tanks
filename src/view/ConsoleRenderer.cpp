@@ -1,6 +1,3 @@
-#ifndef CONSOLERENDERER_CPP
-#define CONSOLERENDERER_CPP
-
 #include "ConsoleRenderer.h"
 #include <iostream>
 #include <string>
@@ -408,5 +405,3 @@ void ConsoleRenderer::drawMapPreview(const MapInfo& map) {
     std::cout << "   Объекты: " << walls << " стен, " << water << " воды, " 
               << forest << " леса, " << enemies << " врагов\n";
 }
-
-#endif // CONSOLERENDERER_CPP

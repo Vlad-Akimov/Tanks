@@ -1,6 +1,3 @@
-#ifndef PLAYERTANK_CPP
-#define PLAYERTANK_CPP
-
 #include "PlayerTank.h"
 
 PlayerTank::PlayerTank(Point pos): Tank(pos, Direction::UP, 1, 3, 2), lives(3), score(0) {
@@ -111,5 +108,3 @@ Projectile* PlayerTank::fire() {
     
     return firstShot;
 }
-
-#endif // PLAYERTANK_CPP

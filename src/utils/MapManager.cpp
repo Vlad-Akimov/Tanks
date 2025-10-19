@@ -1,6 +1,3 @@
-#ifndef MAPMANAGER_CPP
-#define MAPMANAGER_CPP
-
 #include "MapManager.h"
 #include "../model/PlayerTank.h"
 #include <fstream>
@@ -577,5 +574,3 @@ AIBehavior MapManager::getAIBehaviorForDifficulty(int difficulty, std::mt19937& 
             return AIBehavior::RANDOM;
     }
 }
-
-#endif // MAPMANAGER_CPP

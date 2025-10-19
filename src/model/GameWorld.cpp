@@ -1,6 +1,3 @@
-#ifndef GAMEWORLD_CPP
-#define GAMEWORLD_CPP
-
 #include "GameWorld.h"
 #include <cstdlib>
 #include <ctime>
@@ -11,8 +8,6 @@
 #include <random>
 #include <cmath>
 #include <map>
-
-// Реализация GameWorld
 
 GameWorld::GameWorld(int width, int height) 
     : fieldWidth(width), fieldHeight(height), state(GameState::MENU), 
@@ -1279,5 +1274,3 @@ int GameWorld::getEnemyCount() const {
 void GameWorld::setCurrentLevel(int level) {
     currentLevel = level;
 }
-
-#endif // GAMEWORLD_CPP

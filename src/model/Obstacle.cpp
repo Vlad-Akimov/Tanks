@@ -1,6 +1,3 @@
-#ifndef OBSTACLE_CPP
-#define OBSTACLE_CPP
-
 #include "Obstacle.h"
 
 Obstacle::Obstacle(Point pos, ObstacleType obsType, bool movable)
@@ -114,9 +111,8 @@ char SteelWall::getSymbol() const {
 }
 
 void SteelWall::takeDamage(int damage) {
-    // Стальная стена более устойчива к повреждениям
     if (isDestructible()) {
-        health -= (damage > 1) ? 1 : damage; // Максимум 1 урон за выстрел
+        health -= (damage > 2) ? 2 : damage;
         if (health < 0) health = 0;
     }
 }
@@ -128,5 +124,3 @@ char Water::getSymbol() const { return '~'; }
 Forest::Forest(Point pos) : Obstacle(pos, ObstacleType::FOREST, false) {}
 
 char Forest::getSymbol() const { return '*'; }
-
-#endif // OBSTACLE_CPP

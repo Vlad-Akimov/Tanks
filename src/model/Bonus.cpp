@@ -1,10 +1,5 @@
-#ifndef BONUS_CPP
-#define BONUS_CPP
-
 #include "Bonus.h"
 #include "PlayerTank.h"
-
-// Реализация Bonus
 
 Bonus::Bonus(Point pos, BonusType bonusType, int dur)
     : GameObject(pos, Direction::UP, 0, 1, true), 
@@ -31,7 +26,7 @@ void Bonus::applyEffect(PlayerTank* playerTank) {
             playerTank->applyBonus(BonusType::LIFE_UP);
             break;
     }
-    // Деактивируем бонус после применения
+    
     deactivate();
 }
 
@@ -69,5 +64,3 @@ char Bonus::getSymbol() const {
         default: return '?';
     }
 }
-
-#endif // BONUS_CPP

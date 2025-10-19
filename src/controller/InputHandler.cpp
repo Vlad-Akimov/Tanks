@@ -1,10 +1,6 @@
-#ifndef INPUTHANDLER_CPP
-#define INPUTHANDLER_CPP
-
 #include "InputHandler.h"
 
 InputHandler::InputHandler() {
-    // Стандартные привязки клавиш для латиницы
     keyBindings['w'] = Command::MOVE_UP;
     keyBindings['W'] = Command::MOVE_UP;
     keyBindings['s'] = Command::MOVE_DOWN;
@@ -47,13 +43,10 @@ InputHandler::InputHandler() {
 Command InputHandler::waitForCommand() {
     std::string input = PlatformUtils::readUTF8Char();
     
-    // Обработка специальных клавиш для Linux/macOS
 #ifdef _WIN32
-    // Для Windows специальные клавиши обрабатываются внутри readUTF8Char
     if (input.length() == 1) {
         int key = static_cast<unsigned char>(input[0]);
         
-        // Обработка специальных клавиш для Windows
         if (key == 0 || key == 224) {
             int specialKey = PlatformUtils::readUTF8Char()[0];
             switch (specialKey) {
@@ -70,14 +63,12 @@ Command InputHandler::waitForCommand() {
             }
         }
         
-        // Обычные клавиши латиницы
         auto it = keyBindings.find(key);
         if (it != keyBindings.end()) {
             return it->second;
         }
     }
 #else
-    // Для Linux/macOS обрабатываем escape sequences для стрелок
     if (input.length() == 1 && static_cast<unsigned char>(input[0]) == 27) {
         if (PlatformUtils::kbhit()) {
             std::string secondChar = PlatformUtils::readUTF8Char();
@@ -104,7 +95,6 @@ Command InputHandler::waitForCommand() {
         return Command::BACK;
     }
     
-    // Обычные клавиши латиницы для Linux/macOS
     if (input.length() == 1) {
         int key = static_cast<unsigned char>(input[0]);
         auto it = keyBindings.find(key);
@@ -113,8 +103,6 @@ Command InputHandler::waitForCommand() {
         }
     }
 #endif
-    
-    // Проверяем UTF-8 последовательности (кириллица)
     auto utf8It = utf8KeyBindings.find(input);
     if (utf8It != utf8KeyBindings.end()) {
         return utf8It->second;
@@ -134,5 +122,3 @@ void InputHandler::remapUTF8Key(const std::string& utf8Char, Command command) {
 int InputHandler::getKeyCode(char c) {
     return static_cast<int>(c);
 }
-
-#endif // INPUTHANDLER_CPP

@@ -1,6 +1,3 @@
-#ifndef PROJECTILE_CPP
-#define PROJECTILE_CPP
-
 #include "Projectile.h"
 #include "Tank.h"
 
@@ -79,5 +76,3 @@ std::vector<Point> Projectile::getTrajectory(int maxRange) const {
     
     return trajectory;
 }
-
-#endif // PROJECTILE_CPP

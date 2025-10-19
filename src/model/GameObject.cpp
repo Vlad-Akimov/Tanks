@@ -1,17 +1,10 @@
-#ifndef GAMEOBJECT_CPP
-#define GAMEOBJECT_CPP
-
 #include "GameObject.h"
-
-// Реализация Point
 
 Point::Point(int x, int y) : x(x), y(y) {}
 
 bool Point::operator==(const Point& other) const {
     return x == other.x && y == other.y;
 }
-
-// Реализация GameObject
 
 GameObject::GameObject(Point pos, Direction dir, int spd, int hp, bool destruct) 
     : position(pos), direction(dir), speed(spd), health(hp), destructible(destruct) {}
@@ -85,5 +78,3 @@ void GameObject::setPosition(Point newPos) {
 void GameObject::setHealth(int newHealth) { 
     health = newHealth; 
 }
-
-#endif // GAMEOBJECT_CPP

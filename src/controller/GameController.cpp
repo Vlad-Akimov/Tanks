@@ -1,6 +1,3 @@
-#ifndef GAMECONTROLLER_CPP
-#define GAMECONTROLLER_CPP
-
 #include "GameController.h"
 #include <ctime>
 
@@ -53,7 +50,6 @@ void GameController::showMapSelection() {
                 break;
                 
             case Command::FIRE: // R - случайная генерация
-                // Используем стандартную генерацию карты
                 useCustomMap = false;
                 model.loadLevel(1);
                 inMapSelection = false;
@@ -299,7 +295,6 @@ void GameController::processCommand(Command cmd) {
             break;
             
         case Command::NONE:
-            // Ничего не делаем для нераспознанных команд
             break;
     }
 }
@@ -375,10 +370,7 @@ void GameController::loadNextLevel() {
         std::cout << "Загрузка уровня " << nextLevel << " на выбранной карте" << std::endl;
         loadSelectedMap();
     } else {
-        // Используем случайную генерацию
         std::cout << "Загрузка случайно сгенерированного уровня " << nextLevel << std::endl;
         model.loadLevel(nextLevel);
     }
 }
-
-#endif // GAMECONTROLLER_CPP

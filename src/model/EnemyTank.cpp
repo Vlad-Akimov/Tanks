@@ -1,11 +1,6 @@
-#ifndef ENEMYTANK_CPP
-#define ENEMYTANK_CPP
-
 #include "EnemyTank.h"
 #include <cstdlib>
 #include <algorithm>
-
-// Реализация EnemyTank
 
 EnemyTank::EnemyTank(Point pos, AIBehavior behav, int diff)
     : Tank(pos, Direction::DOWN, 1, 2, 1), 
@@ -21,11 +16,9 @@ void EnemyTank::setPlayerPosition(Point playerPos) {
 }
 
 void EnemyTank::update() {
-    // Обновляем перезарядку и бонусы каждый ход
     reload();
     updateBonus();
     
-    // Принимаем решение о следующем действии
     decideNextMove();
 }
 
@@ -37,18 +30,17 @@ Point EnemyTank::getBounds() const {
 char EnemyTank::getSymbol() const {
     // Символ вражеского танка в зависимости от направления
     switch(direction) {
-        case Direction::UP: return 'A'; // A как Alien/Aggressor
-        case Direction::DOWN: return 'V'; // V как враг (снизу)
-        case Direction::LEFT: return '['; // [ как левый враг
-        case Direction::RIGHT: return ']'; // ] как правый враг
-        default: return 'E'; // E как Enemy
+        case Direction::UP: return 'A';
+        case Direction::DOWN: return 'V';
+        case Direction::LEFT: return '['; 
+        case Direction::RIGHT: return ']';
+        default: return 'E';
     }
 }
 
 bool EnemyTank::canSeePlayer() const {
     if (playerLastPosition.x == -1) return false;
     
-    // Простая проверка прямой видимости
     return (position.x == playerLastPosition.x || 
             position.y == playerLastPosition.y);
 }
@@ -59,7 +51,6 @@ Direction EnemyTank::getDirectionToPlayer() const {
     int dx = playerLastPosition.x - position.x;
     int dy = playerLastPosition.y - position.y;
     
-    // Определяем преобладающее направление
     if (abs(dx) > abs(dy)) {
         return (dx > 0) ? Direction::RIGHT : Direction::LEFT;
     } else {
@@ -303,32 +294,18 @@ Direction EnemyTank::getPerpendicularDirection(Direction dir) const {
 bool EnemyTank::hasClearShot() const {
     if (playerLastPosition.x == -1) return false;
     
-    // Проверяем прямую видимость по линии выстрела
     Point start = position;
     Point target = playerLastPosition;
     
-    // Проверяем, находится ли игрок на одной линии по X или Y
     if (start.x == target.x) {
-        // Вертикальная линия
         int minY = std::min(start.y, target.y);
         int maxY = std::max(start.y, target.y);
-        for (int y = minY + 1; y < maxY; y++) {
-            // Здесь должна быть проверка на препятствия
-            // Пока возвращаем true для простоты
-        }
         return true;
     } else if (start.y == target.y) {
-        // Горизонтальная линия
         int minX = std::min(start.x, target.x);
         int maxX = std::max(start.x, target.x);
-        for (int x = minX + 1; x < maxX; x++) {
-            // Здесь должна быть проверка на препятствия
-            // Пока возвращаем true для простоты
-        }
         return true;
     }
     
     return false;
 }
-
-#endif // ENEMYTANK_CPP
