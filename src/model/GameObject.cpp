@@ -6,6 +6,10 @@ bool Point::operator==(const Point& other) const {
     return x == other.x && y == other.y;
 }
 
+bool Point::operator!=(const Point& other) const {
+    return x != other.x || y != other.y;
+}
+
 GameObject::GameObject(Point pos, Direction dir, int spd, int hp, bool destruct) 
     : position(pos), direction(dir), speed(spd), health(hp), destructible(destruct) {}
 

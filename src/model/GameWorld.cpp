@@ -797,21 +797,37 @@ void GameWorld::updateEnemyMovement(EnemyTank* enemy) {
     // Получаем направление движения врага
     Direction dir = enemy->getDirection();
     
-    // Вычисляем новую позицию
+    // Вычисляем новую позицию с учетом скорости
     Point testPos = startPos;
-    switch (dir) {
-        case Direction::UP: testPos.y -= enemy->getSpeed(); break;
-        case Direction::DOWN: testPos.y += enemy->getSpeed(); break;
-        case Direction::LEFT: testPos.x -= enemy->getSpeed(); break;
-        case Direction::RIGHT: testPos.x += enemy->getSpeed(); break;
+    int speed = enemy->getSpeed();
+    
+    // Проверяем каждый шаг движения для точного определения столкновений
+    Point currentPos = startPos;
+    bool canMove = true;
+    
+    for (int step = 0; step < speed && canMove; step++) {
+        Point nextPos = currentPos;
+        
+        switch (dir) {
+            case Direction::UP: nextPos.y -= 1; break;
+            case Direction::DOWN: nextPos.y += 1; break;
+            case Direction::LEFT: nextPos.x -= 1; break;
+            case Direction::RIGHT: nextPos.x += 1; break;
+        }
+        
+        // Проверяем валидность позиции для этого шага
+        if (isValidPosition(nextPos, bounds, enemy)) {
+            currentPos = nextPos;
+        } else {
+            canMove = false;
+        }
     }
     
-    // Проверяем валидность новой позиции
-    if (isValidPosition(testPos, bounds, enemy)) {
-        // Если позиция валидна - двигаем врага
-        enemy->setPosition(testPos);
+    if (currentPos != startPos) {
+        // Если можем двигаться - устанавливаем новую позицию
+        enemy->setPosition(currentPos);
     } else {
-        // Если позиция невалидна - враг сталкивается с препятствием
+        // Если не можем двигаться - обрабатываем столкновение
         handleEnemyCollision(enemy, dir);
     }
 }
@@ -824,13 +840,25 @@ void GameWorld::handleEnemyCollision(EnemyTank* enemy, Direction moveDir) {
         Direction::UP, Direction::DOWN, Direction::LEFT, Direction::RIGHT
     };
     
-    // Убираем текущее направление (чтобы не разворачиваться сразу назад)
+    // Убираем текущее направление и противоположное (чтобы не ходить туда-сюда)
+    Direction oppositeDir;
+    switch (moveDir) {
+        case Direction::UP: oppositeDir = Direction::DOWN; break;
+        case Direction::DOWN: oppositeDir = Direction::UP; break;
+        case Direction::LEFT: oppositeDir = Direction::RIGHT; break;
+        case Direction::RIGHT: oppositeDir = Direction::LEFT; break;
+    }
+    
     possibleDirections.erase(
         std::remove(possibleDirections.begin(), possibleDirections.end(), moveDir),
         possibleDirections.end()
     );
+    possibleDirections.erase(
+        std::remove(possibleDirections.begin(), possibleDirections.end(), oppositeDir),
+        possibleDirections.end()
+    );
     
-    // Пробуем случайные направления пока не найдем валидное
+    // Пробуем оставшиеся направления пока не найдем валидное
     std::random_device rd;
     std::mt19937 gen(rd());
     std::shuffle(possibleDirections.begin(), possibleDirections.end(), gen);
@@ -841,19 +869,21 @@ void GameWorld::handleEnemyCollision(EnemyTank* enemy, Direction moveDir) {
     for (Direction newDir : possibleDirections) {
         Point testPos = currentPos;
         
+        // Проверяем только один шаг в новом направлении
         switch (newDir) {
-            case Direction::UP: testPos.y -= enemy->getSpeed(); break;
-            case Direction::DOWN: testPos.y += enemy->getSpeed(); break;
-            case Direction::LEFT: testPos.x -= enemy->getSpeed(); break;
-            case Direction::RIGHT: testPos.x += enemy->getSpeed(); break;
+            case Direction::UP: testPos.y -= 1; break;
+            case Direction::DOWN: testPos.y += 1; break;
+            case Direction::LEFT: testPos.x -= 1; break;
+            case Direction::RIGHT: testPos.x += 1; break;
         }
         
         if (isValidPosition(testPos, bounds, enemy)) {
             enemy->rotate(newDir);
-            enemy->setPosition(testPos);
             break;
         }
     }
+    
+    // Если не нашли валидное направление, враг остается на месте в текущем направлении
 }
 
 void GameWorld::cleanupDestroyedObjects() {

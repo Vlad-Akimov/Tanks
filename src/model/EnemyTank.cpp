@@ -132,11 +132,14 @@ void EnemyTank::decideNextMove() {
     attemptShot();
 }
 
+void EnemyTank::move(Direction dir) {
+    rotate(dir);
+}
+
 void EnemyTank::randomBehavior() {
     // 70% шанс движения, 30% шанс смены направления
     if (rand() % 10 < 7) {
         // Двигаемся в текущем направлении
-        move(direction);
     } else {
         // Случайно меняем направление
         Direction newDir = static_cast<Direction>(rand() % 4);

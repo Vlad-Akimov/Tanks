@@ -31,6 +31,7 @@ public:
     void setPlayerPosition(Point playerPos);
     
     void update() override;
+    void move(Direction dir) override;
     Point getBounds() const override;
     char getSymbol() const override;
     
