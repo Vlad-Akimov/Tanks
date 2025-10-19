@@ -298,12 +298,8 @@ bool EnemyTank::hasClearShot() const {
     Point target = playerLastPosition;
     
     if (start.x == target.x) {
-        int minY = std::min(start.y, target.y);
-        int maxY = std::max(start.y, target.y);
         return true;
     } else if (start.y == target.y) {
-        int minX = std::min(start.x, target.x);
-        int maxX = std::max(start.x, target.x);
         return true;
     }
     
