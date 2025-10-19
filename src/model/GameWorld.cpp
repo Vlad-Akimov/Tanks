@@ -204,18 +204,17 @@ bool GameWorld::handleProjectileHit(GameObject* target, Projectile* projectile, 
 }
 
 void GameWorld::checkBonusCollisions() {
+    if (!player || player->isDestroyed()) return;
+    
     // Проверяем сбор бонусов игроком
     Point playerPos = player->getPosition();
-    Point playerBounds = player->getBounds();
     
     for (auto& bonus : bonuses) {
         if (!bonus || !bonus->isActive()) continue;
         
         Point bonusPos = bonus->getPosition();
         
-        if (playerPos.x <= bonusPos.x && playerPos.x + playerBounds.x > bonusPos.x &&
-            playerPos.y <= bonusPos.y && playerPos.y + playerBounds.y > bonusPos.y) {
-            
+        if (playerPos.x == bonusPos.x && playerPos.y == bonusPos.y) {
             bonus->applyEffect(player);
             bonus->deactivate();
             player->addScore(50);
@@ -607,9 +606,8 @@ void GameWorld::playerMove(Direction dir) {
     }
     if (actualSpeed > 2) actualSpeed = 2;
     
-    // Пытаемся двигаться пошагово
+    // Пытаемся двигаться пошагово, проверяя каждую клетку
     Point currentPos = startPos;
-    int stepsMoved = 0;
     
     for (int step = 0; step < actualSpeed; step++) {
         Point testPos = currentPos;
@@ -633,19 +631,34 @@ void GameWorld::playerMove(Direction dir) {
         // Проверяем валидность новой позиции
         if (isValidPosition(testPos, bounds, player)) {
             currentPos = testPos;
-            stepsMoved++;
-
-            checkBonusCollisions();
+            
+            // НЕМЕДЛЕННАЯ проверка бонусов на новой позиции
+            Point checkPos = currentPos;
+            for (auto& bonus : bonuses) {
+                if (!bonus || !bonus->isActive()) continue;
+                
+                Point bonusPos = bonus->getPosition();
+                
+                // Точное совпадение позиций
+                if (checkPos.x == bonusPos.x && checkPos.y == bonusPos.y) {
+                    bonus->applyEffect(player);
+                    bonus->deactivate();
+                    player->addScore(50);
+                    break; // Один бонус за шаг
+                }
+            }
         } else {
             // Если не можем двигаться дальше, останавливаемся
             break;
         }
     }
     
-    // Устанавливаем финальную позицию
-    player->setPosition(currentPos);
+    // Устанавливаем финальную позицию только если смогли сдвинуться
+    if (currentPos != startPos) {
+        player->setPosition(currentPos);
+    }
     
-    // Дополнительная проверка границ (на всякий случай)
+    // Дополнительная проверка границ
     Point finalPos = player->getPosition();
     if (finalPos.x < 0) player->setPosition(Point(0, finalPos.y));
     if (finalPos.y < 0) player->setPosition(Point(finalPos.x, 0));
@@ -653,6 +666,20 @@ void GameWorld::playerMove(Direction dir) {
         player->setPosition(Point(fieldWidth - bounds.x, finalPos.y));
     if (finalPos.y + bounds.y >= fieldHeight) 
         player->setPosition(Point(finalPos.x, fieldHeight - bounds.y));
+    
+    // Финальная проверка бонусов (на случай если что-то пропустили)
+    Point finalCheckPos = player->getPosition();
+    for (auto& bonus : bonuses) {
+        if (!bonus || !bonus->isActive()) continue;
+        
+        Point bonusPos = bonus->getPosition();
+        
+        if (finalCheckPos.x == bonusPos.x && finalCheckPos.y == bonusPos.y) {
+            bonus->applyEffect(player);
+            bonus->deactivate();
+            player->addScore(50);
+        }
+    }
 }
 
 // Приватные методы
@@ -798,7 +825,6 @@ void GameWorld::updateEnemyMovement(EnemyTank* enemy) {
     Direction dir = enemy->getDirection();
     
     // Вычисляем новую позицию с учетом скорости
-    Point testPos = startPos;
     int speed = enemy->getSpeed();
     
     // Проверяем каждый шаг движения для точного определения столкновений
