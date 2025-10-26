@@ -4,6 +4,7 @@
 #include "../controller/InputHandler.h"
 #include "../model/GameWorld.h"
 #include "../utils/MapManager.h"
+#include "../utils/ScoreManager.h"
 #include "../view/ConsoleRenderer.h"
 
 #include <map>
@@ -17,6 +18,7 @@ private:
     GameWorld model;
     ConsoleRenderer view;
     InputHandler inputHandler;
+    ScoreManager scoreManager;
     bool running;
 
     MapManager mapManager;

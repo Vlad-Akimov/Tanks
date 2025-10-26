@@ -941,10 +941,8 @@ void GameWorld::cleanupDestroyedObjects() {
 }
 
 void GameWorld::checkGameConditions() {
-    // Проверяем, что player валиден
     if (!player) return;
     
-    // Проверяем смерть игрока
     if (player->isDestroyed()) {
         player->loseLife();
         
@@ -958,9 +956,11 @@ void GameWorld::checkGameConditions() {
         }
     }
     
-    // Проверяем завершение уровня (все враги уничтожены)
     if (enemyCount == 0) {
         currentLevel++;
+        if (player) {
+            player->addScore(500);
+        }
     }
 }
 

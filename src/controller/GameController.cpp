@@ -18,7 +18,7 @@ void GameController::showMapSelection() {
     
     if (mapManager.getMapCount() == 0) {
         std::cout << "Карты не найдены! Используется случайная генерация." << std::endl;
-        useCustomMap = false; // Явно устанавливаем флаг
+        useCustomMap = false;
         model.loadLevel(1);
         return;
     }
@@ -63,7 +63,8 @@ void GameController::showMapSelection() {
                 
             case Command::MENU: // M - вернуться в главное меню
                 inMapSelection = false;
-                break;
+                showMenu();
+                return;
                 
             case Command::EXIT: // Q - выход
                 running = false;
@@ -166,6 +167,7 @@ void GameController::saveSettings() {
 void GameController::processGameTurn() {
     // Фаза ВЫВОДА: отрисовка текущего состояния
     view.clearScreen();
+    int score = 0;
     
     switch (model.getState()) {
         case GameState::PLAYING:
@@ -182,10 +184,16 @@ void GameController::processGameTurn() {
             break;
             
         case GameState::GAME_OVER:
-            view.drawGameOver(model.getPlayer()->getScore());
+            if (model.getPlayer()) {
+                score = model.getPlayer()->getScore();
+                if (score > 0) {
+                    scoreManager.addScore(score);
+                }
+            }
+            view.drawGameOver(score);
             std::cout << "Введите команду (ENTER - новая игра, M - меню, Q - выход): ";
             break;
-            
+
         default:
             break;
     }
@@ -252,6 +260,9 @@ void GameController::processCommand(Command cmd) {
             
         case Command::MENU:
             if (model.getState() == GameState::PLAYING) {
+                if (model.getPlayer() && model.getPlayer()->getScore() > 0) {
+                    scoreManager.addScore(model.getPlayer()->getScore());
+                }
                 model.setState(GameState::GAME_OVER);
                 model.setCurrentLevel(1);
                 showMenu();
@@ -259,24 +270,32 @@ void GameController::processCommand(Command cmd) {
                 model.setCurrentLevel(1);
                 showMenu();
             }
-            model.getPlayer()->setScore(0);
-            model.getPlayer()->setLives(3);
+            if (model.getPlayer()) {
+                model.getPlayer()->setLives(3);
+            }
             break;
             
         case Command::CONFIRM:
             if (model.getState() == GameState::MENU) {
                 useCustomMap = false;
                 model.setCurrentLevel(1);
-                model.getPlayer()->setScore(0);
-                model.getPlayer()->setLives(3);
+                if (model.getPlayer()) {
+                    model.getPlayer()->setScore(0);
+                    model.getPlayer()->setLives(3);
+                }
                 showMapSelection();
             } else if (model.getState() == GameState::PAUSED) {
                 model.setState(GameState::PLAYING);
             } else if (model.getState() == GameState::GAME_OVER) {
+                if (model.getPlayer() && model.getPlayer()->getScore() > 0) {
+                    scoreManager.addScore(model.getPlayer()->getScore());
+                }
                 useCustomMap = false;
                 model.setCurrentLevel(1);
-                model.getPlayer()->setScore(0);
-                model.getPlayer()->setLives(3);
+                if (model.getPlayer()) {
+                    model.getPlayer()->setScore(0);
+                    model.getPlayer()->setLives(3);
+                }
                 showMapSelection();
                 model.setState(GameState::PLAYING);
             }
@@ -306,6 +325,18 @@ void GameController::showMenu() {
     while (inMenu && running) {
         view.clearScreen();
         view.drawMenu();
+        
+        std::cout << "\n=== ТАБЛИЦА РЕКОРДОВ ===\n";
+        std::vector<int> highScores = scoreManager.getHighScores();
+        if (highScores.empty()) {
+            std::cout << "   Пока нет рекордов!\n";
+        } else {
+            for (size_t i = 0; i < highScores.size(); i++) {
+                std::cout << "   " << (i + 1) << ". " << highScores[i] << " очков\n";
+            }
+        }
+        std::cout << "=======================\n\n";
+        
         std::cout << "Введите команду: ";
         std::cout.flush();
         
