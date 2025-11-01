@@ -226,11 +226,6 @@ void ConsoleRenderer::drawMenu() {
     std::cout << "   Пауза: P\n";
     std::cout << "   Меню: M\n";
     std::cout << "   Выход: Q\n\n";
-    
-    std::cout << "=================================\n";
-    std::cout << "   Пошаговый режим - жми ENTER  \n";
-    std::cout << "     для завершения каждого хода\n";
-    std::cout << "=================================\n";
 }
 
 void ConsoleRenderer::drawPauseScreen() {

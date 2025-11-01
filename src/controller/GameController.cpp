@@ -30,7 +30,6 @@ void GameController::showMapSelection() {
         // Отрисовываем экран выбора карты
         view.clearScreen();
         view.drawMapSelection(currentMap, currentMapIndex, mapManager.getMapCount());
-        std::cout << "Введите команду: ";
         std::cout.flush();
         
         Command cmd = inputHandler.waitForCommand();
@@ -140,7 +139,6 @@ void GameController::pauseGame() {
         while (paused && running) {
             view.clearScreen();
             view.drawPauseScreen();
-            std::cout << "Введите команду: ";
             std::cout.flush();
             
             Command cmd = inputHandler.waitForCommand();
@@ -172,7 +170,6 @@ void GameController::processGameTurn() {
     switch (model.getState()) {
         case GameState::PLAYING:
             view.render(model);
-            std::cout << "Введите команду (WASD - движение, SPACE/F - выстрел, P - пауза, M - меню, Q - выход): ";
             
             if (model.getEnemyCount() == 0) {
                 loadNextLevel();
@@ -191,7 +188,6 @@ void GameController::processGameTurn() {
                 }
             }
             view.drawGameOver(score);
-            std::cout << "Введите команду (ENTER - новая игра, M - меню, Q - выход): ";
             break;
 
         default:
@@ -337,7 +333,6 @@ void GameController::showMenu() {
         }
         std::cout << "=======================\n\n";
         
-        std::cout << "Введите команду: ";
         std::cout.flush();
         
         Command cmd = inputHandler.waitForCommand();
@@ -372,7 +367,6 @@ void GameController::showSettings() {
     while (inSettings && running) {
         view.clearScreen();
         view.drawSettings();
-        std::cout << "Введите команду: ";
         std::cout.flush();
         
         Command cmd = inputHandler.waitForCommand();
