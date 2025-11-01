@@ -12,7 +12,7 @@
 #include "Bonus.h"
 #include "Projectile.h"
 
-enum class GameState { MENU, PLAYING, PAUSED, GAME_OVER, SETTINGS };
+enum class GameState { MENU, PLAYING, PAUSED, GAME_OVER, SETTINGS, LEVEL_COMPLETE };
 
 class GameWorld {
 private:

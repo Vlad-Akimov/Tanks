@@ -4,7 +4,7 @@
 GameController::GameController(int width, int height) 
     : model(width, height), view(width, height), running(true), 
       mapManager("../resources/maps"), currentMapIndex(0), 
-      useCustomMap(false) {
+      useCustomMap(false), scoreSaved(false) {  // Добавляем флаг
     srand(static_cast<unsigned int>(time(nullptr)));
     mapManager.loadMaps();
 }
@@ -24,48 +24,46 @@ void GameController::showMapSelection() {
     }
     
     while (inMapSelection && running) {
-        // Получаем текущую карту
         const MapInfo& currentMap = mapManager.getMap(currentMapIndex);
         
-        // Отрисовываем экран выбора карты
         view.clearScreen();
         view.drawMapSelection(currentMap, currentMapIndex, mapManager.getMapCount());
         std::cout.flush();
         
         Command cmd = inputHandler.waitForCommand();
         switch (cmd) {
-            case Command::MOVE_LEFT: // A
+            case Command::MOVE_LEFT:
                 currentMapIndex--;
                 if (currentMapIndex < 0) {
                     currentMapIndex = mapManager.getMapCount() - 1;
                 }
                 break;
                 
-            case Command::MOVE_RIGHT: // D
+            case Command::MOVE_RIGHT:
                 currentMapIndex++;
                 if (currentMapIndex >= mapManager.getMapCount()) {
                     currentMapIndex = 0;
                 }
                 break;
                 
-            case Command::FIRE: // R - случайная генерация
+            case Command::FIRE:
                 useCustomMap = false;
                 model.loadLevel(1);
                 inMapSelection = false;
                 break;
                 
-            case Command::CONFIRM: // ENTER - начать игру с выбранной картой
+            case Command::CONFIRM:
                 useCustomMap = true;
                 loadSelectedMap();
                 inMapSelection = false;
                 break;
                 
-            case Command::MENU: // M - вернуться в главное меню
+            case Command::MENU:
                 inMapSelection = false;
                 showMenu();
                 return;
                 
-            case Command::EXIT: // Q - выход
+            case Command::EXIT:
                 running = false;
                 inMapSelection = false;
                 break;
@@ -80,20 +78,16 @@ void GameController::loadSelectedMap() {
     if (mapManager.isValidMapIndex(currentMapIndex)) {
         const MapInfo& map = mapManager.getMap(currentMapIndex);
         
-        // Сохраняем выбранную карту
         selectedMap = map;
         useCustomMap = true;
         
-        // СОХРАНЯЕМ состояние игрока перед созданием нового мира
         int currentLevel = model.getCurrentLevel();
         PlayerTank* oldPlayer = model.getPlayer();
         int savedScore = oldPlayer ? oldPlayer->getScore() : 0;
         int savedLives = oldPlayer ? oldPlayer->getLives() : 3;
         
-        // Создаем новый игровой мир с размерами выбранной карты
         model = GameWorld(selectedMap.width, selectedMap.height);
         
-        // ВОССТАНАВЛИВАЕМ состояние игрока
         model.setCurrentLevel(currentLevel);
         PlayerTank* newPlayer = model.getPlayer();
         if (newPlayer && oldPlayer) {
@@ -102,25 +96,22 @@ void GameController::loadSelectedMap() {
             newPlayer->setHealth(3);
         }
         
-        // Загружаем объекты из карты
         mapManager.createWorldFromMap(model, selectedMap);
-        
-        // Устанавливаем состояние игры
         model.setState(GameState::PLAYING);
     } else {
-        // Если что-то пошло не так, используем стандартную карту
         std::cout << "Ошибка загрузки карты, используется случайная генерация" << std::endl;
         useCustomMap = false;
-        model.loadLevel(model.getCurrentLevel()); // Загружаем текущий уровень, а не сбрасываем
+        model.loadLevel(model.getCurrentLevel());
     }
 }
 
 void GameController::runGame() {
     showMenu();
     
-    while (running) { processGameTurn(); }
+    while (running) { 
+        processGameTurn(); 
+    }
     
-    // Завершение игры
     view.clearScreen();
     std::cout << "Игра завершена. Спасибо за игру!" << std::endl;
 }
@@ -143,6 +134,8 @@ void GameController::pauseGame() {
                 running = false;
                 paused = false;
             } else if (cmd == Command::MENU) {
+                // Сбрасываем флаг при возврате в меню
+                scoreSaved = false;
                 model.getPlayer()->setScore(0);
                 model.getPlayer()->setLives(3);
                 showMenu();
@@ -152,36 +145,33 @@ void GameController::pauseGame() {
     }
 }
 
-void GameController::saveSettings() {
-    // Сохранение настроек управления и т.д.
-}
-
 void GameController::processGameTurn() {
-    // Фаза ВЫВОДА: отрисовка текущего состояния
     view.clearScreen();
     int score = 0;
     
     switch (model.getState()) {
         case GameState::PLAYING:
             view.render(model);
-            
-            if (model.getEnemyCount() == 0) {
-                loadNextLevel();
-            }
             break;
+            
+        case GameState::LEVEL_COMPLETE:
+            showLevelCompleteScreen();
+            return;
             
         case GameState::PAUSED:
             view.drawPauseScreen();
             break;
             
         case GameState::GAME_OVER:
-            if (model.getPlayer()) {
+            // Сохраняем рекорд только один раз при Game Over
+            if (model.getPlayer() && !scoreSaved) {
                 score = model.getPlayer()->getScore();
                 if (score > 0) {
                     scoreManager.addScore(score);
+                    scoreSaved = true; // Помечаем как сохраненный
                 }
             }
-            view.drawGameOver(score);
+            view.drawGameOver(model.getPlayer() ? model.getPlayer()->getScore() : 0);
             break;
 
         default:
@@ -190,22 +180,20 @@ void GameController::processGameTurn() {
     
     std::cout.flush();
     
-    // Фаза ВВОДА: ожидание команды от пользователя
-    Command cmd = inputHandler.waitForCommand();
+    if (model.getState() == GameState::LEVEL_COMPLETE) {
+        return;
+    }
     
-    // Фаза ОБРАБОТКИ: выполнение команды и обновление игрового мира
+    Command cmd = inputHandler.waitForCommand();
     processCommand(cmd);
     
-    // Если мы в игровом режиме и команда была игровой - обновляем мир
     if (model.getState() == GameState::PLAYING && 
         (cmd == Command::MOVE_UP || cmd == Command::MOVE_DOWN || 
          cmd == Command::MOVE_LEFT || cmd == Command::MOVE_RIGHT ||
          cmd == Command::FIRE)) {
         
-        // Обновляем игровой мир (движение врагов, проверка столкновений и т.д.)
         model.update();
         
-        // Проверяем условия завершения игры
         if (model.getState() == GameState::GAME_OVER) {
             view.drawGameOver(model.getPlayer()->getScore());
         }
@@ -250,8 +238,10 @@ void GameController::processCommand(Command cmd) {
             
         case Command::MENU:
             if (model.getState() == GameState::PLAYING) {
-                if (model.getPlayer() && model.getPlayer()->getScore() > 0) {
+                // Сохраняем рекорд при выходе в меню из игры
+                if (model.getPlayer() && model.getPlayer()->getScore() > 0 && !scoreSaved) {
                     scoreManager.addScore(model.getPlayer()->getScore());
+                    scoreSaved = true;
                 }
                 model.setState(GameState::GAME_OVER);
                 model.setCurrentLevel(1);
@@ -267,6 +257,8 @@ void GameController::processCommand(Command cmd) {
             
         case Command::CONFIRM:
             if (model.getState() == GameState::MENU) {
+                // Сбрасываем флаг при начале новой игры
+                scoreSaved = false;
                 useCustomMap = false;
                 model.setCurrentLevel(1);
                 if (model.getPlayer()) {
@@ -277,9 +269,13 @@ void GameController::processCommand(Command cmd) {
             } else if (model.getState() == GameState::PAUSED) {
                 model.setState(GameState::PLAYING);
             } else if (model.getState() == GameState::GAME_OVER) {
-                if (model.getPlayer() && model.getPlayer()->getScore() > 0) {
+                // Сохраняем рекорд при подтверждении на экране Game Over
+                if (model.getPlayer() && model.getPlayer()->getScore() > 0 && !scoreSaved) {
                     scoreManager.addScore(model.getPlayer()->getScore());
+                    scoreSaved = true;
                 }
+                // Сбрасываем флаг для новой игры
+                scoreSaved = false;
                 useCustomMap = false;
                 model.setCurrentLevel(1);
                 if (model.getPlayer()) {
@@ -288,6 +284,8 @@ void GameController::processCommand(Command cmd) {
                 }
                 showMapSelection();
                 model.setState(GameState::PLAYING);
+            } else if (model.getState() == GameState::LEVEL_COMPLETE) {
+                // Обработка подтверждения на экране завершения уровня
             }
             break;
             
@@ -332,6 +330,8 @@ void GameController::showMenu() {
         Command cmd = inputHandler.waitForCommand();
         switch (cmd) {
             case Command::CONFIRM:
+                // Сбрасываем флаг при начале новой игры
+                scoreSaved = false;
                 model.setCurrentLevel(1);
                 model.getPlayer()->setScore(0);
                 model.getPlayer()->setLives(3);
@@ -389,5 +389,69 @@ void GameController::loadNextLevel() {
         loadSelectedMap();
     } else {
         model.loadLevel(nextLevel);
+    }
+    
+    model.setState(GameState::PLAYING);
+}
+
+void GameController::showLevelCompleteScreen() {
+    if (!model.getPlayer()) return;
+    
+    // Сохраняем статистику перед переходом
+    int currentScore = model.getPlayer()->getScore();
+    int currentLives = model.getPlayer()->getLives();
+    int currentLevel = model.getCurrentLevel();
+    
+    // Рассчитываем бонусы
+    int levelBonus = currentLevel * 100;
+    int livesBonus = currentLives * 25;
+    int totalBonus = levelBonus + livesBonus;
+    
+    // Начисляем бонусы
+    model.getPlayer()->addScore(totalBonus);
+    
+    bool inLevelCompleteScreen = true;
+    
+    while (inLevelCompleteScreen && running) {
+        view.clearScreen();
+        view.drawLevelComplete(currentScore, currentLevel, currentLives);
+        std::cout.flush();
+        
+        Command cmd = inputHandler.waitForCommand();
+        switch (cmd) {
+            case Command::CONFIRM:
+                // Сохраняем рекорд при переходе на следующий уровень через меню
+                if (cmd == Command::MENU && model.getPlayer()->getScore() > 0 && !scoreSaved) {
+                    scoreManager.addScore(model.getPlayer()->getScore());
+                    scoreSaved = true;
+                }
+                model.setCurrentLevel(currentLevel + 1);
+                loadNextLevel();
+                inLevelCompleteScreen = false;
+                break;
+                
+            case Command::MENU:
+                // Сохраняем рекорд при выходе в меню с экрана завершения уровня
+                if (model.getPlayer()->getScore() > 0 && !scoreSaved) {
+                    scoreManager.addScore(model.getPlayer()->getScore());
+                    scoreSaved = true;
+                }
+                showMenu();
+                inLevelCompleteScreen = false;
+                break;
+                
+            case Command::EXIT:
+                // Сохраняем рекорд при выходе из игры с экрана завершения уровня
+                if (model.getPlayer()->getScore() > 0 && !scoreSaved) {
+                    scoreManager.addScore(model.getPlayer()->getScore());
+                    scoreSaved = true;
+                }
+                running = false;
+                inLevelCompleteScreen = false;
+                break;
+                
+            default:
+                break;
+        }
     }
 }

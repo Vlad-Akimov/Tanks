@@ -7,20 +7,28 @@ ScoreManager::ScoreManager() : scoreFile("highscores.txt") {
     loadScores();
 }
 
+ScoreManager::ScoreManager(const std::string& filename) : scoreFile(filename) {
+    loadScores();
+}
+
 void ScoreManager::addScore(int score) {
     if (score <= 0) return;
     
     std::cout << "Добавление счета в таблицу рекордов: " << score << std::endl;
     
+    // Проверяем, является ли счет рекордом
     if (!isHighScore(score)) {
         std::cout << "Счет " << score << " не является рекордом." << std::endl;
         return;
     }
     
+    // Добавляем счет и сортируем
     highScores.push_back(score);
-    
     std::sort(highScores.rbegin(), highScores.rend());
     
+    highScores.erase(std::unique(highScores.begin(), highScores.end()), highScores.end());
+    
+    // Ограничиваем размер
     if (highScores.size() > MAX_SCORES) {
         highScores.resize(MAX_SCORES);
     }
@@ -35,9 +43,8 @@ void ScoreManager::addScore(int score) {
 }
 
 bool ScoreManager::isHighScore(int score) const {
-    if (highScores.size() < MAX_SCORES) {
-        return true;
-    }
+    if (highScores.empty()) return true;
+    if (highScores.size() < MAX_SCORES) return true;
     
     return score > highScores.back();
 }
@@ -77,6 +84,7 @@ void ScoreManager::loadScores() {
     }
     
     std::sort(highScores.rbegin(), highScores.rend());
+    highScores.erase(std::unique(highScores.begin(), highScores.end()), highScores.end());
     
     if (highScores.size() > MAX_SCORES) {
         highScores.resize(MAX_SCORES);

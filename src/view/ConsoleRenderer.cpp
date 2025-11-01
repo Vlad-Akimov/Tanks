@@ -398,3 +398,41 @@ void ConsoleRenderer::drawMapPreview(const MapInfo& map) {
     std::cout << "   Объекты: " << walls << " стен, " << water << " воды, " 
               << forest << " леса, " << enemies << " врагов\n";
 }
+
+void ConsoleRenderer::drawLevelComplete(int score, int level, int lives) {
+    clearScreen();
+    
+    std::cout << "=================================\n";
+    std::cout << "         УРОВЕНЬ " << level << " ПРОЙДЕН!      \n";
+    std::cout << "=================================\n\n";
+    
+    std::cout << "        СТАТИСТИКА УРОВНЯ       \n";
+    std::cout << "---------------------------------\n\n";
+    
+    std::cout << "   Очков заработано: " << score << "\n";
+    std::cout << "   Осталось жизней: " << lives << "\n\n";
+    
+    // Бонусы за прохождение уровня
+    int levelBonus = level * 100;
+    int livesBonus = lives * 25;
+    int totalBonus = levelBonus + livesBonus;
+    
+    std::cout << "        БОНУСЫ ЗА УРОВЕНЬ       \n";
+    std::cout << "---------------------------------\n\n";
+    
+    std::cout << "   За уровень " << level << ": " << levelBonus << " очков\n";
+    std::cout << "   За оставшиеся жизни: " << livesBonus << " очков\n";
+    std::cout << "   ОБЩИЙ БОНУС: " << totalBonus << " очков\n\n";
+    
+    std::cout << "   НОВЫЙ СЧЕТ: " << (score + totalBonus) << " очков\n\n";
+    
+    std::cout << "---------------------------------\n";
+    std::cout << "   [ENTER] - Следующий уровень\n";
+    std::cout << "   [M] - Главное меню\n";
+    std::cout << "   [Q] - Выход\n";
+    std::cout << "---------------------------------\n\n";
+    
+    std::cout << "=================================\n";
+    std::cout << "  Готовьтесь к уровню " << (level + 1) << "!\n";
+    std::cout << "=================================\n";
+}

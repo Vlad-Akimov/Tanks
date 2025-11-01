@@ -90,7 +90,7 @@ void GameWorld::loadLevel(int level) {
     // Создаем врагов в зависимости от уровня
     createEnemies(level);
     
-    state = GameState::PLAYING;
+    // state = GameState::PLAYING;
 }
 
 void GameWorld::checkCollisions() {
@@ -954,13 +954,15 @@ void GameWorld::checkGameConditions() {
         } else {
             state = GameState::GAME_OVER;
         }
+        return;
     }
     
-    if (enemyCount == 0) {
-        currentLevel++;
+    // Проверяем завершение уровня только если игрок жив
+    if (enemyCount == 0 && state == GameState::PLAYING && currentLevel > 0) {
         if (player) {
             player->addScore(500);
         }
+        state = GameState::LEVEL_COMPLETE;
     }
 }
 

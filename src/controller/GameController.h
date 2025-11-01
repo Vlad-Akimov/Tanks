@@ -20,6 +20,7 @@ private:
     InputHandler inputHandler;
     ScoreManager scoreManager;
     bool running;
+    bool scoreSaved;
 
     MapManager mapManager;
     int currentMapIndex;
@@ -30,6 +31,7 @@ private:
     void processCommand(Command cmd);
     void showMenu();
     void showSettings();
+    void showLevelCompleteScreen();
 
     void showMapSelection();
     void loadSelectedMap();
