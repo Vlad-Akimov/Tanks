@@ -80,9 +80,6 @@ void GameController::loadSelectedMap() {
     if (mapManager.isValidMapIndex(currentMapIndex)) {
         const MapInfo& map = mapManager.getMap(currentMapIndex);
         
-        std::cout << "Загрузка карты: " << map.displayName << std::endl;
-        std::cout << "Размер: " << map.width << "x" << map.height << std::endl;
-        
         // Сохраняем выбранную карту
         selectedMap = map;
         useCustomMap = true;
@@ -110,9 +107,6 @@ void GameController::loadSelectedMap() {
         
         // Устанавливаем состояние игры
         model.setState(GameState::PLAYING);
-        
-        std::cout << "Карта успешно загружена: " << selectedMap.displayName 
-                  << " Уровень: " << currentLevel << " Счет: " << savedScore << std::endl;
     } else {
         // Если что-то пошло не так, используем стандартную карту
         std::cout << "Ошибка загрузки карты, используется случайная генерация" << std::endl;
@@ -392,10 +386,8 @@ void GameController::loadNextLevel() {
     int nextLevel = model.getCurrentLevel();
     
     if (useCustomMap) {
-        std::cout << "Загрузка уровня " << nextLevel << " на выбранной карте" << std::endl;
         loadSelectedMap();
     } else {
-        std::cout << "Загрузка случайно сгенерированного уровня " << nextLevel << std::endl;
         model.loadLevel(nextLevel);
     }
 }

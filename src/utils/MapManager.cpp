@@ -322,7 +322,6 @@ bool MapManager::isValidMapIndex(int index) const {
 
 void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
     int level = world.getCurrentLevel();
-    std::cout << "Создание мира из карты: " << map.displayName << " Уровень: " << level << std::endl;
     
     // СОХРАНЯЕМ состояние игрока
     PlayerTank* oldPlayer = world.getPlayer();
@@ -356,10 +355,6 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
     int baseEnemyCount = countEnemiesInLayout(map.layout);
     int adjustedEnemyCount = calculateAdjustedEnemyCount(baseEnemyCount, level);
     int enemyDifficulty = calculateEnemyDifficulty(level);
-    
-    std::cout << "Базовое количество врагов: " << baseEnemyCount 
-              << ", скорректированное: " << adjustedEnemyCount 
-              << ", сложность: " << enemyDifficulty << std::endl;
     
     int enemyCount = 0;
     int obstacleCount = 0;
@@ -482,10 +477,6 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
             }
         }
     }
-    
-    std::cout << "Успешно создано: " << enemyCount << " врагов, " 
-              << obstacleCount << " препятствий" << std::endl;
-    std::cout << "Уровень: " << level << " Счет: " << savedScore << std::endl;
 }
 
 bool MapManager::isValidEnemyPosition(const Point& pos, const MapInfo& map, const PlayerTank* player) const {
