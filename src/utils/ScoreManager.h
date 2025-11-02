@@ -13,7 +13,7 @@ private:
 
 public:
     ScoreManager();
-    ScoreManager(const std::string& filename); // Новый конструктор
+    ScoreManager(const std::string& filename);
     void addScore(int score);
     std::vector<int> getHighScores() const;
     void saveScores();
