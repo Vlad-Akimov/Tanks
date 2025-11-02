@@ -100,13 +100,14 @@ void ConsoleRenderer::render(const GameWorld& world) {
                 setColor(PlatformUtils::Color::GREEN);
                 colored = true;
             }
-            // Проверяем, является ли символ вражеским танком
-            else if (symbol == 'A' || symbol == 'V' || symbol == '[' || symbol == ']' || symbol == 'E') {
+            // Проверяем, является ли символ вражеским танком (включая новые типы)
+            else if (symbol == 'A' || symbol == 'V' || symbol == '[' || symbol == ']' || 
+                     symbol == 'E' || symbol == 'F' || symbol == 'D') {
                 setColor(PlatformUtils::Color::RED);
                 colored = true;
             }
             // Проверяем, является ли символ бонусом
-            else if (symbol == 'S' || symbol == 'F' || symbol == 'B' || symbol == 'L') {
+            else if (symbol == 'S' || symbol == 'K' || symbol == 'B' || symbol == 'L') {
                 setColor(PlatformUtils::Color::YELLOW);
                 colored = true;
             }
@@ -147,7 +148,6 @@ void ConsoleRenderer::render(const GameWorld& world) {
         std::cout << "\n";
     }
     
-    // Отображаем легенду символов
     drawSymbolLegend();
 }
 
@@ -159,11 +159,25 @@ void ConsoleRenderer::drawSymbolLegend() {
     setColor(PlatformUtils::Color::GREEN);
     std::cout << "^ v < >";
     resetColor();
-    std::cout << " - игрок, ";
+    std::cout << " - игрок\n";
+    
+    std::cout << "Враги: ";
     setColor(PlatformUtils::Color::RED);
-    std::cout << "A V [ ]";
+    std::cout << "E";
     resetColor();
-    std::cout << " - враги\n";
+    std::cout << " - обычный, ";
+    setColor(PlatformUtils::Color::RED);
+    std::cout << "F";
+    resetColor();
+    std::cout << " - быстрый, ";
+    setColor(PlatformUtils::Color::RED);
+    std::cout << "D";
+    resetColor();
+    std::cout << " - сильный, ";
+    setColor(PlatformUtils::Color::RED);
+    std::cout << "A";
+    resetColor();
+    std::cout << " - бронированный\n";
     
     // Препятствия
     std::cout << "Препятствия: ";
@@ -189,7 +203,7 @@ void ConsoleRenderer::drawSymbolLegend() {
     resetColor();
     std::cout << " - щит, ";
     setColor(PlatformUtils::Color::YELLOW);
-    std::cout << "F";
+    std::cout << "K";
     resetColor();
     std::cout << " - двойной огонь, ";
     setColor(PlatformUtils::Color::YELLOW);

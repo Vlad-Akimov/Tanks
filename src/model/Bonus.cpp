@@ -58,7 +58,7 @@ Point Bonus::getBounds() const {
 char Bonus::getSymbol() const {
     switch(type) {
         case BonusType::SHIELD: return 'S';
-        case BonusType::DOUBLE_FIRE: return 'F';
+        case BonusType::DOUBLE_FIRE: return 'K';
         case BonusType::SPEED_BOOST: return 'B';
         case BonusType::LIFE_UP: return 'L';
         default: return '?';

@@ -7,6 +7,7 @@
 #include "../model/GameObject.h"
 #include "../model/GameWorld.h"
 #include "../model/Obstacle.h"
+#include "../model/EnemyTank.h"
 
 struct MapInfo {
     std::string filename;
@@ -28,6 +29,8 @@ class MapManager {
         int calculateEnemyDifficulty(int level) const;
         AIBehavior getAIBehaviorForDifficulty(int difficulty, std::mt19937& gen) const;
         bool isValidEnemyPosition(const Point& pos, const MapInfo& map, const PlayerTank* player) const;
+
+        EnemyTankType getRandomTankType(int level, std::mt19937& gen) const;
 
     public:
         MapManager(const std::string& directory = "maps");

@@ -20,11 +20,11 @@ private:
     InputHandler inputHandler;
     ScoreManager scoreManager;
     bool running;
-    bool scoreSaved;
-
     MapManager mapManager;
     int currentMapIndex;
+    bool scoreSaved;
     bool useCustomMap;
+    
     MapInfo selectedMap;
 
     void processGameTurn();

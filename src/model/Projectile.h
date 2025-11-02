@@ -19,6 +19,8 @@ public:
     int getDamage() const;
     bool isProcessed() const;
     void markProcessed();
+
+    void setDamage(int newDamage);
     
     void update() override;
     Point getBounds() const override;

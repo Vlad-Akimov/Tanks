@@ -2,13 +2,37 @@
 #include <cstdlib>
 #include <algorithm>
 
-EnemyTank::EnemyTank(Point pos, AIBehavior behav, int diff)
+EnemyTank::EnemyTank(Point pos, AIBehavior behav, int diff, EnemyTankType type)
     : Tank(pos, Direction::DOWN, 1, 2, 1), 
-      behavior(behav), difficulty(diff), 
+      behavior(behav), difficulty(diff), tankType(type),
       playerLastPosition(Point(-1, -1)),
       moveCooldown(0)
 {
     setReloadTime(2);
+    
+    // Настраиваем характеристики в зависимости от типа танка
+    switch(tankType) {
+        case EnemyTankType::FAST:
+            setSpeed(2);  // Увеличиваем скорость
+            setHealth(1); // Низкое здоровье
+            break;
+            
+        case EnemyTankType::DAMAGE:
+            setSpeed(1);
+            setHealth(1);
+            break;
+            
+        case EnemyTankType::ARMORED:
+            setSpeed(1);
+            setHealth(4);  // Удвоенное здоровье
+            break;
+            
+        case EnemyTankType::BASIC:
+        default:
+            setSpeed(1);
+            setHealth(2);
+            break;
+    }
 }
 
 void EnemyTank::setPlayerPosition(Point playerPos) { 
@@ -28,13 +52,38 @@ Point EnemyTank::getBounds() const {
 }
 
 char EnemyTank::getSymbol() const {
-    // Символ вражеского танка в зависимости от направления
+    // Символ вражеского танка в зависимости от типа и направления
+    char baseSymbol = 'E';
+    
+    // Выбираем базовый символ в зависимости от типа танка
+    switch(tankType) {
+        case EnemyTankType::FAST:
+            baseSymbol = 'F';
+            break;
+        case EnemyTankType::DAMAGE:
+            baseSymbol = 'D';
+            break;
+        case EnemyTankType::ARMORED:
+            baseSymbol = 'A';
+            break;
+        case EnemyTankType::BASIC:
+        default:
+            baseSymbol = 'E';
+            break;
+    }
+    
+    // Модифицируем символ в зависимости от направления
     switch(direction) {
-        case Direction::UP: return 'A';
-        case Direction::DOWN: return 'V';
-        case Direction::LEFT: return '['; 
-        case Direction::RIGHT: return ']';
-        default: return 'E';
+        case Direction::UP: 
+            return baseSymbol;
+        case Direction::DOWN: 
+            return baseSymbol;
+        case Direction::LEFT: 
+            return baseSymbol;
+        case Direction::RIGHT: 
+            return baseSymbol;
+        default: 
+            return baseSymbol;
     }
 }
 
@@ -68,6 +117,13 @@ int EnemyTank::getDistanceToPlayer() const {
 Projectile* EnemyTank::fire() {
     if (!canFire()) return nullptr;
     
+    int projectileDamage = 1; // Базовый урон
+    
+    // Увеличиваем урон для DAMAGE танков
+    if (tankType == EnemyTankType::DAMAGE) {
+        projectileDamage = 2;
+    }
+    
     // Вражеские танки имеют разную точность в зависимости от сложности
     if (difficulty == 1 && rand() % 3 == 0) { // 33% шанс промаха
         // Стреляем в случайном направлении
@@ -95,7 +151,13 @@ Projectile* EnemyTank::fire() {
         rotate(getDirectionToPlayer());
     }
     
-    return Tank::fire();
+    // Создаем снаряд с соответствующим уроном
+    Projectile* projectile = Tank::fire();
+    if (projectile) {
+        projectile->setDamage(projectileDamage);
+    }
+    
+    return projectile;
 }
 
 // Приватные методы
@@ -307,4 +369,8 @@ bool EnemyTank::hasClearShot() const {
     }
     
     return false;
+}
+
+EnemyTankType EnemyTank::getTankType() const {
+    return tankType;
 }

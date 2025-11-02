@@ -37,6 +37,7 @@ public:
     
     void setReloadTime(int reload);
     void setFireRate(int rate);
+    void setSpeed(int newSpeed);
     
     int getShieldDuration() const;
     int getDoubleFireDuration() const;

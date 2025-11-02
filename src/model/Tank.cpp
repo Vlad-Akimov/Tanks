@@ -169,3 +169,7 @@ int Tank::getDoubleFireDuration() const {
 int Tank::getSpeedBoostDuration() const { 
     return speedBoostDuration; 
 }
+
+void Tank::setSpeed(int newSpeed) {
+    speed = newSpeed;
+}

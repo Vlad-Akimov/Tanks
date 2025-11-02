@@ -76,3 +76,7 @@ std::vector<Point> Projectile::getTrajectory(int maxRange) const {
     
     return trajectory;
 }
+
+void Projectile::setDamage(int newDamage) {
+    damage = newDamage;
+}

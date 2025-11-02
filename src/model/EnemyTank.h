@@ -6,10 +6,18 @@
 
 enum class AIBehavior { RANDOM, AGGRESSIVE, DEFENSIVE };
 
+enum class EnemyTankType {
+    BASIC,      // Обычный танк
+    FAST,       // Быстрый танк
+    DAMAGE,     // Танк с двойным уроном
+    ARMORED     // Танк с двойным здоровьем
+};
+
 class EnemyTank : public Tank {
 private:
     AIBehavior behavior;
     int difficulty;
+    EnemyTankType tankType;
     Point playerLastPosition;
     int moveCooldown;
     
@@ -27,7 +35,7 @@ private:
     bool hasClearShot() const;
 
 public:
-    EnemyTank(Point pos, AIBehavior behav, int diff);
+    EnemyTank(Point pos, AIBehavior behav, int diff, EnemyTankType type = EnemyTankType::BASIC);
     void setPlayerPosition(Point playerPos);
     
     void update() override;
@@ -39,6 +47,8 @@ public:
     Direction getDirectionToPlayer() const;
     int getDistanceToPlayer() const;
     Projectile* fire() override;
+
+    EnemyTankType getTankType() const;
 };
 
 #endif // ENEMYTANK_H

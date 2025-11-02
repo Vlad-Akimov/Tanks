@@ -422,9 +422,20 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
         enemyPositions.resize(adjustedEnemyCount);
     }
     
+    // РАСПРЕДЕЛЕНИЕ ТИПОВ ТАНКОВ В ЗАВИСИМОСТИ ОТ УРОВНЯ
+    std::vector<EnemyTankType> tankTypes;
+    
     for (const auto& pos : enemyPositions) {
+        EnemyTankType tankType = getRandomTankType(level, gen);
+        tankTypes.push_back(tankType);
+    }
+    
+    // СОЗДАЕМ ВРАЖЕСКИЕ ТАНКИ С РАЗНЫМИ ТИПАМИ
+    for (size_t i = 0; i < enemyPositions.size(); i++) {
         AIBehavior behavior = getAIBehaviorForDifficulty(enemyDifficulty, gen);
-        auto enemy = std::make_unique<EnemyTank>(pos, behavior, enemyDifficulty);
+        EnemyTankType tankType = tankTypes[i];
+        
+        auto enemy = std::make_unique<EnemyTank>(enemyPositions[i], behavior, enemyDifficulty, tankType);
         objects.push_back(std::move(enemy));
         enemyCount++;
     }
@@ -477,6 +488,42 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
             }
         }
     }
+}
+
+EnemyTankType MapManager::getRandomTankType(int level, std::mt19937& gen) const {
+    std::uniform_int_distribution<> typeDist(0, 100);
+    int typeRoll = typeDist(gen);
+    
+    if (level >= 2) {
+        if (typeRoll < 50) { // 50% - обычные танки
+            return EnemyTankType::BASIC;
+        } else if (typeRoll < 70) { // 20% - быстрые танки
+            return EnemyTankType::FAST;
+        } else if (typeRoll < 85) { // 15% - танки с уроном
+            return EnemyTankType::DAMAGE;
+        } else { // 15% - бронированные танки
+            return EnemyTankType::ARMORED;
+        }
+    } else {
+        // На первом уровне только обычные танки
+        return EnemyTankType::BASIC;
+    }
+    
+    // На высоких уровнях увеличиваем шанс появления специальных танков
+    if (level >= 4) {
+        typeRoll = typeDist(gen); // Перебрасываем кубик
+        if (typeRoll < 30) { // 30% - обычные
+            return EnemyTankType::BASIC;
+        } else if (typeRoll < 55) { // 25% - быстрые
+            return EnemyTankType::FAST;
+        } else if (typeRoll < 75) { // 20% - с уроном
+            return EnemyTankType::DAMAGE;
+        } else { // 25% - бронированные
+            return EnemyTankType::ARMORED;
+        }
+    }
+    
+    return EnemyTankType::BASIC;
 }
 
 bool MapManager::isValidEnemyPosition(const Point& pos, const MapInfo& map, const PlayerTank* player) const {

@@ -4,7 +4,7 @@
 GameController::GameController(int width, int height) 
     : model(width, height), view(width, height), running(true), 
       mapManager("../resources/maps"), currentMapIndex(0), 
-      useCustomMap(false), scoreSaved(false) {  // Добавляем флаг
+      scoreSaved(false), useCustomMap(false) {
     srand(static_cast<unsigned int>(time(nullptr)));
     mapManager.loadMaps();
 }
@@ -20,6 +20,7 @@ void GameController::showMapSelection() {
         std::cout << "Карты не найдены! Используется случайная генерация." << std::endl;
         useCustomMap = false;
         model.loadLevel(1);
+        model.setState(GameState::PLAYING);
         return;
     }
     
@@ -49,6 +50,7 @@ void GameController::showMapSelection() {
             case Command::FIRE:
                 useCustomMap = false;
                 model.loadLevel(1);
+                model.setState(GameState::PLAYING);
                 inMapSelection = false;
                 break;
                 

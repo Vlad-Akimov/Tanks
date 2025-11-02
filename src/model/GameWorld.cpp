@@ -90,7 +90,7 @@ void GameWorld::loadLevel(int level) {
     // Создаем врагов в зависимости от уровня
     createEnemies(level);
     
-    // state = GameState::PLAYING;
+    state = GameState::PLAYING;
 }
 
 void GameWorld::checkCollisions() {
@@ -187,9 +187,30 @@ bool GameWorld::handleProjectileHit(GameObject* target, Projectile* projectile, 
         // Наносим урон танку
         tank->takeDamage(damage);
         
-        // Начисляем очки игроку за уничтожение врага
+        // Начисляем очки игроку за уничтожение врага с бонусами за тип танка
         if (tank != player && tank->isDestroyed() && owner == player) {
-            player->addScore(100);
+            int baseScore = 100;
+            
+            // Бонусные очки за специальные типы танков
+            if (hitEnemy) {
+                switch(hitEnemy->getTankType()) {
+                    case EnemyTankType::FAST:
+                        baseScore = 150; // +50 очков за быстрый танк
+                        break;
+                    case EnemyTankType::DAMAGE:
+                        baseScore = 200; // +100 очков за танк с уроном
+                        break;
+                    case EnemyTankType::ARMORED:
+                        baseScore = 250; // +150 очков за бронированный танк
+                        break;
+                    case EnemyTankType::BASIC:
+                    default:
+                        baseScore = 100;
+                        break;
+                }
+            }
+            
+            player->addScore(baseScore);
         }
         return true;
     }
@@ -770,6 +791,9 @@ void GameWorld::createEnemies(int level) {
     std::uniform_int_distribution<> yDist(2, fieldHeight / 2); // Враги в верхней части
     std::uniform_int_distribution<> behaviorDist(0, 2);
     
+    // Распределение типов танков в зависимости от уровня
+    std::uniform_int_distribution<> typeDist(0, 100);
+    
     for (int i = 0; i < maxEnemies; i++) {
         Point pos(xDist(gen), yDist(gen));
         
@@ -793,7 +817,40 @@ void GameWorld::createEnemies(int level) {
         AIBehavior behavior = static_cast<AIBehavior>(behaviorDist(gen));
         int difficulty = std::min(3, level); // Сложность зависит от уровня
         
-        auto enemy = std::make_unique<EnemyTank>(pos, behavior, difficulty);
+        // Определяем тип танка на основе вероятностей
+        EnemyTankType tankType = EnemyTankType::BASIC;
+        int typeRoll = typeDist(gen);
+        
+        if (level >= 2) {
+            if (typeRoll < 50) { // 50% - обычные танки
+                tankType = EnemyTankType::BASIC;
+            } else if (typeRoll < 70) { // 20% - быстрые танки
+                tankType = EnemyTankType::FAST;
+            } else if (typeRoll < 85) { // 15% - танки с уроном
+                tankType = EnemyTankType::DAMAGE;
+            } else { // 15% - бронированные танки
+                tankType = EnemyTankType::ARMORED;
+            }
+        } else {
+            // На первом уровне только обычные танки
+            tankType = EnemyTankType::BASIC;
+        }
+        
+        // На высоких уровнях увеличиваем шанс появления специальных танков
+        if (level >= 4) {
+            typeRoll = typeDist(gen); // Перебрасываем кубик
+            if (typeRoll < 30) { // 30% - обычные
+                tankType = EnemyTankType::BASIC;
+            } else if (typeRoll < 55) { // 25% - быстрые
+                tankType = EnemyTankType::FAST;
+            } else if (typeRoll < 75) { // 20% - с уроном
+                tankType = EnemyTankType::DAMAGE;
+            } else { // 25% - бронированные
+                tankType = EnemyTankType::ARMORED;
+            }
+        }
+        
+        auto enemy = std::make_unique<EnemyTank>(pos, behavior, difficulty, tankType);
         objects.push_back(std::move(enemy));
         enemyCount++;
     }
