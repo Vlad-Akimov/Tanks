@@ -3,8 +3,6 @@
 #include <string>
 #include <vector>
 
-// Реализация ConsoleRenderer
-
 ConsoleRenderer::ConsoleRenderer(int width, int height): screenWidth(width), screenHeight(height) {}
 
 void ConsoleRenderer::setColor(PlatformUtils::Color color) {
