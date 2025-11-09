@@ -13,6 +13,9 @@ protected:
     bool hasShield;
     bool doubleFire;
     int speedBoost;
+
+    int speedSlow;
+    int speedSlowDuration;
     
     int shieldDuration;
     int doubleFireDuration;
@@ -34,6 +37,10 @@ public:
     bool getHasShield() const;
     bool getDoubleFire() const;
     int getBonusDuration() const;
+
+    void applySlowEffect(int duration);
+    int getActualSpeed() const;
+    int getSpeedSlowDuration() const;
     
     void setReloadTime(int reload);
     void setFireRate(int rate);
@@ -42,6 +49,7 @@ public:
     int getShieldDuration() const;
     int getDoubleFireDuration() const;
     int getSpeedBoostDuration() const;
+    int getSpeedSlow() const;
     
     virtual void update() override = 0;
     virtual Point getBounds() const override = 0;

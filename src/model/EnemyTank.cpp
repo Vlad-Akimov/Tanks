@@ -44,6 +44,14 @@ void EnemyTank::update() {
     updateBonus();
     
     decideNextMove();
+    
+    if (moveCooldown > 0) {
+        moveCooldown--;
+    }
+}
+
+void EnemyTank::applySlowEffect(int duration) {
+    Tank::applySlowEffect(duration);
 }
 
 Point EnemyTank::getBounds() const {

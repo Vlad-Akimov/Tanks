@@ -49,6 +49,8 @@ public:
     Projectile* fire() override;
 
     EnemyTankType getTankType() const;
+
+    void applySlowEffect(int duration);
 };
 
 #endif // ENEMYTANK_H

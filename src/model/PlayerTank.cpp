@@ -25,9 +25,12 @@ void PlayerTank::reset(int level) {
     doubleFireDuration = 0;
     speedBoostDuration = 0;
     currentReload = 0;
+    speedSlow = 0;
+    speedSlowDuration = 0;
     
     // Сбрасываем флаг уничтожения
     setDestroyed(false);
+    setSpeed(1);
 }
 
 // Методы игрока

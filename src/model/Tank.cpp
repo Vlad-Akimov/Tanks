@@ -5,6 +5,7 @@ Tank::Tank(Point pos, Direction dir, int spd, int hp, int fireRate)
     : GameObject(pos, dir, spd, hp, true), 
       fireRate(fireRate), reloadTime(0), currentReload(0),
       hasShield(false), doubleFire(false), speedBoost(0),
+      speedSlow(0), speedSlowDuration(0),
       shieldDuration(0), doubleFireDuration(0), speedBoostDuration(0) {}
 
 // Методы танка
@@ -83,6 +84,13 @@ void Tank::updateBonus() {
             speedBoost = 0;
         }
     }
+
+    if (speedSlowDuration > 0) {
+        speedSlowDuration--;
+        if (speedSlowDuration == 0) {
+            speedSlow = 0;
+        }
+    }
 }
 
 void Tank::reload() { 
@@ -109,10 +117,7 @@ void Tank::move(Direction dir) {
     direction = dir;
     
     // Вычисляем фактическую скорость с учетом бонуса
-    int actualSpeed = speed + speedBoost;
-    
-    // Ограничиваем максимальную скорость для предотвращения прохождения сквозь объекты
-    if (actualSpeed > 2) actualSpeed = 2;
+    int actualSpeed = getActualSpeed();
     
     // Двигаемся пошагово, проверяя каждую клетку
     for (int step = 0; step < actualSpeed; step++) {
@@ -172,4 +177,26 @@ int Tank::getSpeedBoostDuration() const {
 
 void Tank::setSpeed(int newSpeed) {
     speed = newSpeed;
+}
+
+void Tank::applySlowEffect(int duration) {
+    speedSlow = -1; // Замедление на 1
+    speedSlowDuration = duration;
+}
+
+int Tank::getActualSpeed() const {
+    int actualSpeed = speed + speedBoost + speedSlow;
+
+    // Ограничиваем скорость в допустимых пределах
+    if (actualSpeed < 0) actualSpeed = 0;
+    if (actualSpeed > 2) actualSpeed = 2;
+    return actualSpeed;
+}
+
+int Tank::getSpeedSlowDuration() const {
+    return speedSlowDuration;
+}
+
+int Tank::getSpeedSlow() const {
+    return speedSlow;
 }

@@ -47,6 +47,7 @@ private:
     void handleTankTankCollision(Tank* tank1);
     void handleTankObstacleCollision(Tank* tank);
     bool handleProjectileHit(GameObject* target, Projectile* projectile, int damage);
+    void applySlowToEnemies(int duration);
     
     DifficultyParams adjustDifficulty(int level);
     bool isValidPosition(const Point& pos, const Point& bounds, const GameObject* excludeObj = nullptr) const;

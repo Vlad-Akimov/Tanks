@@ -224,6 +224,15 @@ bool GameWorld::handleProjectileHit(GameObject* target, Projectile* projectile, 
     return false;
 }
 
+void GameWorld::applySlowToEnemies(int duration) {
+    for (auto& obj : objects) {
+        EnemyTank* enemy = dynamic_cast<EnemyTank*>(obj.get());
+        if (enemy && !enemy->isDestroyed()) {
+            enemy->applySlowEffect(duration);
+        }
+    }
+}
+
 void GameWorld::checkBonusCollisions() {
     if (!player || player->isDestroyed()) return;
     
@@ -237,8 +246,14 @@ void GameWorld::checkBonusCollisions() {
         
         if (playerPos.x == bonusPos.x && playerPos.y == bonusPos.y) {
             bonus->applyEffect(player);
-            bonus->deactivate();
+            
+            if (bonus->getType() == BonusType::SPEED_BOOST) {
+                // Применяем замедление ко всем врагам на 20 ходов
+                applySlowToEnemies(20);
+            }
+            
             player->addScore(50);
+            bonus->deactivate();
         }
     }
 }
@@ -623,7 +638,7 @@ void GameWorld::playerMove(Direction dir) {
     // Вычисляем фактическую скорость с учетом бонусов
     int actualSpeed = player->getSpeed();
     if (player->getSpeedBoostDuration() > 0) {
-        actualSpeed += 1; // Учитываем бонус скорости
+        actualSpeed += 0; // Учитываем бонус скорости
     }
     if (actualSpeed > 2) actualSpeed = 2;
     
@@ -663,6 +678,11 @@ void GameWorld::playerMove(Direction dir) {
                 // Точное совпадение позиций
                 if (checkPos.x == bonusPos.x && checkPos.y == bonusPos.y) {
                     bonus->applyEffect(player);
+                    
+                    if (bonus->getType() == BonusType::SPEED_BOOST) {
+                        applySlowToEnemies(20);
+                    }
+
                     bonus->deactivate();
                     player->addScore(50);
                     break; // Один бонус за шаг
@@ -882,8 +902,9 @@ void GameWorld::updateEnemyMovement(EnemyTank* enemy) {
     Direction dir = enemy->getDirection();
     
     // Вычисляем новую позицию с учетом скорости
-    int speed = enemy->getSpeed();
-    
+    int speed = enemy->getActualSpeed();
+    if (speed <= 0) return;
+
     // Проверяем каждый шаг движения для точного определения столкновений
     Point currentPos = startPos;
     bool canMove = true;
