@@ -85,13 +85,21 @@ void ConsoleRenderer::render(const GameWorld& world) {
         return;
     }
 
+    bool damageFlashActive = world.isDamageFlashActive();
+
     // Рисуем верхнюю границу с информацией
     std::cout << "Уровень: " << world.getCurrentLevel() 
               << " | Очки: " << world.getPlayer()->getScore()
               << " | Жизни: " << world.getPlayer()->getLives()
               << " | Здоровье: " << world.getPlayer()->getHealth() << "\n";
     
+    if (damageFlashActive) {
+        setColor(PlatformUtils::Color::RED);
+    }
     drawBorder();
+    if (damageFlashActive) {
+        resetColor();
+    }
     
     // Создаем буфер для отрисовки
     std::vector<std::vector<char>> buffer(screenHeight, std::vector<char>(screenWidth, ' '));
@@ -152,7 +160,13 @@ void ConsoleRenderer::render(const GameWorld& world) {
     
     // Выводим буфер на экран с цветами
     for (int y = 0; y < screenHeight; y++) {
+        if (damageFlashActive) {
+            setColor(PlatformUtils::Color::RED);
+        }
         std::cout << "|"; // Левая граница
+        if (damageFlashActive) {
+            resetColor();
+        }
         for (int x = 0; x < screenWidth; x++) { 
             char symbol = buffer[y][x];
             
@@ -185,8 +199,12 @@ void ConsoleRenderer::render(const GameWorld& world) {
                 colored = true;
             }
             // Проверяем, является ли символ водой или лесом
-            else if (symbol == '~' || symbol == '*') {
+            else if (symbol == '~') {
                 setColor(PlatformUtils::Color::BLUE);
+                colored = true;
+            }
+            else if (symbol == '*') {
+                setColor(PlatformUtils::Color::GREEN);
                 colored = true;
             }
 
@@ -202,10 +220,23 @@ void ConsoleRenderer::render(const GameWorld& world) {
                 resetColor();
             }
         }
+
+        if (damageFlashActive) {
+            setColor(PlatformUtils::Color::RED);
+        }
         std::cout << "|\n"; // Правая граница
+        if (damageFlashActive) {
+            resetColor();
+        }
     }
     
+    if (damageFlashActive) {
+        setColor(PlatformUtils::Color::RED);
+    }
     drawBorder();
+    if (damageFlashActive) {
+        resetColor();
+    }
     
     // Отображаем статус бонусов игрока
     PlayerTank* player = world.getPlayer();

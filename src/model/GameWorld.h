@@ -28,6 +28,7 @@ private:
     PlayerTank* player;
     int enemyCount;
     int maxEnemies;
+    int damageFlashCounter;
 
     struct DifficultyParams {
         int brickCount;
@@ -98,6 +99,9 @@ public:
 
     void addExplosion(std::unique_ptr<Explosion> explosion);
     const std::vector<std::unique_ptr<Explosion>>& getExplosions() const;
+
+    void triggerDamageFlash();
+    bool isDamageFlashActive() const;
 };
 
 #endif // GAMEWORLD_H

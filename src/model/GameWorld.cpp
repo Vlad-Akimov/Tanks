@@ -11,7 +11,8 @@
 
 GameWorld::GameWorld(int width, int height) 
     : fieldWidth(width), fieldHeight(height), state(GameState::MENU), 
-      currentLevel(1), player(nullptr), enemyCount(0), maxEnemies(5) {
+      currentLevel(1), player(nullptr), enemyCount(0), maxEnemies(5),
+      damageFlashCounter(0) {
     // Создаем игрока в центре нижней части поля
     Point playerPos(width / 2, height - 3);
     player = new PlayerTank(playerPos);
@@ -23,6 +24,11 @@ GameWorld::GameWorld(int width, int height)
 
 void GameWorld::update() {
     if (state != GameState::PLAYING) return;
+
+    // Обновляем счетчик эффекта урона
+    if (damageFlashCounter > 0) {
+        damageFlashCounter--;
+    }
     
     updateEnemyAI();
 
@@ -194,6 +200,11 @@ bool GameWorld::handleProjectileHit(GameObject* target, Projectile* projectile, 
         }
         
         bool wasDestroyed = tank->isDestroyed();
+
+        if (tank == player && !wasDestroyed) {
+            triggerDamageFlash();
+        }
+        
         // Наносим урон танку
         tank->takeDamage(damage);
         
@@ -1437,4 +1448,12 @@ int GameWorld::getEnemyCount() const {
 
 void GameWorld::setCurrentLevel(int level) {
     currentLevel = level;
+}
+
+void GameWorld::triggerDamageFlash() {
+    damageFlashCounter = 2; // Эффект будет активен 2 хода (можно настроить)
+}
+
+bool GameWorld::isDamageFlashActive() const {
+    return damageFlashCounter > 0;
 }
