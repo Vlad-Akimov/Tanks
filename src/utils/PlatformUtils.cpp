@@ -15,6 +15,51 @@ void PlatformUtils::clearScreen() {
 #endif
 }
 
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <sys/ioctl.h>
+#include <unistd.h>
+#include <stdio.h>
+#endif
+
+std::pair<int, int> PlatformUtils::getTerminalSize() {
+#ifdef _WIN32
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+    int width = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+    int height = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+    return {width, height};
+#else
+    struct winsize w;
+    ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+    return {w.ws_col, w.ws_row};
+#endif
+}
+
+bool PlatformUtils::isTerminalSizeValid(int minWidth, int minHeight) {
+    auto [width, height] = getTerminalSize();
+    return width >= minWidth && height >= minHeight;
+}
+
+void PlatformUtils::showResizeMessage(int requiredWidth, int requiredHeight) {
+    auto [currentWidth, currentHeight] = getTerminalSize();
+    
+    clearScreen();
+    std::cout << "============================================\n";
+    std::cout << "        НЕДОСТАТОЧНЫЙ РАЗМЕР ТЕРМИНАЛА      \n";
+    std::cout << "============================================\n\n";
+    
+    std::cout << "Текущий размер: " << currentWidth << "x" << currentHeight << "\n";
+    std::cout << "Требуемый размер: " << requiredWidth << "x" << requiredHeight << "\n\n";
+    
+    std::cout << "Пожалуйста, увеличьте размер окна терминала\n";
+    std::cout << "и перезапустите игру.\n\n";
+    
+    std::cout << "Нажмите enter для выхода...";
+    std::cin.get();
+}
+
 void PlatformUtils::setCursorPosition(int x, int y) {
 #ifdef _WIN32
     COORD coord;
@@ -197,3 +242,4 @@ void PlatformUtils::resetColor() {
     std::cout << "\033[0m";
 #endif
 }
+

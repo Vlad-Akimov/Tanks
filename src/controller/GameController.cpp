@@ -1,5 +1,6 @@
 #include "GameController.h"
 #include <ctime>
+#include <thread>
 
 GameController::GameController(int width, int height) 
     : model(width, height), view(width, height), running(true), 
@@ -108,9 +109,17 @@ void GameController::loadSelectedMap() {
 }
 
 void GameController::runGame() {
+    if (!view.checkTerminalSize()) {
+        auto [width, height] = PlatformUtils::getTerminalSize();
+        int requiredWidth = model.getWidth();
+        int requiredHeight = model.getHeight();
+        
+        PlatformUtils::showResizeMessage(requiredWidth, requiredHeight);
+        return;
+    }
+
     showMenu();
-    
-    while (running) { 
+    while (running) {
         processGameTurn(); 
     }
     

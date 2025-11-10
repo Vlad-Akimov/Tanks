@@ -3,7 +3,37 @@
 #include <string>
 #include <vector>
 
-ConsoleRenderer::ConsoleRenderer(int width, int height): screenWidth(width), screenHeight(height) {}
+ConsoleRenderer::ConsoleRenderer(int width, int height) 
+    : screenWidth(width), screenHeight(height), terminalSizeValid(true) {
+    updateTerminalSize();
+}
+
+void ConsoleRenderer::updateTerminalSize() {
+    auto size = PlatformUtils::getTerminalSize();
+    terminalWidth = size.first;
+    terminalHeight = size.second;
+    
+    int requiredWidth = screenWidth;
+    int requiredHeight = screenHeight;
+    
+    terminalSizeValid = (terminalWidth >= requiredWidth && terminalHeight >= requiredHeight);
+}
+
+bool ConsoleRenderer::checkTerminalSize() {
+    updateTerminalSize();
+    return terminalSizeValid;
+}
+
+void ConsoleRenderer::drawCenteredText(const std::string& text, int width) {
+    int padding = (width - text.length()) / 2;
+    if (padding > 0) {
+        std::cout << std::string(padding, ' ');
+    }
+    std::cout << text;
+    if (padding > 0) {
+        std::cout << std::string(padding, ' ');
+    }
+}
 
 void ConsoleRenderer::setColor(PlatformUtils::Color color) {
     PlatformUtils::setColor(color);
@@ -28,7 +58,33 @@ void ConsoleRenderer::setCursorPosition(int x, int y) {
     PlatformUtils::setCursorPosition(x, y);
 }
 
+void ConsoleRenderer::drawErrorMessage(const std::string& message) {
+    clearScreen();
+    
+    std::cout << "\n\n";
+    std::cout << "============================================\n";
+    drawCenteredText("ОШИБКА ОТОБРАЖЕНИЯ", terminalWidth);
+    std::cout << "\n";
+    std::cout << "============================================\n\n";
+    
+    drawCenteredText(message, terminalWidth);
+    std::cout << "\n\n";
+    
+    std::cout << "Текущий размер: " << terminalWidth << "x" << terminalHeight << "\n";
+    std::cout << "Требуемый размер: " << (screenWidth + 4) << "x" << (screenHeight + 10) << "\n\n";
+    
+    std::cout << "============================================\n";
+    drawCenteredText("Увеличьте размер окна и перезапустите игру", terminalWidth);
+    std::cout << "\n";
+    std::cout << "============================================\n";
+}
+
 void ConsoleRenderer::render(const GameWorld& world) {
+    if (!checkTerminalSize()) {
+        drawErrorMessage("Размер терминала слишком мал для отображения игры");
+        return;
+    }
+
     // Рисуем верхнюю границу с информацией
     std::cout << "Уровень: " << world.getCurrentLevel() 
               << " | Очки: " << world.getPlayer()->getScore()
@@ -215,6 +271,11 @@ void ConsoleRenderer::drawSymbolLegend() {
 }
 
 void ConsoleRenderer::drawMenu() {
+    if (!checkTerminalSize()) {
+        drawErrorMessage("Размер терминала слишком мал для отображения меню");
+        return;
+    }
+
     clearScreen();
     
     std::cout << "=================================\n";

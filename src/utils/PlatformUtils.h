@@ -35,6 +35,10 @@ public:
     
     static void setColor(Color color);
     static void resetColor();
+
+    static std::pair<int, int> getTerminalSize();
+    static bool isTerminalSizeValid(int minWidth, int minHeight);
+    static void showResizeMessage(int requiredWidth, int requiredHeight);
     
 private:
     

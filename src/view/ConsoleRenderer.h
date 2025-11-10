@@ -11,7 +11,13 @@
 class ConsoleRenderer {
 private:
     int screenWidth, screenHeight;
+    int terminalWidth, terminalHeight;
+    bool terminalSizeValid;
     
+    void updateTerminalSize();
+    void drawCenteredText(const std::string& text, int width);
+    
+
     void setColor(PlatformUtils::Color color);
     void resetColor();
     void drawBorder();
@@ -19,6 +25,8 @@ private:
 
 public:
     ConsoleRenderer(int width, int height);
+    bool checkTerminalSize();
+    void drawErrorMessage(const std::string& message);
     void clearScreen();
     void setCursorPosition(int x, int y);
     void render(const GameWorld& world);
