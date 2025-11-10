@@ -291,7 +291,7 @@ void ConsoleRenderer::drawSymbolLegend() {
     std::cout << "~";
     resetColor();
     std::cout << " - вода, ";
-    setColor(PlatformUtils::Color::BLUE);
+    setColor(PlatformUtils::Color::GREEN);
     std::cout << "*";
     resetColor();
     std::cout << " - лес\n";
@@ -316,7 +316,7 @@ void ConsoleRenderer::drawSymbolLegend() {
     std::cout << " - +1 жизнь\n";
 
     std::cout << "Взрывы: ";
-    setColor(PlatformUtils::Color::YELLOW);
+    setColor(PlatformUtils::Color::RED);
     std::cout << "O";
     resetColor();
     std::cout << " - взрыв (1 ход)\n";
