@@ -110,7 +110,6 @@ void GameController::loadSelectedMap() {
 
 void GameController::runGame() {
     if (!view.checkTerminalSize()) {
-        auto [width, height] = PlatformUtils::getTerminalSize();
         int requiredWidth = model.getWidth();
         int requiredHeight = model.getHeight();
         

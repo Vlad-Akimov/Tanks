@@ -11,6 +11,7 @@
 #include "Obstacle.h"
 #include "Bonus.h"
 #include "Projectile.h"
+#include "Explosion.h"
 
 enum class GameState { MENU, PLAYING, PAUSED, GAME_OVER, SETTINGS, LEVEL_COMPLETE };
 
@@ -19,6 +20,8 @@ private:
     std::vector<std::unique_ptr<GameObject>> objects;
     std::vector<std::unique_ptr<Bonus>> bonuses;
     std::vector<std::unique_ptr<Projectile>> projectiles;
+    std::vector<std::unique_ptr<Explosion>> explosions;
+
     int fieldWidth, fieldHeight;
     GameState state;
     int currentLevel;
@@ -92,6 +95,9 @@ public:
     
     void playerFire();
     void playerMove(Direction dir);
+
+    void addExplosion(std::unique_ptr<Explosion> explosion);
+    const std::vector<std::unique_ptr<Explosion>>& getExplosions() const;
 };
 
 #endif // GAMEWORLD_H

@@ -139,6 +139,16 @@ void ConsoleRenderer::render(const GameWorld& world) {
             buffer[pos.y][pos.x] = bonus->getSymbol();
         }
     }
+
+    for (const auto& explosion : world.getExplosions()) {
+        if (explosion->isDestroyed()) continue;
+        
+        Point pos = explosion->getPosition();
+        if (pos.x >= 0 && pos.x < screenWidth && 
+            pos.y >= 0 && pos.y < screenHeight) {
+            buffer[pos.y][pos.x] = explosion->getSymbol();
+        }
+    }
     
     // Выводим буфер на экран с цветами
     for (int y = 0; y < screenHeight; y++) {
@@ -177,6 +187,11 @@ void ConsoleRenderer::render(const GameWorld& world) {
             // Проверяем, является ли символ водой или лесом
             else if (symbol == '~' || symbol == '*') {
                 setColor(PlatformUtils::Color::BLUE);
+                colored = true;
+            }
+
+            else if (symbol == 'O') {
+                setColor(PlatformUtils::Color::RED);
                 colored = true;
             }
             
@@ -268,6 +283,12 @@ void ConsoleRenderer::drawSymbolLegend() {
     std::cout << "L";
     resetColor();
     std::cout << " - +1 жизнь\n";
+
+    std::cout << "Взрывы: ";
+    setColor(PlatformUtils::Color::YELLOW);
+    std::cout << "O";
+    resetColor();
+    std::cout << " - взрыв (1 ход)\n";
 }
 
 void ConsoleRenderer::drawMenu() {

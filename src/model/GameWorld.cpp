@@ -32,6 +32,10 @@ void GameWorld::update() {
             obj->update(); 
         }
     }
+
+    for (auto& explosion : explosions) {
+        explosion->update();
+    }
     
     // ОБРАБОТКА ВЫСТРЕЛОВ ВРАЖЕСКИХ ТАНКОВ
     for (auto& obj : objects) {
@@ -163,8 +167,13 @@ bool GameWorld::handleProjectileHit(GameObject* target, Projectile* projectile, 
         
         // Если препятствие НЕ проходимо - наносим урон и останавливаем снаряд
         if (obstacle->isDestructible()) {
+            bool wasDestroyed = obstacle->isDestroyed();
             obstacle->takeDamage(damage);
             
+            if (!wasDestroyed && obstacle->isDestroyed()) {
+                explosions.emplace_back(std::make_unique<Explosion>(obstacle->getPosition()));
+            }
+
             // Начисляем очки за разрушение препятствия
             if (owner == player) {
                 player->addScore(10);
@@ -184,9 +193,14 @@ bool GameWorld::handleProjectileHit(GameObject* target, Projectile* projectile, 
             return false;
         }
         
+        bool wasDestroyed = tank->isDestroyed();
         // Наносим урон танку
         tank->takeDamage(damage);
         
+        if (!wasDestroyed && tank->isDestroyed()) {
+            explosions.emplace_back(std::make_unique<Explosion>(tank->getPosition()));
+        }
+
         // Начисляем очки игроку за уничтожение врага с бонусами за тип танка
         if (tank != player && tank->isDestroyed() && owner == player) {
             int baseScore = 100;
@@ -1016,6 +1030,20 @@ void GameWorld::cleanupDestroyedObjects() {
         [](const std::unique_ptr<Bonus>& bonus) {
             return !bonus->isActive();
         }), bonuses.end());
+        
+    // Удаляем завершенные взрывы (те, у которых lifetime <= 0)
+    explosions.erase(std::remove_if(explosions.begin(), explosions.end(),
+        [](const std::unique_ptr<Explosion>& explosion) {
+            return explosion->isDestroyed();
+        }), explosions.end());
+}
+
+void GameWorld::addExplosion(std::unique_ptr<Explosion> explosion) {
+    explosions.push_back(std::move(explosion));
+}
+
+const std::vector<std::unique_ptr<Explosion>>& GameWorld::getExplosions() const {
+    return explosions;
 }
 
 void GameWorld::checkGameConditions() {
