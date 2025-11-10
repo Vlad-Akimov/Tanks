@@ -415,18 +415,7 @@ void ConsoleRenderer::drawSettings() {
     
     std::cout << "   Настройки игры:\n\n";
     
-    std::cout << "   Размер поля: " << screenWidth << "x" << screenHeight << "\n";
-    std::cout << "   Пошаговый режим: ВКЛ\n";
-    std::cout << "   Управление: Клавиатура\n\n";
-    
-    // Добавляем раздел с обозначениями
-    std::cout << "   Обозначения в игре:\n\n";
-    std::cout << "   Игрок: ^ v < >\n";
-    std::cout << "   Враги: A V [ ]\n";
-    std::cout << "   Снаряды: | -\n";
-    std::cout << "   Кирпич: #  Сталь: X\n";
-    std::cout << "   Вода: ~  Лес: *\n";
-    std::cout << "   Бонусы: S(щит) F(огонь) B(скорость) L(жизнь)\n\n";
+    std::cout << "   Размер поля: " << screenWidth << "x" << screenHeight << "\n\n";
     
     std::cout << "---------------------------------\n";
     std::cout << "   [ESC] - Назад\n";
