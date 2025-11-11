@@ -3,6 +3,9 @@
 #include <algorithm>
 
 int main() {
+    std::locale::global(std::locale(""));
+    std::wcout.imbue(std::locale());
+    
     try {
         const int MIN_WIDTH = 40;
         const int MIN_HEIGHT = 40;
