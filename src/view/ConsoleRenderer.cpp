@@ -52,9 +52,9 @@ void ConsoleRenderer::drawPixel(char symbol, PlatformUtils::Color color) {
 
 void ConsoleRenderer::drawBorder() {
     // Верхняя граница
-    std::cout << "+";
-    for (int i = 0; i < screenWidth; i++) { std::cout << "-"; }
-    std::cout << "+\n";
+    std::cout << "■";
+    for (int i = 0; i < screenWidth; i++) { std::cout << "■"; }
+    std::cout << "■\n";
 }
 
 void ConsoleRenderer::clearScreen() {
@@ -101,14 +101,14 @@ std::map<char, std::pair<std::string, PlatformUtils::Color>> getGraphicsMap(bool
             {'D', {"D", PlatformUtils::Color::RED}},
         
             {'S', {"★", PlatformUtils::Color::YELLOW}},
-            {'K', {"⚡", PlatformUtils::Color::YELLOW}},
+            {'K', {"¶", PlatformUtils::Color::YELLOW}},
             {'B', {"➤", PlatformUtils::Color::YELLOW}},
             {'L', {"❤", PlatformUtils::Color::YELLOW}},
         
             {'#', {"█", PlatformUtils::Color::DEFAULT}},
             {'X', {"▓", PlatformUtils::Color::DEFAULT}},
             
-            {'~', {"~", PlatformUtils::Color::BLUE}},
+            {'~', {"░", PlatformUtils::Color::BLUE}},
             {'*', {"♣", PlatformUtils::Color::GREEN}},
             
             {'O', {"●", PlatformUtils::Color::RED}},
@@ -158,13 +158,12 @@ void ConsoleRenderer::render(const GameWorld& world) {
               << " | Жизни: " << world.getPlayer()->getLives()
               << " | Здоровье: " << world.getPlayer()->getHealth() << "\n";
     
+    setColor(PlatformUtils::Color::BLACK);
     if (damageFlashActive) {
         setColor(PlatformUtils::Color::RED);
     }
     drawBorder();
-    if (damageFlashActive) {
-        resetColor();
-    }
+    resetColor();
     
     // Создаем буфер для отрисовки
     std::vector<std::vector<char>> buffer(screenHeight, std::vector<char>(screenWidth, ' '));
@@ -226,13 +225,12 @@ void ConsoleRenderer::render(const GameWorld& world) {
     
     // Выводим буфер на экран с улучшенной графикой
     for (int y = 0; y < screenHeight; y++) {
+        setColor(PlatformUtils::Color::BLACK);
         if (damageFlashActive) {
             setColor(PlatformUtils::Color::RED);
         }
-        std::cout << "|"; // Левая граница
-        if (damageFlashActive) {
-            resetColor();
-        }
+        std::cout << "█"; // Левая граница
+        resetColor();
         
         // Устанавливаем черный фон для всей строки
         PlatformUtils::setBackgroundColor(PlatformUtils::Color::BLACK);
@@ -255,22 +253,20 @@ void ConsoleRenderer::render(const GameWorld& world) {
         
         PlatformUtils::resetBackgroundColor();
 
+        setColor(PlatformUtils::Color::BLACK);
         if (damageFlashActive) {
             setColor(PlatformUtils::Color::RED);
         }
-        std::cout << "|\n"; // Правая граница
-        if (damageFlashActive) {
-            resetColor();
-        }
+        std::cout << "█\n"; // Правая граница
+        resetColor();
     }
     
+    setColor(PlatformUtils::Color::BLACK);
     if (damageFlashActive) {
         setColor(PlatformUtils::Color::RED);
     }
     drawBorder();
-    if (damageFlashActive) {
-        resetColor();
-    }
+    resetColor();
     
     // Отображаем статус бонусов игрока
     PlayerTank* player = world.getPlayer();
@@ -283,7 +279,7 @@ void ConsoleRenderer::render(const GameWorld& world) {
         }
         if (player->getDoubleFire()) { 
             setColor(PlatformUtils::Color::YELLOW);
-            std::cout << "[⚡ Двойной огонь] ";
+            std::cout << "[¶ Двойной огонь] ";
             resetColor();
         }
         if (player->getBonusDuration() > 0) { 
@@ -330,7 +326,7 @@ void ConsoleRenderer::drawSymbolLegend() {
     std::cout << "▓";
     std::cout << " - сталь, ";
     setColor(PlatformUtils::Color::BLUE);
-    std::cout << "~";
+    std::cout << "░";
     resetColor();
     std::cout << " - вода, ";
     setColor(PlatformUtils::Color::GREEN);
@@ -345,7 +341,7 @@ void ConsoleRenderer::drawSymbolLegend() {
     resetColor();
     std::cout << " - щит, ";
     setColor(PlatformUtils::Color::YELLOW);
-    std::cout << "⚡";
+    std::cout << "¶";
     resetColor();
     std::cout << " - двойной огонь, ";
     setColor(PlatformUtils::Color::YELLOW);
