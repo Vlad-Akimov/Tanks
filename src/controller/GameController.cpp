@@ -32,47 +32,45 @@ void GameController::showMapSelection() {
         view.drawMapSelection(currentMap, currentMapIndex, mapManager.getMapCount());
         std::cout.flush();
         
-        Command cmd = inputHandler.waitForCommand();
-        switch (cmd) {
-            case Command::MOVE_LEFT:
-                currentMapIndex--;
-                if (currentMapIndex < 0) {
-                    currentMapIndex = mapManager.getMapCount() - 1;
-                }
-                break;
-                
-            case Command::MOVE_RIGHT:
-                currentMapIndex++;
-                if (currentMapIndex >= mapManager.getMapCount()) {
-                    currentMapIndex = 0;
-                }
-                break;
-                
-            case Command::FIRE:
-                useCustomMap = false;
-                model.loadLevel(1);
-                model.setState(GameState::PLAYING);
-                inMapSelection = false;
-                break;
-                
-            case Command::CONFIRM:
-                useCustomMap = true;
-                loadSelectedMap();
-                inMapSelection = false;
-                break;
-                
-            case Command::MENU:
-                inMapSelection = false;
-                showMenu();
-                return;
-                
-            case Command::EXIT:
-                running = false;
-                inMapSelection = false;
-                break;
-                
-            default:
-                break;
+        std::string input = PlatformUtils::readUTF8Char();
+        
+        if (input == "a" || input == "A" || input == "ф" || input == "Ф") {
+            // Предыдущая карта
+            currentMapIndex--;
+            if (currentMapIndex < 0) {
+                currentMapIndex = mapManager.getMapCount() - 1;
+            }
+        }
+        else if (input == "d" || input == "D" || input == "в" || input == "В") {
+            // Следующая карта
+            currentMapIndex++;
+            if (currentMapIndex >= mapManager.getMapCount()) {
+                currentMapIndex = 0;
+            }
+        }
+        else if (input == "f" || input == "F" || input == "а" || input == "А") {
+            // Случайная генерация
+            useCustomMap = false;
+            model.loadLevel(1);
+            model.setState(GameState::PLAYING);
+            inMapSelection = false;
+        }
+        else if (input == "\n" || input == " ") {
+            // Подтверждение выбора карты
+            useCustomMap = true;
+            loadSelectedMap();
+            inMapSelection = false;
+        }
+        else if (input == "m" || input == "M" || input == "ь" || input == "Ь") {
+            // В меню
+            inMapSelection = false;
+            showMenu();
+            return;
+        }
+        else if (input == "q" || input == "Q" || input == "й" || input == "Й") {
+            // Выход
+            running = false;
+            inMapSelection = false;
         }
     }
 }
