@@ -22,6 +22,7 @@ void PlatformUtils::clearScreen() {
 #include <unistd.h>
 #include <stdio.h>
 #endif
+#include <cstring>
 
 std::pair<int, int> PlatformUtils::getTerminalSize() {
 #ifdef _WIN32
@@ -227,5 +228,40 @@ void PlatformUtils::resetBackgroundColor() {
     setColor(Color::DEFAULT);
 #else
     std::cout << "\033[49m"; // Сброс цвета фона
+#endif
+}
+
+bool PlatformUtils::checkUnicodeSupport() {
+#ifdef _WIN32
+    // Для Windows проверяем кодовую страницу и шрифт терминала
+    UINT codePage = GetConsoleOutputCP();
+    if (codePage != 65001) { // UTF-8
+        return false;
+    }
+    
+    // Дополнительная проверка поддержки Unicode символов
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_FONT_INFOEX fontInfo;
+    fontInfo.cbSize = sizeof(fontInfo);
+    if (GetCurrentConsoleFontEx(hConsole, FALSE, &fontInfo)) {
+        // Проверяем, что используется шрифт, поддерживающий Unicode
+        return (wcscmp(fontInfo.FaceName, L"Consolas") == 0 || 
+                wcscmp(fontInfo.FaceName, L"Lucida Console") == 0 ||
+                wcscmp(fontInfo.FaceName, L"DejaVu Sans Mono") == 0);
+    }
+    return false;
+#else
+    // Для Linux/Mac проверяем переменные окружения
+    const char* term = getenv("TERM");
+    const char* lang = getenv("LANG");
+    
+    if (term && (strstr(term, "xterm") != nullptr || 
+                 strstr(term, "linux") != nullptr ||
+                 strstr(term, "vt100") != nullptr)) {
+        if (lang && strstr(lang, "UTF-8") != nullptr) {
+            return true;
+        }
+    }
+    return false;
 #endif
 }

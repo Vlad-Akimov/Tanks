@@ -38,6 +38,7 @@ public:
     static void resetColor();
 
     static bool supportsUnicode();
+    static bool checkUnicodeSupport();
 
     static void setBackgroundColor(Color color);
     static void resetBackgroundColor();

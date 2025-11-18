@@ -23,6 +23,8 @@ private:
     void drawBorder();
     void drawMapPreview(const MapInfo& map);
 
+    bool useAdvancedGraphics;
+
 public:
     ConsoleRenderer(int width, int height);
     bool checkTerminalSize();
@@ -37,6 +39,9 @@ public:
     void drawSettings();
     void drawMapSelection(const MapInfo& currentMap, int currentIndex, int totalMaps);
     void drawLevelComplete(int score, int level, int lives);
+
+    void setAdvancedGraphics(bool enabled);
+    bool getAdvancedGraphics() const;
 };
 
 #endif // CONSOLERENDERER_H

@@ -8,6 +8,23 @@ GameController::GameController(int width, int height)
       scoreSaved(false), useCustomMap(false) {
     srand(static_cast<unsigned int>(time(nullptr)));
     mapManager.loadMaps();
+
+    bool advancedGraphics = settingsManager.getBoolSetting("advanced_graphics", true);
+    view.setAdvancedGraphics(advancedGraphics);
+}
+
+void GameController::toggleAdvancedGraphics() {
+    bool currentSetting = settingsManager.getBoolSetting("advanced_graphics", true);
+    bool newSetting = !currentSetting;
+    
+    settingsManager.setBoolSetting("advanced_graphics", newSetting);
+    view.setAdvancedGraphics(newSetting);
+    
+    // Сообщаем пользователю о изменении
+    view.clearScreen();
+    std::cout << "Режим графики изменен: " 
+              << (newSetting ? "ПРОДВИНУТАЯ" : "СИМВОЛЬНАЯ") << std::endl;
+    PlatformUtils::sleep(1000);
 }
 
 void GameController::showMapSelection() {
@@ -369,6 +386,34 @@ void GameController::showSettings() {
     while (inSettings && running) {
         view.clearScreen();
         view.drawSettings();
+
+        bool advancedGraphics = settingsManager.getBoolSetting("advanced_graphics", true);
+        
+        std::cout << "   Графика: [" << (advancedGraphics ? "X" : " ") << "] Продвинутая\n";
+        std::cout << "            [" << (!advancedGraphics ? "X" : " ") << "] Символьная\n\n";
+        
+        std::cout << "   [F] - Переключить режим графики\n";
+        
+        std::cout << "---------------------------------\n";
+        std::cout << "   [ESC] - Назад\n";
+        std::cout << "   [Q] - Выход\n";
+        std::cout << "---------------------------------\n\n";
+
+        std::cout << "   Статус: ";
+        if (advancedGraphics) {
+            std::cout << "Продвинутая графика (Unicode)";
+            if (!PlatformUtils::supportsUnicode()) {
+                std::cout << " - ВАШ ТЕРМИНАЛ МОЖЕТ НЕ ПОДДЕРЖИВАТЬ!";
+            }
+        } else {
+            std::cout << "Символьная графика (ASCII)";
+        }
+        std::cout << "\n";
+        
+        std::cout << "\n=================================\n";
+        std::cout << "  Настройки сохраняются автоматически\n";
+        std::cout << "=================================\n";
+        
         std::cout.flush();
         
         Command cmd = inputHandler.waitForCommand();
@@ -381,7 +426,10 @@ void GameController::showSettings() {
                 running = false;
                 inSettings = false;
                 break;
-                
+            case Command::FIRE:
+                toggleAdvancedGraphics();
+                break;
+            
             default:
                 break;
         }

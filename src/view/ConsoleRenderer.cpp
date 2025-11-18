@@ -5,8 +5,17 @@
 #include <map>
 
 ConsoleRenderer::ConsoleRenderer(int width, int height) 
-    : screenWidth(width), screenHeight(height), terminalSizeValid(true) {
+    : screenWidth(width), screenHeight(height), terminalSizeValid(true),
+    useAdvancedGraphics(true) {
     updateTerminalSize();
+}
+
+void ConsoleRenderer::setAdvancedGraphics(bool enabled) {
+    useAdvancedGraphics = enabled;
+}
+
+bool ConsoleRenderer::getAdvancedGraphics() const {
+    return useAdvancedGraphics;
 }
 
 void ConsoleRenderer::updateTerminalSize() {
@@ -86,8 +95,8 @@ void ConsoleRenderer::drawErrorMessage(const std::string& message) {
     std::cout << "============================================\n";
 }
 
-std::map<char, std::pair<std::string, PlatformUtils::Color>> getGraphicsMap(bool useUnicode) {
-    if (useUnicode && PlatformUtils::supportsUnicode()) {
+std::map<char, std::pair<std::string, PlatformUtils::Color>> getGraphicsMap(bool useUnicode, bool useAdvancedGraphics) {
+    if (useUnicode && useAdvancedGraphics) {
         // Unicode символы
         return {
             {'^', {"▲", PlatformUtils::Color::GREEN}},
@@ -121,6 +130,11 @@ std::map<char, std::pair<std::string, PlatformUtils::Color>> getGraphicsMap(bool
             {'v', {"v", PlatformUtils::Color::GREEN}},
             {'<', {"<", PlatformUtils::Color::GREEN}},
             {'>', {">", PlatformUtils::Color::GREEN}},
+
+            {'A', {"A", PlatformUtils::Color::RED}},
+            {'E', {"E", PlatformUtils::Color::RED}},
+            {'F', {"F", PlatformUtils::Color::RED}},
+            {'D', {"D", PlatformUtils::Color::RED}},
             
             {'S', {"S", PlatformUtils::Color::YELLOW}},
             {'K', {"K", PlatformUtils::Color::YELLOW}},
@@ -150,7 +164,7 @@ void ConsoleRenderer::render(const GameWorld& world) {
 
     bool damageFlashActive = world.isDamageFlashActive();
     bool useUnicode = PlatformUtils::supportsUnicode();
-    auto graphicsMap = getGraphicsMap(useUnicode);
+    auto graphicsMap = getGraphicsMap(useUnicode, useAdvancedGraphics);
 
     // Рисуем верхнюю границу с информацией
     std::cout << "Уровень: " << world.getCurrentLevel() 
@@ -293,7 +307,7 @@ void ConsoleRenderer::render(const GameWorld& world) {
 
 void ConsoleRenderer::drawSymbolLegend() {
     bool useUnicode = PlatformUtils::supportsUnicode();
-    auto graphicsMap = getGraphicsMap(useUnicode);
+    auto graphicsMap = getGraphicsMap(useUnicode, useAdvancedGraphics);
 
     std::cout << "\n=== ЛЕГЕНДА СИМВОЛОВ ===\n";
     
@@ -410,11 +424,6 @@ void ConsoleRenderer::drawPauseScreen() {
     std::cout << "   [Q] - Выход\n";
     std::cout << "---------------------------------\n\n";
     
-    // Добавляем краткую легенду на экране паузы
-    std::cout << "Краткая справка:\n";
-    std::cout << "Игрок: ^>v<  Враги: AV[]  Бонусы: SFBL\n";
-    std::cout << "Стены: #X  Вода: ~  Лес: *\n\n";
-    
     std::cout << "=================================\n";
 }
 
@@ -458,15 +467,6 @@ void ConsoleRenderer::drawSettings() {
     std::cout << "   Настройки игры:\n\n";
     
     std::cout << "   Размер поля: " << screenWidth << "x" << screenHeight << "\n\n";
-    
-    std::cout << "---------------------------------\n";
-    std::cout << "   [ESC] - Назад\n";
-    std::cout << "   [Q] - Выход\n";
-    std::cout << "---------------------------------\n\n";
-    
-    std::cout << "=================================\n";
-    std::cout << "  Настройки сохраняются автоматически\n";
-    std::cout << "=================================\n";
 }
 
 void ConsoleRenderer::drawMapSelection(const MapInfo& currentMap, int currentIndex, int totalMaps) {

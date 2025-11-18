@@ -6,6 +6,7 @@
 #include "../utils/MapManager.h"
 #include "../utils/ScoreManager.h"
 #include "../view/ConsoleRenderer.h"
+#include "../utils/SettingsManager.h"
 
 #include <map>
 #include <vector>
@@ -36,6 +37,9 @@ private:
     void showMapSelection();
     void loadSelectedMap();
     void loadNextLevel();
+
+    SettingsManager settingsManager;
+    void toggleAdvancedGraphics();
 
 public:
     GameController(int width, int height);
