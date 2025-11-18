@@ -173,65 +173,16 @@ void PlatformUtils::sleep(int milliseconds) {
 
 void PlatformUtils::setColor(Color color) {
 #ifdef _WIN32
-    WORD attributes = 0;
-    
-    switch (color) {
-        case Color::RED:
-            attributes = FOREGROUND_RED | FOREGROUND_INTENSITY;
-            break;
-        case Color::GREEN:
-            attributes = FOREGROUND_GREEN | FOREGROUND_INTENSITY;
-            break;
-        case Color::YELLOW:
-            attributes = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY;
-            break;
-        case Color::BLUE:
-            attributes = FOREGROUND_BLUE | FOREGROUND_INTENSITY;
-            break;
-        case Color::MAGENTA:
-            attributes = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
-            break;
-        case Color::CYAN:
-            attributes = FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
-            break;
-        case Color::WHITE:
-            attributes = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
-            break;
-        default:
-            attributes = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
-            break;
-    }
-    
-    SetConsoleTextAttribute(hConsole, attributes);
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, color);
 #else
-    const char* colorCode = "";
-    switch (color) {
-        case Color::RED:
-            colorCode = "\033[91m";
-            break;
-        case Color::GREEN:
-            colorCode = "\033[92m";
-            break;
-        case Color::YELLOW:
-            colorCode = "\033[93m";
-            break;
-        case Color::BLUE:
-            colorCode = "\033[94m";
-            break;
-        case Color::MAGENTA:
-            colorCode = "\033[95m";
-            break;
-        case Color::CYAN:
-            colorCode = "\033[96m";
-            break;
-        case Color::WHITE:
-            colorCode = "\033[97m";
-            break;
-        default:
-            colorCode = "\033[0m";
-            break;
-    }
-    std::cout << colorCode;
+    // Коды цветов для Unix-терминалов
+    const char* colors[] = {
+        "\033[30m", "\033[31m", "\033[32m", "\033[33m",
+        "\033[34m", "\033[35m", "\033[36m", "\033[37m",
+        "", "\033[39m"
+    };
+    std::cout << colors[color];
 #endif
 }
 
@@ -243,3 +194,38 @@ void PlatformUtils::resetColor() {
 #endif
 }
 
+bool PlatformUtils::supportsUnicode() {
+#ifdef _WIN32
+    // Для Windows проверяем кодовую страницу
+    return GetConsoleOutputCP() == 65001; // UTF-8
+#else
+    // Для Linux/Mac обычно поддерживается
+    return true;
+#endif
+}
+
+void PlatformUtils::setBackgroundColor(Color color) {
+#ifdef _WIN32
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    // Для Windows устанавливаем атрибуты текста с нужным фоном
+    // Черный фон соответствует 0 в старших 4 битах
+    SetConsoleTextAttribute(hConsole, (color << 4) | (GetConsoleTextAttribute(hConsole) & 0x0F));
+#else
+    // Коды цветов фона для Unix-терминалов
+    const char* bgColors[] = {
+        "\033[40m", "\033[41m", "\033[42m", "\033[43m",
+        "\033[44m", "\033[45m", "\033[46m", "\033[47m",
+        "", "\033[49m"
+    };
+    std::cout << bgColors[color];
+#endif
+}
+
+void PlatformUtils::resetBackgroundColor() {
+#ifdef _WIN32
+    // Для Windows сбрасываем к стандартным атрибутам
+    setColor(Color::DEFAULT);
+#else
+    std::cout << "\033[49m"; // Сброс цвета фона
+#endif
+}

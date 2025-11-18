@@ -16,7 +16,7 @@ private:
     
     void updateTerminalSize();
     void drawCenteredText(const std::string& text, int width);
-    
+    void drawPixel(char symbol, PlatformUtils::Color color);
 
     void setColor(PlatformUtils::Color color);
     void resetColor();

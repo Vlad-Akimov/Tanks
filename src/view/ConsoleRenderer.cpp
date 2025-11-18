@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 
 ConsoleRenderer::ConsoleRenderer(int width, int height) 
     : screenWidth(width), screenHeight(height), terminalSizeValid(true) {
@@ -43,11 +44,17 @@ void ConsoleRenderer::resetColor() {
     PlatformUtils::resetColor();
 }
 
+void ConsoleRenderer::drawPixel(char symbol, PlatformUtils::Color color) {
+    setColor(color);
+    std::cout << symbol;
+    resetColor();
+}
+
 void ConsoleRenderer::drawBorder() {
     // Верхняя граница
-    std::cout << "+";
-    for (int i = 0; i < screenWidth; i++) { std::cout << "-"; }
-    std::cout << "+\n";
+    std::cout << "■";
+    for (int i = 0; i < screenWidth; i++) { std::cout << "■"; }
+    std::cout << "■\n";
 }
 
 void ConsoleRenderer::clearScreen() {
@@ -79,6 +86,62 @@ void ConsoleRenderer::drawErrorMessage(const std::string& message) {
     std::cout << "============================================\n";
 }
 
+std::map<char, std::pair<std::string, PlatformUtils::Color>> getGraphicsMap(bool useUnicode) {
+    if (useUnicode && PlatformUtils::supportsUnicode()) {
+        // Unicode символы
+        return {
+            {'^', {"▲", PlatformUtils::Color::GREEN}},
+            {'v', {"▼", PlatformUtils::Color::GREEN}},
+            {'<', {"◄", PlatformUtils::Color::GREEN}},
+            {'>', {"►", PlatformUtils::Color::GREEN}},
+        
+            {'A', {"A", PlatformUtils::Color::RED}},
+            {'E', {"E", PlatformUtils::Color::RED}},
+            {'F', {"F", PlatformUtils::Color::RED}},
+            {'D', {"D", PlatformUtils::Color::RED}},
+        
+            {'S', {"★", PlatformUtils::Color::YELLOW}},
+            {'K', {"¶", PlatformUtils::Color::YELLOW}},
+            {'B', {"➤", PlatformUtils::Color::YELLOW}},
+            {'L', {"❤", PlatformUtils::Color::YELLOW}},
+        
+            {'#', {"█", PlatformUtils::Color::DEFAULT}},
+            {'X', {"▓", PlatformUtils::Color::DEFAULT}},
+            
+            {'~', {"░", PlatformUtils::Color::BLUE}},
+            {'*', {"§", PlatformUtils::Color::GREEN}},
+            
+            {'O', {"●", PlatformUtils::Color::RED}},
+            {' ', {" ", PlatformUtils::Color::DEFAULT}}
+        };
+    } else {
+        // ASCII фолбэк
+        return {
+            {'^', {"^", PlatformUtils::Color::GREEN}},
+            {'v', {"v", PlatformUtils::Color::GREEN}},
+            {'<', {"<", PlatformUtils::Color::GREEN}},
+            {'>', {">", PlatformUtils::Color::GREEN}},
+            
+            {'S', {"S", PlatformUtils::Color::YELLOW}},
+            {'K', {"K", PlatformUtils::Color::YELLOW}},
+            {'B', {"B", PlatformUtils::Color::YELLOW}},
+            {'L', {"L", PlatformUtils::Color::YELLOW}},
+            
+            {'|', {"|", PlatformUtils::Color::WHITE}},
+            {'-', {"-", PlatformUtils::Color::WHITE}},
+            
+            {'#', {"#", PlatformUtils::Color::DEFAULT}},
+            {'X', {"X", PlatformUtils::Color::DEFAULT}},
+            
+            {'~', {"~", PlatformUtils::Color::BLUE}},
+            {'*', {"*", PlatformUtils::Color::GREEN}},
+            
+            {'O', {"@", PlatformUtils::Color::RED}},
+            {' ', {" ", PlatformUtils::Color::DEFAULT}}
+        };
+    }
+}
+
 void ConsoleRenderer::render(const GameWorld& world) {
     if (!checkTerminalSize()) {
         drawErrorMessage("Размер терминала слишком мал для отображения игры");
@@ -86,6 +149,8 @@ void ConsoleRenderer::render(const GameWorld& world) {
     }
 
     bool damageFlashActive = world.isDamageFlashActive();
+    bool useUnicode = PlatformUtils::supportsUnicode();
+    auto graphicsMap = getGraphicsMap(useUnicode);
 
     // Рисуем верхнюю границу с информацией
     std::cout << "Уровень: " << world.getCurrentLevel() 
@@ -93,13 +158,12 @@ void ConsoleRenderer::render(const GameWorld& world) {
               << " | Жизни: " << world.getPlayer()->getLives()
               << " | Здоровье: " << world.getPlayer()->getHealth() << "\n";
     
+    setColor(PlatformUtils::Color::BLACK);
     if (damageFlashActive) {
         setColor(PlatformUtils::Color::RED);
     }
     drawBorder();
-    if (damageFlashActive) {
-        resetColor();
-    }
+    resetColor();
     
     // Создаем буфер для отрисовки
     std::vector<std::vector<char>> buffer(screenHeight, std::vector<char>(screenWidth, ' '));
@@ -148,6 +212,7 @@ void ConsoleRenderer::render(const GameWorld& world) {
         }
     }
 
+    // Рисуем взрывы
     for (const auto& explosion : world.getExplosions()) {
         if (explosion->isDestroyed()) continue;
         
@@ -158,93 +223,68 @@ void ConsoleRenderer::render(const GameWorld& world) {
         }
     }
     
-    // Выводим буфер на экран с цветами
+    // Выводим буфер на экран с улучшенной графикой
     for (int y = 0; y < screenHeight; y++) {
+        setColor(PlatformUtils::Color::BLACK);
         if (damageFlashActive) {
             setColor(PlatformUtils::Color::RED);
         }
-        std::cout << "|"; // Левая граница
-        if (damageFlashActive) {
-            resetColor();
-        }
+        std::cout << "█"; // Левая граница
+        resetColor();
+        
+        // Устанавливаем черный фон для всей строки
+        PlatformUtils::setBackgroundColor(PlatformUtils::Color::BLACK);
+        
         for (int x = 0; x < screenWidth; x++) { 
             char symbol = buffer[y][x];
             
-            // Определяем цвет для символа
-            bool colored = false;
-            
-            // Проверяем, является ли символ танком игрока
-            if (symbol == '^' || symbol == 'v' || symbol == '<' || symbol == '>') {
-                setColor(PlatformUtils::Color::GREEN);
-                colored = true;
-            }
-            // Проверяем, является ли символ вражеским танком (включая новые типы)
-            else if (symbol == 'A' || symbol == 'V' || symbol == '[' || symbol == ']' || 
-                     symbol == 'E' || symbol == 'F' || symbol == 'D') {
-                setColor(PlatformUtils::Color::RED);
-                colored = true;
-            }
-            // Проверяем, является ли символ бонусом
-            else if (symbol == 'S' || symbol == 'K' || symbol == 'B' || symbol == 'L') {
-                setColor(PlatformUtils::Color::YELLOW);
-                colored = true;
-            }
-            // Проверяем, является ли символ снарядом
-            else if (symbol == '|' || symbol == '-') {
-                setColor(PlatformUtils::Color::WHITE);
-                colored = true;
-            }
-            // Проверяем, является ли символ препятствием
-            else if (symbol == '#' || symbol == 'X') {
-                colored = true;
-            }
-            // Проверяем, является ли символ водой или лесом
-            else if (symbol == '~') {
-                setColor(PlatformUtils::Color::BLUE);
-                colored = true;
-            }
-            else if (symbol == '*') {
-                setColor(PlatformUtils::Color::GREEN);
-                colored = true;
-            }
-
-            else if (symbol == 'O') {
-                setColor(PlatformUtils::Color::RED);
-                colored = true;
+            // Используем графическую карту для улучшенного отображения
+            auto it = graphicsMap.find(symbol);
+            if (it != graphicsMap.end()) {
+                setColor(it->second.second);
+                std::cout << it->second.first;
+            } else {
+                // Для неизвестных символов используем стандартное отображение
+                std::cout << symbol;
             }
             
-            std::cout << symbol;
-            
-            // Сбрасываем цвет после вывода символа
-            if (colored) {
-                resetColor();
-            }
+            resetColor();
         }
+        
+        PlatformUtils::resetBackgroundColor();
 
+        setColor(PlatformUtils::Color::BLACK);
         if (damageFlashActive) {
             setColor(PlatformUtils::Color::RED);
         }
-        std::cout << "|\n"; // Правая граница
-        if (damageFlashActive) {
-            resetColor();
-        }
+        std::cout << "█\n"; // Правая граница
+        resetColor();
     }
     
+    setColor(PlatformUtils::Color::BLACK);
     if (damageFlashActive) {
         setColor(PlatformUtils::Color::RED);
     }
     drawBorder();
-    if (damageFlashActive) {
-        resetColor();
-    }
+    resetColor();
     
     // Отображаем статус бонусов игрока
     PlayerTank* player = world.getPlayer();
     if (player) {
         std::cout << "Бонусы: ";
-        if (player->getHasShield()) { std::cout << "[Щит] "; }
-        if (player->getDoubleFire()) { std::cout << "[Двойной огонь] "; }
-        if (player->getBonusDuration() > 0) { std::cout << "(осталось ходов: " << player->getBonusDuration() << ")"; }
+        if (player->getHasShield()) { 
+            setColor(PlatformUtils::Color::CYAN);
+            std::cout << "[★ Щит] ";
+            resetColor();
+        }
+        if (player->getDoubleFire()) { 
+            setColor(PlatformUtils::Color::YELLOW);
+            std::cout << "[¶ Двойной огонь] ";
+            resetColor();
+        }
+        if (player->getBonusDuration() > 0) { 
+            std::cout << "(осталось ходов: " << player->getBonusDuration() << ")";
+        }
         std::cout << "\n";
     }
     
@@ -252,12 +292,15 @@ void ConsoleRenderer::render(const GameWorld& world) {
 }
 
 void ConsoleRenderer::drawSymbolLegend() {
+    bool useUnicode = PlatformUtils::supportsUnicode();
+    auto graphicsMap = getGraphicsMap(useUnicode);
+
     std::cout << "\n=== ЛЕГЕНДА СИМВОЛОВ ===\n";
     
     // Танки
     std::cout << "Танки: ";
     setColor(PlatformUtils::Color::GREEN);
-    std::cout << "^ v < >";
+    std::cout << "▲▼◄►";
     resetColor();
     std::cout << " - игрок\n";
     
@@ -281,45 +324,44 @@ void ConsoleRenderer::drawSymbolLegend() {
     
     // Препятствия
     std::cout << "Препятствия: ";
-    std::cout << "#";
-    resetColor();
+    std::cout << graphicsMap.find('#')->second.first;
     std::cout << " - кирпич, ";
-    std::cout << "X";
-    resetColor();
+    std::cout << graphicsMap.find('X')->second.first;
     std::cout << " - сталь, ";
     setColor(PlatformUtils::Color::BLUE);
-    std::cout << "~";
+    std::cout << graphicsMap.find('~')->second.first;
     resetColor();
     std::cout << " - вода, ";
     setColor(PlatformUtils::Color::GREEN);
-    std::cout << "*";
+    std::cout << graphicsMap.find('*')->second.first;
     resetColor();
     std::cout << " - лес\n";
     
     // Бонусы
     std::cout << "Бонусы: ";
     setColor(PlatformUtils::Color::YELLOW);
-    std::cout << "S";
+    std::cout << graphicsMap.find('S')->second.first;
     resetColor();
     std::cout << " - щит, ";
     setColor(PlatformUtils::Color::YELLOW);
-    std::cout << "K";
+    std::cout << graphicsMap.find('K')->second.first;
     resetColor();
     std::cout << " - двойной огонь, ";
     setColor(PlatformUtils::Color::YELLOW);
-    std::cout << "B";
+    std::cout << graphicsMap.find('B')->second.first;
     resetColor();
     std::cout << " - скорость, ";
     setColor(PlatformUtils::Color::YELLOW);
-    std::cout << "L";
+    std::cout << graphicsMap.find('L')->second.first;
     resetColor();
     std::cout << " - +1 жизнь\n";
 
     std::cout << "Взрывы: ";
     setColor(PlatformUtils::Color::RED);
-    std::cout << "O";
+    std::cout << graphicsMap.find('O')->second.first;
     resetColor();
-    std::cout << " - взрыв (1 ход)\n";
+    std::cout << " - взрыв\n";
+
 }
 
 void ConsoleRenderer::drawMenu() {

@@ -22,19 +22,25 @@ public:
     static std::string readUTF8Char();
     static void sleep(int milliseconds);
     
-    enum class Color {
-        DEFAULT = 0,
+    enum Color {
+        BLACK = 0,
         RED = 1,
         GREEN = 2,
         YELLOW = 3,
         BLUE = 4,
         MAGENTA = 5,
         CYAN = 6,
-        WHITE = 7
+        WHITE = 7,
+        DEFAULT = 9
     };
     
     static void setColor(Color color);
     static void resetColor();
+
+    static bool supportsUnicode();
+
+    static void setBackgroundColor(Color color);
+    static void resetBackgroundColor();
 
     static std::pair<int, int> getTerminalSize();
     static bool isTerminalSizeValid(int minWidth, int minHeight);
