@@ -3,7 +3,7 @@
 #include <thread>
 
 GameController::GameController(int width, int height) 
-    : model(width, height), view(width, height), running(true), 
+    : model(width, height), view(), running(true), 
       mapManager("../resources/maps"), currentMapIndex(0), 
       scoreSaved(false), useCustomMap(false) {
     srand(static_cast<unsigned int>(time(nullptr)));
@@ -27,6 +27,25 @@ void GameController::toggleAdvancedGraphics() {
     PlatformUtils::sleep(1000);
 }
 
+void GameController::handleTerminalResize() {
+    while (!view.checkTerminalSize() && running) {
+        view.clearScreen();
+        view.drawErrorMessage("Размер терминала слишком мал. Увеличьте размер окна.");
+        
+        // Ждем некоторое время перед повторной проверкой
+        PlatformUtils::sleep(500);
+        
+        // Также проверяем команды пользователя во время ожидания
+        if (PlatformUtils::kbhit()) {
+            std::string input = PlatformUtils::readUTF8Char();
+            if (input == "q" || input == "Q" || input == "й" || input == "Й") {
+                running = false;
+                return;
+            }
+        }
+    }
+}
+
 void GameController::showMapSelection() {
     bool inMapSelection = true;
     
@@ -43,10 +62,15 @@ void GameController::showMapSelection() {
     }
     
     while (inMapSelection && running) {
+        handleTerminalResize();
+        if (!running) return;
+
         const MapInfo& currentMap = mapManager.getMap(currentMapIndex);
         
         view.clearScreen();
-        view.drawMapSelection(currentMap, currentMapIndex, mapManager.getMapCount());
+        if (!view.drawMapSelection(currentMap, currentMapIndex, mapManager.getMapCount())) {
+            continue;
+        }
         std::cout.flush();
         
         std::string input = PlatformUtils::readUTF8Char();
@@ -147,8 +171,13 @@ void GameController::pauseGame() {
         
         bool paused = true;
         while (paused && running) {
+            handleTerminalResize();
+            if (!running) return;
+
             view.clearScreen();
-            view.drawPauseScreen();
+            if (!view.drawPauseScreen()) {
+                continue;
+            }
             std::cout.flush();
             
             Command cmd = inputHandler.waitForCommand();
@@ -171,12 +200,18 @@ void GameController::pauseGame() {
 }
 
 void GameController::processGameTurn() {
+    handleTerminalResize();
+    if (!running) return;
+
     view.clearScreen();
     int score = 0;
     
     switch (model.getState()) {
         case GameState::PLAYING:
-            view.render(model);
+            if (!view.render(model)) {
+                // Если рендер не удался из-за размера терминала, выходим из цикла
+                return;
+            }
             break;
             
         case GameState::LEVEL_COMPLETE:
@@ -336,8 +371,13 @@ void GameController::showMenu() {
     bool inMenu = true;
     
     while (inMenu && running) {
+        handleTerminalResize();
+        if (!running) return;
+
         view.clearScreen();
-        view.drawMenu();
+        if (!view.drawMenu()) {
+            continue;
+        }
         
         std::cout << "\n=== ТАБЛИЦА РЕКОРДОВ ===\n";
         std::vector<int> highScores = scoreManager.getHighScores();
@@ -384,8 +424,13 @@ void GameController::showSettings() {
     bool inSettings = true;
     
     while (inSettings && running) {
+        handleTerminalResize();
+        if (!running) return;
+
         view.clearScreen();
-        view.drawSettings();
+        if (!view.drawSettings()) {
+            continue;
+        }
 
         bool advancedGraphics = settingsManager.getBoolSetting("advanced_graphics", true);
         
@@ -469,8 +514,13 @@ void GameController::showLevelCompleteScreen() {
     bool inLevelCompleteScreen = true;
     
     while (inLevelCompleteScreen && running) {
+        handleTerminalResize();
+        if (!running) return;
+
         view.clearScreen();
-        view.drawLevelComplete(currentScore, currentLevel, currentLives);
+        if (!view.drawLevelComplete(currentScore, currentLevel, currentLives)) {
+            continue;
+        }
         std::cout.flush();
         
         Command cmd = inputHandler.waitForCommand();

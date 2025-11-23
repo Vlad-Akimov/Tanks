@@ -10,7 +10,7 @@
 #include <map>
 
 GameWorld::GameWorld(int width, int height) 
-    : fieldWidth(width), fieldHeight(height), state(GameState::MENU), 
+    : fieldWidth(40), fieldHeight(20), state(GameState::MENU), 
       currentLevel(1), player(nullptr), enemyCount(0), maxEnemies(5),
       damageFlashCounter(0) {
     // Создаем игрока в центре нижней части поля

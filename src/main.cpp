@@ -4,10 +4,8 @@
 
 int main() {
     try {
-        const int MIN_WIDTH = 40;
+        const int MIN_WIDTH = 60;
         const int MIN_HEIGHT = 40;
-        const int WIDTH = 40;
-        const int HEIGHT = 20;
 
         if (!PlatformUtils::isTerminalSizeValid(MIN_WIDTH, MIN_HEIGHT)) {
             PlatformUtils::showResizeMessage(MIN_WIDTH, MIN_HEIGHT);
@@ -16,8 +14,8 @@ int main() {
 
         auto [termWidth, termHeight] = PlatformUtils::getTerminalSize();
 
-        int gameWidth = std::min(WIDTH, termWidth);
-        int gameHeight = std::min(HEIGHT, termHeight);
+        int gameWidth = std::min(MIN_WIDTH, termWidth);
+        int gameHeight = std::min(MIN_HEIGHT, termHeight);
         
         GameController game(gameWidth, gameHeight);
         

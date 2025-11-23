@@ -41,6 +41,8 @@ private:
     SettingsManager settingsManager;
     void toggleAdvancedGraphics();
 
+    void handleTerminalResize();
+
 public:
     GameController(int width, int height);
     void runGame();

@@ -4,8 +4,8 @@
 #include <vector>
 #include <map>
 
-ConsoleRenderer::ConsoleRenderer(int width, int height) 
-    : screenWidth(width), screenHeight(height), terminalSizeValid(true),
+ConsoleRenderer::ConsoleRenderer() 
+    : screenWidth(40), screenHeight(20), terminalSizeValid(true),
     useAdvancedGraphics(true) {
     updateTerminalSize();
 }
@@ -18,13 +18,17 @@ bool ConsoleRenderer::getAdvancedGraphics() const {
     return useAdvancedGraphics;
 }
 
+bool ConsoleRenderer::isTerminalSizeValid() const {
+    return terminalSizeValid;
+}
+
 void ConsoleRenderer::updateTerminalSize() {
     auto size = PlatformUtils::getTerminalSize();
     terminalWidth = size.first;
     terminalHeight = size.second;
     
-    int requiredWidth = screenWidth;
-    int requiredHeight = screenHeight;
+    int requiredWidth = 60;
+    int requiredHeight = 40;
     
     terminalSizeValid = (terminalWidth >= requiredWidth && terminalHeight >= requiredHeight);
 }
@@ -87,10 +91,10 @@ void ConsoleRenderer::drawErrorMessage(const std::string& message) {
     std::cout << "\n\n";
     
     std::cout << "Текущий размер: " << terminalWidth << "x" << terminalHeight << "\n";
-    std::cout << "Требуемый размер: " << (screenWidth + 4) << "x" << (screenHeight + 10) << "\n\n";
+    std::cout << "Требуемый размер: " << 60 << "x" << 40 << "\n\n";
     
     std::cout << "============================================\n";
-    drawCenteredText("Увеличьте размер окна и перезапустите игру", terminalWidth);
+    drawCenteredText("Увеличьте размер окна", terminalWidth);
     std::cout << "\n";
     std::cout << "============================================\n";
 }
@@ -156,10 +160,10 @@ std::map<char, std::pair<std::string, PlatformUtils::Color>> getGraphicsMap(bool
     }
 }
 
-void ConsoleRenderer::render(const GameWorld& world) {
+bool ConsoleRenderer::render(const GameWorld& world) {
     if (!checkTerminalSize()) {
         drawErrorMessage("Размер терминала слишком мал для отображения игры");
-        return;
+        return false;
     }
 
     bool damageFlashActive = world.isDamageFlashActive();
@@ -303,6 +307,8 @@ void ConsoleRenderer::render(const GameWorld& world) {
     }
     
     drawSymbolLegend();
+
+    return true;
 }
 
 void ConsoleRenderer::drawSymbolLegend() {
@@ -378,10 +384,10 @@ void ConsoleRenderer::drawSymbolLegend() {
 
 }
 
-void ConsoleRenderer::drawMenu() {
+bool ConsoleRenderer::drawMenu() {
     if (!checkTerminalSize()) {
         drawErrorMessage("Размер терминала слишком мал для отображения меню");
-        return;
+        return false;
     }
 
     clearScreen();
@@ -407,9 +413,16 @@ void ConsoleRenderer::drawMenu() {
     std::cout << "   Пауза: P\n";
     std::cout << "   Меню: M\n";
     std::cout << "   Выход: Q\n\n";
+
+    return true;
 }
 
-void ConsoleRenderer::drawPauseScreen() {
+bool ConsoleRenderer::drawPauseScreen() {
+    if (!checkTerminalSize()) {
+        drawErrorMessage("Размер терминала слишком мал для отображения меню");
+        return false;
+    }
+
     clearScreen();
     
     std::cout << "=================================\n";
@@ -425,9 +438,16 @@ void ConsoleRenderer::drawPauseScreen() {
     std::cout << "---------------------------------\n\n";
     
     std::cout << "=================================\n";
+
+    return true;
 }
 
-void ConsoleRenderer::drawGameOver(int score) {
+bool ConsoleRenderer::drawGameOver(int score) {
+    if (!checkTerminalSize()) {
+        drawErrorMessage("Размер терминала слишком мал для отображения меню");
+        return false;
+    }
+
     clearScreen();
     
     std::cout << "=================================\n";
@@ -445,9 +465,16 @@ void ConsoleRenderer::drawGameOver(int score) {
     std::cout << "=================================\n";
     std::cout << "  Спасибо за игру!              \n";
     std::cout << "=================================\n";
+
+    return true;
 }
 
-void ConsoleRenderer::drawSettings() {
+bool ConsoleRenderer::drawSettings() {
+    if (!checkTerminalSize()) {
+        drawErrorMessage("Размер терминала слишком мал для отображения меню");
+        return false;
+    }
+
     clearScreen();
     
     std::cout << "=================================\n";
@@ -467,9 +494,16 @@ void ConsoleRenderer::drawSettings() {
     std::cout << "   Настройки игры:\n\n";
     
     std::cout << "   Размер поля: " << screenWidth << "x" << screenHeight << "\n\n";
+
+    return true;
 }
 
-void ConsoleRenderer::drawMapSelection(const MapInfo& currentMap, int currentIndex, int totalMaps) {
+bool ConsoleRenderer::drawMapSelection(const MapInfo& currentMap, int currentIndex, int totalMaps) {
+    if (!checkTerminalSize()) {
+        drawErrorMessage("Размер терминала слишком мал для отображения меню");
+        return false;
+    }
+
     clearScreen();
     
     std::cout << "=================================\n";
@@ -499,6 +533,8 @@ void ConsoleRenderer::drawMapSelection(const MapInfo& currentMap, int currentInd
     std::cout << "   [Q] - Выход\n\n";
     
     std::cout << "=================================\n";
+
+    return true;
 }
 
 void ConsoleRenderer::drawMapPreview(const MapInfo& map) {
@@ -555,7 +591,12 @@ void ConsoleRenderer::drawMapPreview(const MapInfo& map) {
               << forest << " леса, " << enemies << " врагов\n";
 }
 
-void ConsoleRenderer::drawLevelComplete(int score, int level, int lives) {
+bool ConsoleRenderer::drawLevelComplete(int score, int level, int lives) {
+    if (!checkTerminalSize()) {
+        drawErrorMessage("Размер терминала слишком мал для отображения меню");
+        return false;
+    }
+
     clearScreen();
     
     std::cout << "=================================\n";
@@ -591,4 +632,6 @@ void ConsoleRenderer::drawLevelComplete(int score, int level, int lives) {
     std::cout << "=================================\n";
     std::cout << "  Готовьтесь к уровню " << (level + 1) << "!\n";
     std::cout << "=================================\n";
+
+    return true;
 }

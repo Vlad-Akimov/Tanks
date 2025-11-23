@@ -26,22 +26,24 @@ private:
     bool useAdvancedGraphics;
 
 public:
-    ConsoleRenderer(int width, int height);
+    ConsoleRenderer();
     bool checkTerminalSize();
     void drawErrorMessage(const std::string& message);
     void clearScreen();
     void setCursorPosition(int x, int y);
-    void render(const GameWorld& world);
+    bool render(const GameWorld& world);
     void drawSymbolLegend();
-    void drawMenu();
-    void drawPauseScreen();
-    void drawGameOver(int score);
-    void drawSettings();
-    void drawMapSelection(const MapInfo& currentMap, int currentIndex, int totalMaps);
-    void drawLevelComplete(int score, int level, int lives);
+    bool drawMenu();
+    bool drawPauseScreen();
+    bool drawGameOver(int score);
+    bool drawSettings();
+    bool drawMapSelection(const MapInfo& currentMap, int currentIndex, int totalMaps);
+    bool drawLevelComplete(int score, int level, int lives);
 
     void setAdvancedGraphics(bool enabled);
     bool getAdvancedGraphics() const;
+
+    bool isTerminalSizeValid() const;
 };
 
 #endif // CONSOLERENDERER_H
