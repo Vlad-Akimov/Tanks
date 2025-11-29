@@ -538,33 +538,34 @@ bool ConsoleRenderer::drawMapSelection(const MapInfo& currentMap, int currentInd
 }
 
 void ConsoleRenderer::drawMapPreview(const MapInfo& map) {
+    bool useUnicode = PlatformUtils::supportsUnicode();
+    auto graphicsMap = getGraphicsMap(useUnicode, useAdvancedGraphics);
+    
     for (int y = 0; y < map.height; y++) {
         std::cout << "   ";
         
         for (int x = 0; x < map.width; x++) {
             char symbol = map.layout[y][x];
             
-            // Определяем цвет для символа
-            if (symbol == '#' || symbol == 'X') {
-                std::cout << symbol; // Стены
-            } else if (symbol == '~') {
-                setColor(PlatformUtils::Color::BLUE);
-                std::cout << symbol; // Вода
-                resetColor();
-            } else if (symbol == '*') {
-                setColor(PlatformUtils::Color::GREEN);
-                std::cout << symbol; // Лес
-                resetColor();
-            } else if (symbol == 'E') {
-                setColor(PlatformUtils::Color::RED);
-                std::cout << symbol; // Враги
-                resetColor();
-            } else if (symbol == '^' || symbol == 'v' || symbol == '<' || symbol == '>') {
-                setColor(PlatformUtils::Color::GREEN);
-                std::cout << "P"; // Игрок
+            // Используем графическую карту для улучшенного отображения
+            auto it = graphicsMap.find(symbol);
+            if (it != graphicsMap.end()) {
+                setColor(it->second.second);
+                std::cout << it->second.first;
                 resetColor();
             } else {
-                std::cout << " "; // Пустое пространство
+                // Для неизвестных символов используем стандартное отображение
+                if (symbol == 'E') {
+                    setColor(PlatformUtils::Color::RED);
+                    std::cout << "E"; // Враги
+                    resetColor();
+                } else if (symbol == '^' || symbol == 'v' || symbol == '<' || symbol == '>') {
+                    setColor(PlatformUtils::Color::GREEN);
+                    std::cout << "P"; // Игрок
+                    resetColor();
+                } else {
+                    std::cout << symbol;
+                }
             }
         }
         std::cout << "\n";
@@ -587,8 +588,7 @@ void ConsoleRenderer::drawMapPreview(const MapInfo& map) {
     }
     
     std::cout << " | Пустых клеток: " << empty << "\n";
-    std::cout << "   Объекты: " << walls << " стен, " << water << " воды, " 
-              << forest << " леса, " << enemies << " врагов\n";
+    std::cout << "   Объекты: " << walls << " стен, " << water << " воды, " << forest << " леса, " << enemies << " врагов\n";
 }
 
 bool ConsoleRenderer::drawLevelComplete(int score, int level, int lives) {
