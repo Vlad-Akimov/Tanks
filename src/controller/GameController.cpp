@@ -188,8 +188,11 @@ void GameController::pauseGame() {
                 running = false;
                 paused = false;
             } else if (cmd == Command::MENU) {
+                if (model.getPlayer() && model.getPlayer()->getScore() > 0 && !scoreSaved) {
+                    scoreManager.addScore(model.getPlayer()->getScore());
+                    scoreSaved = true;
+                }
                 // Сбрасываем флаг при возврате в меню
-                scoreSaved = false;
                 model.getPlayer()->setScore(0);
                 model.getPlayer()->setLives(3);
                 showMenu();
@@ -358,6 +361,10 @@ void GameController::processCommand(Command cmd) {
             break;
             
         case Command::EXIT:
+            if (model.getPlayer() && model.getPlayer()->getScore() > 0 && !scoreSaved) {
+                scoreManager.addScore(model.getPlayer()->getScore());
+                scoreSaved = true;
+            }
             running = false;
             break;
             
