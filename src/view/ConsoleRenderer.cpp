@@ -492,8 +492,6 @@ bool ConsoleRenderer::drawSettings() {
     std::cout << "   Меню: M\n\n";
     
     std::cout << "   Настройки игры:\n\n";
-    
-    std::cout << "   Размер поля: " << screenWidth << "x" << screenHeight << "\n\n";
 
     return true;
 }
