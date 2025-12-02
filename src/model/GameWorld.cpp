@@ -138,10 +138,10 @@ void GameWorld::checkProjectileCollisions() {
                     explosions.emplace_back(std::make_unique<Explosion>(lastValidPoint));
                 } else {
                     // Если первая точка уже за границей, создаем взрыв на границе
-                    Point borderPoint = point;
-                    borderPoint.x = std::max(0, std::min(borderPoint.x, fieldWidth - 1));
-                    borderPoint.y = std::max(0, std::min(borderPoint.y, fieldHeight - 1));
-                    explosions.emplace_back(std::make_unique<Explosion>(borderPoint));
+                    Point p = point;
+                    p.x = std::max(0, std::min(p.x, fieldWidth - 1));
+                    p.y = std::max(0, std::min(p.y, fieldHeight - 1));
+                    explosions.emplace_back(std::make_unique<Explosion>(p));
                 }
                 hit = true;
                 break;
