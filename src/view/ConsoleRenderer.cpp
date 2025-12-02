@@ -113,10 +113,10 @@ std::map<char, std::pair<std::string, PlatformUtils::Color>> getGraphicsMap(bool
             {'F', {"F", PlatformUtils::Color::RED}},
             {'D', {"D", PlatformUtils::Color::RED}},
         
-            {'S', {"★", PlatformUtils::Color::YELLOW}},
-            {'K', {"¶", PlatformUtils::Color::YELLOW}},
-            {'B', {"➤", PlatformUtils::Color::YELLOW}},
-            {'L', {"❤", PlatformUtils::Color::YELLOW}},
+            {'S', {"★", PlatformUtils::Color::MAGENTA}},
+            {'K', {"¶", PlatformUtils::Color::MAGENTA}},
+            {'B', {"➤", PlatformUtils::Color::MAGENTA}},
+            {'L', {"❤", PlatformUtils::Color::MAGENTA}},
         
             {'#', {"█", PlatformUtils::Color::DEFAULT}},
             {'X', {"▓", PlatformUtils::Color::DEFAULT}},
@@ -124,7 +124,7 @@ std::map<char, std::pair<std::string, PlatformUtils::Color>> getGraphicsMap(bool
             {'~', {"░", PlatformUtils::Color::BLUE}},
             {'*', {"§", PlatformUtils::Color::GREEN}},
             
-            {'O', {"●", PlatformUtils::Color::RED}},
+            {'O', {"●", PlatformUtils::Color::YELLOW}},
             {' ', {" ", PlatformUtils::Color::DEFAULT}}
         };
     } else {
@@ -140,10 +140,10 @@ std::map<char, std::pair<std::string, PlatformUtils::Color>> getGraphicsMap(bool
             {'F', {"F", PlatformUtils::Color::RED}},
             {'D', {"D", PlatformUtils::Color::RED}},
             
-            {'S', {"S", PlatformUtils::Color::YELLOW}},
-            {'K', {"K", PlatformUtils::Color::YELLOW}},
-            {'B', {"B", PlatformUtils::Color::YELLOW}},
-            {'L', {"L", PlatformUtils::Color::YELLOW}},
+            {'S', {"S", PlatformUtils::Color::MAGENTA}},
+            {'K', {"K", PlatformUtils::Color::MAGENTA}},
+            {'B', {"B", PlatformUtils::Color::MAGENTA}},
+            {'L', {"L", PlatformUtils::Color::MAGENTA}},
             
             {'|', {"|", PlatformUtils::Color::WHITE}},
             {'-', {"-", PlatformUtils::Color::WHITE}},
@@ -154,7 +154,7 @@ std::map<char, std::pair<std::string, PlatformUtils::Color>> getGraphicsMap(bool
             {'~', {"~", PlatformUtils::Color::BLUE}},
             {'*', {"*", PlatformUtils::Color::GREEN}},
             
-            {'O', {"@", PlatformUtils::Color::RED}},
+            {'O', {"@", PlatformUtils::Color::YELLOW}},
             {' ', {" ", PlatformUtils::Color::DEFAULT}}
         };
     }
@@ -250,9 +250,6 @@ bool ConsoleRenderer::render(const GameWorld& world) {
         std::cout << "█"; // Левая граница
         resetColor();
         
-        // Устанавливаем черный фон для всей строки
-        PlatformUtils::setBackgroundColor(PlatformUtils::Color::BLACK);
-        
         for (int x = 0; x < screenWidth; x++) { 
             char symbol = buffer[y][x];
             
@@ -268,8 +265,6 @@ bool ConsoleRenderer::render(const GameWorld& world) {
             
             resetColor();
         }
-        
-        PlatformUtils::resetBackgroundColor();
 
         setColor(PlatformUtils::Color::BLACK);
         if (damageFlashActive) {
@@ -359,25 +354,25 @@ void ConsoleRenderer::drawSymbolLegend() {
     
     // Бонусы
     std::cout << "Бонусы: ";
-    setColor(PlatformUtils::Color::YELLOW);
+    setColor(PlatformUtils::Color::MAGENTA);
     std::cout << graphicsMap.find('S')->second.first;
     resetColor();
     std::cout << " - щит, ";
-    setColor(PlatformUtils::Color::YELLOW);
+    setColor(PlatformUtils::Color::MAGENTA);
     std::cout << graphicsMap.find('K')->second.first;
     resetColor();
     std::cout << " - двойной огонь, ";
-    setColor(PlatformUtils::Color::YELLOW);
+    setColor(PlatformUtils::Color::MAGENTA);
     std::cout << graphicsMap.find('B')->second.first;
     resetColor();
     std::cout << " - скорость, ";
-    setColor(PlatformUtils::Color::YELLOW);
+    setColor(PlatformUtils::Color::MAGENTA);
     std::cout << graphicsMap.find('L')->second.first;
     resetColor();
     std::cout << " - +1 жизнь\n";
 
     std::cout << "Взрывы: ";
-    setColor(PlatformUtils::Color::RED);
+    setColor(PlatformUtils::Color::YELLOW);
     std::cout << graphicsMap.find('O')->second.first;
     resetColor();
     std::cout << " - взрыв\n";

@@ -125,13 +125,31 @@ void GameWorld::checkProjectileCollisions() {
         auto trajectory = projectile->getTrajectory();
         bool hit = false;
         
+        // Переменные для отслеживания предыдущей позиции
+        Point lastValidPoint = projectile->getPosition();
+        bool hasPreviousPoint = false;
+        
         // Проверяем каждую точку траектории
         for (const auto& point : trajectory) {
             // Проверяем выход за границы поля
             if (point.x < 0 || point.x >= fieldWidth || point.y < 0 || point.y >= fieldHeight) {
+                // Создаем взрыв на последней валидной позиции перед границей
+                if (hasPreviousPoint) {
+                    explosions.emplace_back(std::make_unique<Explosion>(lastValidPoint));
+                } else {
+                    // Если первая точка уже за границей, создаем взрыв на границе
+                    Point borderPoint = point;
+                    borderPoint.x = std::max(0, std::min(borderPoint.x, fieldWidth - 1));
+                    borderPoint.y = std::max(0, std::min(borderPoint.y, fieldHeight - 1));
+                    explosions.emplace_back(std::make_unique<Explosion>(borderPoint));
+                }
                 hit = true;
                 break;
             }
+            
+            // Сохраняем эту точку как последнюю валидную
+            lastValidPoint = point;
+            hasPreviousPoint = true;
             
             // Проверяем столкновение с объектами (кроме владельца снаряда)
             for (auto& obj : objects) {
