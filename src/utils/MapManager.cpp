@@ -20,7 +20,7 @@ bool MapManager::loadMaps() {
         std::filesystem::create_directories(mapsDirectory);
         
         if (!std::filesystem::exists(mapsDirectory)) {
-            std::cerr << "Директория не существует: " << mapsDirectory << std::endl;
+            std::cerr << "Directory does not exist: " << mapsDirectory << std::endl;
             createDefaultMaps();
             return false;
         }
@@ -28,7 +28,7 @@ bool MapManager::loadMaps() {
         // Ищем все .map файлы в директории
         for (const auto& entry : std::filesystem::directory_iterator(mapsDirectory)) {
             if (entry.is_regular_file() && entry.path().extension() == ".map") {
-                std::cout << "Найден файл карты: " << entry.path() << std::endl;
+                std::cout << "Found map file: " << entry.path() << std::endl;
                 
                 MapInfo mapInfo;
                 mapInfo.filename = entry.path().filename().string();
@@ -43,7 +43,7 @@ bool MapManager::loadMaps() {
                         mapInfo.displayName = line;
                         std::cout << "DisplayName: " << mapInfo.displayName << std::endl;
                     } else {
-                        std::cerr << "Ошибка: файл карты пуст или поврежден: " << mapInfo.filename << std::endl;
+                        std::cerr << "Error: map file is empty or corrupted: " << mapInfo.filename << std::endl;
                         continue;
                     }
                     
@@ -57,7 +57,7 @@ bool MapManager::loadMaps() {
                     if (std::getline(file, line)) {
                         std::istringstream iss(line);
                         if (!(iss >> mapInfo.width >> mapInfo.height)) {
-                            std::cerr << "Ошибка чтения размеров карты из файла: " << mapInfo.filename << std::endl;
+                            std::cerr << "Error reading map dimensions from file: " << mapInfo.filename << std::endl;
                             continue;
                         }
                         std::cout << "Size: " << mapInfo.width << "x" << mapInfo.height << std::endl;
@@ -75,8 +75,7 @@ bool MapManager::loadMaps() {
                             mapInfo.layout.push_back(row);
                             linesRead++;
                         } else if (!line.empty()) {
-                            std::cout << "Пропущена строка неверной длины: " << line.length() 
-                                      << " вместо " << mapInfo.width << " в файле " << mapInfo.filename << std::endl;
+                                std::cout << "Skipped line with incorrect length: " << line.length() << " instead of " << mapInfo.width << " in file " << mapInfo.filename << std::endl;
                         }
                     }
                     
@@ -85,37 +84,35 @@ bool MapManager::loadMaps() {
                     // Проверяем корректность данных
                     if (mapInfo.layout.size() == static_cast<size_t>(mapInfo.height)) {
                         maps.push_back(mapInfo);
-                        std::cout << "Успешно загружена карта: " << mapInfo.displayName 
-                                  << " (" << linesRead << " строк)" << std::endl;
+                        std::cout << "Successfully loaded map: " << mapInfo.displayName << " (" << linesRead << " lines)" << std::endl;
                     } else {
-                        std::cerr << "Неверное количество строк в карте " << mapInfo.filename 
-                                  << ": " << mapInfo.layout.size() << " вместо " << mapInfo.height << std::endl;
+                        std::cerr << "Incorrect number of lines in map " << mapInfo.filename << ": " << mapInfo.layout.size() << " instead of " << mapInfo.height << std::endl;
                     }
                 } else {
-                    std::cerr << "Не удалось открыть файл: " << entry.path() << std::endl;
+                    std::cerr << "Failed to open file: " << entry.path() << std::endl;
                 }
             }
         }
         
         // Если карт нет, создаем несколько примеров
         if (maps.empty()) {
-            std::cout << "Карты не найдены, создаем карты по умолчанию..." << std::endl;
+            std::cout << "No maps found, creating default maps..." << std::endl;
             createDefaultMaps();
         } else {
-            std::cout << "Всего загружено карт: " << maps.size() << std::endl;
+            std::cout << "Total maps loaded: " << maps.size() << std::endl;
         }
         
         return true;
         
     } catch (const std::exception& e) {
-        std::cerr << "Ошибка загрузки карт: " << e.what() << std::endl;
+        std::cerr << "Error loading maps: " << e.what() << std::endl;
         createDefaultMaps();
         return false;
     }
 }
 
 void MapManager::createDefaultMaps() {
-    std::cout << "Создание карт по умолчанию..." << std::endl;
+    std::cout << "Creating default maps..." << std::endl;
     
     // Создаем директорию, если она не существует
     std::filesystem::create_directories(mapsDirectory);
@@ -123,8 +120,8 @@ void MapManager::createDefaultMaps() {
     // Карта 1: Классическая
     MapInfo map1;
     map1.filename = "classic.map";
-    map1.displayName = "Классическая арена";
-    map1.description = "Классическая карта для начинающих с балансом укрытий и открытых пространств";
+    map1.displayName = "Classic Arena";
+    map1.description = "A classic map for beginners with a balance of cover and open spaces";
     map1.width = 40;
     map1.height = 20;
     
@@ -171,8 +168,8 @@ void MapManager::createDefaultMaps() {
     // Карта 2: Крепость
     MapInfo map2;
     map2.filename = "fortress.map";
-    map2.displayName = "Крепость";
-    map2.description = "Защищенная крепость со сложными укреплениями";
+    map2.displayName = "The Fortress";
+    map2.description = "A fortified castle with complex defenses";
     map2.width = 40;
     map2.height = 20;
     
@@ -223,8 +220,8 @@ void MapManager::createDefaultMaps() {
     // Карта 3: Поле боя
     MapInfo map3;
     map3.filename = "battlefield.map";
-    map3.displayName = "Поле боя";
-    map3.description = "Большое поле с укрытиями и стратегическими позициями";
+    map3.displayName = "Battlefield";
+    map3.description = "Large field with cover and strategic positions";
     map3.width = 40;
     map3.height = 20;
     
@@ -270,7 +267,7 @@ void MapManager::createDefaultMaps() {
     saveMapToFile(map3);
     maps.push_back(map3);
     
-    std::cout << "Создано карт по умолчанию: " << maps.size() << std::endl;
+    std::cout << "Created default maps: " << maps.size() << std::endl;
 }
 
 // Исправленный метод для сохранения карты в файл
@@ -295,9 +292,9 @@ void MapManager::saveMapToFile(const MapInfo& map) {
         }
         
         file.close();
-        std::cout << "Карта сохранена: " << filePath << std::endl;
+        std::cout << "Map saved: " << filePath << std::endl;
     } else {
-        std::cerr << "Ошибка сохранения карты: " << filePath << std::endl;
+        std::cerr << "Error saving map: " << filePath << std::endl;
     }
 }
 
@@ -309,7 +306,7 @@ const MapInfo& MapManager::getMap(int index) const {
     if (index >= 0 && index < static_cast<int>(maps.size())) {
         return maps[index];
     }
-    throw std::out_of_range("Неверный индекс карты");
+    throw std::out_of_range("Invalid map index");
 }
 
 int MapManager::getMapCount() const {

@@ -22,15 +22,15 @@ void GameController::toggleAdvancedGraphics() {
     
     // Сообщаем пользователю о изменении
     view.clearScreen();
-    std::cout << "Режим графики изменен: " 
-              << (newSetting ? "ПРОДВИНУТАЯ" : "СИМВОЛЬНАЯ") << std::endl;
+    std::cout << "Graphics mode changed: " 
+          << (newSetting ? "ADVANCED" : "SYMBOLIC") << std::endl;
     PlatformUtils::sleep(1000);
 }
 
 void GameController::handleTerminalResize() {
     while (!view.checkTerminalSize() && running) {
         view.clearScreen();
-        view.drawErrorMessage("Размер терминала слишком мал. Увеличьте размер окна.");
+        view.drawErrorMessage("Terminal size too small. Increase window size.");
         
         // Ждем некоторое время перед повторной проверкой
         PlatformUtils::sleep(500);
@@ -54,7 +54,7 @@ void GameController::showMapSelection() {
     }
     
     if (mapManager.getMapCount() == 0) {
-        std::cout << "Карты не найдены! Используется случайная генерация." << std::endl;
+        std::cout << "Maps not found! Using random generation." << std::endl;
         useCustomMap = false;
         model.loadLevel(1);
         model.setState(GameState::PLAYING);
@@ -141,7 +141,7 @@ void GameController::loadSelectedMap() {
         mapManager.createWorldFromMap(model, selectedMap);
         model.setState(GameState::PLAYING);
     } else {
-        std::cout << "Ошибка загрузки карты, используется случайная генерация" << std::endl;
+        std::cout << "Error loading map, using random generation" << std::endl;
         useCustomMap = false;
         model.loadLevel(model.getCurrentLevel());
     }
@@ -162,7 +162,7 @@ void GameController::runGame() {
     }
     
     view.clearScreen();
-    std::cout << "Игра завершена. Спасибо за игру!" << std::endl;
+    std::cout << "Game completed. Thank you for playing!" << std::endl;
 }
 
 void GameController::pauseGame() {
@@ -386,10 +386,10 @@ void GameController::showMenu() {
             continue;
         }
         
-        std::cout << "\n=== ТАБЛИЦА РЕКОРДОВ ===\n";
+        std::cout << "===== HIGH SCORES =====\n";
         std::vector<int> highScores = scoreManager.getHighScores();
         if (highScores.empty()) {
-            std::cout << "   Пока нет рекордов!\n";
+            std::cout << "   No high scores yet!\n";
         } else {
             for (size_t i = 0; i < highScores.size(); i++) {
                 std::cout << "   " << (i + 1) << ". " << highScores[i] << " очков\n";
@@ -441,29 +441,26 @@ void GameController::showSettings() {
 
         bool advancedGraphics = settingsManager.getBoolSetting("advanced_graphics", true);
         
-        std::cout << "   Графика: [" << (advancedGraphics ? "X" : " ") << "] Продвинутая\n";
-        std::cout << "            [" << (!advancedGraphics ? "X" : " ") << "] Символьная\n\n";
-        
-        std::cout << "   [F] - Переключить режим графики\n";
-        
+        std::cout << "   Graphics: [" << (advancedGraphics ? "X" : " ") << "] Advanced\n";
+        std::cout << "            [" << (!advancedGraphics ? "X" : " ") << "] Symbolic\n\n";
+        std::cout << "   [F] - Toggle graphics mode\n";
         std::cout << "---------------------------------\n";
-        std::cout << "   [ESC] - Назад\n";
-        std::cout << "   [Q] - Выход\n";
+        std::cout << "   [ESC] - Back\n";
+        std::cout << "   [Q] - Exit\n";
         std::cout << "---------------------------------\n\n";
-
-        std::cout << "   Статус: ";
+        std::cout << "   Status: ";
         if (advancedGraphics) {
-            std::cout << "Продвинутая графика (Unicode)";
+            std::cout << "Advanced graphics (Unicode)";
             if (!PlatformUtils::supportsUnicode()) {
-                std::cout << " - ВАШ ТЕРМИНАЛ МОЖЕТ НЕ ПОДДЕРЖИВАТЬ!";
+                std::cout << " - YOUR TERMINAL MAY NOT SUPPORT IT!";
             }
         } else {
-            std::cout << "Символьная графика (ASCII)";
+            std::cout << "Symbolic graphics (ASCII)";
         }
         std::cout << "\n";
         
         std::cout << "\n=================================\n";
-        std::cout << "  Настройки сохраняются автоматически\n";
+        std::cout << "  Settings are saved automatically\n";
         std::cout << "=================================\n";
         
         std::cout.flush();

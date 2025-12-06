@@ -83,18 +83,16 @@ void ConsoleRenderer::drawErrorMessage(const std::string& message) {
     
     std::cout << "\n\n";
     std::cout << "============================================\n";
-    drawCenteredText("ОШИБКА ОТОБРАЖЕНИЯ", terminalWidth);
+    drawCenteredText("DISPLAY ERROR", terminalWidth);
     std::cout << "\n";
     std::cout << "============================================\n\n";
-    
+
     drawCenteredText(message, terminalWidth);
     std::cout << "\n\n";
-    
-    std::cout << "Текущий размер: " << terminalWidth << "x" << terminalHeight << "\n";
-    std::cout << "Требуемый размер: " << 60 << "x" << 40 << "\n\n";
-    
+    std::cout << "Current size: " << terminalWidth << "x" << terminalHeight << "\n";
+    std::cout << "Required size: " << 60 << "x" << 40 << "\n\n";
     std::cout << "============================================\n";
-    drawCenteredText("Увеличьте размер окна", terminalWidth);
+    drawCenteredText("Increase window size", terminalWidth);
     std::cout << "\n";
     std::cout << "============================================\n";
 }
@@ -171,10 +169,10 @@ bool ConsoleRenderer::render(const GameWorld& world) {
     auto graphicsMap = getGraphicsMap(useUnicode, useAdvancedGraphics);
 
     // Рисуем верхнюю границу с информацией
-    std::cout << "Уровень: " << world.getCurrentLevel() 
-              << " | Очки: " << world.getPlayer()->getScore()
-              << " | Жизни: " << world.getPlayer()->getLives()
-              << " | Здоровье: " << world.getPlayer()->getHealth() << "\n";
+    std::cout << "Level: " << world.getCurrentLevel() 
+          << " | Score: " << world.getPlayer()->getScore()
+          << " | Lives: " << world.getPlayer()->getLives()
+          << " | Health: " << world.getPlayer()->getHealth() << "\n";
     
     setColor(PlatformUtils::Color::BLACK);
     if (damageFlashActive) {
@@ -284,19 +282,19 @@ bool ConsoleRenderer::render(const GameWorld& world) {
     // Отображаем статус бонусов игрока
     PlayerTank* player = world.getPlayer();
     if (player) {
-        std::cout << "Бонусы: ";
+        std::cout << "Bonuses: ";
         if (player->getHasShield()) { 
             setColor(PlatformUtils::Color::CYAN);
-            std::cout << "[★ Щит] ";
+            std::cout << "[★ Shield] ";
             resetColor();
         }
         if (player->getDoubleFire()) { 
             setColor(PlatformUtils::Color::YELLOW);
-            std::cout << "[¶ Двойной огонь] ";
+            std::cout << "[¶ Double Fire] ";
             resetColor();
         }
         if (player->getBonusDuration() > 0) { 
-            std::cout << "(осталось ходов: " << player->getBonusDuration() << ")";
+            std::cout << "(turns left: " << player->getBonusDuration() << ")";
         }
         std::cout << "\n";
     }
@@ -310,128 +308,123 @@ void ConsoleRenderer::drawSymbolLegend() {
     bool useUnicode = PlatformUtils::supportsUnicode();
     auto graphicsMap = getGraphicsMap(useUnicode, useAdvancedGraphics);
 
-    std::cout << "\n=== ЛЕГЕНДА СИМВОЛОВ ===\n";
+    std::cout << "\n=== SYMBOL LEGEND ===\n";
     
     // Танки
-    std::cout << "Танки: ";
+    std::cout << "Tanks: ";
     setColor(PlatformUtils::Color::GREEN);
     std::cout << "▲▼◄►";
     resetColor();
-    std::cout << " - игрок\n";
+    std::cout << " - player\n";
     
-    std::cout << "Враги: ";
+    std::cout << "Enemies: ";
     setColor(PlatformUtils::Color::RED);
     std::cout << "E";
     resetColor();
-    std::cout << " - обычный, ";
+    std::cout << " - normal, ";
     setColor(PlatformUtils::Color::RED);
     std::cout << "F";
     resetColor();
-    std::cout << " - быстрый, ";
+    std::cout << " - fast, ";
     setColor(PlatformUtils::Color::RED);
     std::cout << "D";
     resetColor();
-    std::cout << " - сильный, ";
+    std::cout << " - strong, ";
     setColor(PlatformUtils::Color::RED);
     std::cout << "A";
     resetColor();
-    std::cout << " - бронированный\n";
+    std::cout << " - armored\n";
     
     // Препятствия
-    std::cout << "Препятствия: ";
+    std::cout << "Obstacles: ";
     std::cout << graphicsMap.find('#')->second.first;
-    std::cout << " - кирпич, ";
+    std::cout << " - brick, ";
     std::cout << graphicsMap.find('X')->second.first;
-    std::cout << " - сталь, ";
+    std::cout << " - steel, ";
     setColor(PlatformUtils::Color::BLUE);
     std::cout << graphicsMap.find('~')->second.first;
     resetColor();
-    std::cout << " - вода, ";
+    std::cout << " - water, ";
     setColor(PlatformUtils::Color::GREEN);
     std::cout << graphicsMap.find('*')->second.first;
     resetColor();
-    std::cout << " - лес\n";
+    std::cout << " - forest\n";
     
     // Бонусы
-    std::cout << "Бонусы: ";
+    std::cout << "Bonuses: ";
     setColor(PlatformUtils::Color::MAGENTA);
     std::cout << graphicsMap.find('S')->second.first;
     resetColor();
-    std::cout << " - щит, ";
+    std::cout << " - shield, ";
     setColor(PlatformUtils::Color::MAGENTA);
     std::cout << graphicsMap.find('K')->second.first;
     resetColor();
-    std::cout << " - двойной огонь, ";
+    std::cout << " - double fire, ";
     setColor(PlatformUtils::Color::MAGENTA);
     std::cout << graphicsMap.find('B')->second.first;
     resetColor();
-    std::cout << " - скорость, ";
+    std::cout << " - speed, ";
     setColor(PlatformUtils::Color::MAGENTA);
     std::cout << graphicsMap.find('L')->second.first;
     resetColor();
-    std::cout << " - +1 жизнь\n";
+    std::cout << " - +1 life\n";
 
-    std::cout << "Взрывы: ";
+    std::cout << "Explosions: ";
     setColor(PlatformUtils::Color::YELLOW);
     std::cout << graphicsMap.find('O')->second.first;
     resetColor();
-    std::cout << " - взрыв\n";
+    std::cout << " - explosion\n";
 
 }
 
 bool ConsoleRenderer::drawMenu() {
     if (!checkTerminalSize()) {
-        drawErrorMessage("Размер терминала слишком мал для отображения меню");
+        drawErrorMessage("Terminal size too small. Increase window size.");
         return false;
     }
 
     clearScreen();
     
     std::cout << "=================================\n";
-    std::cout << "        ТАНКОВЫЙ СИМУЛЯТОР       \n";
+    std::cout << "        TANK SIMULATOR          \n";
     std::cout << "=================================\n\n";
     
     std::cout << "---------------------------------\n";
-    std::cout << "          ГЛАВНОЕ МЕНЮ          \n";
+    std::cout << "          MAIN MENU             \n";
     std::cout << "---------------------------------\n\n";
-    
-    std::cout << "   [ENTER] - Начать игру\n";
-    std::cout << "   [M] - Настройки\n";
-    std::cout << "   [Q] - Выход\n\n";
-    
+    std::cout << "   [ENTER] - Start Game\n";
+    std::cout << "   [M] - Settings\n";
+    std::cout << "   [Q] - Exit\n\n";
     std::cout << "---------------------------------\n";
-    std::cout << "        УПРАВЛЕНИЕ В ИГРЕ       \n";
+    std::cout << "        IN-GAME CONTROLS        \n";
     std::cout << "---------------------------------\n\n";
-    
-    std::cout << "   Движение: WASD или стрелки\n";
-    std::cout << "   Выстрел: SPACE или F\n";
-    std::cout << "   Пауза: P\n";
-    std::cout << "   Меню: M\n";
-    std::cout << "   Выход: Q\n\n";
+    std::cout << "   Movement: WASD or arrow keys\n";
+    std::cout << "   Fire: SPACE or F\n";
+    std::cout << "   Pause: P\n";
+    std::cout << "   Menu: M\n";
+    std::cout << "   Exit: Q\n\n";
 
     return true;
 }
 
 bool ConsoleRenderer::drawPauseScreen() {
     if (!checkTerminalSize()) {
-        drawErrorMessage("Размер терминала слишком мал для отображения меню");
+        drawErrorMessage("Terminal size too small. Increase window size.");
         return false;
     }
 
     clearScreen();
     
     std::cout << "=================================\n";
-    std::cout << "           ПАУЗА                \n";
+    std::cout << "            PAUSED              \n";
     std::cout << "=================================\n\n";
-    
-    std::cout << "    Игра приостановлена\n\n";
-    
+    std::cout << "    Game is paused\n\n";
     std::cout << "---------------------------------\n";
-    std::cout << "   [P] или [ENTER] - Продолжить\n";
-    std::cout << "   [M] - Главное меню\n";
-    std::cout << "   [Q] - Выход\n";
+    std::cout << "   [P] or [ENTER] - Continue\n";
+    std::cout << "   [M] - Main Menu\n";
+    std::cout << "   [Q] - Exit\n";
     std::cout << "---------------------------------\n\n";
-    
+
     std::cout << "=================================\n";
 
     return true;
@@ -439,26 +432,24 @@ bool ConsoleRenderer::drawPauseScreen() {
 
 bool ConsoleRenderer::drawGameOver(int score) {
     if (!checkTerminalSize()) {
-        drawErrorMessage("Размер терминала слишком мал для отображения меню");
+        drawErrorMessage("Terminal size too small. Increase window size.");
         return false;
     }
 
     clearScreen();
     
     std::cout << "=================================\n";
-    std::cout << "         ИГРА ОКОНЧЕНА          \n";
+    std::cout << "          GAME OVER             \n";
     std::cout << "=================================\n\n";
-    
-    std::cout << "    Ваш счет: " << score << "\n\n";
-    
+    std::cout << "    Your score: " << score << "\n\n";
     std::cout << "---------------------------------\n";
-    std::cout << "   [ENTER] - Новая игра\n";
-    std::cout << "   [M] - Главное меню\n";
-    std::cout << "   [Q] - Выход\n";
+    std::cout << "   [ENTER] - New Game\n";
+    std::cout << "   [M] - Main Menu\n";
+    std::cout << "   [Q] - Exit\n";
     std::cout << "---------------------------------\n\n";
-    
+
     std::cout << "=================================\n";
-    std::cout << "  Спасибо за игру!              \n";
+    std::cout << "  Thank you for playing!        \n";
     std::cout << "=================================\n";
 
     return true;
@@ -466,65 +457,58 @@ bool ConsoleRenderer::drawGameOver(int score) {
 
 bool ConsoleRenderer::drawSettings() {
     if (!checkTerminalSize()) {
-        drawErrorMessage("Размер терминала слишком мал для отображения меню");
+        drawErrorMessage("Terminal size too small. Increase window size.");
         return false;
     }
 
     clearScreen();
     
     std::cout << "=================================\n";
-    std::cout << "           НАСТРОЙКИ            \n";
+    std::cout << "           SETTINGS             \n";
     std::cout << "=================================\n\n";
-    
-    std::cout << "   Настройки управления:\n\n";
-    
-    std::cout << "   Движение вверх: W / Стрелка вверх\n";
-    std::cout << "   Движение вниз: S / Стрелка вниз\n";
-    std::cout << "   Движение влево: A / Стрелка влево\n";
-    std::cout << "   Движение вправо: D / Стрелка вправо\n";
-    std::cout << "   Выстрел: SPACE / F\n";
-    std::cout << "   Пауза: P\n";
-    std::cout << "   Меню: M\n\n";
-    
-    std::cout << "   Настройки игры:\n\n";
+    std::cout << "   Control Settings:\n\n";
+    std::cout << "   Move Up: W / Up Arrow\n";
+    std::cout << "   Move Down: S / Down Arrow\n";
+    std::cout << "   Move Left: A / Left Arrow\n";
+    std::cout << "   Move Right: D / Right Arrow\n";
+    std::cout << "   Fire: SPACE / F\n";
+    std::cout << "   Pause: P\n";
+    std::cout << "   Menu: M\n\n";
+    std::cout << "   Game Settings:\n\n";
 
     return true;
 }
 
 bool ConsoleRenderer::drawMapSelection(const MapInfo& currentMap, int currentIndex, int totalMaps) {
     if (!checkTerminalSize()) {
-        drawErrorMessage("Размер терминала слишком мал для отображения меню");
+        drawErrorMessage("Terminal size too small. Increase window size.");
         return false;
     }
 
     clearScreen();
     
     std::cout << "=================================\n";
-    std::cout << "        ВЫБОР КАРТЫ             \n";
+    std::cout << "         MAP SELECTION          \n";
     std::cout << "=================================\n\n";
-    
-    std::cout << "   Текущая карта: " << currentMap.displayName << "\n";
+    std::cout << "   Current Map: " << currentMap.displayName << "\n";
     std::cout << "   " << currentMap.description << "\n";
-    std::cout << "   Карта " << (currentIndex + 1) << " из " << totalMaps << "\n\n";
-    
+    std::cout << "   Map " << (currentIndex + 1) << " of " << totalMaps << "\n\n";
     std::cout << "---------------------------------\n";
-    std::cout << "        ПРЕВЬЮ КАРТЫ            \n";
+    std::cout << "         MAP PREVIEW            \n";
     std::cout << "---------------------------------\n";
     
     // Рисуем превью карты
     drawMapPreview(currentMap);
     
     std::cout << "\n---------------------------------\n";
-    std::cout << "          УПРАВЛЕНИЕ           \n";
+    std::cout << "          CONTROLS              \n";
     std::cout << "---------------------------------\n\n";
-    
-    std::cout << "   [A] - Предыдущая карта\n";
-    std::cout << "   [D] - Следующая карта\n";
-    std::cout << "   [F] - Случайная генерация\n";
-    std::cout << "   [ENTER] - Начать игру\n";
-    std::cout << "   [M] - Главное меню\n";
-    std::cout << "   [Q] - Выход\n\n";
-    
+    std::cout << "   [A] - Previous Map\n";
+    std::cout << "   [D] - Next Map\n";
+    std::cout << "   [F] - Random Generation\n";
+    std::cout << "   [ENTER] - Start Game\n";
+    std::cout << "   [M] - Main Menu\n";
+    std::cout << "   [Q] - Exit\n\n";
     std::cout << "=================================\n";
 
     return true;
@@ -566,7 +550,7 @@ void ConsoleRenderer::drawMapPreview(const MapInfo& map) {
     std::cout << "\n";
     
     // Статистика карты
-    std::cout << "   Размер: " << map.width << "x" << map.height;
+    std::cout << "   Size: " << map.width << "x" << map.height;
     
     // Подсчитываем объекты
     int walls = 0, water = 0, forest = 0, enemies = 0, empty = 0;
@@ -580,50 +564,44 @@ void ConsoleRenderer::drawMapPreview(const MapInfo& map) {
         }
     }
     
-    std::cout << " | Пустых клеток: " << empty << "\n";
-    std::cout << "   Объекты: " << walls << " стен, " << water << " воды, " << forest << " леса, " << enemies << " врагов\n";
+    std::cout << " | Empty cells: " << empty << "\n";
+    std::cout << "   Objects: " << walls << " walls, " << water << " water, " << forest << " forest, " << enemies << " enemies\n";
 }
 
 bool ConsoleRenderer::drawLevelComplete(int score, int level, int lives) {
     if (!checkTerminalSize()) {
-        drawErrorMessage("Размер терминала слишком мал для отображения меню");
+        drawErrorMessage("Terminal size too small. Increase window size.");
         return false;
     }
 
     clearScreen();
     
     std::cout << "=================================\n";
-    std::cout << "         УРОВЕНЬ " << level << " ПРОЙДЕН!      \n";
+    std::cout << "         LEVEL " << level << " COMPLETED!     \n";
     std::cout << "=================================\n\n";
-    
-    std::cout << "        СТАТИСТИКА УРОВНЯ       \n";
+    std::cout << "        LEVEL STATISTICS        \n";
     std::cout << "---------------------------------\n\n";
-    
-    std::cout << "   Очков заработано: " << score << "\n";
-    std::cout << "   Осталось жизней: " << lives << "\n\n";
+    std::cout << "   Points earned: " << score << "\n";
+    std::cout << "   Lives remaining: " << lives << "\n\n";
     
     // Бонусы за прохождение уровня
     int levelBonus = level * 100;
     int livesBonus = lives * 25;
     int totalBonus = levelBonus + livesBonus;
     
-    std::cout << "        БОНУСЫ ЗА УРОВЕНЬ       \n";
+    std::cout << "        LEVEL BONUSES           \n";
     std::cout << "---------------------------------\n\n";
-    
-    std::cout << "   За уровень " << level << ": " << levelBonus << " очков\n";
-    std::cout << "   За оставшиеся жизни: " << livesBonus << " очков\n";
-    std::cout << "   ОБЩИЙ БОНУС: " << totalBonus << " очков\n\n";
-    
-    std::cout << "   НОВЫЙ СЧЕТ: " << (score + totalBonus) << " очков\n\n";
-    
+    std::cout << "   For level " << level << ": " << levelBonus << " points\n";
+    std::cout << "   For remaining lives: " << livesBonus << " points\n";
+    std::cout << "   TOTAL BONUS: " << totalBonus << " points\n\n";
+    std::cout << "   NEW SCORE: " << (score + totalBonus) << " points\n\n";
     std::cout << "---------------------------------\n";
-    std::cout << "   [ENTER] - Следующий уровень\n";
-    std::cout << "   [M] - Главное меню\n";
-    std::cout << "   [Q] - Выход\n";
+    std::cout << "   [ENTER] - Next Level\n";
+    std::cout << "   [M] - Main Menu\n";
+    std::cout << "   [Q] - Exit\n";
     std::cout << "---------------------------------\n\n";
-    
     std::cout << "=================================\n";
-    std::cout << "  Готовьтесь к уровню " << (level + 1) << "!\n";
+    std::cout << "  Prepare for level " << (level + 1) << "!\n";
     std::cout << "=================================\n";
 
     return true;

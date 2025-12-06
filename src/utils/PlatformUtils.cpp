@@ -48,16 +48,16 @@ void PlatformUtils::showResizeMessage(int requiredWidth, int requiredHeight) {
     
     clearScreen();
     std::cout << "============================================\n";
-    std::cout << "        НЕДОСТАТОЧНЫЙ РАЗМЕР ТЕРМИНАЛА      \n";
+    std::cout << "        TERMINAL SIZE TOO SMALL            \n";
     std::cout << "============================================\n\n";
     
-    std::cout << "Текущий размер: " << currentWidth << "x" << currentHeight << "\n";
-    std::cout << "Требуемый размер: " << requiredWidth << "x" << requiredHeight << "\n\n";
-    
-    std::cout << "Пожалуйста, увеличьте размер окна терминала\n";
-    std::cout << "и перезапустите игру.\n\n";
-    
-    std::cout << "Нажмите enter для выхода...";
+    std::cout << "Current size: " << currentWidth << "x" << currentHeight << "\n";
+    std::cout << "Required size: " << requiredWidth << "x" << requiredHeight << "\n\n";
+
+    std::cout << "Please increase the terminal window size\n";
+    std::cout << "and restart the game.\n\n";
+
+    std::cout << "Press enter to exit...";
     std::cin.get();
 }
 

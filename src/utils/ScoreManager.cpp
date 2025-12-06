@@ -14,11 +14,11 @@ ScoreManager::ScoreManager(const std::string& filename) : scoreFile(filename) {
 void ScoreManager::addScore(int score) {
     if (score <= 0) return;
     
-    std::cout << "Добавление счета в таблицу рекордов: " << score << std::endl;
+    std::cout << "Adding score to high scores table: " << score << std::endl;
     
     // Проверяем, является ли счет рекордом
     if (!isHighScore(score)) {
-        std::cout << "Счет " << score << " не является рекордом." << std::endl;
+        std::cout << "Score " << score << " is not a high score." << std::endl;
         return;
     }
     
@@ -35,7 +35,7 @@ void ScoreManager::addScore(int score) {
     
     saveScores();
     
-    std::cout << "Обновленная таблица рекордов: ";
+    std::cout << "Updated high scores table: ";
     for (int s : highScores) {
         std::cout << s << " ";
     }
@@ -60,9 +60,9 @@ void ScoreManager::saveScores() {
             file << score << std::endl;
         }
         file.close();
-        std::cout << "Рекорды сохранены в файл: " << scoreFile << std::endl;
+        std::cout << "High scores saved to file: " << scoreFile << std::endl;
     } else {
-        std::cerr << "Ошибка: не удалось открыть файл для сохранения рекордов: " << scoreFile << std::endl;
+        std::cerr << "Error: failed to open file for saving high scores: " << scoreFile << std::endl;
     }
 }
 
@@ -78,9 +78,10 @@ void ScoreManager::loadScores() {
             }
         }
         file.close();
-        std::cout << "Загружено рекордов: " << highScores.size() << std::endl;
+        std::cout << "High scores loaded: " << highScores.size() << std::endl;
     } else {
-        std::cout << "Файл рекордов не найден, будет создан новый." << std::endl;
+        std::cout << "High scores file not found, a new one will be created." << std::endl;
+
     }
     
     std::sort(highScores.rbegin(), highScores.rend());
@@ -94,5 +95,5 @@ void ScoreManager::loadScores() {
 void ScoreManager::clearScores() {
     highScores.clear();
     saveScores();
-    std::cout << "Таблица рекордов очищена." << std::endl;
+    std::cout << "High scores table cleared." << std::endl;
 }
