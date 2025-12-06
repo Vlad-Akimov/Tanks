@@ -133,15 +133,39 @@ void GameWorld::checkProjectileCollisions() {
         for (const auto& point : trajectory) {
             // Проверяем выход за границы поля
             if (point.x < 0 || point.x >= fieldWidth || point.y < 0 || point.y >= fieldHeight) {
-                // Создаем взрыв на последней валидной позиции перед границей
+                // Создаем взрыв на границе поля или последней валидной позиции
+                Point explosionPoint = point;
+                
+                // Корректируем координаты для создания взрыва на границе
+                if (point.x < 0) {
+                    explosionPoint.x = 0;
+                } else if (point.x >= fieldWidth) {
+                    explosionPoint.x = fieldWidth - 1;
+                }
+                
+                if (point.y < 0) {
+                    explosionPoint.y = 0;
+                } else if (point.y >= fieldHeight) {
+                    explosionPoint.y = fieldHeight - 1;
+                }
+                
+                // Если есть предыдущая валидная точка и она ближе к границе, используем ее
                 if (hasPreviousPoint) {
-                    explosions.emplace_back(std::make_unique<Explosion>(lastValidPoint));
+                    // Проверяем, какая точка ближе к границе
+                    int distLastToBorder = abs(lastValidPoint.x - explosionPoint.x) + 
+                                          abs(lastValidPoint.y - explosionPoint.y);
+                    int distCurrentToBorder = abs(point.x - explosionPoint.x) + 
+                                             abs(point.y - explosionPoint.y);
+                    
+                    // Используем точку, которая ближе к границе
+                    if (distLastToBorder < distCurrentToBorder) {
+                        explosions.emplace_back(std::make_unique<Explosion>(lastValidPoint));
+                    } else {
+                        explosions.emplace_back(std::make_unique<Explosion>(explosionPoint));
+                    }
                 } else {
                     // Если первая точка уже за границей, создаем взрыв на границе
-                    Point p = point;
-                    p.x = std::max(0, std::min(p.x, fieldWidth - 1));
-                    p.y = std::max(0, std::min(p.y, fieldHeight - 1));
-                    explosions.emplace_back(std::make_unique<Explosion>(p));
+                    explosions.emplace_back(std::make_unique<Explosion>(explosionPoint));
                 }
                 hit = true;
                 break;

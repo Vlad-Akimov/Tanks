@@ -47,7 +47,6 @@ char Projectile::getSymbol() const {
 // Вычисление всех точек траектории
 std::vector<Point> Projectile::getTrajectory(int maxRange) const {
     std::vector<Point> trajectory;
-    Point currentPos = position;
     
     for (int i = 0; i <= maxRange; i++) {
         Point point = position;
@@ -67,11 +66,7 @@ std::vector<Point> Projectile::getTrajectory(int maxRange) const {
                 break;
         }
         
-        // Проверяем выход за границы
-        if (point.x < 0 || point.y < 0) break;
-        
         trajectory.push_back(point);
-        currentPos = point;
     }
     
     return trajectory;
