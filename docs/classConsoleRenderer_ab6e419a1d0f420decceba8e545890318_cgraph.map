@@ -1,16 +1,18 @@
 <map id="ConsoleRenderer::drawMapPreview" name="ConsoleRenderer::drawMapPreview">
-<area shape="rect" id="Node000001" title="Draws map preview for selection screen." alt="" coords="5,73,207,113"/>
-<area shape="rect" id="Node000002" href="$ConsoleRenderer_8cpp.html#a279be60aa96dcc35cae7933c2617f6d6" title=" " alt="" coords="303,5,431,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,70,254,39,289,31,291,36,255,45,162,75"/>
-<area shape="rect" id="Node000003" href="$classConsoleRenderer.html#a39097953ecd72be19860424c9d00b0ea" title="Resets terminal color to default." alt="" coords="263,55,471,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="207,80,249,76,250,81,207,86"/>
-<area shape="rect" id="Node000006" href="$classConsoleRenderer.html#af06444dbf726424a13127fd4f3a70a8d" title="Sets terminal text color." alt="" coords="528,105,723,131"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="207,95,514,110,514,115,207,100"/>
-<area shape="rect" id="Node000007" href="$classPlatformUtils.html#a964fb97fe6351330adbcf813a9706eb6" title="Checks if terminal supports Unicode." alt="" coords="255,156,480,181"/>
-<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="175,110,255,134,308,149,307,155,254,139,173,115"/>
-<area shape="rect" id="Node000004" href="$classPlatformUtils.html#ae3607ef4c4fbee33349ec982eda7bf07" title="Resets terminal color to default." alt="" coords="534,56,717,81"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="471,65,520,65,520,71,471,71"/>
-<area shape="rect" id="Node000005" href="$classPlatformUtils.html#a48de38e18726881bbe61e398ebabb97e" title="Sets terminal text color." alt="" coords="771,81,941,107"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="717,76,757,81,757,86,716,81"/>
-<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="722,105,756,102,757,107,723,111"/>
+<area shape="rect" id="Node000001" title="Draws map preview for selection screen." alt="" coords="5,112,207,152"/>
+<area shape="rect" id="Node000002" href="$classConsoleRenderer.html#a209136c99544bd8fa46cc9860cedab1c" title="Calculates horizontal offset to center content based on terminal width." alt="" coords="267,5,467,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,110,193,82,254,55,275,47,277,52,256,60,196,87,143,114"/>
+<area shape="rect" id="Node000003" href="$ConsoleRenderer_8cpp.html#a279be60aa96dcc35cae7933c2617f6d6" title=" " alt="" coords="303,70,431,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="206,110,289,95,290,100,207,116"/>
+<area shape="rect" id="Node000004" href="$classConsoleRenderer.html#a39097953ecd72be19860424c9d00b0ea" title="Resets terminal color to default." alt="" coords="263,119,471,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="207,129,249,129,249,135,207,135"/>
+<area shape="rect" id="Node000007" href="$classConsoleRenderer.html#af06444dbf726424a13127fd4f3a70a8d" title="Sets terminal text color." alt="" coords="528,170,723,195"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="207,148,255,155,390,168,514,175,514,181,389,173,254,160,207,153"/>
+<area shape="rect" id="Node000008" href="$classPlatformUtils.html#a964fb97fe6351330adbcf813a9706eb6" title="Checks if terminal supports Unicode." alt="" coords="255,221,480,246"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="147,150,256,199,303,214,301,219,254,204,145,155"/>
+<area shape="rect" id="Node000005" href="$classPlatformUtils.html#ae3607ef4c4fbee33349ec982eda7bf07" title="Resets terminal color to default." alt="" coords="534,121,717,146"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="471,130,520,130,520,135,471,135"/>
+<area shape="rect" id="Node000006" href="$classPlatformUtils.html#a48de38e18726881bbe61e398ebabb97e" title="Sets terminal text color." alt="" coords="771,146,941,171"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="717,141,757,145,757,150,716,146"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="722,170,756,166,757,172,723,175"/>
 </map>

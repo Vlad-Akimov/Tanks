@@ -5,3 +5,4 @@ bin/
 Makefile
 doxygen.log
 Doxyfile
+mainpage.md

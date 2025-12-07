@@ -5,7 +5,7 @@ var searchData=
   ['savesettings_2',['savesettings',['../classSettingsManager.html#ab58d13c6d172b64182706bc353b58ec7',1,'SettingsManager::saveSettings()'],['../classGameController.html#a7514ccf5a5be758a7e95bdc91c59b95f',1,'GameController::saveSettings()']]],
   ['score_3',['score',['../classPlayerTank.html#a654d51b7191b072d5cfb812e65f0295f',1,'PlayerTank']]],
   ['scorefile_4',['scoreFile',['../classScoreManager.html#a17d95e6a3e3dca6dfab278de5eef72bc',1,'ScoreManager']]],
-  ['scoremanager_5',['scoremanager',['../classScoreManager.html',1,'ScoreManager'],['../classGameController.html#a2a326d8846f1f2f418e506b5e9fcf9dc',1,'GameController::scoreManager'],['../classScoreManager.html#a8952a17614ae60b3191a812728bd55fc',1,'ScoreManager::ScoreManager(const std::string &amp;filename)'],['../classScoreManager.html#a4f3866ff832127664543349da5c4fbf4',1,'ScoreManager::ScoreManager()']]],
+  ['scoremanager_5',['scoremanager',['../classScoreManager.html',1,'ScoreManager'],['../classScoreManager.html#a8952a17614ae60b3191a812728bd55fc',1,'ScoreManager::ScoreManager(const std::string &amp;filename)'],['../classScoreManager.html#a4f3866ff832127664543349da5c4fbf4',1,'ScoreManager::ScoreManager()'],['../classGameController.html#a2a326d8846f1f2f418e506b5e9fcf9dc',1,'GameController::scoreManager']]],
   ['scoremanager_2ecpp_6',['ScoreManager.cpp',['../ScoreManager_8cpp.html',1,'']]],
   ['scoremanager_2eh_7',['ScoreManager.h',['../ScoreManager_8h.html',1,'']]],
   ['scoresaved_8',['scoreSaved',['../classGameController.html#afda63abe53962add46c79e230a0ef280',1,'GameController']]],

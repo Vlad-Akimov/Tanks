@@ -46,7 +46,7 @@
   </g>
 </defs>
 <script type="application/ecmascript">
-var viewWidth = 1881;
+var viewWidth = 1884;
 var viewHeight = 160;
 var sectionId = 'dynsection-16';
 </script>
@@ -58,8 +58,8 @@ var sectionId = 'dynsection-16';
 <g id="Node000001" class="node">
 <title>Node1</title>
 <g id="a_Node000001"><a xlink:title="Checks if terminal supports Unicode.">
-<polygon fill="#999999" stroke="#666666" points="1873,-93.14 1704,-93.14 1704,-74.14 1873,-74.14 1873,-93.14"/>
-<text text-anchor="middle" x="1788.5" y="-81.14" font-family="Helvetica,sans-Serif" font-size="10.00">PlatformUtils::supportsUnicode</text>
+<polygon fill="#999999" stroke="#666666" points="1876,-93.14 1707,-93.14 1707,-74.14 1876,-74.14 1876,-93.14"/>
+<text text-anchor="middle" x="1791.5" y="-81.14" font-family="Helvetica,sans-Serif" font-size="10.00">PlatformUtils::supportsUnicode</text>
 </a>
 </g>
 </g>
@@ -67,9 +67,9 @@ var sectionId = 'dynsection-16';
 <g id="Node000002" class="node">
 <title>Node2</title>
 <g id="a_Node000002"><a xlink:href="classConsoleRenderer.html#ab6e419a1d0f420decceba8e545890318" target="_top" xlink:title="Draws map preview for selection screen.">
-<polygon fill="white" stroke="#666666" points="1660,-34.64 1509,-34.64 1509,-4.64 1660,-4.64 1660,-34.64"/>
-<text text-anchor="start" x="1517" y="-22.64" font-family="Helvetica,sans-Serif" font-size="10.00">ConsoleRenderer::drawMap</text>
-<text text-anchor="middle" x="1584.5" y="-11.64" font-family="Helvetica,sans-Serif" font-size="10.00">Preview</text>
+<polygon fill="white" stroke="#666666" points="1661.5,-34.64 1510.5,-34.64 1510.5,-4.64 1661.5,-4.64 1661.5,-34.64"/>
+<text text-anchor="start" x="1518.5" y="-22.64" font-family="Helvetica,sans-Serif" font-size="10.00">ConsoleRenderer::drawMap</text>
+<text text-anchor="middle" x="1586" y="-11.64" font-family="Helvetica,sans-Serif" font-size="10.00">Preview</text>
 </a>
 </g>
 </g>
@@ -77,18 +77,17 @@ var sectionId = 'dynsection-16';
 <g id="edge1_Node000001_Node000002" class="edge">
 <title>Node1&#45;&gt;Node2</title>
 <g id="a_edge1_Node000001_Node000002"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1747.5,-70.97C1714.53,-60.53 1667.7,-45.69 1632.86,-34.65"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1746.67,-74.38 1757.26,-74.06 1748.78,-67.71 1746.67,-74.38"/>
+<path fill="none" stroke="#63b8ff" d="M1753.5,-70.78C1729.96,-62.72 1698.79,-52.26 1671,-43.64 1661.29,-40.63 1650.91,-37.56 1640.88,-34.65"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1752.49,-74.14 1763.08,-74.08 1754.77,-67.52 1752.49,-74.14"/>
 </a>
 </g>
 </g>
 <!-- Node12 -->
 <g id="Node000012" class="node">
 <title>Node12</title>
-<g id="a_Node000012"><a xlink:href="classConsoleRenderer.html#ae0a5ec8d9b0ab1252c3a8a9eae7bceaa" target="_top" xlink:title="Draws symbol legend explaining game symbols.">
-<polygon fill="white" stroke="#666666" points="1668,-120.64 1501,-120.64 1501,-90.64 1668,-90.64 1668,-120.64"/>
-<text text-anchor="start" x="1509" y="-108.64" font-family="Helvetica,sans-Serif" font-size="10.00">ConsoleRenderer::drawSymbol</text>
-<text text-anchor="middle" x="1584.5" y="-97.64" font-family="Helvetica,sans-Serif" font-size="10.00">Legend</text>
+<g id="a_Node000012"><a xlink:href="classConsoleRenderer.html#a0e17aa687bd8d7381b2bf8425b2a9709" target="_top" xlink:title="Draws settings screen.">
+<polygon fill="white" stroke="#666666" points="1671,-72.14 1501,-72.14 1501,-53.14 1671,-53.14 1671,-72.14"/>
+<text text-anchor="middle" x="1586" y="-60.14" font-family="Helvetica,sans-Serif" font-size="10.00">ConsoleRenderer::drawSettings</text>
 </a>
 </g>
 </g>
@@ -96,44 +95,45 @@ var sectionId = 'dynsection-16';
 <g id="edge16_Node000001_Node000012" class="edge">
 <title>Node1&#45;&gt;Node12</title>
 <g id="a_edge16_Node000001_Node000012"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1693.84,-93.85C1685.24,-94.78 1676.57,-95.73 1668.08,-96.65"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1694.32,-97.31 1703.88,-92.75 1693.56,-90.35 1694.32,-97.31"/>
-</a>
-</g>
-</g>
-<!-- Node13 -->
-<g id="Node000013" class="node">
-<title>Node13</title>
-<g id="a_Node000013"><a xlink:href="classConsoleRenderer.html#ab34fa7af4ede79de3951f1d5271d7a27" target="_top" xlink:title="Renders the game world to console.">
-<polygon fill="white" stroke="#666666" points="1458,-152.14 1321,-152.14 1321,-133.14 1458,-133.14 1458,-152.14"/>
-<text text-anchor="middle" x="1389.5" y="-140.14" font-family="Helvetica,sans-Serif" font-size="10.00">ConsoleRenderer::render</text>
-</a>
-</g>
-</g>
-<!-- Node1&#45;&gt;Node13 -->
-<g id="edge19_Node000001_Node000013" class="edge">
-<title>Node1&#45;&gt;Node13</title>
-<g id="a_edge19_Node000001_Node000013"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1759.09,-97.57C1735.36,-108.46 1700.31,-122.85 1668,-129.64 1597.56,-144.45 1514.93,-146.41 1458.27,-145.47"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1760.64,-100.7 1768.22,-93.29 1757.67,-94.36 1760.64,-100.7"/>
+<path fill="none" stroke="#63b8ff" d="M1696.89,-73.98C1688.36,-73.1 1679.75,-72.22 1671.31,-71.34"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1696.54,-77.47 1706.85,-75.01 1697.26,-70.5 1696.54,-77.47"/>
 </a>
 </g>
 </g>
 <!-- Node14 -->
 <g id="Node000014" class="node">
 <title>Node14</title>
-<g id="a_Node000014"><a xlink:href="classGameController.html#a24f5cae258418d4a5934e6f412c28945" target="_top" xlink:title="Displays and manages the settings menu.">
-<polygon fill="white" stroke="#666666" points="1265,-70.14 1100,-70.14 1100,-51.14 1265,-51.14 1265,-70.14"/>
-<text text-anchor="middle" x="1182.5" y="-58.14" font-family="Helvetica,sans-Serif" font-size="10.00">GameController::showSettings</text>
+<g id="a_Node000014"><a xlink:href="classConsoleRenderer.html#ae0a5ec8d9b0ab1252c3a8a9eae7bceaa" target="_top" xlink:title="Draws symbol legend explaining game symbols.">
+<polygon fill="white" stroke="#666666" points="1669.5,-120.64 1502.5,-120.64 1502.5,-90.64 1669.5,-90.64 1669.5,-120.64"/>
+<text text-anchor="start" x="1510.5" y="-108.64" font-family="Helvetica,sans-Serif" font-size="10.00">ConsoleRenderer::drawSymbol</text>
+<text text-anchor="middle" x="1586" y="-97.64" font-family="Helvetica,sans-Serif" font-size="10.00">Legend</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node14 -->
-<g id="edge20_Node000001_Node000014" class="edge">
+<g id="edge19_Node000001_Node000014" class="edge">
 <title>Node1&#45;&gt;Node14</title>
-<g id="a_edge20_Node000001_Node000014"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1693.78,-80.08C1576.35,-75.6 1377.02,-68.01 1265.42,-63.76"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1693.71,-83.57 1703.83,-80.46 1693.97,-76.58 1693.71,-83.57"/>
+<g id="a_edge19_Node000001_Node000014"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M1696.71,-93.78C1687.69,-94.76 1678.58,-95.74 1669.67,-96.71"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1697.28,-97.24 1706.85,-92.69 1696.53,-90.28 1697.28,-97.24"/>
+</a>
+</g>
+</g>
+<!-- Node15 -->
+<g id="Node000015" class="node">
+<title>Node15</title>
+<g id="a_Node000015"><a xlink:href="classConsoleRenderer.html#ab34fa7af4ede79de3951f1d5271d7a27" target="_top" xlink:title="Renders the game world to console.">
+<polygon fill="white" stroke="#666666" points="1458,-152.14 1321,-152.14 1321,-133.14 1458,-133.14 1458,-152.14"/>
+<text text-anchor="middle" x="1389.5" y="-140.14" font-family="Helvetica,sans-Serif" font-size="10.00">ConsoleRenderer::render</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node15 -->
+<g id="edge22_Node000001_Node000015" class="edge">
+<title>Node1&#45;&gt;Node15</title>
+<g id="a_edge22_Node000001_Node000015"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M1762.09,-97.57C1738.36,-108.46 1703.32,-122.86 1671,-129.64 1599.43,-144.66 1515.43,-146.55 1458.14,-145.53"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1763.64,-100.71 1771.22,-93.3 1760.68,-94.37 1763.64,-100.71"/>
 </a>
 </g>
 </g>
@@ -151,8 +151,8 @@ var sectionId = 'dynsection-16';
 <g id="edge2_Node000002_Node000003" class="edge">
 <title>Node2&#45;&gt;Node3</title>
 <g id="a_edge2_Node000002_Node000003"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1498.72,-19.64C1487.57,-19.64 1476.21,-19.64 1465.24,-19.64"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1498.88,-23.14 1508.88,-19.64 1498.88,-16.14 1498.88,-23.14"/>
+<path fill="none" stroke="#63b8ff" d="M1500.21,-19.64C1488.58,-19.64 1476.7,-19.64 1465.26,-19.64"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1500.36,-23.14 1510.36,-19.64 1500.36,-16.14 1500.36,-23.14"/>
 </a>
 </g>
 </g>
@@ -346,30 +346,48 @@ var sectionId = 'dynsection-16';
 </a>
 </g>
 </g>
+<!-- Node13 -->
+<g id="Node000013" class="node">
+<title>Node13</title>
+<g id="a_Node000013"><a xlink:href="classGameController.html#a24f5cae258418d4a5934e6f412c28945" target="_top" xlink:title="Displays and manages the settings menu.">
+<polygon fill="white" stroke="#666666" points="1265,-70.14 1100,-70.14 1100,-51.14 1265,-51.14 1265,-70.14"/>
+<text text-anchor="middle" x="1182.5" y="-58.14" font-family="Helvetica,sans-Serif" font-size="10.00">GameController::showSettings</text>
+</a>
+</g>
+</g>
 <!-- Node12&#45;&gt;Node13 -->
 <g id="edge17_Node000012_Node000013" class="edge">
 <title>Node12&#45;&gt;Node13</title>
 <g id="a_edge17_Node000012_Node000013"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1495.17,-122.58C1476.27,-126.2 1456.95,-129.9 1440.14,-133.13"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1495.84,-126.01 1505,-120.69 1494.52,-119.14 1495.84,-126.01"/>
+<path fill="none" stroke="#63b8ff" d="M1490.48,-62.17C1422.03,-61.83 1330.43,-61.38 1265.15,-61.05"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1490.82,-65.67 1500.83,-62.22 1490.85,-58.67 1490.82,-65.67"/>
 </a>
 </g>
 </g>
-<!-- Node13&#45;&gt;Node6 -->
-<g id="edge18_Node000013_Node000006" class="edge">
-<title>Node13&#45;&gt;Node6</title>
-<g id="a_edge18_Node000013_Node000006"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1310.88,-142.64C1227.97,-142.64 1092.7,-142.64 976,-142.64 976,-142.64 976,-142.64 783,-142.64 648.28,-142.64 611.14,-151.45 481,-116.64 438.19,-105.19 392.05,-80.18 368.43,-66.34"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1310.98,-146.14 1320.98,-142.64 1310.98,-139.14 1310.98,-146.14"/>
-</a>
-</g>
-</g>
-<!-- Node14&#45;&gt;Node9 -->
-<g id="edge21_Node000014_Node000009" class="edge">
-<title>Node14&#45;&gt;Node9</title>
-<g id="a_edge21_Node000014_Node000009"><a xlink:title=" ">
+<!-- Node13&#45;&gt;Node9 -->
+<g id="edge18_Node000013_Node000009" class="edge">
+<title>Node13&#45;&gt;Node9</title>
+<g id="a_edge18_Node000013_Node000009"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M1110.36,-49.57C1086.54,-45.86 1060.21,-41.76 1037.22,-38.18"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="1109.98,-53.05 1120.4,-51.13 1111.06,-46.13 1109.98,-53.05"/>
+</a>
+</g>
+</g>
+<!-- Node14&#45;&gt;Node15 -->
+<g id="edge20_Node000014_Node000015" class="edge">
+<title>Node14&#45;&gt;Node15</title>
+<g id="a_edge20_Node000014_Node000015"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M1495.98,-122.58C1476.94,-126.2 1457.47,-129.9 1440.53,-133.13"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1496.72,-126 1505.89,-120.69 1495.41,-119.12 1496.72,-126"/>
+</a>
+</g>
+</g>
+<!-- Node15&#45;&gt;Node6 -->
+<g id="edge21_Node000015_Node000006" class="edge">
+<title>Node15&#45;&gt;Node6</title>
+<g id="a_edge21_Node000015_Node000006"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M1310.88,-142.64C1227.97,-142.64 1092.7,-142.64 976,-142.64 976,-142.64 976,-142.64 783,-142.64 648.28,-142.64 611.14,-151.45 481,-116.64 438.19,-105.19 392.05,-80.18 368.43,-66.34"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1310.98,-146.14 1320.98,-142.64 1310.98,-139.14 1310.98,-146.14"/>
 </a>
 </g>
 </g>

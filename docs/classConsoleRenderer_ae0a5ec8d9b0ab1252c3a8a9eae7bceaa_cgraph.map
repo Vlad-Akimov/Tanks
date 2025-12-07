@@ -1,16 +1,9 @@
 <map id="ConsoleRenderer::drawSymbolLegend" name="ConsoleRenderer::drawSymbolLegend">
-<area shape="rect" id="Node000001" title="Draws symbol legend explaining game symbols." alt="" coords="5,73,228,113"/>
-<area shape="rect" id="Node000002" href="$ConsoleRenderer_8cpp.html#a279be60aa96dcc35cae7933c2617f6d6" title=" " alt="" coords="325,5,453,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,70,275,39,311,31,312,36,277,45,177,75"/>
-<area shape="rect" id="Node000003" href="$classConsoleRenderer.html#a39097953ecd72be19860424c9d00b0ea" title="Resets terminal color to default." alt="" coords="285,55,493,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="228,80,271,76,271,81,229,85"/>
-<area shape="rect" id="Node000006" href="$classConsoleRenderer.html#af06444dbf726424a13127fd4f3a70a8d" title="Sets terminal text color." alt="" coords="549,105,744,131"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="229,95,536,110,535,115,228,101"/>
-<area shape="rect" id="Node000007" href="$classPlatformUtils.html#a964fb97fe6351330adbcf813a9706eb6" title="Checks if terminal supports Unicode." alt="" coords="276,156,501,181"/>
-<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="190,110,329,150,328,155,188,115"/>
-<area shape="rect" id="Node000004" href="$classPlatformUtils.html#ae3607ef4c4fbee33349ec982eda7bf07" title="Resets terminal color to default." alt="" coords="555,56,738,81"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="493,65,542,65,542,71,493,71"/>
-<area shape="rect" id="Node000005" href="$classPlatformUtils.html#a48de38e18726881bbe61e398ebabb97e" title="Sets terminal text color." alt="" coords="792,81,963,107"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="738,76,779,81,778,86,738,81"/>
-<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="744,105,778,102,778,107,744,111"/>
+<area shape="rect" id="Node000001" title="Draws symbol legend explaining game symbols." alt="" coords="5,63,228,103"/>
+<area shape="rect" id="Node000002" href="$classConsoleRenderer.html#a209136c99544bd8fa46cc9860cedab1c" title="Calculates horizontal offset to center content based on terminal width." alt="" coords="289,5,489,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,60,280,46,281,51,213,65"/>
+<area shape="rect" id="Node000003" href="$ConsoleRenderer_8cpp.html#a279be60aa96dcc35cae7933c2617f6d6" title=" " alt="" coords="325,70,453,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="228,80,311,80,311,85,228,85"/>
+<area shape="rect" id="Node000004" href="$classPlatformUtils.html#a964fb97fe6351330adbcf813a9706eb6" title="Checks if terminal supports Unicode." alt="" coords="276,119,501,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="228,100,305,114,304,120,227,105"/>
 </map>

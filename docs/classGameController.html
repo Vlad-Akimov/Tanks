@@ -291,9 +291,9 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   56</span>        }</div>
 <div class="line"><span class="lineno">   57</span>    }</div>
 <div class="line"><span class="lineno">   58</span>}</div>
-<div class="ttc" id="aclassConsoleRenderer_html_a041e99f6c0427c254b0349b57fbe2a84"><div class="ttname"><a href="classConsoleRenderer.html#a041e99f6c0427c254b0349b57fbe2a84">ConsoleRenderer::clearScreen</a></div><div class="ttdeci">void clearScreen()</div><div class="ttdoc">Clears the terminal screen.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00084">ConsoleRenderer.cpp:84</a></div></div>
+<div class="ttc" id="aclassConsoleRenderer_html_a041e99f6c0427c254b0349b57fbe2a84"><div class="ttname"><a href="classConsoleRenderer.html#a041e99f6c0427c254b0349b57fbe2a84">ConsoleRenderer::clearScreen</a></div><div class="ttdeci">void clearScreen()</div><div class="ttdoc">Clears the terminal screen.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00091">ConsoleRenderer.cpp:91</a></div></div>
 <div class="ttc" id="aclassConsoleRenderer_html_a9576db66ee7dc8d9fdec36f0181b9a12"><div class="ttname"><a href="classConsoleRenderer.html#a9576db66ee7dc8d9fdec36f0181b9a12">ConsoleRenderer::checkTerminalSize</a></div><div class="ttdeci">bool checkTerminalSize()</div><div class="ttdoc">Checks if terminal size meets requirements.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00047">ConsoleRenderer.cpp:47</a></div></div>
-<div class="ttc" id="aclassConsoleRenderer_html_af59760cefd8647cf4b6fe34774cac2c1"><div class="ttname"><a href="classConsoleRenderer.html#af59760cefd8647cf4b6fe34774cac2c1">ConsoleRenderer::drawErrorMessage</a></div><div class="ttdeci">void drawErrorMessage(const std::string &amp;message)</div><div class="ttdoc">Draws an error message about terminal size.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00092">ConsoleRenderer.cpp:92</a></div></div>
+<div class="ttc" id="aclassConsoleRenderer_html_af59760cefd8647cf4b6fe34774cac2c1"><div class="ttname"><a href="classConsoleRenderer.html#af59760cefd8647cf4b6fe34774cac2c1">ConsoleRenderer::drawErrorMessage</a></div><div class="ttdeci">void drawErrorMessage(const std::string &amp;message)</div><div class="ttdoc">Draws an error message about terminal size.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00099">ConsoleRenderer.cpp:99</a></div></div>
 <div class="ttc" id="aclassPlatformUtils_html_a4f63e74483ea78a709c332539f45ac27"><div class="ttname"><a href="classPlatformUtils.html#a4f63e74483ea78a709c332539f45ac27">PlatformUtils::readUTF8Char</a></div><div class="ttdeci">static std::string readUTF8Char()</div><div class="ttdoc">Reads a single UTF-8 character from input.</div><div class="ttdef"><b>Definition</b> <a href="PlatformUtils_8cpp_source.html#l00113">PlatformUtils.cpp:113</a></div></div>
 <div class="ttc" id="aclassPlatformUtils_html_ab1da035f72ad2772a6ec8fbc4b34560a"><div class="ttname"><a href="classPlatformUtils.html#ab1da035f72ad2772a6ec8fbc4b34560a">PlatformUtils::kbhit</a></div><div class="ttdeci">static bool kbhit()</div><div class="ttdoc">Checks if a key has been pressed.</div><div class="ttdef"><b>Definition</b> <a href="PlatformUtils_8cpp_source.html#l00086">PlatformUtils.cpp:86</a></div></div>
 <div class="ttc" id="aclassPlatformUtils_html_abf6e891ecb5147fa3d8583b651642d91"><div class="ttname"><a href="classPlatformUtils.html#abf6e891ecb5147fa3d8583b651642d91">PlatformUtils::sleep</a></div><div class="ttdeci">static void sleep(int milliseconds)</div><div class="ttdoc">Pauses execution for specified milliseconds.</div><div class="ttdef"><b>Definition</b> <a href="PlatformUtils_8cpp_source.html#l00178">PlatformUtils.cpp:178</a></div></div>
@@ -336,18 +336,18 @@ Here is the caller graph for this function:</div>
 <p>Loads the next game level. </p>
 <dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GameController_8cpp_source.html#l00501">501</a> of file <a class="el" href="GameController_8cpp_source.html">GameController.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  501</span>                                   {</div>
-<div class="line"><span class="lineno">  502</span>    <span class="keywordtype">int</span> nextLevel = <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#ad9ff37f139acbfdc8db505d1d89d7979">getCurrentLevel</a>();</div>
-<div class="line"><span class="lineno">  503</span>    </div>
-<div class="line"><span class="lineno">  504</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classGameController.html#aca9c2379e0f950e70c768fad939bd4ca">useCustomMap</a>) {</div>
-<div class="line"><span class="lineno">  505</span>        <a class="code hl_function" href="classGameController.html#a09c76a5ae9b8f514163dafe31273f44f">loadSelectedMap</a>();</div>
-<div class="line"><span class="lineno">  506</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  507</span>        <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#a13fd8123f71f48726bfeb233961f88da">loadLevel</a>(nextLevel);</div>
-<div class="line"><span class="lineno">  508</span>    }</div>
-<div class="line"><span class="lineno">  509</span>    </div>
-<div class="line"><span class="lineno">  510</span>    <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#a0cfc65f0eb89ee76d777f6e2f76cb901">setState</a>(<a class="code hl_enumvalue" href="GameWorld_8h.html#a7899b65f1ea0f655e4bbf8d2a5714285a50366a49630a416ab3ccaa004196027e">GameState::PLAYING</a>);</div>
-<div class="line"><span class="lineno">  511</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GameController_8cpp_source.html#l00490">490</a> of file <a class="el" href="GameController_8cpp_source.html">GameController.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  490</span>                                   {</div>
+<div class="line"><span class="lineno">  491</span>    <span class="keywordtype">int</span> nextLevel = <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#ad9ff37f139acbfdc8db505d1d89d7979">getCurrentLevel</a>();</div>
+<div class="line"><span class="lineno">  492</span>    </div>
+<div class="line"><span class="lineno">  493</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classGameController.html#aca9c2379e0f950e70c768fad939bd4ca">useCustomMap</a>) {</div>
+<div class="line"><span class="lineno">  494</span>        <a class="code hl_function" href="classGameController.html#a09c76a5ae9b8f514163dafe31273f44f">loadSelectedMap</a>();</div>
+<div class="line"><span class="lineno">  495</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  496</span>        <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#a13fd8123f71f48726bfeb233961f88da">loadLevel</a>(nextLevel);</div>
+<div class="line"><span class="lineno">  497</span>    }</div>
+<div class="line"><span class="lineno">  498</span>    </div>
+<div class="line"><span class="lineno">  499</span>    <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#a0cfc65f0eb89ee76d777f6e2f76cb901">setState</a>(<a class="code hl_enumvalue" href="GameWorld_8h.html#a7899b65f1ea0f655e4bbf8d2a5714285a50366a49630a416ab3ccaa004196027e">GameState::PLAYING</a>);</div>
+<div class="line"><span class="lineno">  500</span>}</div>
 <div class="ttc" id="aGameWorld_8h_html_a7899b65f1ea0f655e4bbf8d2a5714285a50366a49630a416ab3ccaa004196027e"><div class="ttname"><a href="GameWorld_8h.html#a7899b65f1ea0f655e4bbf8d2a5714285a50366a49630a416ab3ccaa004196027e">GameState::PLAYING</a></div><div class="ttdeci">@ PLAYING</div></div>
 <div class="ttc" id="aclassGameController_html_a09c76a5ae9b8f514163dafe31273f44f"><div class="ttname"><a href="classGameController.html#a09c76a5ae9b8f514163dafe31273f44f">GameController::loadSelectedMap</a></div><div class="ttdeci">void loadSelectedMap()</div><div class="ttdoc">Loads the currently selected map.</div><div class="ttdef"><b>Definition</b> <a href="GameController_8cpp_source.html#l00130">GameController.cpp:130</a></div></div>
 <div class="ttc" id="aclassGameWorld_html_a0cfc65f0eb89ee76d777f6e2f76cb901"><div class="ttname"><a href="classGameWorld.html#a0cfc65f0eb89ee76d777f6e2f76cb901">GameWorld::setState</a></div><div class="ttdeci">void setState(GameState newState)</div><div class="ttdoc">Sets current game state.</div><div class="ttdef"><b>Definition</b> <a href="GameWorld_8cpp_source.html#l00645">GameWorld.cpp:645</a></div></div>
@@ -513,7 +513,7 @@ Here is the caller graph for this function:</div>
 <div class="ttc" id="aInputHandler_8h_html_a2afce0a47a93eee73a314d53e4890153a3ed53fbeb1eab0443561b68ca0c0b5cf"><div class="ttname"><a href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153a3ed53fbeb1eab0443561b68ca0c0b5cf">Command::MENU</a></div><div class="ttdeci">@ MENU</div><div class="ttdoc">Open main menu.</div></div>
 <div class="ttc" id="aInputHandler_8h_html_a2afce0a47a93eee73a314d53e4890153aa42b2fb0e720a080e79a92f4ca97d927"><div class="ttname"><a href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153aa42b2fb0e720a080e79a92f4ca97d927">Command::EXIT</a></div><div class="ttdeci">@ EXIT</div><div class="ttdoc">Exit game.</div></div>
 <div class="ttc" id="aInputHandler_8h_html_a2afce0a47a93eee73a314d53e4890153aa9b685a9e8c2047d4b9faac6217d7b4a"><div class="ttname"><a href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153aa9b685a9e8c2047d4b9faac6217d7b4a">Command::CONFIRM</a></div><div class="ttdeci">@ CONFIRM</div><div class="ttdoc">Confirm selection/action.</div></div>
-<div class="ttc" id="aclassConsoleRenderer_html_a678f6e7177b2d466b8953d4f01bb7436"><div class="ttname"><a href="classConsoleRenderer.html#a678f6e7177b2d466b8953d4f01bb7436">ConsoleRenderer::drawPauseScreen</a></div><div class="ttdeci">bool drawPauseScreen()</div><div class="ttdoc">Draws pause screen.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00421">ConsoleRenderer.cpp:421</a></div></div>
+<div class="ttc" id="aclassConsoleRenderer_html_a678f6e7177b2d466b8953d4f01bb7436"><div class="ttname"><a href="classConsoleRenderer.html#a678f6e7177b2d466b8953d4f01bb7436">ConsoleRenderer::drawPauseScreen</a></div><div class="ttdeci">bool drawPauseScreen()</div><div class="ttdoc">Draws pause screen.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00420">ConsoleRenderer.cpp:420</a></div></div>
 <div class="ttc" id="aclassGameController_html_a19dc0995b5ee51a87bf49dff90f4e991"><div class="ttname"><a href="classGameController.html#a19dc0995b5ee51a87bf49dff90f4e991">GameController::handleTerminalResize</a></div><div class="ttdeci">void handleTerminalResize()</div><div class="ttdoc">Handles terminal resize events.</div><div class="ttdef"><b>Definition</b> <a href="GameController_8cpp_source.html#l00041">GameController.cpp:41</a></div></div>
 <div class="ttc" id="aclassGameController_html_a2a326d8846f1f2f418e506b5e9fcf9dc"><div class="ttname"><a href="classGameController.html#a2a326d8846f1f2f418e506b5e9fcf9dc">GameController::scoreManager</a></div><div class="ttdeci">ScoreManager scoreManager</div><div class="ttdoc">Manager for high scores.</div><div class="ttdef"><b>Definition</b> <a href="GameController_8h_source.html#l00039">GameController.h:39</a></div></div>
 <div class="ttc" id="aclassGameController_html_a9d11b5a6255b7249bddba49df0837cf3"><div class="ttname"><a href="classGameController.html#a9d11b5a6255b7249bddba49df0837cf3">GameController::showMenu</a></div><div class="ttdeci">void showMenu()</div><div class="ttdoc">Displays and manages the main menu.</div><div class="ttdef"><b>Definition</b> <a href="GameController_8cpp_source.html#l00387">GameController.cpp:387</a></div></div>
@@ -796,9 +796,9 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  273</span>        }</div>
 <div class="line"><span class="lineno">  274</span>    }</div>
 <div class="line"><span class="lineno">  275</span>}</div>
-<div class="ttc" id="aclassConsoleRenderer_html_a38306106200aabcfd90f6fe0552e18ea"><div class="ttname"><a href="classConsoleRenderer.html#a38306106200aabcfd90f6fe0552e18ea">ConsoleRenderer::drawGameOver</a></div><div class="ttdeci">bool drawGameOver(int score)</div><div class="ttdoc">Draws game over screen.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00444">ConsoleRenderer.cpp:444</a></div></div>
-<div class="ttc" id="aclassConsoleRenderer_html_ab34fa7af4ede79de3951f1d5271d7a27"><div class="ttname"><a href="classConsoleRenderer.html#ab34fa7af4ede79de3951f1d5271d7a27">ConsoleRenderer::render</a></div><div class="ttdeci">bool render(const GameWorld &amp;world)</div><div class="ttdoc">Renders the game world to console.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00172">ConsoleRenderer.cpp:172</a></div></div>
-<div class="ttc" id="aclassGameController_html_a85bcf4ecfd197aad278e116215a3717b"><div class="ttname"><a href="classGameController.html#a85bcf4ecfd197aad278e116215a3717b">GameController::showLevelCompleteScreen</a></div><div class="ttdeci">void showLevelCompleteScreen()</div><div class="ttdoc">Displays level completion screen.</div><div class="ttdef"><b>Definition</b> <a href="GameController_8cpp_source.html#l00513">GameController.cpp:513</a></div></div>
+<div class="ttc" id="aclassConsoleRenderer_html_a38306106200aabcfd90f6fe0552e18ea"><div class="ttname"><a href="classConsoleRenderer.html#a38306106200aabcfd90f6fe0552e18ea">ConsoleRenderer::drawGameOver</a></div><div class="ttdeci">bool drawGameOver(int score)</div><div class="ttdoc">Draws game over screen.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00452">ConsoleRenderer.cpp:452</a></div></div>
+<div class="ttc" id="aclassConsoleRenderer_html_ab34fa7af4ede79de3951f1d5271d7a27"><div class="ttname"><a href="classConsoleRenderer.html#ab34fa7af4ede79de3951f1d5271d7a27">ConsoleRenderer::render</a></div><div class="ttdeci">bool render(const GameWorld &amp;world)</div><div class="ttdoc">Renders the game world to console.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00185">ConsoleRenderer.cpp:185</a></div></div>
+<div class="ttc" id="aclassGameController_html_a85bcf4ecfd197aad278e116215a3717b"><div class="ttname"><a href="classGameController.html#a85bcf4ecfd197aad278e116215a3717b">GameController::showLevelCompleteScreen</a></div><div class="ttdeci">void showLevelCompleteScreen()</div><div class="ttdoc">Displays level completion screen.</div><div class="ttdef"><b>Definition</b> <a href="GameController_8cpp_source.html#l00502">GameController.cpp:502</a></div></div>
 <div class="ttc" id="aclassGameController_html_a971b3d8f6296a74f0bebc83b5e79c186"><div class="ttname"><a href="classGameController.html#a971b3d8f6296a74f0bebc83b5e79c186">GameController::processCommand</a></div><div class="ttdeci">void processCommand(Command cmd)</div><div class="ttdoc">Processes a user command.</div><div class="ttdef"><b>Definition</b> <a href="GameController_8cpp_source.html#l00277">GameController.cpp:277</a></div></div>
 <div class="ttc" id="aclassGameWorld_html_ab645acf30cb0a4640a8fb5b88c5c7c94"><div class="ttname"><a href="classGameWorld.html#ab645acf30cb0a4640a8fb5b88c5c7c94">GameWorld::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Updates all game objects and logic.</div><div class="ttdef"><b>Definition</b> <a href="GameWorld_8cpp_source.html#l00036">GameWorld.cpp:36</a></div></div>
 </div><!-- fragment --><div class="dynheader">
@@ -913,75 +913,75 @@ Here is the caller graph for this function:</div>
 <p>Displays level completion screen. </p>
 <dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GameController_8cpp_source.html#l00513">513</a> of file <a class="el" href="GameController_8cpp_source.html">GameController.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  513</span>                                             {</div>
-<div class="line"><span class="lineno">  514</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()) <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  515</span>    </div>
-<div class="line"><span class="lineno">  516</span>    <span class="comment">// Сохраняем статистику перед переходом</span></div>
-<div class="line"><span class="lineno">  517</span>    <span class="keywordtype">int</span> currentScore = <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#ac650158a9f0f60fb07a410fca2cee03f">getScore</a>();</div>
-<div class="line"><span class="lineno">  518</span>    <span class="keywordtype">int</span> currentLives = <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#a8e48786bd674e0a64713a2fd8786fc41">getLives</a>();</div>
-<div class="line"><span class="lineno">  519</span>    <span class="keywordtype">int</span> currentLevel = <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#ad9ff37f139acbfdc8db505d1d89d7979">getCurrentLevel</a>();</div>
-<div class="line"><span class="lineno">  520</span>    </div>
-<div class="line"><span class="lineno">  521</span>    <span class="comment">// Рассчитываем бонусы</span></div>
-<div class="line"><span class="lineno">  522</span>    <span class="keywordtype">int</span> levelBonus = currentLevel * 100;</div>
-<div class="line"><span class="lineno">  523</span>    <span class="keywordtype">int</span> livesBonus = currentLives * 25;</div>
-<div class="line"><span class="lineno">  524</span>    <span class="keywordtype">int</span> totalBonus = levelBonus + livesBonus;</div>
-<div class="line"><span class="lineno">  525</span>    </div>
-<div class="line"><span class="lineno">  526</span>    <span class="comment">// Начисляем бонусы</span></div>
-<div class="line"><span class="lineno">  527</span>    <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#a34ecaf7829cc7b3e4965afa9ef6c25f0">addScore</a>(totalBonus);</div>
-<div class="line"><span class="lineno">  528</span>    </div>
-<div class="line"><span class="lineno">  529</span>    <span class="keywordtype">bool</span> inLevelCompleteScreen = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  530</span>    </div>
-<div class="line"><span class="lineno">  531</span>    <span class="keywordflow">while</span> (inLevelCompleteScreen &amp;&amp; <a class="code hl_variable" href="classGameController.html#a0ddc8c9bc9985090a8c5a84ac453a678">running</a>) {</div>
-<div class="line"><span class="lineno">  532</span>        <a class="code hl_function" href="classGameController.html#a19dc0995b5ee51a87bf49dff90f4e991">handleTerminalResize</a>();</div>
-<div class="line"><span class="lineno">  533</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classGameController.html#a0ddc8c9bc9985090a8c5a84ac453a678">running</a>) <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  534</span> </div>
-<div class="line"><span class="lineno">  535</span>        <a class="code hl_variable" href="classGameController.html#ab50b149eb9353549cebb04ab07907c29">view</a>.<a class="code hl_function" href="classConsoleRenderer.html#a041e99f6c0427c254b0349b57fbe2a84">clearScreen</a>();</div>
-<div class="line"><span class="lineno">  536</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classGameController.html#ab50b149eb9353549cebb04ab07907c29">view</a>.<a class="code hl_function" href="classConsoleRenderer.html#a8c9ea938ec7728f1f3436a0a9d944cf2">drawLevelComplete</a>(currentScore, currentLevel, currentLives)) {</div>
-<div class="line"><span class="lineno">  537</span>            <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  538</span>        }</div>
-<div class="line"><span class="lineno">  539</span>        std::cout.flush();</div>
-<div class="line"><span class="lineno">  540</span>        </div>
-<div class="line"><span class="lineno">  541</span>        <a class="code hl_enumeration" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153">Command</a> cmd = <a class="code hl_variable" href="classGameController.html#ad8779d21e001a8d181f7d918bc5c2c63">inputHandler</a>.<a class="code hl_function" href="classInputHandler.html#a913dc5151c57d77fa9c56cb4ad2c2621">waitForCommand</a>();</div>
-<div class="line"><span class="lineno">  542</span>        <span class="keywordflow">switch</span> (cmd) {</div>
-<div class="line"><span class="lineno">  543</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153aa9b685a9e8c2047d4b9faac6217d7b4a">Command::CONFIRM</a>:</div>
-<div class="line"><span class="lineno">  544</span>                <span class="comment">// Сохраняем рекорд при переходе на следующий уровень через меню</span></div>
-<div class="line"><span class="lineno">  545</span>                <span class="keywordflow">if</span> (cmd == <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153a3ed53fbeb1eab0443561b68ca0c0b5cf">Command::MENU</a> &amp;&amp; <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#ac650158a9f0f60fb07a410fca2cee03f">getScore</a>() &gt; 0 &amp;&amp; !<a class="code hl_variable" href="classGameController.html#afda63abe53962add46c79e230a0ef280">scoreSaved</a>) {</div>
+<p class="definition">Definition at line <a class="el" href="GameController_8cpp_source.html#l00502">502</a> of file <a class="el" href="GameController_8cpp_source.html">GameController.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  502</span>                                             {</div>
+<div class="line"><span class="lineno">  503</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()) <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  504</span>    </div>
+<div class="line"><span class="lineno">  505</span>    <span class="comment">// Сохраняем статистику перед переходом</span></div>
+<div class="line"><span class="lineno">  506</span>    <span class="keywordtype">int</span> currentScore = <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#ac650158a9f0f60fb07a410fca2cee03f">getScore</a>();</div>
+<div class="line"><span class="lineno">  507</span>    <span class="keywordtype">int</span> currentLives = <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#a8e48786bd674e0a64713a2fd8786fc41">getLives</a>();</div>
+<div class="line"><span class="lineno">  508</span>    <span class="keywordtype">int</span> currentLevel = <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#ad9ff37f139acbfdc8db505d1d89d7979">getCurrentLevel</a>();</div>
+<div class="line"><span class="lineno">  509</span>    </div>
+<div class="line"><span class="lineno">  510</span>    <span class="comment">// Рассчитываем бонусы</span></div>
+<div class="line"><span class="lineno">  511</span>    <span class="keywordtype">int</span> levelBonus = currentLevel * 100;</div>
+<div class="line"><span class="lineno">  512</span>    <span class="keywordtype">int</span> livesBonus = currentLives * 25;</div>
+<div class="line"><span class="lineno">  513</span>    <span class="keywordtype">int</span> totalBonus = levelBonus + livesBonus;</div>
+<div class="line"><span class="lineno">  514</span>    </div>
+<div class="line"><span class="lineno">  515</span>    <span class="comment">// Начисляем бонусы</span></div>
+<div class="line"><span class="lineno">  516</span>    <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#a34ecaf7829cc7b3e4965afa9ef6c25f0">addScore</a>(totalBonus);</div>
+<div class="line"><span class="lineno">  517</span>    </div>
+<div class="line"><span class="lineno">  518</span>    <span class="keywordtype">bool</span> inLevelCompleteScreen = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  519</span>    </div>
+<div class="line"><span class="lineno">  520</span>    <span class="keywordflow">while</span> (inLevelCompleteScreen &amp;&amp; <a class="code hl_variable" href="classGameController.html#a0ddc8c9bc9985090a8c5a84ac453a678">running</a>) {</div>
+<div class="line"><span class="lineno">  521</span>        <a class="code hl_function" href="classGameController.html#a19dc0995b5ee51a87bf49dff90f4e991">handleTerminalResize</a>();</div>
+<div class="line"><span class="lineno">  522</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classGameController.html#a0ddc8c9bc9985090a8c5a84ac453a678">running</a>) <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  523</span> </div>
+<div class="line"><span class="lineno">  524</span>        <a class="code hl_variable" href="classGameController.html#ab50b149eb9353549cebb04ab07907c29">view</a>.<a class="code hl_function" href="classConsoleRenderer.html#a041e99f6c0427c254b0349b57fbe2a84">clearScreen</a>();</div>
+<div class="line"><span class="lineno">  525</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classGameController.html#ab50b149eb9353549cebb04ab07907c29">view</a>.<a class="code hl_function" href="classConsoleRenderer.html#a8c9ea938ec7728f1f3436a0a9d944cf2">drawLevelComplete</a>(currentScore, currentLevel, currentLives)) {</div>
+<div class="line"><span class="lineno">  526</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  527</span>        }</div>
+<div class="line"><span class="lineno">  528</span>        std::cout.flush();</div>
+<div class="line"><span class="lineno">  529</span>        </div>
+<div class="line"><span class="lineno">  530</span>        <a class="code hl_enumeration" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153">Command</a> cmd = <a class="code hl_variable" href="classGameController.html#ad8779d21e001a8d181f7d918bc5c2c63">inputHandler</a>.<a class="code hl_function" href="classInputHandler.html#a913dc5151c57d77fa9c56cb4ad2c2621">waitForCommand</a>();</div>
+<div class="line"><span class="lineno">  531</span>        <span class="keywordflow">switch</span> (cmd) {</div>
+<div class="line"><span class="lineno">  532</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153aa9b685a9e8c2047d4b9faac6217d7b4a">Command::CONFIRM</a>:</div>
+<div class="line"><span class="lineno">  533</span>                <span class="comment">// Сохраняем рекорд при переходе на следующий уровень через меню</span></div>
+<div class="line"><span class="lineno">  534</span>                <span class="keywordflow">if</span> (cmd == <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153a3ed53fbeb1eab0443561b68ca0c0b5cf">Command::MENU</a> &amp;&amp; <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#ac650158a9f0f60fb07a410fca2cee03f">getScore</a>() &gt; 0 &amp;&amp; !<a class="code hl_variable" href="classGameController.html#afda63abe53962add46c79e230a0ef280">scoreSaved</a>) {</div>
+<div class="line"><span class="lineno">  535</span>                    <a class="code hl_variable" href="classGameController.html#a2a326d8846f1f2f418e506b5e9fcf9dc">scoreManager</a>.<a class="code hl_function" href="classScoreManager.html#a842a2834c5bb44d292e3f054d2612240">addScore</a>(<a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#ac650158a9f0f60fb07a410fca2cee03f">getScore</a>());</div>
+<div class="line"><span class="lineno">  536</span>                    <a class="code hl_variable" href="classGameController.html#afda63abe53962add46c79e230a0ef280">scoreSaved</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  537</span>                }</div>
+<div class="line"><span class="lineno">  538</span>                <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#a70c30d59e1b5010c328b5ddb1fa482cd">setCurrentLevel</a>(currentLevel + 1);</div>
+<div class="line"><span class="lineno">  539</span>                <a class="code hl_function" href="classGameController.html#a4086fc466d91f45c41b2bc5df06af77a">loadNextLevel</a>();</div>
+<div class="line"><span class="lineno">  540</span>                inLevelCompleteScreen = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  541</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  542</span>                </div>
+<div class="line"><span class="lineno">  543</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153a3ed53fbeb1eab0443561b68ca0c0b5cf">Command::MENU</a>:</div>
+<div class="line"><span class="lineno">  544</span>                <span class="comment">// Сохраняем рекорд при выходе в меню с экрана завершения уровня</span></div>
+<div class="line"><span class="lineno">  545</span>                <span class="keywordflow">if</span> (<a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#ac650158a9f0f60fb07a410fca2cee03f">getScore</a>() &gt; 0 &amp;&amp; !<a class="code hl_variable" href="classGameController.html#afda63abe53962add46c79e230a0ef280">scoreSaved</a>) {</div>
 <div class="line"><span class="lineno">  546</span>                    <a class="code hl_variable" href="classGameController.html#a2a326d8846f1f2f418e506b5e9fcf9dc">scoreManager</a>.<a class="code hl_function" href="classScoreManager.html#a842a2834c5bb44d292e3f054d2612240">addScore</a>(<a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#ac650158a9f0f60fb07a410fca2cee03f">getScore</a>());</div>
 <div class="line"><span class="lineno">  547</span>                    <a class="code hl_variable" href="classGameController.html#afda63abe53962add46c79e230a0ef280">scoreSaved</a> = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  548</span>                }</div>
-<div class="line"><span class="lineno">  549</span>                <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#a70c30d59e1b5010c328b5ddb1fa482cd">setCurrentLevel</a>(currentLevel + 1);</div>
-<div class="line"><span class="lineno">  550</span>                <a class="code hl_function" href="classGameController.html#a4086fc466d91f45c41b2bc5df06af77a">loadNextLevel</a>();</div>
-<div class="line"><span class="lineno">  551</span>                inLevelCompleteScreen = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  552</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  553</span>                </div>
-<div class="line"><span class="lineno">  554</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153a3ed53fbeb1eab0443561b68ca0c0b5cf">Command::MENU</a>:</div>
-<div class="line"><span class="lineno">  555</span>                <span class="comment">// Сохраняем рекорд при выходе в меню с экрана завершения уровня</span></div>
-<div class="line"><span class="lineno">  556</span>                <span class="keywordflow">if</span> (<a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#ac650158a9f0f60fb07a410fca2cee03f">getScore</a>() &gt; 0 &amp;&amp; !<a class="code hl_variable" href="classGameController.html#afda63abe53962add46c79e230a0ef280">scoreSaved</a>) {</div>
-<div class="line"><span class="lineno">  557</span>                    <a class="code hl_variable" href="classGameController.html#a2a326d8846f1f2f418e506b5e9fcf9dc">scoreManager</a>.<a class="code hl_function" href="classScoreManager.html#a842a2834c5bb44d292e3f054d2612240">addScore</a>(<a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#ac650158a9f0f60fb07a410fca2cee03f">getScore</a>());</div>
-<div class="line"><span class="lineno">  558</span>                    <a class="code hl_variable" href="classGameController.html#afda63abe53962add46c79e230a0ef280">scoreSaved</a> = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  559</span>                }</div>
-<div class="line"><span class="lineno">  560</span>                <a class="code hl_function" href="classGameController.html#a9d11b5a6255b7249bddba49df0837cf3">showMenu</a>();</div>
-<div class="line"><span class="lineno">  561</span>                inLevelCompleteScreen = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  562</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  563</span>                </div>
-<div class="line"><span class="lineno">  564</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153aa42b2fb0e720a080e79a92f4ca97d927">Command::EXIT</a>:</div>
-<div class="line"><span class="lineno">  565</span>                <span class="comment">// Сохраняем рекорд при выходе из игры с экрана завершения уровня</span></div>
-<div class="line"><span class="lineno">  566</span>                <span class="keywordflow">if</span> (<a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#ac650158a9f0f60fb07a410fca2cee03f">getScore</a>() &gt; 0 &amp;&amp; !<a class="code hl_variable" href="classGameController.html#afda63abe53962add46c79e230a0ef280">scoreSaved</a>) {</div>
-<div class="line"><span class="lineno">  567</span>                    <a class="code hl_variable" href="classGameController.html#a2a326d8846f1f2f418e506b5e9fcf9dc">scoreManager</a>.<a class="code hl_function" href="classScoreManager.html#a842a2834c5bb44d292e3f054d2612240">addScore</a>(<a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#ac650158a9f0f60fb07a410fca2cee03f">getScore</a>());</div>
-<div class="line"><span class="lineno">  568</span>                    <a class="code hl_variable" href="classGameController.html#afda63abe53962add46c79e230a0ef280">scoreSaved</a> = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  569</span>                }</div>
-<div class="line"><span class="lineno">  570</span>                <a class="code hl_variable" href="classGameController.html#a0ddc8c9bc9985090a8c5a84ac453a678">running</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  571</span>                inLevelCompleteScreen = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  572</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  573</span>                </div>
-<div class="line"><span class="lineno">  574</span>            <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">  575</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  576</span>        }</div>
-<div class="line"><span class="lineno">  577</span>    }</div>
-<div class="line"><span class="lineno">  578</span>}</div>
-<div class="ttc" id="aclassConsoleRenderer_html_a8c9ea938ec7728f1f3436a0a9d944cf2"><div class="ttname"><a href="classConsoleRenderer.html#a8c9ea938ec7728f1f3436a0a9d944cf2">ConsoleRenderer::drawLevelComplete</a></div><div class="ttdeci">bool drawLevelComplete(int score, int level, int lives)</div><div class="ttdoc">Draws level completion screen.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00582">ConsoleRenderer.cpp:582</a></div></div>
-<div class="ttc" id="aclassGameController_html_a4086fc466d91f45c41b2bc5df06af77a"><div class="ttname"><a href="classGameController.html#a4086fc466d91f45c41b2bc5df06af77a">GameController::loadNextLevel</a></div><div class="ttdeci">void loadNextLevel()</div><div class="ttdoc">Loads the next game level.</div><div class="ttdef"><b>Definition</b> <a href="GameController_8cpp_source.html#l00501">GameController.cpp:501</a></div></div>
+<div class="line"><span class="lineno">  549</span>                <a class="code hl_function" href="classGameController.html#a9d11b5a6255b7249bddba49df0837cf3">showMenu</a>();</div>
+<div class="line"><span class="lineno">  550</span>                inLevelCompleteScreen = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  551</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  552</span>                </div>
+<div class="line"><span class="lineno">  553</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153aa42b2fb0e720a080e79a92f4ca97d927">Command::EXIT</a>:</div>
+<div class="line"><span class="lineno">  554</span>                <span class="comment">// Сохраняем рекорд при выходе из игры с экрана завершения уровня</span></div>
+<div class="line"><span class="lineno">  555</span>                <span class="keywordflow">if</span> (<a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#ac650158a9f0f60fb07a410fca2cee03f">getScore</a>() &gt; 0 &amp;&amp; !<a class="code hl_variable" href="classGameController.html#afda63abe53962add46c79e230a0ef280">scoreSaved</a>) {</div>
+<div class="line"><span class="lineno">  556</span>                    <a class="code hl_variable" href="classGameController.html#a2a326d8846f1f2f418e506b5e9fcf9dc">scoreManager</a>.<a class="code hl_function" href="classScoreManager.html#a842a2834c5bb44d292e3f054d2612240">addScore</a>(<a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#ac650158a9f0f60fb07a410fca2cee03f">getScore</a>());</div>
+<div class="line"><span class="lineno">  557</span>                    <a class="code hl_variable" href="classGameController.html#afda63abe53962add46c79e230a0ef280">scoreSaved</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  558</span>                }</div>
+<div class="line"><span class="lineno">  559</span>                <a class="code hl_variable" href="classGameController.html#a0ddc8c9bc9985090a8c5a84ac453a678">running</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  560</span>                inLevelCompleteScreen = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  561</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  562</span>                </div>
+<div class="line"><span class="lineno">  563</span>            <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  564</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  565</span>        }</div>
+<div class="line"><span class="lineno">  566</span>    }</div>
+<div class="line"><span class="lineno">  567</span>}</div>
+<div class="ttc" id="aclassConsoleRenderer_html_a8c9ea938ec7728f1f3436a0a9d944cf2"><div class="ttname"><a href="classConsoleRenderer.html#a8c9ea938ec7728f1f3436a0a9d944cf2">ConsoleRenderer::drawLevelComplete</a></div><div class="ttdeci">bool drawLevelComplete(int score, int level, int lives)</div><div class="ttdoc">Draws level completion screen.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00631">ConsoleRenderer.cpp:631</a></div></div>
+<div class="ttc" id="aclassGameController_html_a4086fc466d91f45c41b2bc5df06af77a"><div class="ttname"><a href="classGameController.html#a4086fc466d91f45c41b2bc5df06af77a">GameController::loadNextLevel</a></div><div class="ttdeci">void loadNextLevel()</div><div class="ttdoc">Loads the next game level.</div><div class="ttdef"><b>Definition</b> <a href="GameController_8cpp_source.html#l00490">GameController.cpp:490</a></div></div>
 <div class="ttc" id="aclassPlayerTank_html_a34ecaf7829cc7b3e4965afa9ef6c25f0"><div class="ttname"><a href="classPlayerTank.html#a34ecaf7829cc7b3e4965afa9ef6c25f0">PlayerTank::addScore</a></div><div class="ttdeci">void addScore(int points)</div><div class="ttdoc">Adds points to player's score.</div><div class="ttdef"><b>Definition</b> <a href="PlayerTank_8cpp_source.html#l00048">PlayerTank.cpp:48</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1092,7 +1092,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  126</span>        }</div>
 <div class="line"><span class="lineno">  127</span>    }</div>
 <div class="line"><span class="lineno">  128</span>}</div>
-<div class="ttc" id="aclassConsoleRenderer_html_afd03640670c991dfa8240af639c2f0da"><div class="ttname"><a href="classConsoleRenderer.html#afd03640670c991dfa8240af639c2f0da">ConsoleRenderer::drawMapSelection</a></div><div class="ttdeci">bool drawMapSelection(const MapInfo &amp;currentMap, int currentIndex, int totalMaps)</div><div class="ttdoc">Draws map selection screen.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00493">ConsoleRenderer.cpp:493</a></div></div>
+<div class="ttc" id="aclassConsoleRenderer_html_afd03640670c991dfa8240af639c2f0da"><div class="ttname"><a href="classConsoleRenderer.html#afd03640670c991dfa8240af639c2f0da">ConsoleRenderer::drawMapSelection</a></div><div class="ttdeci">bool drawMapSelection(const MapInfo &amp;currentMap, int currentIndex, int totalMaps)</div><div class="ttdoc">Draws map selection screen.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00539">ConsoleRenderer.cpp:539</a></div></div>
 <div class="ttc" id="aclassMapManager_html_a52c03d5209a658b06a7b15cd22c7d738"><div class="ttname"><a href="classMapManager.html#a52c03d5209a658b06a7b15cd22c7d738">MapManager::getMapCount</a></div><div class="ttdeci">int getMapCount() const</div><div class="ttdoc">Gets total number of maps.</div><div class="ttdef"><b>Definition</b> <a href="MapManager_8cpp_source.html#l00323">MapManager.cpp:323</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1147,47 +1147,61 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  397</span>            <span class="keywordflow">continue</span>;</div>
 <div class="line"><span class="lineno">  398</span>        }</div>
 <div class="line"><span class="lineno">  399</span>        </div>
-<div class="line"><span class="lineno">  400</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;===== HIGH SCORES =====\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  400</span>        <span class="comment">// Выводим таблицу рекордов с центрированием</span></div>
 <div class="line"><span class="lineno">  401</span>        std::vector&lt;int&gt; highScores = <a class="code hl_variable" href="classGameController.html#a2a326d8846f1f2f418e506b5e9fcf9dc">scoreManager</a>.<a class="code hl_function" href="classScoreManager.html#a6f36d3f560e10a04e01a95b365683e49">getHighScores</a>();</div>
-<div class="line"><span class="lineno">  402</span>        <span class="keywordflow">if</span> (highScores.empty()) {</div>
-<div class="line"><span class="lineno">  403</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;   No high scores yet!\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  404</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  405</span>            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; highScores.size(); i++) {</div>
-<div class="line"><span class="lineno">  406</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;   &quot;</span> &lt;&lt; (i + 1) &lt;&lt; <span class="stringliteral">&quot;. &quot;</span> &lt;&lt; highScores[i] &lt;&lt; <span class="stringliteral">&quot; очков\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  407</span>            }</div>
-<div class="line"><span class="lineno">  408</span>        }</div>
-<div class="line"><span class="lineno">  409</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;=======================\n\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  410</span>        </div>
-<div class="line"><span class="lineno">  411</span>        std::cout.flush();</div>
-<div class="line"><span class="lineno">  412</span>        </div>
-<div class="line"><span class="lineno">  413</span>        <a class="code hl_enumeration" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153">Command</a> cmd = <a class="code hl_variable" href="classGameController.html#ad8779d21e001a8d181f7d918bc5c2c63">inputHandler</a>.<a class="code hl_function" href="classInputHandler.html#a913dc5151c57d77fa9c56cb4ad2c2621">waitForCommand</a>();</div>
-<div class="line"><span class="lineno">  414</span>        <span class="keywordflow">switch</span> (cmd) {</div>
-<div class="line"><span class="lineno">  415</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153aa9b685a9e8c2047d4b9faac6217d7b4a">Command::CONFIRM</a>:</div>
-<div class="line"><span class="lineno">  416</span>                <span class="comment">// Сбрасываем флаг при начале новой игры</span></div>
-<div class="line"><span class="lineno">  417</span>                <a class="code hl_variable" href="classGameController.html#afda63abe53962add46c79e230a0ef280">scoreSaved</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  418</span>                <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#a70c30d59e1b5010c328b5ddb1fa482cd">setCurrentLevel</a>(1);</div>
-<div class="line"><span class="lineno">  419</span>                <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#abde1432113bfd6939d0f69e0492b74c7">setScore</a>(0);</div>
-<div class="line"><span class="lineno">  420</span>                <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#a5799e229863bc48d1de94625ab91bd0b">setLives</a>(3);</div>
-<div class="line"><span class="lineno">  421</span>                <a class="code hl_function" href="classGameController.html#a4a9c94fe33cf6c73bb5dfc415d04d309">showMapSelection</a>();</div>
-<div class="line"><span class="lineno">  422</span>                inMenu = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  423</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  424</span>                </div>
-<div class="line"><span class="lineno">  425</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153a3ed53fbeb1eab0443561b68ca0c0b5cf">Command::MENU</a>:</div>
-<div class="line"><span class="lineno">  426</span>                <a class="code hl_function" href="classGameController.html#a24f5cae258418d4a5934e6f412c28945">showSettings</a>();</div>
-<div class="line"><span class="lineno">  427</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  428</span>                </div>
-<div class="line"><span class="lineno">  429</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153aa42b2fb0e720a080e79a92f4ca97d927">Command::EXIT</a>:</div>
-<div class="line"><span class="lineno">  430</span>                <a class="code hl_variable" href="classGameController.html#a0ddc8c9bc9985090a8c5a84ac453a678">running</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  431</span>                inMenu = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  432</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  433</span>                </div>
-<div class="line"><span class="lineno">  434</span>            <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">  435</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  436</span>        }</div>
-<div class="line"><span class="lineno">  437</span>    }</div>
-<div class="line"><span class="lineno">  438</span>}</div>
-<div class="ttc" id="aclassConsoleRenderer_html_aa9273ce964dc1492d66a30b772213e81"><div class="ttname"><a href="classConsoleRenderer.html#aa9273ce964dc1492d66a30b772213e81">ConsoleRenderer::drawMenu</a></div><div class="ttdeci">bool drawMenu()</div><div class="ttdoc">Draws main menu screen.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00391">ConsoleRenderer.cpp:391</a></div></div>
-<div class="ttc" id="aclassGameController_html_a24f5cae258418d4a5934e6f412c28945"><div class="ttname"><a href="classGameController.html#a24f5cae258418d4a5934e6f412c28945">GameController::showSettings</a></div><div class="ttdeci">void showSettings()</div><div class="ttdoc">Displays and manages the settings menu.</div><div class="ttdef"><b>Definition</b> <a href="GameController_8cpp_source.html#l00440">GameController.cpp:440</a></div></div>
+<div class="line"><span class="lineno">  402</span>        </div>
+<div class="line"><span class="lineno">  403</span>        std::vector&lt;std::string&gt; scoreLines;</div>
+<div class="line"><span class="lineno">  404</span>        scoreLines.push_back(<span class="stringliteral">&quot;===== HIGH SCORES =====&quot;</span>);</div>
+<div class="line"><span class="lineno">  405</span>        </div>
+<div class="line"><span class="lineno">  406</span>        <span class="keywordflow">if</span> (highScores.empty()) {</div>
+<div class="line"><span class="lineno">  407</span>            scoreLines.push_back(<span class="stringliteral">&quot;   No high scores yet!&quot;</span>);</div>
+<div class="line"><span class="lineno">  408</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  409</span>            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; highScores.size(); i++) {</div>
+<div class="line"><span class="lineno">  410</span>                scoreLines.push_back(<span class="stringliteral">&quot;   &quot;</span> + std::to_string(i + 1) + <span class="stringliteral">&quot;. &quot;</span> + </div>
+<div class="line"><span class="lineno">  411</span>                                   std::to_string(highScores[i]) + <span class="stringliteral">&quot; очков&quot;</span>);</div>
+<div class="line"><span class="lineno">  412</span>            }</div>
+<div class="line"><span class="lineno">  413</span>        }</div>
+<div class="line"><span class="lineno">  414</span>        scoreLines.push_back(<span class="stringliteral">&quot;=======================&quot;</span>);</div>
+<div class="line"><span class="lineno">  415</span>        </div>
+<div class="line"><span class="lineno">  416</span>        <span class="comment">// Выводим каждую строку таблицы рекордов по центру</span></div>
+<div class="line"><span class="lineno">  417</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; line : scoreLines) {</div>
+<div class="line"><span class="lineno">  418</span>            <span class="keywordtype">int</span> offset = <a class="code hl_variable" href="classGameController.html#ab50b149eb9353549cebb04ab07907c29">view</a>.<a class="code hl_function" href="classConsoleRenderer.html#a209136c99544bd8fa46cc9860cedab1c">calculateHorizontalOffset</a>(line.length());</div>
+<div class="line"><span class="lineno">  419</span>            std::cout &lt;&lt; std::string(offset, <span class="charliteral">&#39; &#39;</span>) &lt;&lt; line &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  420</span>        }</div>
+<div class="line"><span class="lineno">  421</span>        </div>
+<div class="line"><span class="lineno">  422</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;\n\n&quot;</span>; <span class="comment">// Добавляем отступы</span></div>
+<div class="line"><span class="lineno">  423</span>        </div>
+<div class="line"><span class="lineno">  424</span>        std::cout.flush();</div>
+<div class="line"><span class="lineno">  425</span>        </div>
+<div class="line"><span class="lineno">  426</span>        <a class="code hl_enumeration" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153">Command</a> cmd = <a class="code hl_variable" href="classGameController.html#ad8779d21e001a8d181f7d918bc5c2c63">inputHandler</a>.<a class="code hl_function" href="classInputHandler.html#a913dc5151c57d77fa9c56cb4ad2c2621">waitForCommand</a>();</div>
+<div class="line"><span class="lineno">  427</span>        <span class="keywordflow">switch</span> (cmd) {</div>
+<div class="line"><span class="lineno">  428</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153aa9b685a9e8c2047d4b9faac6217d7b4a">Command::CONFIRM</a>:</div>
+<div class="line"><span class="lineno">  429</span>                <span class="comment">// Сбрасываем флаг при начале новой игры</span></div>
+<div class="line"><span class="lineno">  430</span>                <a class="code hl_variable" href="classGameController.html#afda63abe53962add46c79e230a0ef280">scoreSaved</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  431</span>                <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#a70c30d59e1b5010c328b5ddb1fa482cd">setCurrentLevel</a>(1);</div>
+<div class="line"><span class="lineno">  432</span>                <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#abde1432113bfd6939d0f69e0492b74c7">setScore</a>(0);</div>
+<div class="line"><span class="lineno">  433</span>                <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab">getPlayer</a>()-&gt;<a class="code hl_function" href="classPlayerTank.html#a5799e229863bc48d1de94625ab91bd0b">setLives</a>(3);</div>
+<div class="line"><span class="lineno">  434</span>                <a class="code hl_function" href="classGameController.html#a4a9c94fe33cf6c73bb5dfc415d04d309">showMapSelection</a>();</div>
+<div class="line"><span class="lineno">  435</span>                inMenu = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  436</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  437</span>                </div>
+<div class="line"><span class="lineno">  438</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153a3ed53fbeb1eab0443561b68ca0c0b5cf">Command::MENU</a>:</div>
+<div class="line"><span class="lineno">  439</span>                <a class="code hl_function" href="classGameController.html#a24f5cae258418d4a5934e6f412c28945">showSettings</a>();</div>
+<div class="line"><span class="lineno">  440</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  441</span>                </div>
+<div class="line"><span class="lineno">  442</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153aa42b2fb0e720a080e79a92f4ca97d927">Command::EXIT</a>:</div>
+<div class="line"><span class="lineno">  443</span>                <a class="code hl_variable" href="classGameController.html#a0ddc8c9bc9985090a8c5a84ac453a678">running</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  444</span>                inMenu = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  445</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  446</span>                </div>
+<div class="line"><span class="lineno">  447</span>            <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  448</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  449</span>        }</div>
+<div class="line"><span class="lineno">  450</span>    }</div>
+<div class="line"><span class="lineno">  451</span>}</div>
+<div class="ttc" id="aclassConsoleRenderer_html_a209136c99544bd8fa46cc9860cedab1c"><div class="ttname"><a href="classConsoleRenderer.html#a209136c99544bd8fa46cc9860cedab1c">ConsoleRenderer::calculateHorizontalOffset</a></div><div class="ttdeci">int calculateHorizontalOffset(int contentWidth) const</div><div class="ttdoc">Calculates horizontal offset to center content based on terminal width.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00052">ConsoleRenderer.cpp:52</a></div></div>
+<div class="ttc" id="aclassConsoleRenderer_html_aa9273ce964dc1492d66a30b772213e81"><div class="ttname"><a href="classConsoleRenderer.html#aa9273ce964dc1492d66a30b772213e81">ConsoleRenderer::drawMenu</a></div><div class="ttdeci">bool drawMenu()</div><div class="ttdoc">Draws main menu screen.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00379">ConsoleRenderer.cpp:379</a></div></div>
+<div class="ttc" id="aclassGameController_html_a24f5cae258418d4a5934e6f412c28945"><div class="ttname"><a href="classGameController.html#a24f5cae258418d4a5934e6f412c28945">GameController::showSettings</a></div><div class="ttdeci">void showSettings()</div><div class="ttdoc">Displays and manages the settings menu.</div><div class="ttdef"><b>Definition</b> <a href="GameController_8cpp_source.html#l00453">GameController.cpp:453</a></div></div>
 <div class="ttc" id="aclassScoreManager_html_a6f36d3f560e10a04e01a95b365683e49"><div class="ttname"><a href="classScoreManager.html#a6f36d3f560e10a04e01a95b365683e49">ScoreManager::getHighScores</a></div><div class="ttdeci">std::vector&lt; int &gt; getHighScores() const</div><div class="ttdoc">Gets current high scores.</div><div class="ttdef"><b>Definition</b> <a href="ScoreManager_8cpp_source.html#l00063">ScoreManager.cpp:63</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1228,70 +1242,45 @@ Here is the caller graph for this function:</div>
 <p>Displays and manages the settings menu. </p>
 <dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GameController_8cpp_source.html#l00440">440</a> of file <a class="el" href="GameController_8cpp_source.html">GameController.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  440</span>                                  {</div>
-<div class="line"><span class="lineno">  441</span>    <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#a0cfc65f0eb89ee76d777f6e2f76cb901">setState</a>(<a class="code hl_enumvalue" href="GameWorld_8h.html#a7899b65f1ea0f655e4bbf8d2a5714285aed6f7aca7887a927b9ed3d62aa347a86">GameState::SETTINGS</a>);</div>
-<div class="line"><span class="lineno">  442</span>    <span class="keywordtype">bool</span> inSettings = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  443</span>    </div>
-<div class="line"><span class="lineno">  444</span>    <span class="keywordflow">while</span> (inSettings &amp;&amp; <a class="code hl_variable" href="classGameController.html#a0ddc8c9bc9985090a8c5a84ac453a678">running</a>) {</div>
-<div class="line"><span class="lineno">  445</span>        <a class="code hl_function" href="classGameController.html#a19dc0995b5ee51a87bf49dff90f4e991">handleTerminalResize</a>();</div>
-<div class="line"><span class="lineno">  446</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classGameController.html#a0ddc8c9bc9985090a8c5a84ac453a678">running</a>) <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  447</span> </div>
-<div class="line"><span class="lineno">  448</span>        <a class="code hl_variable" href="classGameController.html#ab50b149eb9353549cebb04ab07907c29">view</a>.<a class="code hl_function" href="classConsoleRenderer.html#a041e99f6c0427c254b0349b57fbe2a84">clearScreen</a>();</div>
-<div class="line"><span class="lineno">  449</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classGameController.html#ab50b149eb9353549cebb04ab07907c29">view</a>.<a class="code hl_function" href="classConsoleRenderer.html#a0e17aa687bd8d7381b2bf8425b2a9709">drawSettings</a>()) {</div>
-<div class="line"><span class="lineno">  450</span>            <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  451</span>        }</div>
-<div class="line"><span class="lineno">  452</span> </div>
-<div class="line"><span class="lineno">  453</span>        <span class="keywordtype">bool</span> advancedGraphics = <a class="code hl_variable" href="classGameController.html#a1cc29fd25fd00fb4b23e22c671ebff67">settingsManager</a>.<a class="code hl_function" href="classSettingsManager.html#a1686a183b6d975ae02e1a97cde31b226">getBoolSetting</a>(<span class="stringliteral">&quot;advanced_graphics&quot;</span>, <span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">  454</span>        </div>
-<div class="line"><span class="lineno">  455</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   Graphics: [&quot;</span> &lt;&lt; (advancedGraphics ? <span class="stringliteral">&quot;X&quot;</span> : <span class="stringliteral">&quot; &quot;</span>) &lt;&lt; <span class="stringliteral">&quot;] Advanced\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  456</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;            [&quot;</span> &lt;&lt; (!advancedGraphics ? <span class="stringliteral">&quot;X&quot;</span> : <span class="stringliteral">&quot; &quot;</span>) &lt;&lt; <span class="stringliteral">&quot;] Symbolic\n\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  457</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   [F] - Toggle graphics mode\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  458</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;---------------------------------\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  459</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   [ESC] - Back\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  460</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   [Q] - Exit\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  461</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;---------------------------------\n\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  462</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   Status: &quot;</span>;</div>
-<div class="line"><span class="lineno">  463</span>        <span class="keywordflow">if</span> (advancedGraphics) {</div>
-<div class="line"><span class="lineno">  464</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;Advanced graphics (Unicode)&quot;</span>;</div>
-<div class="line"><span class="lineno">  465</span>            <span class="keywordflow">if</span> (!<a class="code hl_function" href="classPlatformUtils.html#a964fb97fe6351330adbcf813a9706eb6">PlatformUtils::supportsUnicode</a>()) {</div>
-<div class="line"><span class="lineno">  466</span>                std::cout &lt;&lt; <span class="stringliteral">&quot; - YOUR TERMINAL MAY NOT SUPPORT IT!&quot;</span>;</div>
-<div class="line"><span class="lineno">  467</span>            }</div>
-<div class="line"><span class="lineno">  468</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  469</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;Symbolic graphics (ASCII)&quot;</span>;</div>
-<div class="line"><span class="lineno">  470</span>        }</div>
-<div class="line"><span class="lineno">  471</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  472</span>        </div>
-<div class="line"><span class="lineno">  473</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;\n=================================\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  474</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Settings are saved automatically\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  475</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;=================================\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  476</span>        </div>
-<div class="line"><span class="lineno">  477</span>        std::cout.flush();</div>
-<div class="line"><span class="lineno">  478</span>        </div>
-<div class="line"><span class="lineno">  479</span>        <a class="code hl_enumeration" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153">Command</a> cmd = <a class="code hl_variable" href="classGameController.html#ad8779d21e001a8d181f7d918bc5c2c63">inputHandler</a>.<a class="code hl_function" href="classInputHandler.html#a913dc5151c57d77fa9c56cb4ad2c2621">waitForCommand</a>();</div>
-<div class="line"><span class="lineno">  480</span>        <span class="keywordflow">switch</span> (cmd) {</div>
-<div class="line"><span class="lineno">  481</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153a1dd26f1f1790f0b56d5752fb0fbecef0">Command::BACK</a>:</div>
-<div class="line"><span class="lineno">  482</span>                inSettings = <span class="keyword">false</span>;</div>
+<p class="definition">Definition at line <a class="el" href="GameController_8cpp_source.html#l00453">453</a> of file <a class="el" href="GameController_8cpp_source.html">GameController.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  453</span>                                  {</div>
+<div class="line"><span class="lineno">  454</span>    <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#a0cfc65f0eb89ee76d777f6e2f76cb901">setState</a>(<a class="code hl_enumvalue" href="GameWorld_8h.html#a7899b65f1ea0f655e4bbf8d2a5714285aed6f7aca7887a927b9ed3d62aa347a86">GameState::SETTINGS</a>);</div>
+<div class="line"><span class="lineno">  455</span>    <span class="keywordtype">bool</span> inSettings = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  456</span>    </div>
+<div class="line"><span class="lineno">  457</span>    <span class="keywordflow">while</span> (inSettings &amp;&amp; <a class="code hl_variable" href="classGameController.html#a0ddc8c9bc9985090a8c5a84ac453a678">running</a>) {</div>
+<div class="line"><span class="lineno">  458</span>        <a class="code hl_function" href="classGameController.html#a19dc0995b5ee51a87bf49dff90f4e991">handleTerminalResize</a>();</div>
+<div class="line"><span class="lineno">  459</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classGameController.html#a0ddc8c9bc9985090a8c5a84ac453a678">running</a>) <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  460</span> </div>
+<div class="line"><span class="lineno">  461</span>        <a class="code hl_variable" href="classGameController.html#ab50b149eb9353549cebb04ab07907c29">view</a>.<a class="code hl_function" href="classConsoleRenderer.html#a041e99f6c0427c254b0349b57fbe2a84">clearScreen</a>();</div>
+<div class="line"><span class="lineno">  462</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classGameController.html#ab50b149eb9353549cebb04ab07907c29">view</a>.<a class="code hl_function" href="classConsoleRenderer.html#a0e17aa687bd8d7381b2bf8425b2a9709">drawSettings</a>()) {</div>
+<div class="line"><span class="lineno">  463</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  464</span>        }</div>
+<div class="line"><span class="lineno">  465</span>        </div>
+<div class="line"><span class="lineno">  466</span>        std::cout.flush();</div>
+<div class="line"><span class="lineno">  467</span>        </div>
+<div class="line"><span class="lineno">  468</span>        <a class="code hl_enumeration" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153">Command</a> cmd = <a class="code hl_variable" href="classGameController.html#ad8779d21e001a8d181f7d918bc5c2c63">inputHandler</a>.<a class="code hl_function" href="classInputHandler.html#a913dc5151c57d77fa9c56cb4ad2c2621">waitForCommand</a>();</div>
+<div class="line"><span class="lineno">  469</span>        <span class="keywordflow">switch</span> (cmd) {</div>
+<div class="line"><span class="lineno">  470</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153a1dd26f1f1790f0b56d5752fb0fbecef0">Command::BACK</a>:</div>
+<div class="line"><span class="lineno">  471</span>                inSettings = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  472</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  473</span>                </div>
+<div class="line"><span class="lineno">  474</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153aa42b2fb0e720a080e79a92f4ca97d927">Command::EXIT</a>:</div>
+<div class="line"><span class="lineno">  475</span>                <a class="code hl_variable" href="classGameController.html#a0ddc8c9bc9985090a8c5a84ac453a678">running</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  476</span>                inSettings = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  477</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  478</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153ab7426fb9c3932995306fceba2874d057">Command::FIRE</a>:</div>
+<div class="line"><span class="lineno">  479</span>                <a class="code hl_function" href="classGameController.html#a47c26eedd973ec104d31a7c96b60d658">toggleAdvancedGraphics</a>();</div>
+<div class="line"><span class="lineno">  480</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  481</span>            </div>
+<div class="line"><span class="lineno">  482</span>            <span class="keywordflow">default</span>:</div>
 <div class="line"><span class="lineno">  483</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  484</span>                </div>
-<div class="line"><span class="lineno">  485</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153aa42b2fb0e720a080e79a92f4ca97d927">Command::EXIT</a>:</div>
-<div class="line"><span class="lineno">  486</span>                <a class="code hl_variable" href="classGameController.html#a0ddc8c9bc9985090a8c5a84ac453a678">running</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  487</span>                inSettings = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  488</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  489</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="InputHandler_8h.html#a2afce0a47a93eee73a314d53e4890153ab7426fb9c3932995306fceba2874d057">Command::FIRE</a>:</div>
-<div class="line"><span class="lineno">  490</span>                <a class="code hl_function" href="classGameController.html#a47c26eedd973ec104d31a7c96b60d658">toggleAdvancedGraphics</a>();</div>
-<div class="line"><span class="lineno">  491</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  492</span>            </div>
-<div class="line"><span class="lineno">  493</span>            <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">  494</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  495</span>        }</div>
-<div class="line"><span class="lineno">  496</span>    }</div>
-<div class="line"><span class="lineno">  497</span>    </div>
-<div class="line"><span class="lineno">  498</span>    <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#a0cfc65f0eb89ee76d777f6e2f76cb901">setState</a>(<a class="code hl_enumvalue" href="GameWorld_8h.html#a7899b65f1ea0f655e4bbf8d2a5714285a3ed53fbeb1eab0443561b68ca0c0b5cf">GameState::MENU</a>);</div>
-<div class="line"><span class="lineno">  499</span>}</div>
-<div class="ttc" id="aclassConsoleRenderer_html_a0e17aa687bd8d7381b2bf8425b2a9709"><div class="ttname"><a href="classConsoleRenderer.html#a0e17aa687bd8d7381b2bf8425b2a9709">ConsoleRenderer::drawSettings</a></div><div class="ttdeci">bool drawSettings()</div><div class="ttdoc">Draws settings screen.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00469">ConsoleRenderer.cpp:469</a></div></div>
+<div class="line"><span class="lineno">  484</span>        }</div>
+<div class="line"><span class="lineno">  485</span>    }</div>
+<div class="line"><span class="lineno">  486</span>    </div>
+<div class="line"><span class="lineno">  487</span>    <a class="code hl_variable" href="classGameController.html#a6ca0d995f11962d11e66b5f9eae51786">model</a>.<a class="code hl_function" href="classGameWorld.html#a0cfc65f0eb89ee76d777f6e2f76cb901">setState</a>(<a class="code hl_enumvalue" href="GameWorld_8h.html#a7899b65f1ea0f655e4bbf8d2a5714285a3ed53fbeb1eab0443561b68ca0c0b5cf">GameState::MENU</a>);</div>
+<div class="line"><span class="lineno">  488</span>}</div>
+<div class="ttc" id="aclassConsoleRenderer_html_a0e17aa687bd8d7381b2bf8425b2a9709"><div class="ttname"><a href="classConsoleRenderer.html#a0e17aa687bd8d7381b2bf8425b2a9709">ConsoleRenderer::drawSettings</a></div><div class="ttdeci">bool drawSettings()</div><div class="ttdoc">Draws settings screen.</div><div class="ttdef"><b>Definition</b> <a href="ConsoleRenderer_8cpp_source.html#l00486">ConsoleRenderer.cpp:486</a></div></div>
 <div class="ttc" id="aclassGameController_html_a47c26eedd973ec104d31a7c96b60d658"><div class="ttname"><a href="classGameController.html#a47c26eedd973ec104d31a7c96b60d658">GameController::toggleAdvancedGraphics</a></div><div class="ttdeci">void toggleAdvancedGraphics()</div><div class="ttdoc">Toggles between advanced and symbolic graphics modes.</div><div class="ttdef"><b>Definition</b> <a href="GameController_8cpp_source.html#l00027">GameController.cpp:27</a></div></div>
-<div class="ttc" id="aclassPlatformUtils_html_a964fb97fe6351330adbcf813a9706eb6"><div class="ttname"><a href="classPlatformUtils.html#a964fb97fe6351330adbcf813a9706eb6">PlatformUtils::supportsUnicode</a></div><div class="ttdeci">static bool supportsUnicode()</div><div class="ttdoc">Checks if terminal supports Unicode.</div><div class="ttdef"><b>Definition</b> <a href="PlatformUtils_8cpp_source.html#l00209">PlatformUtils.cpp:209</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1653,7 +1642,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 7 2025 03:30:16 for Tanks Game by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Dec 7 2025 18:06:36 for Tanks Game by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
