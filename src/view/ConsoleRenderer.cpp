@@ -76,9 +76,9 @@ void ConsoleRenderer::drawPixel(char symbol, PlatformUtils::Color color) {
 
 void ConsoleRenderer::drawBorder() {
     // Верхняя граница
-    std::cout << "■";
-    for (int i = 0; i < screenWidth; i++) { std::cout << "■"; }
-    std::cout << "■\n";
+    std::cout << "██";
+    for (int i = 0; i < screenWidth; i++) { std::cout << "█"; }
+    std::cout << "██\n";
 }
 
 void ConsoleRenderer::clearScreen() {
@@ -256,7 +256,7 @@ bool ConsoleRenderer::render(const GameWorld& world) {
         if (damageFlashActive) {
             setColor(PlatformUtils::Color::RED);
         }
-        std::cout << "█"; // Левая граница
+        std::cout << "██"; // Левая граница
         resetColor();
         
         for (int x = 0; x < screenWidth; x++) { 
@@ -279,7 +279,7 @@ bool ConsoleRenderer::render(const GameWorld& world) {
         if (damageFlashActive) {
             setColor(PlatformUtils::Color::RED);
         }
-        std::cout << "█\n"; // Правая граница
+        std::cout << "██\n"; // Правая граница
         resetColor();
     }
     
