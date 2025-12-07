@@ -3,3 +3,5 @@ build/
 obj/
 bin/
 Makefile
+doxygen.log
+Doxyfile
