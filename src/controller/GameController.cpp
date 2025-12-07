@@ -397,16 +397,29 @@ void GameController::showMenu() {
             continue;
         }
         
-        std::cout << "===== HIGH SCORES =====\n";
+        // Выводим таблицу рекордов с центрированием
         std::vector<int> highScores = scoreManager.getHighScores();
+        
+        std::vector<std::string> scoreLines;
+        scoreLines.push_back("===== HIGH SCORES =====");
+        
         if (highScores.empty()) {
-            std::cout << "   No high scores yet!\n";
+            scoreLines.push_back("   No high scores yet!");
         } else {
             for (size_t i = 0; i < highScores.size(); i++) {
-                std::cout << "   " << (i + 1) << ". " << highScores[i] << " очков\n";
+                scoreLines.push_back("   " + std::to_string(i + 1) + ". " + 
+                                   std::to_string(highScores[i]) + " очков");
             }
         }
-        std::cout << "=======================\n\n";
+        scoreLines.push_back("=======================");
+        
+        // Выводим каждую строку таблицы рекордов по центру
+        for (const auto& line : scoreLines) {
+            int offset = view.calculateHorizontalOffset(line.length());
+            std::cout << std::string(offset, ' ') << line << "\n";
+        }
+        
+        std::cout << "\n\n"; // Добавляем отступы
         
         std::cout.flush();
         
@@ -449,30 +462,6 @@ void GameController::showSettings() {
         if (!view.drawSettings()) {
             continue;
         }
-
-        bool advancedGraphics = settingsManager.getBoolSetting("advanced_graphics", true);
-        
-        std::cout << "   Graphics: [" << (advancedGraphics ? "X" : " ") << "] Advanced\n";
-        std::cout << "            [" << (!advancedGraphics ? "X" : " ") << "] Symbolic\n\n";
-        std::cout << "   [F] - Toggle graphics mode\n";
-        std::cout << "---------------------------------\n";
-        std::cout << "   [ESC] - Back\n";
-        std::cout << "   [Q] - Exit\n";
-        std::cout << "---------------------------------\n\n";
-        std::cout << "   Status: ";
-        if (advancedGraphics) {
-            std::cout << "Advanced graphics (Unicode)";
-            if (!PlatformUtils::supportsUnicode()) {
-                std::cout << " - YOUR TERMINAL MAY NOT SUPPORT IT!";
-            }
-        } else {
-            std::cout << "Symbolic graphics (ASCII)";
-        }
-        std::cout << "\n";
-        
-        std::cout << "\n=================================\n";
-        std::cout << "  Settings are saved automatically\n";
-        std::cout << "=================================\n";
         
         std::cout.flush();
         

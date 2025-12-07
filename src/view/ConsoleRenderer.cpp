@@ -49,6 +49,13 @@ bool ConsoleRenderer::checkTerminalSize() {
     return terminalSizeValid;
 }
 
+int ConsoleRenderer::calculateHorizontalOffset(int contentWidth) const {
+    if (contentWidth >= terminalWidth) {
+        return 0;
+    }
+    return (terminalWidth - contentWidth) / 2;
+}
+
 void ConsoleRenderer::drawCenteredText(const std::string& text, int width) {
     int padding = (width - text.length()) / 2;
     if (padding > 0) {
@@ -92,20 +99,26 @@ void ConsoleRenderer::setCursorPosition(int x, int y) {
 void ConsoleRenderer::drawErrorMessage(const std::string& message) {
     clearScreen();
     
-    std::cout << "\n\n";
-    std::cout << "============================================\n";
-    drawCenteredText("DISPLAY ERROR", terminalWidth);
-    std::cout << "\n";
-    std::cout << "============================================\n\n";
-
-    drawCenteredText(message, terminalWidth);
-    std::cout << "\n\n";
-    std::cout << "Current size: " << terminalWidth << "x" << terminalHeight << "\n";
-    std::cout << "Required size: " << 60 << "x" << 40 << "\n\n";
-    std::cout << "============================================\n";
-    drawCenteredText("Increase window size", terminalWidth);
-    std::cout << "\n";
-    std::cout << "============================================\n";
+    std::vector<std::string> errorLines = {
+        "============================================",
+        "DISPLAY ERROR",
+        "============================================",
+        "",
+        message,
+        "",
+        "Current size: " + std::to_string(terminalWidth) + "x" + std::to_string(terminalHeight),
+        "Required size: " + std::to_string(60) + "x" + std::to_string(40),
+        "",
+        "============================================",
+        "Increase window size",
+        "============================================"
+    };
+    
+    // Выводим все строки с центрированием
+    for (const auto& line : errorLines) {
+        int offset = calculateHorizontalOffset(line.length());
+        std::cout << std::string(offset, ' ') << line << "\n";
+    }
 }
 
 std::map<char, std::pair<std::string, PlatformUtils::Color>> getGraphicsMap(bool useUnicode, bool useAdvancedGraphics) {
@@ -179,23 +192,36 @@ bool ConsoleRenderer::render(const GameWorld& world) {
     bool useUnicode = PlatformUtils::supportsUnicode();
     auto graphicsMap = getGraphicsMap(useUnicode, useAdvancedGraphics);
 
-    // Рисуем верхнюю границу с информацией
-    std::cout << "Level: " << world.getCurrentLevel() 
-          << " | Score: " << world.getPlayer()->getScore()
-          << " | Lives: " << world.getPlayer()->getLives()
-          << " | Health: " << world.getPlayer()->getHealth() << "\n";
+    // Рассчитываем отступ для центрирования игрового поля
+    int gameFieldWidth = screenWidth + 4; // +4 для границ (██ с двух сторон)
+    int horizontalOffset = calculateHorizontalOffset(gameFieldWidth);
+
+    // Очищаем экран
+    clearScreen();
+
+    // Выводим верхнюю информацию о статусе игры
+    std::string statusLine = "Level: " + std::to_string(world.getCurrentLevel()) 
+                           + " | Score: " + std::to_string(world.getPlayer()->getScore())
+                           + " | Lives: " + std::to_string(world.getPlayer()->getLives())
+                           + " | Health: " + std::to_string(world.getPlayer()->getHealth());
     
+    // Центрируем строку статуса
+    int statusOffset = calculateHorizontalOffset(statusLine.length());
+    std::cout << std::string(statusOffset, ' ') << statusLine << "\n\n";
+    
+    // Рисуем верхнюю границу с отступом
     setColor(PlatformUtils::Color::BLACK);
     if (damageFlashActive) {
         setColor(PlatformUtils::Color::RED);
     }
+    std::cout << std::string(horizontalOffset, ' ');
     drawBorder();
     resetColor();
     
     // Создаем буфер для отрисовки
     std::vector<std::vector<char>> buffer(screenHeight, std::vector<char>(screenWidth, ' '));
     
-    // Заполняем буфер объектами
+    // Заполняем буфер объектами (существующий код без изменений)
     for (const auto& obj : world.getObjects()) {
         if (obj->isDestroyed()) continue;
         
@@ -203,7 +229,6 @@ bool ConsoleRenderer::render(const GameWorld& world) {
         Point bounds = obj->getBounds();
         char symbol = obj->getSymbol();
         
-        // Рисуем объект в буфере
         for (int y = 0; y < bounds.y; y++) {
             for (int x = 0; x < bounds.x; x++) {
                 int drawX = pos.x + x;
@@ -250,8 +275,11 @@ bool ConsoleRenderer::render(const GameWorld& world) {
         }
     }
     
-    // Выводим буфер на экран с улучшенной графикой
+    // Выводим буфер на экран с центрированием
     for (int y = 0; y < screenHeight; y++) {
+        // Добавляем отступ для центрирования
+        std::cout << std::string(horizontalOffset, ' ');
+        
         setColor(PlatformUtils::Color::BLACK);
         if (damageFlashActive) {
             setColor(PlatformUtils::Color::RED);
@@ -283,31 +311,32 @@ bool ConsoleRenderer::render(const GameWorld& world) {
         resetColor();
     }
     
+    // Рисуем нижнюю границу с отступом
     setColor(PlatformUtils::Color::BLACK);
     if (damageFlashActive) {
         setColor(PlatformUtils::Color::RED);
     }
+    std::cout << std::string(horizontalOffset, ' ');
     drawBorder();
     resetColor();
     
     // Отображаем статус бонусов игрока
     PlayerTank* player = world.getPlayer();
     if (player) {
-        std::cout << "Bonuses: ";
+        std::string bonusLine = "Bonuses: ";
         if (player->getHasShield()) { 
-            setColor(PlatformUtils::Color::CYAN);
-            std::cout << "[★ Shield] ";
-            resetColor();
+            bonusLine += "[★ Shield] ";
         }
         if (player->getDoubleFire()) { 
-            setColor(PlatformUtils::Color::YELLOW);
-            std::cout << "[¶ Double Fire] ";
-            resetColor();
+            bonusLine += "[¶ Double Fire] ";
         }
         if (player->getBonusDuration() > 0) { 
-            std::cout << "(turns left: " << player->getBonusDuration() << ")";
+            bonusLine += "(turns left: " + std::to_string(player->getBonusDuration()) + ")";
         }
-        std::cout << "\n";
+        
+        // Центрируем строку бонусов
+        int bonusOffset = calculateHorizontalOffset(bonusLine.length());
+        std::cout << std::string(bonusOffset, ' ') << bonusLine << "\n";
     }
     
     drawSymbolLegend();
@@ -318,74 +347,33 @@ bool ConsoleRenderer::render(const GameWorld& world) {
 void ConsoleRenderer::drawSymbolLegend() {
     bool useUnicode = PlatformUtils::supportsUnicode();
     auto graphicsMap = getGraphicsMap(useUnicode, useAdvancedGraphics);
-
-    std::cout << "\n=== SYMBOL LEGEND ===\n";
     
-    // Танки
-    std::cout << "Tanks: ";
-    setColor(PlatformUtils::Color::GREEN);
-    std::cout << "▲▼◄►";
-    resetColor();
-    std::cout << " - player\n";
+    // Создаем вектор строк для легенды
+    std::vector<std::string> legendLines = {
+        "=== SYMBOL LEGEND ===",
+        "",
+        "Tanks:",
+        "",
+        "  Player: " + graphicsMap.find('^')->second.first + " " + 
+                    graphicsMap.find('v')->second.first + " " + 
+                    graphicsMap.find('<')->second.first + " " + 
+                    graphicsMap.find('>')->second.first,
+        "",
+        "  Enemies:  " + graphicsMap.find('E')->second.first + " - normal" + "  " + graphicsMap.find('F')->second.first + " - fast" + "  " + graphicsMap.find('D')->second.first + " - strong" + "  " + graphicsMap.find('A')->second.first + " - armored",
+        "",
+        "Obstacles:  " + graphicsMap.find('#')->second.first + " - brick" + "  " + graphicsMap.find('X')->second.first + " - steel" + "  " + graphicsMap.find('~')->second.first + " - water" + "  " + graphicsMap.find('*')->second.first + " - forest",
+        "",
+        "Bonuses:  " + graphicsMap.find('S')->second.first + " - shield" + "  " + graphicsMap.find('K')->second.first + " - double fire" + "  " + graphicsMap.find('B')->second.first + " - speed" + "  " + graphicsMap.find('L')->second.first + " - +1 life",
+        "",
+        "Explosions:    " + graphicsMap.find('O')->second.first,
+        ""
+    };
     
-    std::cout << "Enemies: ";
-    setColor(PlatformUtils::Color::RED);
-    std::cout << "E";
-    resetColor();
-    std::cout << " - normal, ";
-    setColor(PlatformUtils::Color::RED);
-    std::cout << "F";
-    resetColor();
-    std::cout << " - fast, ";
-    setColor(PlatformUtils::Color::RED);
-    std::cout << "D";
-    resetColor();
-    std::cout << " - strong, ";
-    setColor(PlatformUtils::Color::RED);
-    std::cout << "A";
-    resetColor();
-    std::cout << " - armored\n";
-    
-    // Препятствия
-    std::cout << "Obstacles: ";
-    std::cout << graphicsMap.find('#')->second.first;
-    std::cout << " - brick, ";
-    std::cout << graphicsMap.find('X')->second.first;
-    std::cout << " - steel, ";
-    setColor(PlatformUtils::Color::BLUE);
-    std::cout << graphicsMap.find('~')->second.first;
-    resetColor();
-    std::cout << " - water, ";
-    setColor(PlatformUtils::Color::GREEN);
-    std::cout << graphicsMap.find('*')->second.first;
-    resetColor();
-    std::cout << " - forest\n";
-    
-    // Бонусы
-    std::cout << "Bonuses: ";
-    setColor(PlatformUtils::Color::MAGENTA);
-    std::cout << graphicsMap.find('S')->second.first;
-    resetColor();
-    std::cout << " - shield, ";
-    setColor(PlatformUtils::Color::MAGENTA);
-    std::cout << graphicsMap.find('K')->second.first;
-    resetColor();
-    std::cout << " - double fire, ";
-    setColor(PlatformUtils::Color::MAGENTA);
-    std::cout << graphicsMap.find('B')->second.first;
-    resetColor();
-    std::cout << " - speed, ";
-    setColor(PlatformUtils::Color::MAGENTA);
-    std::cout << graphicsMap.find('L')->second.first;
-    resetColor();
-    std::cout << " - +1 life\n";
-
-    std::cout << "Explosions: ";
-    setColor(PlatformUtils::Color::YELLOW);
-    std::cout << graphicsMap.find('O')->second.first;
-    resetColor();
-    std::cout << " - explosion\n";
-
+    // Выводим каждую строку легенды по центру
+    for (const auto& line : legendLines) {
+        int offset = calculateHorizontalOffset(line.length());
+        std::cout << std::string(offset, ' ') << line << "\n";
+    }
 }
 
 bool ConsoleRenderer::drawMenu() {
@@ -396,25 +384,36 @@ bool ConsoleRenderer::drawMenu() {
 
     clearScreen();
     
-    std::cout << "=================================\n";
-    std::cout << "        TANK SIMULATOR          \n";
-    std::cout << "=================================\n\n";
+    std::vector<std::string> menuLines = {
+        "=================================",
+        "TANKS GAME",
+        "=================================",
+        "",
+        "---------------------------------",
+        "MAIN MENU",
+        "---------------------------------",
+        "",
+        "[ENTER] - Start Game",
+        "[M] - Settings",
+        "[Q] - Exit",
+        "",
+        "---------------------------------",
+        "IN-GAME CONTROLS",
+        "---------------------------------",
+        "",
+        "Movement: WASD or arrow keys",
+        "Fire: SPACE or F",
+        "Pause: P",
+        "Menu: M",
+        "Exit: Q",
+        ""
+    };
     
-    std::cout << "---------------------------------\n";
-    std::cout << "          MAIN MENU             \n";
-    std::cout << "---------------------------------\n\n";
-    std::cout << "   [ENTER] - Start Game\n";
-    std::cout << "   [M] - Settings\n";
-    std::cout << "   [Q] - Exit\n\n";
-    std::cout << "---------------------------------\n";
-    std::cout << "        IN-GAME CONTROLS        \n";
-    std::cout << "---------------------------------\n\n";
-    std::cout << "   Movement: WASD or arrow keys\n";
-    std::cout << "   Fire: SPACE or F\n";
-    std::cout << "   Pause: P\n";
-    std::cout << "   Menu: M\n";
-    std::cout << "   Exit: Q\n\n";
-
+    for (const auto& line : menuLines) {
+        int offset = calculateHorizontalOffset(line.length());
+        std::cout << std::string(offset, ' ') << line << "\n";
+    }
+    
     return true;
 }
 
@@ -426,18 +425,27 @@ bool ConsoleRenderer::drawPauseScreen() {
 
     clearScreen();
     
-    std::cout << "=================================\n";
-    std::cout << "            PAUSED              \n";
-    std::cout << "=================================\n\n";
-    std::cout << "    Game is paused\n\n";
-    std::cout << "---------------------------------\n";
-    std::cout << "   [P] or [ENTER] - Continue\n";
-    std::cout << "   [M] - Main Menu\n";
-    std::cout << "   [Q] - Exit\n";
-    std::cout << "---------------------------------\n\n";
-
-    std::cout << "=================================\n";
-
+    std::vector<std::string> pauseLines = {
+        "=================================",
+        "PAUSED",
+        "=================================",
+        "",
+        " Game is paused",
+        "",
+        "---------------------------------",
+        "[P] or [ENTER] - Continue",
+        "[M] - Main Menu",
+        "[Q] - Exit",
+        "---------------------------------",
+        "",
+        "================================="
+    };
+    
+    for (const auto& line : pauseLines) {
+        int offset = calculateHorizontalOffset(line.length());
+        std::cout << std::string(offset, ' ') << line << "\n";
+    }
+    
     return true;
 }
 
@@ -449,20 +457,29 @@ bool ConsoleRenderer::drawGameOver(int score) {
 
     clearScreen();
     
-    std::cout << "=================================\n";
-    std::cout << "          GAME OVER             \n";
-    std::cout << "=================================\n\n";
-    std::cout << "    Your score: " << score << "\n\n";
-    std::cout << "---------------------------------\n";
-    std::cout << "   [ENTER] - New Game\n";
-    std::cout << "   [M] - Main Menu\n";
-    std::cout << "   [Q] - Exit\n";
-    std::cout << "---------------------------------\n\n";
-
-    std::cout << "=================================\n";
-    std::cout << "  Thank you for playing!        \n";
-    std::cout << "=================================\n";
-
+    std::vector<std::string> gameOverLines = {
+        "=================================",
+        "GAME OVER",
+        "=================================",
+        "",
+        " Your score: " + std::to_string(score),
+        "",
+        "---------------------------------",
+        "ENTER] - New Game",
+        "[M] - Main Menu",
+        "[Q] - Exit",
+        "---------------------------------",
+        "",
+        "=================================",
+        "Thank you for playing!",
+        "================================="
+    };
+    
+    for (const auto& line : gameOverLines) {
+        int offset = calculateHorizontalOffset(line.length());
+        std::cout << std::string(offset, ' ') << line << "\n";
+    }
+    
     return true;
 }
 
@@ -474,18 +491,47 @@ bool ConsoleRenderer::drawSettings() {
 
     clearScreen();
     
-    std::cout << "=================================\n";
-    std::cout << "           SETTINGS             \n";
-    std::cout << "=================================\n\n";
-    std::cout << "   Control Settings:\n\n";
-    std::cout << "   Move Up: W / Up Arrow\n";
-    std::cout << "   Move Down: S / Down Arrow\n";
-    std::cout << "   Move Left: A / Left Arrow\n";
-    std::cout << "   Move Right: D / Right Arrow\n";
-    std::cout << "   Fire: SPACE / F\n";
-    std::cout << "   Pause: P\n";
-    std::cout << "   Menu: M\n\n";
-    std::cout << "   Game Settings:\n\n";
+    bool advancedGraphics = PlatformUtils::supportsUnicode() && useAdvancedGraphics;
+    
+    std::vector<std::string> settingsLines = {
+        "=================================",
+        "SETTINGS",
+        "=================================",
+        "",
+        "Control Settings:",
+        "",
+        "Move Up: W / Up Arrow",
+        "Move Down: S / Down Arrow",
+        "Move Left: A / Left Arrow",
+        "Move Right: D / Right Arrow",
+        "Fire: SPACE / F",
+        "Pause: P",
+        "Menu: M",
+        "",
+        "Game Settings:",
+        "",
+        "Graphics: [" + std::string(advancedGraphics ? "X" : " ") + "] Advanced",
+        "          [" + std::string(!advancedGraphics ? "X" : " ") + "] Symbolic",
+        "",
+        "[F] - Toggle graphics mode",
+        "---------------------------------",
+        "Status: " + std::string(advancedGraphics ? 
+            "Advanced graphics (Unicode)" : 
+            "Symbolic graphics (ASCII)"),
+        "",
+        "[ESC] - Back",
+        "[Q] - Exit",
+        "---------------------------------",
+        "",
+        "=================================",
+        "Settings are saved automatically",
+        "================================="
+    };
+    
+    for (const auto& line : settingsLines) {
+        int offset = calculateHorizontalOffset(line.length());
+        std::cout << std::string(offset, ' ') << line << "\n";
+    }
 
     return true;
 }
@@ -498,29 +544,46 @@ bool ConsoleRenderer::drawMapSelection(const MapInfo& currentMap, int currentInd
 
     clearScreen();
     
-    std::cout << "=================================\n";
-    std::cout << "         MAP SELECTION          \n";
-    std::cout << "=================================\n\n";
-    std::cout << "   Current Map: " << currentMap.displayName << "\n";
-    std::cout << "   " << currentMap.description << "\n";
-    std::cout << "   Map " << (currentIndex + 1) << " of " << totalMaps << "\n\n";
-    std::cout << "---------------------------------\n";
-    std::cout << "         MAP PREVIEW            \n";
-    std::cout << "---------------------------------\n";
+    // Сначала выводим текст меню
+    std::vector<std::string> mapSelectionLines = {
+        "=================================",
+        "MAP SELECTION",
+        "=================================",
+        "",
+        " Current Map: " + currentMap.displayName,
+        "   " + currentMap.description,
+        " Map " + std::to_string(currentIndex + 1) + " of " + std::to_string(totalMaps),
+        "",
+        "---------------------------------",
+        "MAP PREVIEW",
+        "---------------------------------"
+    };
     
-    // Рисуем превью карты
+    for (const auto& line : mapSelectionLines) {
+        int offset = calculateHorizontalOffset(line.length());
+        std::cout << std::string(offset, ' ') << line << "\n";
+    }
+    
+    // Рисуем превью карты с центрированием
     drawMapPreview(currentMap);
     
-    std::cout << "\n---------------------------------\n";
-    std::cout << "          CONTROLS              \n";
-    std::cout << "---------------------------------\n\n";
-    std::cout << "   [A] - Previous Map\n";
-    std::cout << "   [D] - Next Map\n";
-    std::cout << "   [F] - Random Generation\n";
-    std::cout << "   [ENTER] - Start Game\n";
-    std::cout << "   [M] - Main Menu\n";
-    std::cout << "   [Q] - Exit\n\n";
-    std::cout << "=================================\n";
+    // Выводим нижнюю часть меню
+    std::vector<std::string> controlsLines = {
+        "",
+        "[A] - Previous Map",
+        "[D] - Next Map",
+        "[F] - Random Generation",
+        "[ENTER] - Start Game",
+        "[M] - Main Menu",
+        "[Q] - Exit",
+        "",
+        "================================="
+    };
+    
+    for (const auto& line : controlsLines) {
+        int offset = calculateHorizontalOffset(line.length());
+        std::cout << std::string(offset, ' ') << line << "\n";
+    }
 
     return true;
 }
@@ -529,8 +592,12 @@ void ConsoleRenderer::drawMapPreview(const MapInfo& map) {
     bool useUnicode = PlatformUtils::supportsUnicode();
     auto graphicsMap = getGraphicsMap(useUnicode, useAdvancedGraphics);
     
+    // Рассчитываем отступ для центрирования превью карты
+    int previewWidth = map.width + 4; // +4 для отступов и границ
+    int offset = calculateHorizontalOffset(previewWidth);
+    
     for (int y = 0; y < map.height; y++) {
-        std::cout << "   ";
+        std::cout << std::string(offset, ' ') << "  ";
         
         for (int x = 0; x < map.width; x++) {
             char symbol = map.layout[y][x];
@@ -559,24 +626,6 @@ void ConsoleRenderer::drawMapPreview(const MapInfo& map) {
         std::cout << "\n";
     }
     std::cout << "\n";
-    
-    // Статистика карты
-    std::cout << "   Size: " << map.width << "x" << map.height;
-    
-    // Подсчитываем объекты
-    int walls = 0, water = 0, forest = 0, enemies = 0, empty = 0;
-    for (const auto& row : map.layout) {
-        for (char cell : row) {
-            if (cell == '#' || cell == 'X') walls++;
-            else if (cell == '~') water++;
-            else if (cell == '*') forest++;
-            else if (cell == 'E') enemies++;
-            else if (cell == ' ') empty++;
-        }
-    }
-    
-    std::cout << " | Empty cells: " << empty << "\n";
-    std::cout << "   Objects: " << walls << " walls, " << water << " water, " << forest << " forest, " << enemies << " enemies\n";
 }
 
 bool ConsoleRenderer::drawLevelComplete(int score, int level, int lives) {
@@ -587,33 +636,47 @@ bool ConsoleRenderer::drawLevelComplete(int score, int level, int lives) {
 
     clearScreen();
     
-    std::cout << "=================================\n";
-    std::cout << "         LEVEL " << level << " COMPLETED!     \n";
-    std::cout << "=================================\n\n";
-    std::cout << "        LEVEL STATISTICS        \n";
-    std::cout << "---------------------------------\n\n";
-    std::cout << "   Points earned: " << score << "\n";
-    std::cout << "   Lives remaining: " << lives << "\n\n";
-    
     // Бонусы за прохождение уровня
     int levelBonus = level * 100;
     int livesBonus = lives * 25;
     int totalBonus = levelBonus + livesBonus;
+    int newScore = score + totalBonus;
     
-    std::cout << "        LEVEL BONUSES           \n";
-    std::cout << "---------------------------------\n\n";
-    std::cout << "   For level " << level << ": " << levelBonus << " points\n";
-    std::cout << "   For remaining lives: " << livesBonus << " points\n";
-    std::cout << "   TOTAL BONUS: " << totalBonus << " points\n\n";
-    std::cout << "   NEW SCORE: " << (score + totalBonus) << " points\n\n";
-    std::cout << "---------------------------------\n";
-    std::cout << "   [ENTER] - Next Level\n";
-    std::cout << "   [M] - Main Menu\n";
-    std::cout << "   [Q] - Exit\n";
-    std::cout << "---------------------------------\n\n";
-    std::cout << "=================================\n";
-    std::cout << "  Prepare for level " << (level + 1) << "!\n";
-    std::cout << "=================================\n";
-
+    std::vector<std::string> levelCompleteLines = {
+        "=================================",
+        "LEVEL " + std::to_string(level) + " COMPLETED!",
+        "=================================",
+        "",
+        "LEVEL STATISTICS",
+        "---------------------------------",
+        "",
+        "   Points earned: " + std::to_string(score),
+        "   Lives remaining: " + std::to_string(lives),
+        "",
+        "LEVEL BONUSES",
+        "---------------------------------",
+        "",
+        "For level " + std::to_string(level) + ": " + std::to_string(levelBonus) + " points",
+        "For remaining lives: " + std::to_string(livesBonus) + " points",
+        "TOTAL BONUS: " + std::to_string(totalBonus) + " points",
+        "",
+        "NEW SCORE: " + std::to_string(newScore) + " points",
+        "",
+        "---------------------------------",
+        "[ENTER] - Next Level",
+        "[M] - Main Menu",
+        "[Q] - Exit",
+        "---------------------------------",
+        "",
+        "=================================",
+        "Prepare for level " + std::to_string(level + 1) + "!",
+        "================================="
+    };
+    
+    for (const auto& line : levelCompleteLines) {
+        int offset = calculateHorizontalOffset(line.length());
+        std::cout << std::string(offset, ' ') << line << "\n";
+    }
+    
     return true;
 }

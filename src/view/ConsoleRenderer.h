@@ -191,6 +191,13 @@ public:
      * @return true if terminal size meets requirements, false otherwise.
      */
     bool isTerminalSizeValid() const;
+
+    /**
+     * @brief Calculates horizontal offset to center content based on terminal width.
+     * @param contentWidth Width of content to center.
+     * @return Horizontal offset in characters.
+     */
+    int calculateHorizontalOffset(int contentWidth) const;
 };
 
 #endif // CONSOLERENDERER_H
