@@ -1,0 +1,7 @@
+<map id="ConsoleRenderer::checkTerminalSize" name="ConsoleRenderer::checkTerminalSize">
+<area shape="rect" id="Node000001" title="Checks if terminal size meets requirements." alt="" coords="5,5,268,31"/>
+<area shape="rect" id="Node000002" href="$classConsoleRenderer.html#aae418386985b5ad1286af9cb8a7726c9" title="Updates terminal size information." alt="" coords="316,5,585,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="268,15,302,15,302,21,268,21"/>
+<area shape="rect" id="Node000003" href="$classPlatformUtils.html#a9fb2159f36325087d8c93e7937d6da0b" title="Gets current terminal dimensions." alt="" coords="633,5,853,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="586,15,619,15,619,21,586,21"/>
+</map>

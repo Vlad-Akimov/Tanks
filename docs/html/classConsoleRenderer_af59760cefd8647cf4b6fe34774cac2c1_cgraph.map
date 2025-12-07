@@ -1,0 +1,9 @@
+<map id="ConsoleRenderer::drawErrorMessage" name="ConsoleRenderer::drawErrorMessage">
+<area shape="rect" id="Node000001" title="Draws an error message about terminal size." alt="" coords="5,23,209,63"/>
+<area shape="rect" id="Node000002" href="$classConsoleRenderer.html#a041e99f6c0427c254b0349b57fbe2a84" title="Clears the terminal screen." alt="" coords="278,5,495,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,31,264,26,264,32,210,37"/>
+<area shape="rect" id="Node000004" href="$classConsoleRenderer.html#a71e694cb8e3ecdd88b44a78b339a3963" title="Draws centered text within specified width." alt="" coords="257,55,516,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="210,49,244,52,243,58,209,55"/>
+<area shape="rect" id="Node000003" href="$classPlatformUtils.html#acddd420e3f04cd70a8932b5472fce01d" title="Clears the terminal screen." alt="" coords="564,5,756,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="495,15,550,15,550,21,495,21"/>
+</map>

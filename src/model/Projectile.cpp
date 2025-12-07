@@ -1,3 +1,14 @@
+/**
+ * @file Projectile.cpp
+ * @author Vld251
+ * @brief Implementation of projectile movement, collision detection, and damage calculation.
+ * @version 0.1
+ * @date 2025-12-07
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "Projectile.h"
 #include "Tank.h"
 

@@ -1,0 +1,7 @@
+<map id="SettingsManager::loadSettings" name="SettingsManager::loadSettings">
+<area shape="rect" id="Node000001" title="Loads settings from configuration file." alt="" coords="5,13,227,38"/>
+<area shape="rect" id="Node000002" href="$classSettingsManager.html#a9eb3e4c128197920e5d078728dba654c" title="Sets default settings if configuration file doesn&#39;t exist." alt="" coords="275,5,483,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,23,261,23,261,28,227,28"/>
+<area shape="rect" id="Node000003" href="$classPlatformUtils.html#a3cb085d8a5a464f034989e1a3f4a956e" title="Checks and reports Unicode support status." alt="" coords="531,5,737,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="483,23,517,23,517,28,483,28"/>
+</map>

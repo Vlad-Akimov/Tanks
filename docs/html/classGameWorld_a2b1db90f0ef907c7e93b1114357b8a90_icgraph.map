@@ -1,0 +1,11 @@
+<map id="GameWorld::playerMove" name="GameWorld::playerMove">
+<area shape="rect" id="Node000001" title="Moves player tank in specified direction." alt="" coords="945,5,1128,31"/>
+<area shape="rect" id="Node000002" href="$classGameController.html#a971b3d8f6296a74f0bebc83b5e79c186" title="Processes a user command." alt="" coords="647,5,897,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="932,21,897,21,897,15,932,15"/>
+<area shape="rect" id="Node000003" href="$classGameController.html#af2367e58f03d8a1441c9a574967fd360" title="Processes a single game turn/update cycle." alt="" coords="349,5,599,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="633,21,599,21,599,15,633,15"/>
+<area shape="rect" id="Node000004" href="$classGameController.html#ac958989c8f7f08488546930e5fcb0d82" title="Starts and runs the main game loop." alt="" coords="108,5,301,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="336,21,302,21,302,15,336,15"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Main function that serves as the application entry point." alt="" coords="5,5,60,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="94,21,60,21,60,15,94,15"/>
+</map>

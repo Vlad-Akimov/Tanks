@@ -1,0 +1,21 @@
+<map id="Tank::getBounds" name="Tank::getBounds">
+<area shape="rect" id="Node000001" title="Gets the bounding dimensions of the tank." alt="" coords="1379,77,1508,102"/>
+<area shape="rect" id="Node000002" href="$classGameWorld.html#a6b4f2f8d12f4dcde90d48853dd37f6cc" title="Checks boundary collisions." alt="" coords="1112,5,1319,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1384,75,1330,60,1288,48,1289,43,1331,55,1386,70"/>
+<area shape="rect" id="Node000008" href="$classGameWorld.html#ab28f8bec4f78b7be44d509449508babb" title="Checks tank&#45;obstacle collisions." alt="" coords="1100,69,1331,109"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1365,92,1331,92,1331,87,1365,87"/>
+<area shape="rect" id="Node000009" href="$classGameWorld.html#aba83e6f4f714c9f590f4cb8078cd9a2b" title="Checks tank&#45;tank collisions." alt="" coords="1113,133,1317,173"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="1386,108,1331,124,1289,136,1288,131,1330,119,1384,103"/>
+<area shape="rect" id="Node000003" href="$classGameWorld.html#a2a5aaafc1c18521a4657d6a4a66c4d91" title="Checks all types of collisions." alt="" coords="845,77,1052,102"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1119,51,1003,79,1002,74,1118,46"/>
+<area shape="rect" id="Node000004" href="$classGameWorld.html#ab645acf30cb0a4640a8fb5b88c5c7c94" title="Updates all game objects and logic." alt="" coords="647,77,797,102"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="832,92,798,92,798,87,832,87"/>
+<area shape="rect" id="Node000005" href="$classGameController.html#af2367e58f03d8a1441c9a574967fd360" title="Processes a single game turn/update cycle." alt="" coords="349,77,599,102"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="633,92,599,92,599,87,633,87"/>
+<area shape="rect" id="Node000006" href="$classGameController.html#ac958989c8f7f08488546930e5fcb0d82" title="Starts and runs the main game loop." alt="" coords="108,77,301,102"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="336,92,302,92,302,87,336,87"/>
+<area shape="rect" id="Node000007" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Main function that serves as the application entry point." alt="" coords="5,77,60,102"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="94,92,60,92,60,87,94,87"/>
+<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="1086,92,1052,92,1052,87,1086,87"/>
+<area shape="poly" id="edge10_Node000009_Node000003" title=" " alt="" coords="1118,133,1002,105,1003,99,1119,128"/>
+</map>

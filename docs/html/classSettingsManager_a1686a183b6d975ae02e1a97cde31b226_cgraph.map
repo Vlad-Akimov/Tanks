@@ -1,0 +1,5 @@
+<map id="SettingsManager::getBoolSetting" name="SettingsManager::getBoolSetting">
+<area shape="rect" id="Node000001" title="Gets a boolean setting value." alt="" coords="5,5,196,45"/>
+<area shape="rect" id="Node000002" href="$classSettingsManager.html#a824eef45a26393d9038ac52ce0413596" title="Gets a string setting value." alt="" coords="244,13,451,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,23,230,23,230,28,196,28"/>
+</map>

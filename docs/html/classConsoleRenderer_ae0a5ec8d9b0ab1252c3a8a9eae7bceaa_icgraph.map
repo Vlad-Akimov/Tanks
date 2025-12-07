@@ -1,0 +1,11 @@
+<map id="ConsoleRenderer::drawSymbolLegend" name="ConsoleRenderer::drawSymbolLegend">
+<area shape="rect" id="Node000001" title="Draws symbol legend explaining game symbols." alt="" coords="877,5,1100,45"/>
+<area shape="rect" id="Node000002" href="$classConsoleRenderer.html#ab34fa7af4ede79de3951f1d5271d7a27" title="Renders the game world to console." alt="" coords="647,13,829,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="864,28,830,28,830,23,864,23"/>
+<area shape="rect" id="Node000003" href="$classGameController.html#af2367e58f03d8a1441c9a574967fd360" title="Processes a single game turn/update cycle." alt="" coords="349,13,599,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="633,28,599,28,599,23,633,23"/>
+<area shape="rect" id="Node000004" href="$classGameController.html#ac958989c8f7f08488546930e5fcb0d82" title="Starts and runs the main game loop." alt="" coords="108,13,301,38"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="336,28,302,28,302,23,336,23"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Main function that serves as the application entry point." alt="" coords="5,13,60,38"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="94,28,60,28,60,23,94,23"/>
+</map>

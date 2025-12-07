@@ -1,0 +1,5 @@
+<map id="PlatformUtils::isTerminalSizeValid" name="PlatformUtils::isTerminalSizeValid">
+<area shape="rect" id="Node000001" title="Checks if terminal meets minimum size requirements." alt="" coords="5,5,188,45"/>
+<area shape="rect" id="Node000002" href="$classPlatformUtils.html#a9fb2159f36325087d8c93e7937d6da0b" title="Gets current terminal dimensions." alt="" coords="236,13,456,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,23,222,23,222,28,188,28"/>
+</map>

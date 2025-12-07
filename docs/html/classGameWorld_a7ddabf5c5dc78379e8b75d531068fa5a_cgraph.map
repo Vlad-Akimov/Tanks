@@ -1,0 +1,16 @@
+<map id="GameWorld::checkBonusCollisions" name="GameWorld::checkBonusCollisions">
+<area shape="rect" id="Node000001" title="Checks bonus collection." alt="" coords="5,80,252,105"/>
+<area shape="rect" id="Node000002" href="$classPlayerTank.html#a34ecaf7829cc7b3e4965afa9ef6c25f0" title="Adds points to player&#39;s score." alt="" coords="341,5,502,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,77,299,39,337,31,338,36,301,45,170,83"/>
+<area shape="rect" id="Node000003" href="$classGameWorld.html#aa547d7890c6acf2e8ee3014a52d741b9" title="Applies slow effect to all enemies." alt="" coords="300,55,543,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="252,79,286,76,287,82,252,85"/>
+<area shape="rect" id="Node000006" href="$classGameObject.html#a51ac0947e5c628f04657cafecc9fe36b" title="Checks if object is destroyed." alt="" coords="601,104,790,129"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="252,95,587,109,587,115,252,101"/>
+<area shape="rect" id="Node000007" href="$classGameObject.html#aa4dd19d6b0ea5701d860b64b08435ae6" title="Gets current position of the object." alt="" coords="329,156,513,181"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="179,103,359,150,358,155,178,108"/>
+<area shape="rect" id="Node000004" href="$classEnemyTank.html#ac30fc0d640fb804d2e382603b424faa7" title="Applies slow effect to enemy tank." alt="" coords="591,55,800,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="543,65,577,65,577,70,543,70"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="493,77,611,99,610,104,492,83"/>
+<area shape="rect" id="Node000005" href="$classTank.html#ad2c4d964485d2fa5b948f92ae0a76250" title="Applies slow effect to the tank." alt="" coords="848,55,1012,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="800,65,834,65,834,70,800,70"/>
+</map>

@@ -1,3 +1,14 @@
+/**
+ * @file Bonus.cpp
+ * @author Vld251
+ * @brief Implementation of power-up bonuses with various effects for player tank.
+ * @version 0.1
+ * @date 2025-12-07
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "Bonus.h"
 #include "PlayerTank.h"
 

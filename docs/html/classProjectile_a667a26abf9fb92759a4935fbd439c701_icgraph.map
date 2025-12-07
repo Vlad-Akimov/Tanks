@@ -1,0 +1,19 @@
+<map id="Projectile::setDamage" name="Projectile::setDamage">
+<area shape="rect" id="Node000001" title="Sets new damage value for projectile." alt="" coords="1056,31,1223,56"/>
+<area shape="rect" id="Node000002" href="$classEnemyTank.html#a502b571b6aadbbcd72392d182b7fd85c" title="Fires projectile from enemy tank." alt="" coords="881,31,1008,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1042,46,1008,46,1008,41,1042,41"/>
+<area shape="rect" id="Node000003" href="$classEnemyTank.html#a5759e09a78eab14d4b85dc1bd93ead19" title="Attempts to shoot at player." alt="" coords="647,5,833,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="867,36,833,32,834,27,868,31"/>
+<area shape="rect" id="Node000006" href="$classGameWorld.html#ab645acf30cb0a4640a8fb5b88c5c7c94" title="Updates all game objects and logic." alt="" coords="665,55,815,80"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="868,55,816,61,815,56,867,50"/>
+<area shape="rect" id="Node000004" href="$classEnemyTank.html#a338556623afc739ebf5585caaa73fcdb" title="Decides next action based on behavior." alt="" coords="367,5,581,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="633,21,581,21,581,15,633,15"/>
+<area shape="rect" id="Node000005" href="$classEnemyTank.html#a7ae5efc6eff4e7a19abb7f37b44835fc" title="Updates enemy tank state and AI decisions." alt="" coords="129,5,280,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="353,21,280,21,280,15,353,15"/>
+<area shape="rect" id="Node000007" href="$classGameController.html#af2367e58f03d8a1441c9a574967fd360" title="Processes a single game turn/update cycle." alt="" coords="349,55,599,80"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="651,70,599,70,599,65,651,65"/>
+<area shape="rect" id="Node000008" href="$classGameController.html#ac958989c8f7f08488546930e5fcb0d82" title="Starts and runs the main game loop." alt="" coords="108,55,301,80"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="336,70,302,70,302,65,336,65"/>
+<area shape="rect" id="Node000009" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Main function that serves as the application entry point." alt="" coords="5,55,60,80"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="94,70,60,70,60,65,94,65"/>
+</map>

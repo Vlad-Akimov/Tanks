@@ -1,0 +1,12 @@
+<map id="GameWorld::spawnBonus" name="GameWorld::spawnBonus">
+<area shape="rect" id="Node000001" title="Spawns a bonus at random location." alt="" coords="5,56,193,81"/>
+<area shape="rect" id="Node000002" href="$classGameWorld.html#ad38a12f17ba52aa4a1897459d47d64ec" title="Checks if position is valid for bonus placement." alt="" coords="241,56,483,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,66,228,66,228,71,193,71"/>
+<area shape="rect" id="Node000003" href="$classBonus.html#a532f21a230da61103eac3be853721245" title=" " alt="" coords="589,5,711,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="435,53,575,28,575,34,435,59"/>
+<area shape="rect" id="Node000004" href="$classObstacle.html#aa1936373d282c8dba39f529526b6143d" title="Checks if obstacle is passable for tanks." alt="" coords="817,81,972,107"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="483,72,804,87,803,92,483,77"/>
+<area shape="rect" id="Node000005" href="$classGameWorld.html#aa179c4b1c5c4659bdcdd05a5c85867ab" title="Checks if position is accessible for tanks." alt="" coords="531,107,769,132"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="435,79,564,102,563,107,435,84"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="769,104,803,101,804,106,770,110"/>
+</map>

@@ -1,0 +1,26 @@
+<map id="GameWorld::handleProjectileHit" name="GameWorld::handleProjectileHit">
+<area shape="rect" id="Node000001" title="Handles projectile hit." alt="" coords="5,229,236,255"/>
+<area shape="rect" id="Node000002" href="$classPlayerTank.html#a34ecaf7829cc7b3e4965afa9ef6c25f0" title="Adds points to player&#39;s score." alt="" coords="311,5,473,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,228,147,190,181,139,227,85,254,61,283,40,297,32,299,37,285,44,257,65,231,89,186,142,152,193,131,231"/>
+<area shape="rect" id="Node000003" href="$classProjectile.html#aef8adfaa81fbbb3794bcf9eb2dfb2d44" title="Gets the owner tank of this projectile." alt="" coords="315,55,469,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="130,227,189,161,233,122,283,89,301,81,303,86,285,94,236,126,193,165,134,231"/>
+<area shape="rect" id="Node000004" href="$classGameObject.html#aa4dd19d6b0ea5701d860b64b08435ae6" title="Gets current position of the object." alt="" coords="300,104,484,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="137,227,199,183,240,159,283,138,304,131,306,136,285,143,242,164,202,188,140,231"/>
+<area shape="rect" id="Node000005" href="$classEnemyTank.html#a7449d102bbca6b351322b72f8b079f72" title="Gets the type of enemy tank." alt="" coords="299,153,485,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="166,227,331,180,333,185,168,232"/>
+<area shape="rect" id="Node000006" href="$classGameObject.html#a51ac0947e5c628f04657cafecc9fe36b" title="Checks if object is destroyed." alt="" coords="551,279,740,304"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="236,230,363,227,433,231,500,239,555,253,604,271,603,276,554,258,500,245,432,236,363,233,236,235"/>
+<area shape="rect" id="Node000007" href="$classObstacle.html#ac5dc75c2d5f77f598a1fe8d42699e3f9" title="Checks if obstacle is destructible." alt="" coords="303,255,481,280"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="237,250,290,255,289,260,236,255"/>
+<area shape="rect" id="Node000008" href="$classObstacle.html#aaa4db983792ece6cd734c170d9a68e36" title="Checks if obstacle is passable for projectiles." alt="" coords="284,304,500,329"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="163,252,285,289,322,298,320,303,283,294,161,257"/>
+<area shape="rect" id="Node000009" href="$classObstacle.html#a0167f367446272ac93f006af1403fa2c" title="Applies damage to the obstacle." alt="" coords="307,353,477,379"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="141,253,202,295,243,318,285,338,311,347,309,352,283,343,240,323,200,299,138,257"/>
+<area shape="rect" id="Node000010" href="$classTank.html#a694c752906e013192e6420bc31b01dd6" title="Applies damage to tank, considering shield." alt="" coords="321,403,463,428"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="134,253,193,319,236,357,285,389,309,399,307,404,283,394,233,361,189,322,130,257"/>
+<area shape="rect" id="Node000012" href="$classGameWorld.html#aaab2806ac3f2f439dd4bf0fc2299d402" title="Triggers damage flash effect." alt="" coords="290,453,494,493"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="131,254,153,290,187,340,232,393,286,438,296,444,293,449,282,443,228,397,183,343,148,293,127,256"/>
+<area shape="poly" id="edge9_Node000009_Node000006" title=" " alt="" coords="451,351,499,338,597,306,598,311,501,343,452,356"/>
+<area shape="rect" id="Node000011" href="$classGameObject.html#a801c8cf8e8e188ec698364327f977ecf" title="Applies damage to the object." alt="" coords="548,403,743,428"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="463,413,534,413,534,418,463,418"/>
+</map>

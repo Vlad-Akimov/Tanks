@@ -1,0 +1,38 @@
+<map id="src/model/GameWorld.h" name="src/model/GameWorld.h">
+<area shape="rect" id="Node000001" title="Main game world manager handling objects, collisions, states, and game logic." alt="" coords="321,5,499,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,299,68,324"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="321,29,184,47,123,62,84,81,53,112,38,143,22,226,22,257,29,285,24,287,16,257,17,225,33,142,49,109,80,76,122,57,183,42,320,23"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="549,79,626,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="439,28,547,71,545,76,438,33"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="650,79,735,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="456,28,637,73,636,79,455,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="759,79,831,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="482,28,746,76,745,81,481,33"/>
+<area shape="rect" id="Node000006" href="$GameObject_8h.html" title="Base class and structures for all game objects with position, direction, and health." alt="" coords="266,299,381,324"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="416,30,426,69,433,126,432,190,425,222,412,252,392,277,366,294,363,290,388,273,408,249,420,220,426,189,428,126,420,70,411,31"/>
+<area shape="rect" id="Node000007" href="$PlayerTank_8h.html" title="Player&#45;controlled tank with lives, score system, and special abilities." alt="" coords="133,79,239,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="375,33,236,77,234,72,373,28"/>
+<area shape="rect" id="Node000009" href="$Projectile_8h.html" title="Projectile class for bullets fired by tanks with collision detection." alt="" coords="32,225,127,251"/>
+<area shape="poly" id="edge20_Node000001_Node000009" title=" " alt="" coords="321,28,258,35,194,46,141,61,120,70,107,80,87,111,78,146,76,181,78,212,73,212,71,181,73,145,83,109,103,77,118,66,139,56,193,41,257,30,320,23"/>
+<area shape="rect" id="Node000010" href="$Bonus_8h.html" title="Power&#45;up bonuses with various effects for enhancing player abilities." alt="" coords="323,225,398,251"/>
+<area shape="poly" id="edge19_Node000001_Node000010" title=" " alt="" coords="410,31,378,178,369,213,364,212,373,177,405,30"/>
+<area shape="rect" id="Node000011" href="$EnemyTank_8h.html" title="AI&#45;controlled enemy tanks with various behaviors, types, and difficulty levels." alt="" coords="263,79,373,104"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="397,33,345,72,342,68,394,29"/>
+<area shape="rect" id="Node000013" href="$Obstacle_8h.html" title="Environmental obstacles including walls, water, forests, and their properties." alt="" coords="498,152,589,177"/>
+<area shape="poly" id="edge17_Node000001_Node000013" title=" " alt="" coords="427,29,481,77,530,139,526,142,477,80,423,33"/>
+<area shape="rect" id="Node000014" href="$Explosion_8h.html" title="Visual explosion effects for game events like tank destruction." alt="" coords="151,225,248,251"/>
+<area shape="poly" id="edge21_Node000001_Node000014" title=" " alt="" coords="321,28,262,35,203,46,154,61,136,70,124,80,115,96,113,114,117,132,125,150,149,185,177,214,173,217,145,188,120,153,112,133,108,114,110,95,120,77,133,66,152,56,202,41,261,30,320,23"/>
+<area shape="rect" id="Node000008" href="$Tank_8h.html" title="Abstract tank base class with shooting, bonuses, and combat mechanics." alt="" coords="203,152,267,177"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="196,103,222,139,217,142,192,106"/>
+<area shape="poly" id="edge8_Node000008_Node000006" title=" " alt="" coords="245,176,312,286,307,288,240,179"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="211,180,118,222,116,217,209,175"/>
+<area shape="poly" id="edge12_Node000008_Node000010" title=" " alt="" coords="257,175,330,216,327,221,254,180"/>
+<area shape="poly" id="edge11_Node000009_Node000002" title=" " alt="" coords="75,252,53,288,48,286,70,250"/>
+<area shape="poly" id="edge10_Node000009_Node000006" title=" " alt="" coords="119,248,272,292,270,297,118,253"/>
+<area shape="poly" id="edge13_Node000010_Node000006" title=" " alt="" coords="357,252,338,288,333,285,352,250"/>
+<area shape="poly" id="edge15_Node000011_Node000008" title=" " alt="" coords="306,106,261,145,258,141,303,102"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="292,152,363,177"/>
+<area shape="poly" id="edge16_Node000011_Node000012" title=" " alt="" coords="322,104,327,138,321,139,317,105"/>
+<area shape="poly" id="edge18_Node000013_Node000006" title=" " alt="" coords="540,179,517,215,500,235,481,253,435,279,388,297,386,292,433,274,478,249,497,231,513,212,535,176"/>
+<area shape="poly" id="edge22_Node000014_Node000006" title=" " alt="" coords="221,248,293,289,290,294,218,253"/>
+</map>

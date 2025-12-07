@@ -1,3 +1,14 @@
+/**
+ * @file GameObject.cpp
+ * @author Vld251
+ * @brief Implementation of base game object methods for movement, rotation, and damage.
+ * @version 0.1
+ * @date 2025-12-07
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "GameObject.h"
 
 Point::Point(int x, int y) : x(x), y(y) {}

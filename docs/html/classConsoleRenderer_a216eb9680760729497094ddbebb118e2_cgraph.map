@@ -1,0 +1,12 @@
+<map id="ConsoleRenderer::drawPixel" name="ConsoleRenderer::drawPixel">
+<area shape="rect" id="Node000001" title="Draws a single colored pixel/character." alt="" coords="5,31,209,56"/>
+<area shape="rect" id="Node000002" href="$classConsoleRenderer.html#a39097953ecd72be19860424c9d00b0ea" title="Resets terminal color to default." alt="" coords="257,5,465,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,31,243,27,244,32,210,36"/>
+<area shape="rect" id="Node000005" href="$classConsoleRenderer.html#af06444dbf726424a13127fd4f3a70a8d" title="Sets terminal text color." alt="" coords="513,56,708,81"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="210,46,500,60,499,66,209,51"/>
+<area shape="rect" id="Node000003" href="$classPlatformUtils.html#ae3607ef4c4fbee33349ec982eda7bf07" title="Resets terminal color to default." alt="" coords="519,7,702,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="466,16,506,16,506,21,465,21"/>
+<area shape="rect" id="Node000004" href="$classPlatformUtils.html#a48de38e18726881bbe61e398ebabb97e" title="Sets terminal text color." alt="" coords="756,32,927,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="702,27,743,31,742,36,702,32"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="708,56,742,52,742,58,708,61"/>
+</map>

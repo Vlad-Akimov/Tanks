@@ -1,0 +1,25 @@
+<map id="GameController" name="GameController">
+<area shape="rect" id="Node000001" title="Main game controller class that manages the game flow and logic." alt="" coords="413,419,538,444"/>
+<area shape="rect" id="Node000002" href="$classGameWorld.html" title="Main game world class managing all game objects and logic." alt="" coords="7,331,106,356"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,357,233,392,327,409,413,421,412,426,326,414,232,397,103,363"/>
+<area shape="rect" id="Node000003" href="$classPlayerTank.html" title="Class representing the player&#45;controlled tank." alt="" coords="10,243,103,268"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="59,282,59,330,54,330,54,282"/>
+<area shape="rect" id="Node000004" href="$classTank.html" title="Abstract base class for all tank entities." alt="" coords="31,168,83,193"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="59,208,59,242,54,242,54,208"/>
+<area shape="rect" id="Node000005" href="$classGameObject.html" title="Abstract base class for all game objects." alt="" coords="5,93,108,119"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="59,133,59,168,54,168,54,133"/>
+<area shape="rect" id="Node000006" href="$structPoint.html" title="Structure representing a 2D point with integer coordinates." alt="" coords="29,5,84,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="59,45,59,93,54,93,54,45"/>
+<area shape="rect" id="Node000007" href="$classConsoleRenderer.html" title="Class responsible for console&#45;based rendering of the game." alt="" coords="130,331,263,356"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="236,359,324,392,418,416,417,421,323,397,234,364"/>
+<area shape="rect" id="Node000008" href="$classInputHandler.html" title="Class for handling user input and mapping it to game commands." alt="" coords="287,331,394,356"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="357,365,382,393,406,406,431,416,429,421,403,411,379,397,353,369"/>
+<area shape="rect" id="Node000009" href="$classScoreManager.html" title="Class for managing high scores and player achievements." alt="" coords="418,331,533,356"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="478,370,478,418,473,418,473,370"/>
+<area shape="rect" id="Node000010" href="$classMapManager.html" title="Class for managing game maps and level generation." alt="" coords="557,331,663,356"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="599,370,576,397,551,411,526,421,524,416,549,406,572,393,595,366"/>
+<area shape="rect" id="Node000011" href="$structMapInfo.html" title="Structure containing map information and layout." alt="" coords="687,331,762,356"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="713,370,700,384,685,397,649,413,611,424,539,433,538,428,610,419,647,408,682,392,697,381,709,366"/>
+<area shape="rect" id="Node000012" href="$classSettingsManager.html" title="Class for managing game settings and configuration." alt="" coords="787,331,919,356"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="836,368,817,384,795,397,747,410,679,419,538,430,538,425,679,414,746,405,793,392,814,380,832,364"/>
+</map>

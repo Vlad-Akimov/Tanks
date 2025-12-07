@@ -1,0 +1,15 @@
+<map id="EnemyTank::findCover" name="EnemyTank::findCover">
+<area shape="rect" id="Node000001" title="Searches for cover." alt="" coords="5,134,172,159"/>
+<area shape="rect" id="Node000002" href="$classEnemyTank.html#a9eb0cacdd5e196535f1d60da1ca622ac" title="Gets direction towards last known player position." alt="" coords="228,5,427,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,132,153,94,219,55,235,48,238,53,221,60,156,99,107,136"/>
+<area shape="rect" id="Node000003" href="$classEnemyTank.html#a8e7ed1aeded64d0b118d54a5f78099b2" title="Gets perpendicular direction." alt="" coords="220,69,435,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="142,131,230,110,231,115,143,137"/>
+<area shape="rect" id="Node000004" href="$classEnemyTank.html#ad9f295f9b2df24bb291db3783b292289" title="Moves enemy tank in specified direction." alt="" coords="256,134,399,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="173,144,242,144,242,149,173,149"/>
+<area shape="rect" id="Node000005" href="$classGameObject.html#a4bc41ca14c07e61dafa74a03c4f3e2df" title="Rotates the object to face new direction." alt="" coords="483,185,633,210"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="152,157,220,168,350,182,469,190,468,196,350,187,220,173,152,162"/>
+<area shape="rect" id="Node000006" href="$classEnemyTank.html#a327ab507c7512b075c5a4c85d6933bba" title="Executes random movement behavior." alt="" coords="221,235,434,261"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="112,157,161,185,221,214,265,229,263,234,219,218,159,190,110,162"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="387,157,487,179,486,184,386,162"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="386,233,486,210,487,216,387,238"/>
+</map>

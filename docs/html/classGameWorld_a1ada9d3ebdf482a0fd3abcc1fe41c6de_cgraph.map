@@ -1,0 +1,17 @@
+<map id="GameWorld::checkGameConditions" name="GameWorld::checkGameConditions">
+<area shape="rect" id="Node000001" title="Checks win/lose conditions." alt="" coords="5,153,257,179"/>
+<area shape="rect" id="Node000002" href="$classPlayerTank.html#a34ecaf7829cc7b3e4965afa9ef6c25f0" title="Adds points to player&#39;s score." alt="" coords="324,5,485,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,151,211,97,256,66,304,40,322,32,324,37,306,44,258,71,214,101,148,155"/>
+<area shape="rect" id="Node000003" href="$classPlayerTank.html#a8bc0a30180b823d6446fb005fe7331c5" title="Checks if player has remaining lives." alt="" coords="325,55,484,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="157,151,223,121,304,89,330,81,332,86,306,94,225,125,160,156"/>
+<area shape="rect" id="Node000004" href="$classGameObject.html#a51ac0947e5c628f04657cafecc9fe36b" title="Checks if object is destroyed." alt="" coords="310,104,499,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="202,151,319,129,320,135,203,156"/>
+<area shape="rect" id="Node000005" href="$classPlayerTank.html#ad491a43f547fc464ac3bc4c36feeff90" title="Reduces player&#39;s lives by one." alt="" coords="329,153,481,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="258,163,315,163,315,169,258,169"/>
+<area shape="rect" id="Node000006" href="$classGameObject.html#ae1bd24d3b8b67f3c5006ceb1b2159d11" title="Sets destroyed state of the object." alt="" coords="305,203,504,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="203,176,320,197,319,203,202,181"/>
+<area shape="rect" id="Node000007" href="$classGameObject.html#a3cf581673b5b0099d250a434fed52f4d" title="Sets new health value for the object." alt="" coords="317,252,492,277"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="160,176,226,206,306,237,336,246,334,251,304,242,224,211,158,181"/>
+<area shape="rect" id="Node000008" href="$classGameObject.html#a8e1f77d21a8ed8a894ae29f0e4126618" title="Sets new position for the object." alt="" coords="313,301,496,327"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="148,177,214,230,259,260,306,286,328,295,326,300,304,291,256,265,211,234,145,181"/>
+</map>

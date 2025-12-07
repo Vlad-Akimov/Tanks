@@ -1,0 +1,7 @@
+<map id="Bonus::applyEffect" name="Bonus::applyEffect">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,148,56"/>
+<area shape="rect" id="Node000002" href="$classTank.html#af9858636ce8cbcd79dc579d891f667d9" title="Applies a bonus effect to the tank." alt="" coords="197,5,333,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,31,184,26,184,32,149,36"/>
+<area shape="rect" id="Node000003" href="$classBonus.html#a52875b799a9937f5c398f8f95d9ead98" title=" " alt="" coords="196,55,335,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="149,50,182,54,182,59,148,55"/>
+</map>

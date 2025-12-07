@@ -1,0 +1,5 @@
+<map id="ConsoleRenderer::updateTerminalSize" name="ConsoleRenderer::updateTerminalSize">
+<area shape="rect" id="Node000001" title="Updates terminal size information." alt="" coords="5,5,275,31"/>
+<area shape="rect" id="Node000002" href="$classPlatformUtils.html#a9fb2159f36325087d8c93e7937d6da0b" title="Gets current terminal dimensions." alt="" coords="323,5,543,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="275,15,309,15,309,21,275,21"/>
+</map>

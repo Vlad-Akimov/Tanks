@@ -1,0 +1,12 @@
+<map id="EnemyTank::defensiveMove" name="EnemyTank::defensiveMove">
+<area shape="rect" id="Node000001" title="Moves away from player." alt="" coords="5,95,211,121"/>
+<area shape="rect" id="Node000002" href="$classEnemyTank.html#a9eb0cacdd5e196535f1d60da1ca622ac" title="Gets direction towards last known player position." alt="" coords="281,5,479,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,93,258,55,286,46,288,52,259,60,146,98"/>
+<area shape="rect" id="Node000003" href="$classEnemyTank.html#a8e77035e33942a8ac511fbb3970917bc" title="Gets opposite direction." alt="" coords="259,70,501,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="211,96,245,93,245,98,211,101"/>
+<area shape="rect" id="Node000004" href="$classEnemyTank.html#ad9f295f9b2df24bb291db3783b292289" title="Moves enemy tank in specified direction." alt="" coords="309,119,451,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="211,114,295,122,294,127,211,120"/>
+<area shape="rect" id="Node000005" href="$classGameObject.html#a4bc41ca14c07e61dafa74a03c4f3e2df" title="Rotates the object to face new direction." alt="" coords="549,145,700,170"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="140,118,195,138,259,153,331,162,405,165,536,162,536,167,404,170,331,167,258,159,194,143,139,123"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="452,137,536,146,536,151,452,142"/>
+</map>

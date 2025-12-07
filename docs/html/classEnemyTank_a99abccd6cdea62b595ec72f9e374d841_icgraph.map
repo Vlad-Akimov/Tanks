@@ -1,0 +1,15 @@
+<map id="EnemyTank::getDistanceToPlayer" name="EnemyTank::getDistanceToPlayer">
+<area shape="rect" id="Node000001" title="Gets Manhattan distance to player." alt="" coords="1019,47,1216,87"/>
+<area shape="rect" id="Node000002" href="$classEnemyTank.html#a5b53b4d6721012b14e41a0882bd1c2a3" title="Executes aggressive behavior." alt="" coords="467,5,701,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1005,50,970,46,831,33,701,25,702,20,831,28,971,41,1005,45"/>
+<area shape="rect" id="Node000005" href="$classEnemyTank.html#aa70aff895200207527e2465c9439fc05" title="Carefully approaches player." alt="" coords="749,55,971,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1005,70,971,70,971,65,1005,65"/>
+<area shape="rect" id="Node000006" href="$classEnemyTank.html#a39add8a8beb8bb7b69124753ec2dae74" title="Executes defensive behavior." alt="" coords="471,55,697,80"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="1005,91,971,95,860,101,749,95,652,83,652,77,750,90,860,96,970,90,1005,86"/>
+<area shape="rect" id="Node000003" href="$classEnemyTank.html#a338556623afc739ebf5585caaa73fcdb" title="Decides next action based on behavior." alt="" coords="204,31,419,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="453,33,419,36,419,31,453,27"/>
+<area shape="rect" id="Node000004" href="$classEnemyTank.html#a7ae5efc6eff4e7a19abb7f37b44835fc" title="Updates enemy tank state and AI decisions." alt="" coords="5,31,156,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="190,46,156,46,156,41,190,41"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="735,70,698,70,698,65,735,65"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="457,59,419,55,419,50,457,54"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="GameController::toggleAdvancedGraphics" name="GameController::toggleAdvancedGraphics">
+<area shape="rect" id="Node000001" title="Toggles between advanced and symbolic graphics modes." alt="" coords="5,119,244,159"/>
+<area shape="rect" id="Node000002" href="$classConsoleRenderer.html#a041e99f6c0427c254b0349b57fbe2a84" title="Clears the terminal screen." alt="" coords="296,5,513,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,117,215,78,291,41,318,32,320,37,293,46,217,83,156,121"/>
+<area shape="rect" id="Node000004" href="$classSettingsManager.html#a1686a183b6d975ae02e1a97cde31b226" title="Gets a boolean setting value." alt="" coords="309,55,500,95"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="212,117,303,96,304,101,214,122"/>
+<area shape="rect" id="Node000006" href="$classConsoleRenderer.html#ac1299b325bb43da2b01ce929fc6f91f6" title="Enables or disables advanced graphics." alt="" coords="292,119,517,159"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="244,137,278,137,278,142,244,142"/>
+<area shape="rect" id="Node000007" href="$classSettingsManager.html#a9b68292aa3b017c65c44c44bec834259" title="Sets a boolean setting value." alt="" coords="310,183,499,223"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="214,157,304,178,303,183,212,162"/>
+<area shape="rect" id="Node000008" href="$classPlatformUtils.html#abf6e891ecb5147fa3d8583b651642d91" title="Pauses execution for specified milliseconds." alt="" coords="329,248,480,273"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="156,157,217,196,293,233,320,242,318,247,291,238,215,200,153,162"/>
+<area shape="rect" id="Node000003" href="$classPlatformUtils.html#acddd420e3f04cd70a8932b5472fce01d" title="Clears the terminal screen." alt="" coords="573,5,765,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="513,15,559,15,559,21,513,21"/>
+<area shape="rect" id="Node000005" href="$classSettingsManager.html#a824eef45a26393d9038ac52ce0413596" title="Gets a string setting value." alt="" coords="565,63,772,88"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="500,73,552,73,552,78,500,78"/>
+</map>

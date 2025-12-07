@@ -1,0 +1,30 @@
+<map id="EnemyTank::aggressiveBehavior" name="EnemyTank::aggressiveBehavior">
+<area shape="rect" id="Node000001" title="Executes aggressive behavior." alt="" coords="5,220,240,245"/>
+<area shape="rect" id="Node000002" href="$classTank.html#a6a39f37aa7ebbf66d0661815c43b37ef" title="Checks if tank can fire." alt="" coords="353,65,459,91"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,218,196,161,239,128,287,101,338,84,340,89,289,106,242,133,199,165,138,222"/>
+<area shape="rect" id="Node000003" href="$classEnemyTank.html#a85bd09ffb86b2c36c6b76fe6f6752324" title="Moves away from player." alt="" coords="303,220,509,245"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="240,230,289,230,289,235,240,235"/>
+<area shape="rect" id="Node000004" href="$classEnemyTank.html#a9eb0cacdd5e196535f1d60da1ca622ac" title="Gets direction towards last known player position." alt="" coords="594,106,793,146"/>
+<area shape="poly" id="edge8_Node000001_Node000004" title=" " alt="" coords="191,217,580,144,581,150,192,223"/>
+<area shape="rect" id="Node000007" href="$classGameObject.html#a4bc41ca14c07e61dafa74a03c4f3e2df" title="Rotates the object to face new direction." alt="" coords="863,171,1013,196"/>
+<area shape="poly" id="edge17_Node000001_Node000007" title=" " alt="" coords="163,243,276,274,353,290,440,303,532,311,628,311,723,300,814,277,844,263,871,244,915,204,919,208,875,248,846,267,816,282,723,305,628,316,532,316,439,308,352,295,275,279,161,248"/>
+<area shape="rect" id="Node000008" href="$classEnemyTank.html#a99abccd6cdea62b595ec72f9e374d841" title="Gets Manhattan distance to player." alt="" coords="307,371,505,411"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="140,244,202,294,244,324,289,350,321,364,318,369,287,355,242,328,199,299,137,248"/>
+<area shape="rect" id="Node000009" href="$classEnemyTank.html#abf1f9838c12039c2a0872181aeee713e" title="Checks if tank has clear line of sight to player." alt="" coords="311,436,501,461"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="133,244,155,280,190,328,235,379,261,402,289,421,305,429,302,434,287,426,258,406,231,383,185,332,151,283,129,247"/>
+<area shape="rect" id="Node000010" href="$classEnemyTank.html#aa7421a7881c97b14301ef95e11fac1a8" title="Moves towards player position." alt="" coords="288,115,524,140"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="149,217,211,189,287,158,340,141,342,146,289,163,214,194,151,222"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="466,217,523,196,537,186,546,177,556,167,571,157,590,148,592,153,573,162,559,171,550,180,540,190,525,200,468,222"/>
+<area shape="rect" id="Node000005" href="$classEnemyTank.html#a8e77035e33942a8ac511fbb3970917bc" title="Gets opposite direction." alt="" coords="572,220,815,245"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="509,230,559,230,559,235,509,235"/>
+<area shape="rect" id="Node000006" href="$classEnemyTank.html#ad9f295f9b2df24bb291db3783b292289" title="Moves enemy tank in specified direction." alt="" coords="622,171,765,196"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="480,217,608,195,609,200,481,223"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="455,243,526,258,616,270,716,271,766,266,814,255,841,246,866,232,909,203,912,207,869,237,843,250,815,261,766,271,716,276,616,275,525,263,454,248"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="765,181,849,181,849,186,765,186"/>
+<area shape="poly" id="edge12_Node000010_Node000004" title=" " alt="" coords="524,124,580,124,580,129,524,129"/>
+<area shape="poly" id="edge13_Node000010_Node000006" title=" " alt="" coords="472,137,614,165,613,171,471,143"/>
+<area shape="poly" id="edge16_Node000010_Node000007" title=" " alt="" coords="469,112,572,91,695,75,749,76,816,91,845,104,873,122,917,158,913,163,870,126,843,109,814,97,748,81,695,80,572,97,470,117"/>
+<area shape="rect" id="Node000011" href="$classEnemyTank.html#a327ab507c7512b075c5a4c85d6933bba" title="Executes random movement behavior." alt="" coords="587,5,800,31"/>
+<area shape="poly" id="edge14_Node000010_Node000011" title=" " alt="" coords="498,112,523,101,537,89,546,76,555,61,571,48,604,32,606,37,573,52,559,65,550,78,541,92,525,106,500,117"/>
+<area shape="poly" id="edge15_Node000011_Node000007" title=" " alt="" coords="770,28,816,48,850,73,880,102,923,158,919,161,876,106,846,77,813,52,768,33"/>
+</map>

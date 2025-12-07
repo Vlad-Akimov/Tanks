@@ -1,0 +1,16 @@
+<map id="GameWorld::checkTankTankCollisions" name="GameWorld::checkTankTankCollisions">
+<area shape="rect" id="Node000001" title="Checks tank&#45;tank collisions." alt="" coords="5,78,209,118"/>
+<area shape="rect" id="Node000002" href="$classTank.html#a893b0a184e05009741b13e1e79cd629f" title="Gets the bounding dimensions of the tank." alt="" coords="298,5,427,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,75,257,47,306,32,307,37,258,53,171,80"/>
+<area shape="rect" id="Node000003" href="$classGameObject.html#aa4dd19d6b0ea5701d860b64b08435ae6" title="Gets current position of the object." alt="" coords="519,59,703,84"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="209,90,505,74,506,80,210,95"/>
+<area shape="rect" id="Node000004" href="$classGameWorld.html#adc81260573ef130580a3c2a05bd460aa" title="Handles tank&#45;tank collision." alt="" coords="257,106,468,146"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="210,107,244,110,244,116,209,112"/>
+<area shape="rect" id="Node000007" href="$classGameObject.html#a51ac0947e5c628f04657cafecc9fe36b" title="Checks if object is destroyed." alt="" coords="268,171,457,196"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="155,116,258,155,290,165,289,170,256,161,153,121"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="454,103,539,84,540,90,455,109"/>
+<area shape="rect" id="Node000005" href="$classGameObject.html#a650b9622507919864b54aadcaab92110" title="Gets current direction of the object." alt="" coords="516,112,707,137"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="468,123,502,123,502,128,468,128"/>
+<area shape="rect" id="Node000006" href="$classGameObject.html#a8e1f77d21a8ed8a894ae29f0e4126618" title="Sets new position for the object." alt="" coords="520,161,703,187"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="467,143,532,156,531,161,466,149"/>
+</map>

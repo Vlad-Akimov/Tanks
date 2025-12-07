@@ -1,0 +1,7 @@
+<map id="PlayerTank::update" name="PlayerTank::update">
+<area shape="rect" id="Node000001" title="Updates player tank state." alt="" coords="5,31,152,56"/>
+<area shape="rect" id="Node000002" href="$classTank.html#aeeed7bc06ef4c9f60bb74b4b80eb22dd" title="Decrements reload timer." alt="" coords="222,5,323,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,31,208,24,209,29,153,36"/>
+<area shape="rect" id="Node000003" href="$classTank.html#a699d319d640cf416e673687d443e1917" title="Updates bonus effect durations." alt="" coords="200,55,345,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="153,50,186,54,186,59,152,55"/>
+</map>

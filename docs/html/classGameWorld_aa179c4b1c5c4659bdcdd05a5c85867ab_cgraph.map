@@ -1,0 +1,5 @@
+<map id="GameWorld::isPositionAccessible" name="GameWorld::isPositionAccessible">
+<area shape="rect" id="Node000001" title="Checks if position is accessible for tanks." alt="" coords="5,5,244,31"/>
+<area shape="rect" id="Node000002" href="$classObstacle.html#aa1936373d282c8dba39f529526b6143d" title="Checks if obstacle is passable for tanks." alt="" coords="292,5,447,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="244,15,278,15,278,21,244,21"/>
+</map>

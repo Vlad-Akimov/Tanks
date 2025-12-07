@@ -1,0 +1,72 @@
+<map id="GameWorld::checkCollisions" name="GameWorld::checkCollisions">
+<area shape="rect" id="Node000001" title="Checks all types of collisions." alt="" coords="5,515,212,540"/>
+<area shape="rect" id="Node000002" href="$classGameWorld.html#a7ddabf5c5dc78379e8b75d531068fa5a" title="Checks bonus collection." alt="" coords="539,107,785,132"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,513,178,455,258,384,360,308,464,237,626,137,629,141,467,242,363,312,262,388,182,459,124,516"/>
+<area shape="rect" id="Node000009" href="$classGameWorld.html#a6b4f2f8d12f4dcde90d48853dd37f6cc" title="Checks boundary collisions." alt="" coords="272,507,479,547"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="212,525,258,525,258,530,212,530"/>
+<area shape="rect" id="Node000012" href="$classGameWorld.html#a81b514a6e2b376bd9b5f8276e3861b5f" title="Checks projectile collisions." alt="" coords="273,398,478,438"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="140,512,312,441,314,446,142,517"/>
+<area shape="rect" id="Node000022" href="$classGameWorld.html#ab28f8bec4f78b7be44d509449508babb" title="Checks tank&#45;obstacle collisions." alt="" coords="260,634,491,674"/>
+<area shape="poly" id="edge28_Node000001_Node000022" title=" " alt="" coords="138,538,321,626,319,630,136,543"/>
+<area shape="rect" id="Node000026" href="$classGameWorld.html#aba83e6f4f714c9f590f4cb8078cd9a2b" title="Checks tank&#45;tank collisions." alt="" coords="273,799,477,839"/>
+<area shape="poly" id="edge36_Node000001_Node000026" title=" " alt="" coords="124,538,349,787,345,791,120,542"/>
+<area shape="rect" id="Node000003" href="$classPlayerTank.html#a34ecaf7829cc7b3e4965afa9ef6c25f0" title="Adds points to player&#39;s score." alt="" coords="874,107,1035,132"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="785,117,860,117,860,122,785,122"/>
+<area shape="rect" id="Node000004" href="$classGameWorld.html#aa547d7890c6acf2e8ee3014a52d741b9" title="Applies slow effect to all enemies." alt="" coords="833,5,1076,31"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="691,104,755,77,832,47,886,32,887,37,834,53,757,82,693,109"/>
+<area shape="rect" id="Node000007" href="$classGameObject.html#a51ac0947e5c628f04657cafecc9fe36b" title="Checks if object is destroyed." alt="" coords="1134,281,1323,307"/>
+<area shape="poly" id="edge8_Node000002_Node000007" title=" " alt="" coords="696,104,768,82,865,64,919,61,973,63,1027,73,1077,92,1104,108,1129,129,1169,177,1200,226,1220,267,1215,270,1195,229,1165,180,1125,132,1101,112,1075,96,1025,78,973,68,919,66,866,69,769,87,697,109"/>
+<area shape="rect" id="Node000008" href="$classGameObject.html#aa4dd19d6b0ea5701d860b64b08435ae6" title="Gets current position of the object." alt="" coords="863,620,1047,645"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="674,131,727,217,760,278,788,342,798,375,802,404,804,454,810,502,819,527,835,555,851,573,869,588,909,612,906,617,866,593,847,577,831,558,814,530,804,503,799,455,797,404,792,376,783,344,755,280,723,220,670,134"/>
+<area shape="rect" id="Node000005" href="$classEnemyTank.html#ac30fc0d640fb804d2e382603b424faa7" title="Applies slow effect to enemy tank." alt="" coords="1124,5,1333,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1076,15,1110,15,1110,21,1076,21"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="1038,28,1077,48,1106,72,1131,100,1172,160,1202,220,1221,267,1216,269,1197,222,1167,163,1126,103,1102,76,1075,52,1036,33"/>
+<area shape="rect" id="Node000006" href="$classTank.html#ad2c4d964485d2fa5b948f92ae0a76250" title="Applies slow effect to the tank." alt="" coords="1381,5,1545,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1333,15,1368,15,1368,21,1333,21"/>
+<area shape="poly" id="edge12_Node000009_Node000007" title=" " alt="" coords="466,505,538,494,609,483,666,472,693,470,721,473,752,480,787,494,804,509,812,526,819,541,835,554,901,582,930,590,958,594,985,593,1013,586,1043,573,1074,554,1088,543,1097,531,1105,505,1109,475,1122,441,1165,372,1206,316,1211,319,1170,375,1126,443,1114,477,1110,507,1102,534,1092,547,1078,559,1045,578,1015,591,986,598,957,599,929,596,899,587,832,559,815,545,807,528,799,512,784,499,750,485,720,478,693,476,666,478,610,488,539,499,467,510"/>
+<area shape="poly" id="edge11_Node000009_Node000008" title=" " alt="" coords="463,505,536,495,619,492,662,496,705,503,747,515,787,532,804,547,813,565,820,582,835,599,863,613,860,618,832,603,815,585,808,567,800,550,784,536,745,520,704,508,662,501,619,498,536,500,463,510"/>
+<area shape="rect" id="Node000010" href="$classTank.html#a893b0a184e05009741b13e1e79cd629f" title="Gets the bounding dimensions of the tank." alt="" coords="597,756,727,781"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="411,545,453,578,493,620,503,638,509,655,513,686,520,714,527,728,540,741,561,754,585,762,583,767,559,759,537,745,523,731,515,716,508,687,504,656,498,640,489,624,449,582,407,550"/>
+<area shape="rect" id="Node000011" href="$classGameObject.html#a8e1f77d21a8ed8a894ae29f0e4126618" title="Sets new position for the object." alt="" coords="863,699,1046,724"/>
+<area shape="poly" id="edge13_Node000009_Node000011" title=" " alt="" coords="479,542,626,575,708,598,786,626,811,640,835,654,911,690,909,695,832,659,808,644,784,631,706,603,625,580,478,547"/>
+<area shape="rect" id="Node000013" href="$classGameWorld.html#a752ef6a0f4c6cdffead1dacd117d8451" title="Handles projectile hit." alt="" coords="547,356,777,381"/>
+<area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="478,398,574,381,575,386,479,403"/>
+<area shape="poly" id="edge16_Node000013_Node000003" title=" " alt="" coords="667,354,689,314,725,258,773,199,801,172,832,149,862,134,864,139,835,154,805,176,777,203,729,262,694,317,672,357"/>
+<area shape="poly" id="edge20_Node000013_Node000007" title=" " alt="" coords="669,354,691,319,728,274,775,228,803,208,832,193,898,171,953,165,1009,174,1077,193,1114,208,1150,228,1205,270,1202,274,1147,233,1112,213,1075,198,1008,179,953,171,899,176,834,198,805,213,779,232,732,277,696,323,673,357"/>
+<area shape="poly" id="edge18_Node000013_Node000008" title=" " alt="" coords="681,379,730,423,787,482,802,502,811,520,820,536,835,555,875,587,916,611,913,616,872,591,831,559,815,539,806,522,797,505,783,485,727,427,677,383"/>
+<area shape="rect" id="Node000014" href="$classProjectile.html#aef8adfaa81fbbb3794bcf9eb2dfb2d44" title="Gets the owner tank of this projectile." alt="" coords="877,208,1032,233"/>
+<area shape="poly" id="edge17_Node000013_Node000014" title=" " alt="" coords="675,354,739,299,784,268,832,242,863,232,865,237,834,247,787,273,742,304,678,358"/>
+<area shape="rect" id="Node000015" href="$classEnemyTank.html#a7449d102bbca6b351322b72f8b079f72" title="Gets the type of enemy tank." alt="" coords="861,257,1048,283"/>
+<area shape="poly" id="edge19_Node000013_Node000015" title=" " alt="" coords="687,353,752,323,833,291,863,283,864,288,834,297,754,327,689,358"/>
+<area shape="rect" id="Node000016" href="$classObstacle.html#ac5dc75c2d5f77f598a1fe8d42699e3f9" title="Checks if obstacle is destructible." alt="" coords="866,307,1043,332"/>
+<area shape="poly" id="edge21_Node000013_Node000016" title=" " alt="" coords="738,353,864,332,865,337,738,359"/>
+<area shape="rect" id="Node000017" href="$classObstacle.html#aaa4db983792ece6cd734c170d9a68e36" title="Checks if obstacle is passable for projectiles." alt="" coords="847,356,1063,381"/>
+<area shape="poly" id="edge22_Node000013_Node000017" title=" " alt="" coords="778,366,833,366,833,371,778,371"/>
+<area shape="rect" id="Node000018" href="$classObstacle.html#a0167f367446272ac93f006af1403fa2c" title="Applies damage to the obstacle." alt="" coords="869,405,1040,431"/>
+<area shape="poly" id="edge23_Node000013_Node000018" title=" " alt="" coords="738,379,865,400,864,406,738,384"/>
+<area shape="rect" id="Node000019" href="$classTank.html#a694c752906e013192e6420bc31b01dd6" title="Applies damage to tank, considering shield." alt="" coords="883,455,1026,480"/>
+<area shape="poly" id="edge25_Node000013_Node000019" title=" " alt="" coords="690,379,754,409,834,439,870,449,869,454,833,445,752,414,688,384"/>
+<area shape="rect" id="Node000021" href="$classGameWorld.html#aaab2806ac3f2f439dd4bf0fc2299d402" title="Triggers damage flash effect." alt="" coords="853,505,1057,545"/>
+<area shape="poly" id="edge27_Node000013_Node000021" title=" " alt="" coords="697,379,741,401,787,431,802,447,811,462,820,476,835,489,848,497,845,501,832,493,816,479,806,464,798,450,784,435,739,405,695,384"/>
+<area shape="poly" id="edge24_Node000018_Node000007" title=" " alt="" coords="1036,403,1075,390,1144,353,1200,313,1203,317,1147,357,1077,395,1037,408"/>
+<area shape="rect" id="Node000020" href="$classGameObject.html#a801c8cf8e8e188ec698364327f977ecf" title="Applies damage to the object." alt="" coords="1131,455,1326,480"/>
+<area shape="poly" id="edge26_Node000019_Node000020" title=" " alt="" coords="1026,465,1117,465,1117,470,1026,470"/>
+<area shape="poly" id="edge30_Node000022_Node000008" title=" " alt="" coords="490,631,538,626,702,621,849,624,849,629,702,626,539,631,490,637"/>
+<area shape="poly" id="edge29_Node000022_Node000010" title=" " alt="" coords="408,672,468,707,540,741,585,754,583,759,538,746,465,712,406,677"/>
+<area shape="rect" id="Node000023" href="$classGameWorld.html#a60724b9a69573c00245f87dfdfeefa14" title="Handles tank&#45;obstacle collision." alt="" coords="543,691,781,731"/>
+<area shape="poly" id="edge31_Node000022_Node000023" title=" " alt="" coords="477,671,549,686,548,691,475,677"/>
+<area shape="rect" id="Node000025" href="$classObstacle.html#aa1936373d282c8dba39f529526b6143d" title="Checks if obstacle is passable for tanks." alt="" coords="585,641,739,667"/>
+<area shape="poly" id="edge35_Node000022_Node000025" title=" " alt="" coords="491,651,571,651,571,657,491,657"/>
+<area shape="poly" id="edge33_Node000023_Node000008" title=" " alt="" coords="740,689,785,677,894,647,896,652,786,682,742,694"/>
+<area shape="poly" id="edge34_Node000023_Node000011" title=" " alt="" coords="781,709,850,709,850,714,781,714"/>
+<area shape="rect" id="Node000024" href="$classGameObject.html#a650b9622507919864b54aadcaab92110" title="Gets current direction of the object." alt="" coords="859,807,1050,832"/>
+<area shape="poly" id="edge32_Node000023_Node000024" title=" " alt="" coords="745,729,786,742,856,770,917,798,915,803,854,775,784,747,743,734"/>
+<area shape="poly" id="edge43_Node000026_Node000007" title=" " alt="" coords="404,837,464,875,501,893,539,906,699,946,769,959,834,963,896,956,956,936,1014,899,1074,843,1092,811,1102,765,1107,710,1108,650,1109,531,1113,480,1121,441,1139,404,1161,370,1204,315,1208,319,1165,373,1144,407,1127,443,1118,481,1114,531,1113,650,1112,710,1107,766,1097,813,1078,846,1018,903,958,941,897,962,834,969,768,964,698,952,538,911,499,898,462,880,402,842"/>
+<area shape="poly" id="edge38_Node000026_Node000008" title=" " alt="" coords="478,822,563,823,652,820,731,811,762,803,784,792,796,781,803,769,809,743,814,715,820,700,831,685,860,664,892,648,894,653,863,668,835,689,825,703,819,716,814,744,808,771,800,784,787,796,764,808,732,816,653,826,563,829,477,827"/>
+<area shape="poly" id="edge37_Node000026_Node000010" title=" " alt="" coords="477,799,584,780,585,785,478,804"/>
+<area shape="rect" id="Node000027" href="$classGameWorld.html#adc81260573ef130580a3c2a05bd460aa" title="Handles tank&#45;tank collision." alt="" coords="557,857,767,897"/>
+<area shape="poly" id="edge39_Node000026_Node000027" title=" " alt="" coords="477,837,549,851,548,857,475,842"/>
+<area shape="poly" id="edge41_Node000027_Node000008" title=" " alt="" coords="758,854,783,836,797,818,805,800,808,764,811,726,818,706,831,686,858,663,889,648,891,652,861,668,835,689,822,708,816,727,813,764,810,802,802,821,787,840,761,859"/>
+<area shape="poly" id="edge42_Node000027_Node000011" title=" " alt="" coords="742,854,784,836,808,816,832,793,921,729,924,734,835,797,812,820,787,840,745,859"/>
+<area shape="poly" id="edge40_Node000027_Node000024" title=" " alt="" coords="764,854,875,832,876,837,765,859"/>
+</map>

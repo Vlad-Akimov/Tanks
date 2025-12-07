@@ -1,0 +1,7 @@
+<map id="ScoreManager::addScore" name="ScoreManager::addScore">
+<area shape="rect" id="Node000001" title="Adds a new score to high scores table." alt="" coords="5,31,188,56"/>
+<area shape="rect" id="Node000002" href="$classScoreManager.html#a9c00b7f13162199031c396c45c364dea" title="Checks if score qualifies as a high score." alt="" coords="236,5,436,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,31,222,27,223,33,188,36"/>
+<area shape="rect" id="Node000003" href="$classScoreManager.html#a2cbb9e5e0f1062aecb034157b05defa2" title="Saves high scores to file." alt="" coords="237,55,435,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="188,50,224,53,224,59,188,55"/>
+</map>

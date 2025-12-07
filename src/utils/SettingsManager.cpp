@@ -1,3 +1,14 @@
+/**
+ * @file SettingsManager.cpp
+ * @author Vld251
+ * @brief Implementation of settings management with file persistence.
+ * @version 0.1
+ * @date 2025-12-07
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "SettingsManager.h"
 #include <fstream>
 #include <iostream>

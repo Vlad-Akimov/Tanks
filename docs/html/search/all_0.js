@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['activationtime_0',['activationTime',['../classBonus.html#ac8647b272824ca979a54338dd7eeca0d',1,'Bonus']]],
+  ['active_1',['active',['../classBonus.html#a99cd3ec13ce99b2f1726a4aa7d4a24c8',1,'Bonus']]],
+  ['addbonus_2',['addBonus',['../classGameWorld.html#a4c927433f6611da046508db85e6fc9e0',1,'GameWorld']]],
+  ['addexplosion_3',['addExplosion',['../classGameWorld.html#a125ab795687b95c82ba27dcb64f41ca5',1,'GameWorld']]],
+  ['addobject_4',['addObject',['../classGameWorld.html#a8d00f9c74a8a46290fd5619b0118e01b',1,'GameWorld']]],
+  ['addprojectile_5',['addProjectile',['../classGameWorld.html#a1178247556cbd2dab375d78329a9c448',1,'GameWorld']]],
+  ['addscore_6',['addscore',['../classPlayerTank.html#a34ecaf7829cc7b3e4965afa9ef6c25f0',1,'PlayerTank::addScore()'],['../classScoreManager.html#a842a2834c5bb44d292e3f054d2612240',1,'ScoreManager::addScore()']]],
+  ['adjustdifficulty_7',['adjustDifficulty',['../classGameWorld.html#af148052443ed7c0e22a0ed325429fd1e',1,'GameWorld']]],
+  ['aggressive_8',['AGGRESSIVE',['../EnemyTank_8h.html#a8ed04b1fdc6b990bb8ed5b795c5ead9ba68491a6222f5a943f983e0ce87ca2a58',1,'EnemyTank.h']]],
+  ['aggressivebehavior_9',['aggressiveBehavior',['../classEnemyTank.html#a5b53b4d6721012b14e41a0882bd1c2a3',1,'EnemyTank']]],
+  ['aibehavior_10',['AIBehavior',['../EnemyTank_8h.html#a8ed04b1fdc6b990bb8ed5b795c5ead9b',1,'EnemyTank.h']]],
+  ['applybonus_11',['applyBonus',['../classTank.html#af9858636ce8cbcd79dc579d891f667d9',1,'Tank']]],
+  ['applyeffect_12',['applyEffect',['../classBonus.html#a0f3ba7822eebc7d1b08259bd328a56bd',1,'Bonus']]],
+  ['applysloweffect_13',['applysloweffect',['../classEnemyTank.html#ac30fc0d640fb804d2e382603b424faa7',1,'EnemyTank::applySlowEffect()'],['../classTank.html#ad2c4d964485d2fa5b948f92ae0a76250',1,'Tank::applySlowEffect()']]],
+  ['applyslowtoenemies_14',['applySlowToEnemies',['../classGameWorld.html#aa547d7890c6acf2e8ee3014a52d741b9',1,'GameWorld']]],
+  ['armored_15',['ARMORED',['../EnemyTank_8h.html#a0ceeab77e33e3bde0e6d486648d9f6b1ab8814cb5412d0c99a2ec55379db1409e',1,'EnemyTank.h']]],
+  ['attemptshot_16',['attemptShot',['../classEnemyTank.html#a5759e09a78eab14d4b85dc1bd93ead19',1,'EnemyTank']]]
+];

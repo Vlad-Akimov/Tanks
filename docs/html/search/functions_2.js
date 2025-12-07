@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['calculateadjustedenemycount_0',['calculateAdjustedEnemyCount',['../classMapManager.html#ac5bc6102445e84f0d6f8c9adfdb92a4e',1,'MapManager']]],
+  ['calculateenemydifficulty_1',['calculateEnemyDifficulty',['../classMapManager.html#ae3ea6b46f24eb1bf03fd7837a04d559d',1,'MapManager']]],
+  ['canfire_2',['canFire',['../classTank.html#a6a39f37aa7ebbf66d0661815c43b37ef',1,'Tank']]],
+  ['canseeplayer_3',['canSeePlayer',['../classEnemyTank.html#aa4efd03207e3ae1a5d659cf5d445960d',1,'EnemyTank']]],
+  ['cautiousapproach_4',['cautiousApproach',['../classEnemyTank.html#aa70aff895200207527e2465c9439fc05',1,'EnemyTank']]],
+  ['checkbonuscollisions_5',['checkBonusCollisions',['../classGameWorld.html#a7ddabf5c5dc78379e8b75d531068fa5a',1,'GameWorld']]],
+  ['checkboundarycollisions_6',['checkBoundaryCollisions',['../classGameWorld.html#a6b4f2f8d12f4dcde90d48853dd37f6cc',1,'GameWorld']]],
+  ['checkcollisions_7',['checkCollisions',['../classGameWorld.html#a2a5aaafc1c18521a4657d6a4a66c4d91',1,'GameWorld']]],
+  ['checkgameconditions_8',['checkGameConditions',['../classGameWorld.html#a1ada9d3ebdf482a0fd3abcc1fe41c6de',1,'GameWorld']]],
+  ['checkpointcollision_9',['checkPointCollision',['../classGameWorld.html#a1255b4a9e3e339abdcab91d995612ee5',1,'GameWorld']]],
+  ['checkprojectilecollisions_10',['checkProjectileCollisions',['../classGameWorld.html#a81b514a6e2b376bd9b5f8276e3861b5f',1,'GameWorld']]],
+  ['checktankobstaclecollisions_11',['checkTankObstacleCollisions',['../classGameWorld.html#ab28f8bec4f78b7be44d509449508babb',1,'GameWorld']]],
+  ['checktanktankcollisions_12',['checkTankTankCollisions',['../classGameWorld.html#aba83e6f4f714c9f590f4cb8078cd9a2b',1,'GameWorld']]],
+  ['checkterminalsize_13',['checkTerminalSize',['../classConsoleRenderer.html#a9576db66ee7dc8d9fdec36f0181b9a12',1,'ConsoleRenderer']]],
+  ['checkunicodesupport_14',['checkUnicodeSupport',['../classPlatformUtils.html#a3cb085d8a5a464f034989e1a3f4a956e',1,'PlatformUtils']]],
+  ['cleanupdestroyedobjects_15',['cleanupDestroyedObjects',['../classGameWorld.html#a1ec74e4b202a776265d3dc9ffbffe443',1,'GameWorld']]],
+  ['clearscores_16',['clearScores',['../classScoreManager.html#aa18b91bf9a0cba1419f8450b0e059e66',1,'ScoreManager']]],
+  ['clearscreen_17',['clearscreen',['../classPlatformUtils.html#acddd420e3f04cd70a8932b5472fce01d',1,'PlatformUtils::clearScreen()'],['../classConsoleRenderer.html#a041e99f6c0427c254b0349b57fbe2a84',1,'ConsoleRenderer::clearScreen()']]],
+  ['consolerenderer_18',['ConsoleRenderer',['../classConsoleRenderer.html#a737ede37b60e5b2eaf26dbd1408dd03d',1,'ConsoleRenderer']]],
+  ['countenemiesinlayout_19',['countEnemiesInLayout',['../classMapManager.html#ace9dd32160efac15a2b84873861b6f4b',1,'MapManager']]],
+  ['createdefaultmaps_20',['createDefaultMaps',['../classMapManager.html#ad0adbcfa1331904665af1868edb052ab',1,'MapManager']]],
+  ['createenemies_21',['createEnemies',['../classGameWorld.html#a82921d6b419e2aa8244c5cf69feac3ff',1,'GameWorld']]],
+  ['createlevelobstacles_22',['createLevelObstacles',['../classGameWorld.html#a704a245a7945b1d7453b22bd698ff5b3',1,'GameWorld']]],
+  ['createworldfrommap_23',['createWorldFromMap',['../classMapManager.html#ac1472dad9f9391e45fafadef9c30c1ab',1,'MapManager']]]
+];

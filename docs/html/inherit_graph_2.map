@@ -1,0 +1,23 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classGameObject.html" title="Abstract base class for all game objects." alt="" coords="5,104,108,129"/>
+<area shape="rect" id="Node000001" href="$classBonus.html" title=" " alt="" coords="167,5,230,31"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="82,93,155,40,173,28,176,33,157,44,86,98"/>
+<area shape="rect" id="Node000002" href="$classExplosion.html" title="Class representing an explosion effect." alt="" coords="156,55,241,80"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="106,97,160,78,162,83,107,102"/>
+<area shape="rect" id="Node000003" href="$classObstacle.html" title="Base class for all environmental obstacles." alt="" coords="159,104,238,129"/>
+<area shape="poly" id="edge3_Node000000_Node000003" title=" " alt="" coords="122,114,159,114,159,119,122,119"/>
+<area shape="rect" id="Node000007" href="$classProjectile.html" title="Class representing a projectile fired by tanks." alt="" coords="157,153,240,179"/>
+<area shape="poly" id="edge7_Node000000_Node000007" title=" " alt="" coords="107,131,162,151,160,156,106,136"/>
+<area shape="rect" id="Node000008" href="$classTank.html" title="Abstract base class for all tank entities." alt="" coords="173,203,225,228"/>
+<area shape="poly" id="edge8_Node000000_Node000008" title=" " alt="" coords="87,136,158,188,177,200,174,205,154,192,84,140"/>
+<area shape="rect" id="Node000004" href="$classForest.html" title="Class representing a forest obstacle." alt="" coords="307,55,369,80"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="247,97,305,76,307,81,249,102"/>
+<area shape="rect" id="Node000005" href="$classSteelWall.html" title="Class representing a steel wall obstacle." alt="" coords="297,104,379,129"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="252,114,296,114,296,119,252,119"/>
+<area shape="rect" id="Node000006" href="$classWater.html" title="Class representing a water obstacle." alt="" coords="308,153,368,179"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="249,131,308,153,307,158,247,136"/>
+<area shape="rect" id="Node000009" href="$classEnemyTank.html" title="Class representing enemy tanks with AI behavior." alt="" coords="289,203,387,228"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="239,213,289,213,289,218,239,218"/>
+<area shape="rect" id="Node000010" href="$classPlayerTank.html" title="Class representing the player&#45;controlled tank." alt="" coords="291,252,385,277"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="239,227,302,249,301,254,237,232"/>
+</map>

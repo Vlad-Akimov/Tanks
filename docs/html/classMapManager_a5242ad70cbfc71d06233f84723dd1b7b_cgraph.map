@@ -1,0 +1,7 @@
+<map id="MapManager::loadMaps" name="MapManager::loadMaps">
+<area shape="rect" id="Node000001" title="Loads all maps from directory." alt="" coords="5,5,184,31"/>
+<area shape="rect" id="Node000002" href="$classMapManager.html#ad0adbcfa1331904665af1868edb052ab" title="Creates default maps if none exist." alt="" coords="232,5,471,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,15,218,15,218,21,184,21"/>
+<area shape="rect" id="Node000003" href="$classMapManager.html#a567c17018afe3a29cd1fb783d54ef098" title="Saves map to file." alt="" coords="519,5,729,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="471,15,505,15,505,21,471,21"/>
+</map>

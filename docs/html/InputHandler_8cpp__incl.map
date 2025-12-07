@@ -1,0 +1,20 @@
+<map id="src/controller/InputHandler.cpp" name="src/controller/InputHandler.cpp">
+<area shape="rect" id="Node000001" title="Implementation of input handling with keyboard and Unicode support." alt="" coords="104,5,325,31"/>
+<area shape="rect" id="Node000002" href="$InputHandler_8h.html" title="Handles user input and maps keystrokes to game commands." alt="" coords="156,79,273,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,31,217,65,212,65,212,31"/>
+<area shape="rect" id="Node000003" href="$PlatformUtils_8h.html" title="Cross&#45;platform utilities for console I/O, colors, and terminal manipulation." alt="" coords="133,152,297,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="217,104,217,138,212,138,212,104"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,225,64,251"/>
+<area shape="poly" id="edge9_Node000002_Node000004" title=" " alt="" coords="195,106,160,127,122,154,86,186,56,217,52,213,82,182,118,150,157,123,192,102"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="321,152,372,177"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="237,102,314,143,312,148,235,106"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="187,180,78,223,76,218,185,175"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="89,225,173,251"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="203,179,157,218,153,214,199,175"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="197,225,272,251"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="221,177,230,211,225,213,215,178"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="297,225,359,251"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="234,175,300,216,297,220,231,180"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="384,225,472,251"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="250,175,381,218,380,223,248,180"/>
+</map>

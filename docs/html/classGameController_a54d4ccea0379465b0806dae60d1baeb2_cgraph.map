@@ -1,0 +1,15 @@
+<map id="GameController::GameController" name="GameController::GameController">
+<area shape="rect" id="Node000001" title="Constructs a GameController object." alt="" coords="5,70,241,95"/>
+<area shape="rect" id="Node000002" href="$classSettingsManager.html#a1686a183b6d975ae02e1a97cde31b226" title="Gets a boolean setting value." alt="" coords="307,5,497,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,67,293,45,294,50,186,73"/>
+<area shape="rect" id="Node000004" href="$classMapManager.html#a5242ad70cbfc71d06233f84723dd1b7b" title="Loads all maps from directory." alt="" coords="313,70,491,95"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="242,80,299,80,299,85,242,85"/>
+<area shape="rect" id="Node000007" href="$classConsoleRenderer.html#ac1299b325bb43da2b01ce929fc6f91f6" title="Enables or disables advanced graphics." alt="" coords="289,120,515,160"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="186,93,292,115,291,120,185,98"/>
+<area shape="rect" id="Node000003" href="$classSettingsManager.html#a824eef45a26393d9038ac52ce0413596" title="Gets a string setting value." alt="" coords="579,13,785,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="498,23,565,23,565,28,498,28"/>
+<area shape="rect" id="Node000005" href="$classMapManager.html#ad0adbcfa1331904665af1868edb052ab" title="Creates default maps if none exist." alt="" coords="563,70,801,95"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="491,80,549,80,549,85,491,85"/>
+<area shape="rect" id="Node000006" href="$classMapManager.html#a567c17018afe3a29cd1fb783d54ef098" title="Saves map to file." alt="" coords="849,70,1060,95"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="801,80,835,80,835,85,801,85"/>
+</map>

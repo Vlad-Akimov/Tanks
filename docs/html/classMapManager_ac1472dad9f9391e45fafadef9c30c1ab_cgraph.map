@@ -1,0 +1,44 @@
+<map id="MapManager::createWorldFromMap" name="MapManager::createWorldFromMap">
+<area shape="rect" id="Node000001" title="Creates game world from map layout." alt="" coords="5,534,260,559"/>
+<area shape="rect" id="Node000002" href="$classMapManager.html#ac5bc6102445e84f0d6f8c9adfdb92a4e" title="Calculates adjusted enemy count based on level." alt="" coords="318,5,549,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,534,139,452,148,391,163,323,185,251,215,180,255,113,279,83,306,55,311,51,314,55,310,59,283,86,260,116,220,182,190,253,168,324,154,392,144,452,137,534"/>
+<area shape="rect" id="Node000003" href="$classMapManager.html#ae3ea6b46f24eb1bf03fd7837a04d559d" title="Calculates enemy difficulty based on level." alt="" coords="324,69,543,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,534,143,461,154,408,171,349,193,287,223,226,260,169,306,119,312,115,315,119,310,123,264,172,227,229,198,289,176,351,160,410,148,462,138,534"/>
+<area shape="rect" id="Node000004" href="$classMapManager.html#ace9dd32160efac15a2b84873861b6f4b" title="Counts enemies in map layout." alt="" coords="330,133,537,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="134,533,148,470,179,376,202,323,230,272,265,224,306,183,316,176,319,181,310,187,269,228,235,275,206,326,184,377,153,472,139,534"/>
+<area shape="rect" id="Node000005" href="$classMapManager.html#a3482ed19e5051b3c1f1f64e7d8c05a79" title="Gets AI behavior based on difficulty level." alt="" coords="330,197,537,237"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="135,533,153,479,187,402,210,360,237,319,270,280,306,247,316,241,319,245,310,251,273,284,242,322,215,363,192,404,158,481,140,534"/>
+<area shape="rect" id="Node000006" href="$classGameWorld.html#a8ccfe5d146791d20012d963e01262163" title="Gets all active bonuses." alt="" coords="342,262,525,287"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="136,533,157,487,192,422,242,354,273,323,307,296,327,286,330,291,309,301,276,327,246,357,196,425,161,489,141,535"/>
+<area shape="rect" id="Node000007" href="$classGameWorld.html#ad9ff37f139acbfdc8db505d1d89d7979" title="Gets current level number." alt="" coords="328,311,539,337"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="139,532,162,495,199,444,248,390,276,366,307,346,319,339,322,344,309,350,279,370,252,394,203,447,166,498,143,535"/>
+<area shape="rect" id="Node000008" href="$classGameObject.html#aef9f45389e1ce2fe2260bcfd2c84c16a" title="Gets current health points." alt="" coords="346,361,521,386"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="143,532,207,466,254,427,307,395,331,385,333,390,309,400,257,431,211,470,147,536"/>
+<area shape="rect" id="Node000009" href="$classPlayerTank.html#a8e48786bd674e0a64713a2fd8786fc41" title="Gets number of remaining lives." alt="" coords="355,410,511,435"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="150,532,217,488,261,464,307,444,341,434,343,439,309,449,263,469,220,493,153,536"/>
+<area shape="rect" id="Node000010" href="$classGameWorld.html#aeb0de8b4054d1ab65b71436966d1a01d" title="Gets all game objects." alt="" coords="345,459,521,485"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="173,531,307,493,346,485,347,490,309,499,175,537"/>
+<area shape="rect" id="Node000011" href="$classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab" title="Gets pointer to player tank." alt="" coords="349,509,517,534"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="260,533,335,527,336,532,261,539"/>
+<area shape="rect" id="Node000012" href="$classGameObject.html#aa4dd19d6b0ea5701d860b64b08435ae6" title="Gets current position of the object." alt="" coords="607,663,791,689"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="261,546,406,560,484,574,560,595,620,622,670,653,667,658,618,627,558,600,483,580,405,565,260,551"/>
+<area shape="rect" id="Node000013" href="$classGameWorld.html#a7b7eb39217a9ca7e8686781766fa982b" title="Gets all active projectiles." alt="" coords="336,610,531,635"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="185,557,369,604,368,609,183,562"/>
+<area shape="rect" id="Node000014" href="$classMapManager.html#a1ad44804432af2a23ae74a8a44007859" title="Gets random enemy tank type based on level." alt="" coords="308,659,559,685"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="153,557,220,600,263,624,309,644,339,654,337,659,307,649,261,629,217,605,150,562"/>
+<area shape="rect" id="Node000015" href="$classPlayerTank.html#ac650158a9f0f60fb07a410fca2cee03f" title="Gets current player score." alt="" coords="354,709,513,734"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="147,558,211,624,257,662,309,694,342,706,340,711,307,698,254,666,207,628,143,561"/>
+<area shape="rect" id="Node000016" href="$classMapManager.html#abbb0023118bf20fed584293550ace259" title="Checks if position is valid for enemy placement." alt="" coords="332,759,535,799"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="144,558,167,595,204,645,253,698,280,722,309,743,324,751,321,755,307,748,277,726,249,702,200,649,163,598,139,561"/>
+<area shape="rect" id="Node000017" href="$classGameObject.html#a4bc41ca14c07e61dafa74a03c4f3e2df" title="Rotates the object to face new direction." alt="" coords="358,823,509,849"/>
+<area shape="poly" id="edge17_Node000001_Node000017" title=" " alt="" coords="141,559,160,607,195,675,218,712,244,748,275,781,309,808,346,825,343,830,307,813,271,785,240,751,213,715,190,678,155,609,136,561"/>
+<area shape="rect" id="Node000018" href="$classGameObject.html#a3cf581673b5b0099d250a434fed52f4d" title="Sets new health value for the object." alt="" coords="346,873,521,898"/>
+<area shape="poly" id="edge18_Node000001_Node000018" title=" " alt="" coords="140,559,156,614,188,696,211,741,239,784,272,824,310,858,334,871,331,876,306,862,268,828,234,787,206,743,183,699,151,616,134,560"/>
+<area shape="rect" id="Node000019" href="$classPlayerTank.html#a5799e229863bc48d1de94625ab91bd0b" title="Sets number of player lives." alt="" coords="356,922,511,947"/>
+<area shape="poly" id="edge19_Node000001_Node000019" title=" " alt="" coords="139,559,152,622,182,718,205,770,233,820,268,867,310,907,344,924,341,929,306,912,264,871,229,823,200,772,177,719,147,624,133,560"/>
+<area shape="rect" id="Node000020" href="$classGameObject.html#a8e1f77d21a8ed8a894ae29f0e4126618" title="Sets new position for the object." alt="" coords="342,971,525,997"/>
+<area shape="poly" id="edge20_Node000001_Node000020" title=" " alt="" coords="138,559,149,630,160,681,176,738,198,798,228,857,264,911,310,957,330,969,328,974,306,961,260,914,223,859,193,800,171,740,155,683,143,631,133,560"/>
+<area shape="rect" id="Node000021" href="$classPlayerTank.html#abde1432113bfd6939d0f69e0492b74c7" title="Sets player score." alt="" coords="355,1021,512,1046"/>
+<area shape="poly" id="edge21_Node000001_Node000021" title=" " alt="" coords="137,559,145,637,155,695,170,759,192,826,222,892,261,954,284,981,310,1006,343,1024,340,1028,306,1010,280,985,256,957,217,895,187,828,165,760,150,696,140,638,132,560"/>
+<area shape="poly" id="edge16_Node000016_Node000012" title=" " alt="" coords="518,756,558,743,614,718,662,693,665,698,616,723,560,748,520,761"/>
+</map>

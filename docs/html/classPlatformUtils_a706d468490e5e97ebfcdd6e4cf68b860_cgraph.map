@@ -1,0 +1,7 @@
+<map id="PlatformUtils::showResizeMessage" name="PlatformUtils::showResizeMessage">
+<area shape="rect" id="Node000001" title="Displays message about required terminal size." alt="" coords="5,23,199,63"/>
+<area shape="rect" id="Node000002" href="$classPlatformUtils.html#acddd420e3f04cd70a8932b5472fce01d" title="Clears the terminal screen." alt="" coords="261,5,453,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,31,247,26,248,32,199,36"/>
+<area shape="rect" id="Node000003" href="$classPlatformUtils.html#a9fb2159f36325087d8c93e7937d6da0b" title="Gets current terminal dimensions." alt="" coords="247,55,467,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="199,50,233,53,233,58,199,55"/>
+</map>

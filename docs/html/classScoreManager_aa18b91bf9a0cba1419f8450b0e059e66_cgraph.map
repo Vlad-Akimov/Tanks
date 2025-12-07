@@ -1,0 +1,5 @@
+<map id="ScoreManager::clearScores" name="ScoreManager::clearScores">
+<area shape="rect" id="Node000001" title="Clears all high scores." alt="" coords="5,5,204,31"/>
+<area shape="rect" id="Node000002" href="$classScoreManager.html#a2cbb9e5e0f1062aecb034157b05defa2" title="Saves high scores to file." alt="" coords="252,5,449,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,15,239,15,239,21,204,21"/>
+</map>

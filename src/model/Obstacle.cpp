@@ -1,3 +1,14 @@
+/**
+ * @file Obstacle.cpp
+ * @author Vld251
+ * @brief Implementation of environmental obstacles with different passability and durability.
+ * @version 0.1
+ * @date 2025-12-07
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "Obstacle.h"
 
 Obstacle::Obstacle(Point pos, ObstacleType obsType, bool movable)

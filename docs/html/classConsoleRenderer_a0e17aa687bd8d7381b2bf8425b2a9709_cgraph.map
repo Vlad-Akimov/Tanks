@@ -1,0 +1,18 @@
+<map id="ConsoleRenderer::drawSettings" name="ConsoleRenderer::drawSettings">
+<area shape="rect" id="Node000001" title="Draws settings screen." alt="" coords="5,56,232,81"/>
+<area shape="rect" id="Node000002" href="$classConsoleRenderer.html#a9576db66ee7dc8d9fdec36f0181b9a12" title="Checks if terminal size meets requirements." alt="" coords="280,5,543,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,53,323,30,324,36,193,59"/>
+<area shape="rect" id="Node000005" href="$classConsoleRenderer.html#a041e99f6c0427c254b0349b57fbe2a84" title="Clears the terminal screen." alt="" coords="617,60,834,85"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="232,67,603,69,603,75,232,72"/>
+<area shape="rect" id="Node000007" href="$classConsoleRenderer.html#af59760cefd8647cf4b6fe34774cac2c1" title="Draws an error message about terminal size." alt="" coords="309,106,513,146"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="185,79,296,101,295,106,184,84"/>
+<area shape="rect" id="Node000003" href="$classConsoleRenderer.html#aae418386985b5ad1286af9cb8a7726c9" title="Updates terminal size information." alt="" coords="591,5,860,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="543,15,577,15,577,21,543,21"/>
+<area shape="rect" id="Node000004" href="$classPlatformUtils.html#a9fb2159f36325087d8c93e7937d6da0b" title="Gets current terminal dimensions." alt="" coords="908,5,1128,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="860,15,894,15,894,21,860,21"/>
+<area shape="rect" id="Node000006" href="$classPlatformUtils.html#acddd420e3f04cd70a8932b5472fce01d" title="Clears the terminal screen." alt="" coords="922,60,1114,85"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="834,70,908,70,908,75,834,75"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="513,106,636,85,637,90,514,111"/>
+<area shape="rect" id="Node000008" href="$classConsoleRenderer.html#a71e694cb8e3ecdd88b44a78b339a3963" title="Draws centered text within specified width." alt="" coords="596,113,855,139"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="514,123,582,123,582,129,514,129"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="src/model/Explosion.cpp" name="src/model/Explosion.cpp">
+<area shape="rect" id="Node000001" title="Implementation of timed explosion visual effects." alt="" coords="5,5,185,31"/>
+<area shape="rect" id="Node000002" href="$Explosion_8h.html" title="Visual explosion effects for game events like tank destruction." alt="" coords="47,79,144,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,31,98,65,93,65,93,31"/>
+<area shape="rect" id="Node000003" href="$GameObject_8h.html" title="Base class and structures for all game objects with position, direction, and health." alt="" coords="38,152,153,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="98,104,98,138,93,138,93,104"/>
+</map>

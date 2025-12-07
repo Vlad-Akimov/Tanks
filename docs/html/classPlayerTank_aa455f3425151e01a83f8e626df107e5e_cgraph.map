@@ -1,0 +1,9 @@
+<map id="PlayerTank::fire" name="PlayerTank::fire">
+<area shape="rect" id="Node000001" title="Fires projectile(s) from player tank." alt="" coords="5,31,128,56"/>
+<area shape="rect" id="Node000002" href="$classTank.html#a99218709d4502fafb8e0787121a68e54" title="Fires a projectile from the tank." alt="" coords="227,5,309,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,33,213,22,214,27,128,38"/>
+<area shape="rect" id="Node000004" href="$classGameObject.html#aa4dd19d6b0ea5701d860b64b08435ae6" title="Gets current position of the object." alt="" coords="176,55,360,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="128,48,163,52,162,57,128,53"/>
+<area shape="rect" id="Node000003" href="$classTank.html#a6a39f37aa7ebbf66d0661815c43b37ef" title="Checks if tank can fire." alt="" coords="408,5,515,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="309,15,394,15,394,21,309,21"/>
+</map>

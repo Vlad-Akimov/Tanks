@@ -1,3 +1,14 @@
+/**
+ * @file MapManager.cpp
+ * @author Vld251
+ * @brief Implementation for loading, creating, and managing game maps.
+ * @version 0.1
+ * @date 2025-12-07
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "MapManager.h"
 #include "../model/PlayerTank.h"
 #include <fstream>

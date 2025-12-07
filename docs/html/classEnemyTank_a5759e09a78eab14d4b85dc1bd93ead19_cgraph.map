@@ -1,0 +1,21 @@
+<map id="EnemyTank::attemptShot" name="EnemyTank::attemptShot">
+<area shape="rect" id="Node000001" title="Attempts to shoot at player." alt="" coords="5,163,192,188"/>
+<area shape="rect" id="Node000002" href="$classTank.html#a6a39f37aa7ebbf66d0661815c43b37ef" title="Checks if tank can fire." alt="" coords="725,7,832,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,160,172,129,239,95,355,42,408,25,478,10,534,4,578,4,677,10,711,12,711,17,677,16,577,9,534,9,479,16,410,30,357,47,241,99,175,133,122,165"/>
+<area shape="rect" id="Node000003" href="$classEnemyTank.html#a502b571b6aadbbcd72392d182b7fd85c" title="Fires projectile from enemy tank." alt="" coords="272,110,399,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="155,160,264,135,266,141,157,165"/>
+<area shape="rect" id="Node000005" href="$classEnemyTank.html#a9eb0cacdd5e196535f1d60da1ca622ac" title="Gets direction towards last known player position." alt="" coords="479,157,677,197"/>
+<area shape="poly" id="edge9_Node000001_Node000005" title=" " alt="" coords="192,173,465,174,465,179,192,179"/>
+<area shape="rect" id="Node000006" href="$classGameObject.html#a4bc41ca14c07e61dafa74a03c4f3e2df" title="Rotates the object to face new direction." alt="" coords="503,222,653,247"/>
+<area shape="poly" id="edge11_Node000001_Node000006" title=" " alt="" coords="193,184,489,221,488,226,192,190"/>
+<area shape="rect" id="Node000008" href="$classEnemyTank.html#abf1f9838c12039c2a0872181aeee713e" title="Checks if tank has clear line of sight to player." alt="" coords="240,264,431,290"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="125,186,241,242,281,257,279,262,239,247,122,191"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="353,107,407,74,442,56,478,42,539,28,601,20,711,15,712,20,601,25,540,33,479,47,444,61,410,78,356,112"/>
+<area shape="rect" id="Node000004" href="$classTank.html#a99218709d4502fafb8e0787121a68e54" title="Fires a projectile from the tank." alt="" coords="537,58,619,83"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="395,107,523,79,525,84,396,112"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="393,132,476,151,474,156,392,138"/>
+<area shape="poly" id="edge7_Node000003_Node000006" title=" " alt="" coords="355,133,409,169,480,207,504,215,502,220,478,211,406,174,352,137"/>
+<area shape="rect" id="Node000007" href="$classProjectile.html#a667a26abf9fb92759a4935fbd439c701" title="Sets new damage value for projectile." alt="" coords="495,107,661,132"/>
+<area shape="poly" id="edge8_Node000003_Node000007" title=" " alt="" coords="399,119,481,118,481,123,399,124"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="618,58,714,33,715,38,620,63"/>
+</map>

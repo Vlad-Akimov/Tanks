@@ -1,0 +1,15 @@
+<map id="EnemyTank::hasClearShot" name="EnemyTank::hasClearShot">
+<area shape="rect" id="Node000001" title="Checks if tank has clear line of sight to player." alt="" coords="749,55,940,80"/>
+<area shape="rect" id="Node000002" href="$classEnemyTank.html#a5b53b4d6721012b14e41a0882bd1c2a3" title="Executes aggressive behavior." alt="" coords="467,5,701,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="763,55,651,33,652,28,764,49"/>
+<area shape="rect" id="Node000005" href="$classEnemyTank.html#a5759e09a78eab14d4b85dc1bd93ead19" title="Attempts to shoot at player." alt="" coords="491,55,677,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="735,70,678,70,678,65,735,65"/>
+<area shape="rect" id="Node000006" href="$classEnemyTank.html#a39add8a8beb8bb7b69124753ec2dae74" title="Executes defensive behavior." alt="" coords="471,104,697,129"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="764,85,652,107,651,101,763,80"/>
+<area shape="rect" id="Node000003" href="$classEnemyTank.html#a338556623afc739ebf5585caaa73fcdb" title="Decides next action based on behavior." alt="" coords="204,55,419,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="500,36,383,57,382,52,499,31"/>
+<area shape="rect" id="Node000004" href="$classEnemyTank.html#a7ae5efc6eff4e7a19abb7f37b44835fc" title="Updates enemy tank state and AI decisions." alt="" coords="5,55,156,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="190,70,156,70,156,65,190,65"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="477,70,419,70,419,65,477,65"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="499,104,382,83,383,77,500,99"/>
+</map>

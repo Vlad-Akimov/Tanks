@@ -1,0 +1,22 @@
+<map id="src/utils/PlatformUtils.h" name="src/utils/PlatformUtils.h">
+<area shape="rect" id="Node000001" title="Cross&#45;platform utilities for console I/O, colors, and terminal manipulation." alt="" coords="365,5,539,31"/>
+<area shape="rect" id="Node000002" href="$InputHandler_8h.html" title="Handles user input and maps keystrokes to game commands." alt="" coords="13,79,219,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="385,36,171,81,170,76,384,31"/>
+<area shape="rect" id="Node000007" href="$PlatformUtils_8cpp.html" title="Implementation of cross&#45;platform console utilities." alt="" coords="243,79,434,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="423,40,359,81,356,76,420,36"/>
+<area shape="rect" id="Node000008" href="$SettingsManager_8cpp.html" title="Implementation of settings management with file persistence." alt="" coords="459,79,672,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="484,36,548,76,545,81,481,40"/>
+<area shape="rect" id="Node000009" href="$ConsoleRenderer_8h.html" title="Renders game state, menus, and UI elements to the console." alt="" coords="696,79,899,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="521,31,742,76,741,81,520,36"/>
+<area shape="rect" id="Node000003" href="$GameController_8h.html" title="Central game controller coordinating model, view, and input systems." alt="" coords="346,152,571,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="185,104,404,149,403,155,184,109"/>
+<area shape="rect" id="Node000006" href="$InputHandler_8cpp.html" title="Implementation of input handling with keyboard and Unicode support." alt="" coords="5,152,227,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="119,118,119,152,113,152,113,118"/>
+<area shape="rect" id="Node000004" href="$GameController_8cpp.html" title="Implementation of main game controller and game loop logic." alt="" coords="240,225,480,251"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="434,187,378,227,375,223,430,183"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html" title="Main entry point for the Tank Simulator game." alt="" coords="505,225,610,251"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="487,183,543,223,540,227,484,187"/>
+<area shape="poly" id="edge9_Node000009_Node000003" title=" " alt="" coords="730,109,514,155,513,149,729,104"/>
+<area shape="rect" id="Node000010" href="$ConsoleRenderer_8cpp.html" title="Implementation of console&#45;based game rendering with ASCII/Unicode support." alt="" coords="689,152,906,177"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="800,118,800,152,795,152,795,118"/>
+</map>

@@ -1,0 +1,16 @@
+<map id="ConsoleRenderer::drawMapPreview" name="ConsoleRenderer::drawMapPreview">
+<area shape="rect" id="Node000001" title="Draws map preview for selection screen." alt="" coords="5,73,207,113"/>
+<area shape="rect" id="Node000002" href="$ConsoleRenderer_8cpp.html#a279be60aa96dcc35cae7933c2617f6d6" title=" " alt="" coords="303,5,431,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,70,254,39,289,31,291,36,255,45,162,75"/>
+<area shape="rect" id="Node000003" href="$classConsoleRenderer.html#a39097953ecd72be19860424c9d00b0ea" title="Resets terminal color to default." alt="" coords="263,55,471,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="207,80,249,76,250,81,207,86"/>
+<area shape="rect" id="Node000006" href="$classConsoleRenderer.html#af06444dbf726424a13127fd4f3a70a8d" title="Sets terminal text color." alt="" coords="528,105,723,131"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="207,95,514,110,514,115,207,100"/>
+<area shape="rect" id="Node000007" href="$classPlatformUtils.html#a964fb97fe6351330adbcf813a9706eb6" title="Checks if terminal supports Unicode." alt="" coords="255,156,480,181"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="175,110,255,134,308,149,307,155,254,139,173,115"/>
+<area shape="rect" id="Node000004" href="$classPlatformUtils.html#ae3607ef4c4fbee33349ec982eda7bf07" title="Resets terminal color to default." alt="" coords="534,56,717,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="471,65,520,65,520,71,471,71"/>
+<area shape="rect" id="Node000005" href="$classPlatformUtils.html#a48de38e18726881bbe61e398ebabb97e" title="Sets terminal text color." alt="" coords="771,81,941,107"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="717,76,757,81,757,86,716,81"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="722,105,756,102,757,107,723,111"/>
+</map>

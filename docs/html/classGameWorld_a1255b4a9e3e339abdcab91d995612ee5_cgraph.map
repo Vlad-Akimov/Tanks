@@ -1,0 +1,5 @@
+<map id="GameWorld::checkPointCollision" name="GameWorld::checkPointCollision">
+<area shape="rect" id="Node000001" title="Checks collision at point." alt="" coords="5,5,239,31"/>
+<area shape="rect" id="Node000002" href="$classObstacle.html#aa1936373d282c8dba39f529526b6143d" title="Checks if obstacle is passable for tanks." alt="" coords="287,5,441,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="239,15,273,15,273,21,239,21"/>
+</map>

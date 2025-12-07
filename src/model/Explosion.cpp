@@ -1,3 +1,14 @@
+/**
+ * @file Explosion.cpp
+ * @author Vld251
+ * @brief Implementation of timed explosion visual effects.
+ * @version 0.1
+ * @date 2025-12-07
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "Explosion.h"
 
 Explosion::Explosion(Point pos) 

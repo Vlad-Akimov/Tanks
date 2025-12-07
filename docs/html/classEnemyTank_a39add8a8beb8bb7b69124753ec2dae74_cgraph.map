@@ -1,0 +1,42 @@
+<map id="EnemyTank::defensiveBehavior" name="EnemyTank::defensiveBehavior">
+<area shape="rect" id="Node000001" title="Executes defensive behavior." alt="" coords="5,238,232,264"/>
+<area shape="rect" id="Node000002" href="$classEnemyTank.html#aa70aff895200207527e2465c9439fc05" title="Carefully approaches player." alt="" coords="280,238,501,264"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="232,248,266,248,266,254,232,254"/>
+<area shape="rect" id="Node000003" href="$classEnemyTank.html#a9eb0cacdd5e196535f1d60da1ca622ac" title="Gets direction towards last known player position." alt="" coords="855,224,1054,264"/>
+<area shape="poly" id="edge24_Node000001_Node000003" title=" " alt="" coords="141,236,243,183,317,152,403,122,496,98,593,86,642,84,691,87,739,95,786,109,829,129,869,156,929,212,925,216,865,160,827,134,784,114,738,101,691,93,642,90,594,91,497,104,404,127,319,157,245,188,143,241"/>
+<area shape="rect" id="Node000004" href="$classEnemyTank.html#a99abccd6cdea62b595ec72f9e374d841" title="Gets Manhattan distance to player." alt="" coords="569,123,766,163"/>
+<area shape="poly" id="edge25_Node000001_Node000004" title=" " alt="" coords="184,236,555,162,556,168,185,241"/>
+<area shape="rect" id="Node000006" href="$classGameObject.html#a4bc41ca14c07e61dafa74a03c4f3e2df" title="Rotates the object to face new direction." alt="" coords="1124,340,1275,365"/>
+<area shape="poly" id="edge27_Node000001_Node000006" title=" " alt="" coords="136,262,197,311,238,340,281,365,429,436,548,481,672,513,834,541,903,555,959,566,986,568,1013,565,1042,556,1075,541,1097,526,1117,507,1150,462,1173,416,1188,377,1193,379,1178,418,1154,465,1121,510,1101,530,1077,545,1044,561,1014,570,986,573,959,571,902,560,833,546,671,518,547,486,427,441,279,369,235,344,194,315,133,266"/>
+<area shape="rect" id="Node000009" href="$classEnemyTank.html#a85bd09ffb86b2c36c6b76fe6f6752324" title="Moves away from player." alt="" coords="565,22,770,48"/>
+<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="124,237,145,201,179,153,224,104,250,82,279,65,346,39,416,25,486,19,551,20,551,25,487,25,417,30,347,44,281,70,253,87,227,108,183,156,149,204,129,240"/>
+<area shape="rect" id="Node000011" href="$classEnemyTank.html#a3038987b5595e2ec68508dfde4a35d51" title="Searches for cover." alt="" coords="584,390,751,416"/>
+<area shape="poly" id="edge18_Node000001_Node000011" title=" " alt="" coords="160,261,329,313,550,375,591,385,589,390,549,380,327,318,159,266"/>
+<area shape="rect" id="Node000013" href="$classEnemyTank.html#abf1f9838c12039c2a0872181aeee713e" title="Checks if tank has clear line of sight to player." alt="" coords="295,606,486,632"/>
+<area shape="poly" id="edge26_Node000001_Node000013" title=" " alt="" coords="125,263,138,322,167,409,187,456,213,503,245,547,282,585,303,599,300,603,278,589,241,551,209,506,183,459,162,411,133,323,120,265"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="502,247,842,243,842,248,502,252"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="418,236,548,179,588,165,589,170,550,184,420,241"/>
+<area shape="rect" id="Node000005" href="$classEnemyTank.html#ad9f295f9b2df24bb291db3783b292289" title="Moves enemy tank in specified direction." alt="" coords="883,289,1026,314"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="502,258,870,292,869,297,501,264"/>
+<area shape="poly" id="edge12_Node000002_Node000006" title=" " alt="" coords="466,236,611,214,788,195,877,190,957,190,1026,196,1077,210,1114,234,1145,265,1170,297,1188,326,1183,329,1165,300,1141,268,1111,238,1075,215,1025,201,957,195,877,195,789,200,612,220,466,241"/>
+<area shape="rect" id="Node000007" href="$classEnemyTank.html#aa7421a7881c97b14301ef95e11fac1a8" title="Moves towards player position." alt="" coords="549,340,785,365"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="419,261,478,289,550,318,601,334,599,339,548,323,476,294,417,266"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1018,312,1125,334,1124,340,1017,317"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="693,337,755,307,832,275,860,266,862,271,834,280,758,312,695,342"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="740,337,869,314,870,319,741,342"/>
+<area shape="poly" id="edge11_Node000007_Node000006" title=" " alt="" coords="785,350,1110,350,1110,355,785,355"/>
+<area shape="rect" id="Node000008" href="$classEnemyTank.html#a327ab507c7512b075c5a4c85d6933bba" title="Executes random movement behavior." alt="" coords="848,390,1061,416"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="741,363,869,385,868,391,740,368"/>
+<area shape="poly" id="edge10_Node000008_Node000006" title=" " alt="" coords="1017,388,1124,365,1125,371,1018,393"/>
+<area shape="poly" id="edge14_Node000009_Node000003" title=" " alt="" coords="740,45,787,65,848,125,928,212,924,216,844,128,784,69,738,50"/>
+<area shape="poly" id="edge16_Node000009_Node000005" title=" " alt="" coords="701,46,746,71,768,89,787,110,801,133,807,155,808,197,811,237,819,256,835,274,852,286,871,294,869,299,849,291,832,278,815,258,806,238,803,197,802,156,796,135,783,113,765,93,743,75,699,50"/>
+<area shape="poly" id="edge17_Node000009_Node000006" title=" " alt="" coords="720,20,796,8,889,4,939,8,988,17,1035,34,1078,58,1109,86,1134,119,1154,156,1170,194,1190,268,1199,326,1193,327,1185,269,1165,196,1149,158,1130,122,1105,90,1074,63,1032,39,986,23,938,13,889,9,796,13,721,25"/>
+<area shape="rect" id="Node000010" href="$classEnemyTank.html#a8e77035e33942a8ac511fbb3970917bc" title="Gets opposite direction." alt="" coords="833,73,1076,98"/>
+<area shape="poly" id="edge15_Node000009_Node000010" title=" " alt="" coords="741,45,869,68,868,73,740,50"/>
+<area shape="poly" id="edge19_Node000011_Node000003" title=" " alt="" coords="750,393,784,376,795,364,801,353,807,328,813,302,820,288,832,276,841,269,845,273,835,280,824,291,818,303,812,329,806,355,799,368,787,380,752,398"/>
+<area shape="poly" id="edge21_Node000011_Node000005" title=" " alt="" coords="738,388,784,375,856,347,916,318,919,323,858,352,786,380,740,393"/>
+<area shape="poly" id="edge23_Node000011_Node000006" title=" " alt="" coords="716,413,786,428,877,440,977,442,1027,436,1075,426,1102,416,1128,402,1171,372,1174,376,1131,407,1104,421,1077,431,1028,442,977,447,877,446,785,434,714,419"/>
+<area shape="poly" id="edge22_Node000011_Node000008" title=" " alt="" coords="751,400,834,400,834,406,751,406"/>
+<area shape="rect" id="Node000012" href="$classEnemyTank.html#a8e7ed1aeded64d0b118d54a5f78099b2" title="Gets perpendicular direction." alt="" coords="847,491,1062,531"/>
+<area shape="poly" id="edge20_Node000011_Node000012" title=" " alt="" coords="698,413,834,470,875,484,874,489,832,475,696,418"/>
+</map>

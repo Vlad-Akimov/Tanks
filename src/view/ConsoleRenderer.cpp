@@ -1,3 +1,14 @@
+/**
+ * @file ConsoleRenderer.cpp
+ * @author Vld251
+ * @brief Implementation of console-based game rendering with ASCII/Unicode support.
+ * @version 0.1
+ * @date 2025-12-07
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "ConsoleRenderer.h"
 #include <iostream>
 #include <string>

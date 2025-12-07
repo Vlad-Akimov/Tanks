@@ -1,0 +1,8 @@
+<map id="InputHandler::waitForCommand" name="InputHandler::waitForCommand">
+<area shape="rect" id="Node000001" title="Waits for and returns a user command." alt="" coords="5,5,235,31"/>
+<area shape="rect" id="Node000002" href="$classPlatformUtils.html#ab1da035f72ad2772a6ec8fbc4b34560a" title="Checks if a key has been pressed." alt="" coords="540,5,689,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="235,15,526,15,526,21,235,21"/>
+<area shape="rect" id="Node000003" href="$classPlatformUtils.html#a4f63e74483ea78a709c332539f45ac27" title="Reads a single UTF&#45;8 character from input." alt="" coords="283,31,492,56"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="235,26,269,29,269,35,234,32"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="492,29,526,25,526,30,493,34"/>
+</map>

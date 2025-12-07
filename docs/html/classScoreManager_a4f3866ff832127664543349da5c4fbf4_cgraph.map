@@ -1,0 +1,5 @@
+<map id="ScoreManager::ScoreManager" name="ScoreManager::ScoreManager">
+<area shape="rect" id="Node000001" title="Constructs a ScoreManager with default score file." alt="" coords="5,5,221,31"/>
+<area shape="rect" id="Node000002" href="$classScoreManager.html#a91233469cc1823684930654b9a33af91" title="Loads high scores from file." alt="" coords="269,5,464,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="221,15,255,15,255,21,221,21"/>
+</map>

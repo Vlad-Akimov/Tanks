@@ -1,0 +1,5 @@
+<map id="src/model/Explosion.h" name="src/model/Explosion.h">
+<area shape="rect" id="Node000001" title="Visual explosion effects for game events like tank destruction." alt="" coords="5,5,171,31"/>
+<area shape="rect" id="Node000002" href="$GameObject_8h.html" title="Base class and structures for all game objects with position, direction, and health." alt="" coords="31,79,145,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,31,91,65,85,65,85,31"/>
+</map>

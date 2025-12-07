@@ -1,0 +1,37 @@
+<map id="GameWorld::getCurrentLevel" name="GameWorld::getCurrentLevel">
+<area shape="rect" id="Node000001" title="Gets current level number." alt="" coords="2353,147,2564,173"/>
+<area shape="rect" id="Node000002" href="$classMapManager.html#ac1472dad9f9391e45fafadef9c30c1ab" title="Creates game world from map layout." alt="" coords="2051,97,2305,122"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2374,147,2249,125,2250,119,2375,142"/>
+<area shape="rect" id="Node000003" href="$classGameController.html#a09c76a5ae9b8f514163dafe31273f44f" title="Loads the currently selected map." alt="" coords="1757,143,2003,169"/>
+<area shape="poly" id="edge19_Node000001_Node000003" title=" " alt="" coords="2339,162,2003,160,2003,154,2339,157"/>
+<area shape="rect" id="Node000004" href="$classGameController.html#a4086fc466d91f45c41b2bc5df06af77a" title="Loads the next game level." alt="" coords="1486,191,1678,231"/>
+<area shape="poly" id="edge18_Node000001_Node000004" title=" " alt="" coords="2340,169,1678,208,1678,203,2340,164"/>
+<area shape="rect" id="Node000005" href="$classGameController.html#a85bcf4ecfd197aad278e116215a3717b" title="Displays level completion screen." alt="" coords="949,245,1152,285"/>
+<area shape="poly" id="edge22_Node000001_Node000005" title=" " alt="" coords="2405,179,2308,206,2179,236,2032,261,1956,268,1881,271,1581,271,1152,269,1152,263,1581,265,1881,265,1956,263,2031,255,2178,231,2307,201,2404,174"/>
+<area shape="rect" id="Node000013" href="$classConsoleRenderer.html#ab34fa7af4ede79de3951f1d5271d7a27" title="Renders the game world to console." alt="" coords="1789,7,1971,33"/>
+<area shape="poly" id="edge20_Node000001_Node000013" title=" " alt="" coords="2424,143,2369,113,2304,87,2218,64,2129,47,1971,28,1972,23,2130,41,2219,58,2306,81,2372,108,2427,138"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="2083,127,1962,146,1961,141,2082,122"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1797,174,1679,196,1678,190,1796,169"/>
+<area shape="rect" id="Node000009" href="$classGameController.html#a4a9c94fe33cf6c73bb5dfc415d04d309" title="Displays map selection screen." alt="" coords="1455,141,1709,166"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="1744,157,1710,157,1710,152,1744,152"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1472,224,1204,252,1152,257,1152,252,1204,247,1472,219"/>
+<area shape="rect" id="Node000006" href="$classGameController.html#af2367e58f03d8a1441c9a574967fd360" title="Processes a single game turn/update cycle." alt="" coords="349,119,599,145"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="949,245,530,147,531,142,950,240"/>
+<area shape="rect" id="Node000007" href="$classGameController.html#ac958989c8f7f08488546930e5fcb0d82" title="Starts and runs the main game loop." alt="" coords="108,170,301,195"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="393,150,273,173,272,167,392,145"/>
+<area shape="rect" id="Node000008" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Main function that serves as the application entry point." alt="" coords="5,170,60,195"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="94,185,60,185,60,180,94,180"/>
+<area shape="rect" id="Node000010" href="$classGameController.html#a971b3d8f6296a74f0bebc83b5e79c186" title="Processes a user command." alt="" coords="647,94,897,119"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1480,141,1406,132,1281,117,1156,108,1051,106,945,108,897,108,897,103,945,103,1051,101,1156,103,1282,112,1407,127,1481,136"/>
+<area shape="rect" id="Node000011" href="$classGameController.html#a9d11b5a6255b7249bddba49df0837cf3" title="Displays and manages the main menu." alt="" coords="1204,142,1407,167"/>
+<area shape="poly" id="edge11_Node000009_Node000011" title=" " alt="" coords="1441,166,1407,166,1407,160,1441,160"/>
+<area shape="poly" id="edge10_Node000010_Node000006" title=" " alt="" coords="633,121,599,124,599,119,632,116"/>
+<area shape="poly" id="edge16_Node000011_Node000005" title=" " alt="" coords="1255,175,1205,197,1182,213,1157,229,1115,248,1112,243,1155,224,1179,209,1203,192,1253,170"/>
+<area shape="poly" id="edge15_Node000011_Node000007" title=" " alt="" coords="1234,173,1156,184,915,198,676,201,464,197,302,191,302,185,464,192,676,196,915,193,1156,179,1233,167"/>
+<area shape="poly" id="edge17_Node000011_Node000009" title=" " alt="" coords="1420,143,1454,142,1455,148,1420,148"/>
+<area shape="poly" id="edge14_Node000011_Node000010" title=" " alt="" coords="1216,143,1156,135,1022,123,897,115,898,110,1023,117,1156,129,1216,137"/>
+<area shape="rect" id="Node000012" href="$classGameController.html#a637ea4e72ed2be4a2884b30160b3e8ab" title="Pauses the game and displays pause screen." alt="" coords="945,145,1156,170"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="1190,159,1156,159,1156,154,1190,153"/>
+<area shape="poly" id="edge13_Node000012_Node000010" title=" " alt="" coords="966,145,842,122,843,117,967,140"/>
+<area shape="poly" id="edge21_Node000013_Node000006" title=" " alt="" coords="1775,18,1559,12,1307,8,1049,8,970,12,889,21,810,35,734,53,602,90,510,122,508,117,600,85,733,48,809,30,888,16,969,6,1049,3,1307,3,1559,6,1775,13"/>
+</map>

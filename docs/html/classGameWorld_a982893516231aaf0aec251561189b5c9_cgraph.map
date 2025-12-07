@@ -1,0 +1,13 @@
+<map id="GameWorld::handleEnemyCollision" name="GameWorld::handleEnemyCollision">
+<area shape="rect" id="Node000001" title="Handles enemy collision." alt="" coords="5,80,256,105"/>
+<area shape="rect" id="Node000002" href="$classEnemyTank.html#aaa9646e004d165e97db25fd34b3e5251" title="Gets the bounding dimensions of the enemy tank." alt="" coords="317,5,492,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,77,303,39,335,31,336,37,305,45,174,82"/>
+<area shape="rect" id="Node000003" href="$classGameObject.html#aa4dd19d6b0ea5701d860b64b08435ae6" title="Gets current position of the object." alt="" coords="313,55,497,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="256,78,299,74,299,80,256,84"/>
+<area shape="rect" id="Node000004" href="$classGameWorld.html#a44dd38e9393e523caefeac7448cfc18c" title="Checks if position is valid." alt="" coords="304,104,505,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="256,101,290,104,290,109,256,106"/>
+<area shape="rect" id="Node000006" href="$classGameObject.html#a4bc41ca14c07e61dafa74a03c4f3e2df" title="Rotates the object to face new direction." alt="" coords="329,153,480,179"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="177,103,305,138,340,147,339,153,303,143,176,108"/>
+<area shape="rect" id="Node000005" href="$classObstacle.html#aa1936373d282c8dba39f529526b6143d" title="Checks if obstacle is passable for tanks." alt="" coords="553,104,708,129"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="506,114,540,114,540,119,506,119"/>
+</map>

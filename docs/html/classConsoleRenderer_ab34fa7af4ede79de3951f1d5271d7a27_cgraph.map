@@ -1,0 +1,64 @@
+<map id="ConsoleRenderer::render" name="ConsoleRenderer::render">
+<area shape="rect" id="Node000001" title="Renders the game world to console." alt="" coords="5,535,188,560"/>
+<area shape="rect" id="Node000002" href="$classConsoleRenderer.html#a9576db66ee7dc8d9fdec36f0181b9a12" title="Checks if terminal size meets requirements." alt="" coords="236,5,499,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,534,112,437,140,287,159,209,181,138,206,79,220,57,234,40,238,36,242,41,238,44,224,60,211,82,186,140,164,211,145,288,117,438,102,535"/>
+<area shape="rect" id="Node000005" href="$classConsoleRenderer.html#ae53c0928ccdb899f11bc74868141c18b" title="Draws screen border." alt="" coords="259,55,475,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="95,534,96,457,102,401,112,337,129,270,154,205,188,143,210,116,234,91,246,82,249,86,238,95,214,119,193,146,158,207,134,272,117,338,107,401,102,458,100,534"/>
+<area shape="rect" id="Node000006" href="$classConsoleRenderer.html#af59760cefd8647cf4b6fe34774cac2c1" title="Draws an error message about terminal size." alt="" coords="265,105,469,145"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="96,534,103,469,123,369,141,313,164,258,195,207,234,161,251,148,254,153,238,165,200,210,169,261,146,315,128,370,108,469,101,535"/>
+<area shape="rect" id="Node000010" href="$classConsoleRenderer.html#ae0a5ec8d9b0ab1252c3a8a9eae7bceaa" title="Draws symbol legend explaining game symbols." alt="" coords="256,270,479,310"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="100,533,116,493,144,437,183,378,207,350,234,327,255,314,258,318,238,331,211,354,187,381,148,440,121,495,105,535"/>
+<area shape="rect" id="Node000011" href="$ConsoleRenderer_8cpp.html#a279be60aa96dcc35cae7933c2617f6d6" title=" " alt="" coords="617,192,745,217"/>
+<area shape="poly" id="edge22_Node000001_Node000011" title=" " alt="" coords="96,534,104,476,126,390,144,344,167,300,197,260,234,226,280,201,330,184,382,173,435,169,535,173,618,186,617,192,535,179,435,174,383,179,332,189,283,206,238,231,201,263,172,303,149,347,131,392,110,477,102,535"/>
+<area shape="rect" id="Node000012" href="$classConsoleRenderer.html#a39097953ecd72be19860424c9d00b0ea" title="Resets terminal color to default." alt="" coords="577,248,785,273"/>
+<area shape="poly" id="edge31_Node000001_Node000012" title=" " alt="" coords="97,534,106,480,129,402,147,360,170,320,199,285,235,256,260,245,294,238,379,233,475,236,567,244,567,249,475,241,379,238,295,243,262,250,237,260,203,288,174,323,152,363,134,404,111,481,102,535"/>
+<area shape="rect" id="Node000015" href="$classConsoleRenderer.html#af06444dbf726424a13127fd4f3a70a8d" title="Sets terminal text color." alt="" coords="584,299,779,324"/>
+<area shape="poly" id="edge32_Node000001_Node000015" title=" " alt="" coords="102,533,120,500,149,457,187,412,210,392,235,376,261,364,295,354,381,337,570,316,571,321,382,343,296,359,263,369,237,380,213,397,191,416,153,460,124,503,107,536"/>
+<area shape="rect" id="Node000016" href="$classPlatformUtils.html#a964fb97fe6351330adbcf813a9706eb6" title="Checks if terminal supports Unicode." alt="" coords="569,360,794,385"/>
+<area shape="poly" id="edge33_Node000001_Node000016" title=" " alt="" coords="106,533,156,478,193,447,235,422,315,394,398,377,480,368,554,365,555,370,480,373,399,382,316,399,237,427,196,451,160,481,110,536"/>
+<area shape="rect" id="Node000017" href="$classTank.html#adb4ee907d4e3e2fe770fbbc825815b89" title="Gets maximum remaining bonus duration." alt="" coords="279,436,456,461"/>
+<area shape="poly" id="edge17_Node000001_Node000017" title=" " alt="" coords="116,532,169,502,235,472,268,462,269,467,237,476,171,506,119,537"/>
+<area shape="rect" id="Node000018" href="$classGameWorld.html#a8ccfe5d146791d20012d963e01262163" title="Gets all active bonuses." alt="" coords="276,485,459,511"/>
+<area shape="poly" id="edge18_Node000001_Node000018" title=" " alt="" coords="167,532,283,511,284,516,167,537"/>
+<area shape="rect" id="Node000019" href="$classGameWorld.html#ad9ff37f139acbfdc8db505d1d89d7979" title="Gets current level number." alt="" coords="262,535,473,560"/>
+<area shape="poly" id="edge19_Node000001_Node000019" title=" " alt="" coords="188,545,248,545,248,550,188,550"/>
+<area shape="rect" id="Node000020" href="$classTank.html#a41a3b155f539a9bb0fa12798b26cb340" title="Checks if double fire is active." alt="" coords="292,584,443,609"/>
+<area shape="poly" id="edge20_Node000001_Node000020" title=" " alt="" coords="167,557,284,579,283,584,167,563"/>
+<area shape="rect" id="Node000021" href="$classGameWorld.html#af85d8105e2c2048f51a8587db0938be8" title="Gets all active explosions." alt="" coords="269,633,466,659"/>
+<area shape="poly" id="edge21_Node000001_Node000021" title=" " alt="" coords="119,558,171,589,237,620,264,628,262,633,235,624,168,594,116,563"/>
+<area shape="rect" id="Node000022" href="$classTank.html#a7ae1ea6c5725d624fbf210019e8d8dc1" title="Checks if tank has active shield." alt="" coords="294,683,441,708"/>
+<area shape="poly" id="edge23_Node000001_Node000022" title=" " alt="" coords="110,559,161,613,197,644,237,669,281,684,280,689,235,674,194,648,157,617,106,562"/>
+<area shape="rect" id="Node000023" href="$classGameObject.html#aef9f45389e1ce2fe2260bcfd2c84c16a" title="Gets current health points." alt="" coords="280,732,455,757"/>
+<area shape="poly" id="edge24_Node000001_Node000023" title=" " alt="" coords="107,559,124,592,153,636,191,681,237,718,268,732,266,737,235,723,187,685,149,639,120,595,102,562"/>
+<area shape="rect" id="Node000024" href="$classPlayerTank.html#a8e48786bd674e0a64713a2fd8786fc41" title="Gets number of remaining lives." alt="" coords="289,781,445,807"/>
+<area shape="poly" id="edge25_Node000001_Node000024" title=" " alt="" coords="104,560,119,601,146,658,185,718,210,745,237,768,256,778,277,785,275,790,254,783,235,772,206,749,181,722,142,661,115,603,99,561"/>
+<area shape="rect" id="Node000025" href="$classGameWorld.html#aeb0de8b4054d1ab65b71436966d1a01d" title="Gets all game objects." alt="" coords="279,831,455,856"/>
+<area shape="poly" id="edge26_Node000001_Node000025" title=" " alt="" coords="103,560,115,609,140,680,157,718,180,755,206,789,238,817,268,833,265,837,234,822,202,792,175,758,153,720,135,682,110,610,98,561"/>
+<area shape="rect" id="Node000026" href="$classGameWorld.html#af726f3547318b0ebae1bb8713611b0ab" title="Gets pointer to player tank." alt="" coords="283,880,451,905"/>
+<area shape="poly" id="edge27_Node000001_Node000026" title=" " alt="" coords="102,560,111,617,133,701,151,747,174,791,203,832,238,867,271,884,269,889,234,871,198,835,169,794,146,749,128,703,106,618,97,561"/>
+<area shape="rect" id="Node000027" href="$classGameWorld.html#a7b7eb39217a9ca7e8686781766fa982b" title="Gets all active projectiles." alt="" coords="270,929,465,955"/>
+<area shape="poly" id="edge28_Node000001_Node000027" title=" " alt="" coords="101,560,107,624,127,722,144,775,168,827,199,875,238,916,259,929,256,934,234,920,195,878,163,829,139,777,122,723,102,625,96,560"/>
+<area shape="rect" id="Node000028" href="$classPlayerTank.html#ac650158a9f0f60fb07a410fca2cee03f" title="Gets current player score." alt="" coords="288,979,447,1004"/>
+<area shape="poly" id="edge29_Node000001_Node000028" title=" " alt="" coords="101,560,104,632,110,684,121,742,138,803,162,863,195,918,238,965,255,977,276,985,274,990,253,982,234,969,191,921,157,865,133,805,116,743,105,685,99,632,95,560"/>
+<area shape="rect" id="Node000029" href="$classGameWorld.html#a8c0869284a43dbe64a93aca4d71a3415" title="Checks if damage flash effect is active." alt="" coords="264,1029,471,1069"/>
+<area shape="poly" id="edge30_Node000001_Node000029" title=" " alt="" coords="100,560,102,638,107,696,117,761,133,829,158,897,192,960,214,989,238,1015,253,1026,250,1031,234,1019,210,992,188,963,153,899,128,831,112,762,101,697,96,639,95,560"/>
+<area shape="rect" id="Node000003" href="$classConsoleRenderer.html#aae418386985b5ad1286af9cb8a7726c9" title="Updates terminal size information." alt="" coords="547,5,816,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="499,15,533,15,533,21,499,21"/>
+<area shape="rect" id="Node000004" href="$classPlatformUtils.html#a9fb2159f36325087d8c93e7937d6da0b" title="Gets current terminal dimensions." alt="" coords="864,5,1084,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="816,15,850,15,850,21,816,21"/>
+<area shape="rect" id="Node000007" href="$classConsoleRenderer.html#a041e99f6c0427c254b0349b57fbe2a84" title="Clears the terminal screen." alt="" coords="573,140,790,165"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="470,131,559,139,559,144,470,136"/>
+<area shape="rect" id="Node000009" href="$classConsoleRenderer.html#a71e694cb8e3ecdd88b44a78b339a3963" title="Draws centered text within specified width." alt="" coords="552,91,811,116"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="470,115,538,110,538,116,470,120"/>
+<area shape="rect" id="Node000008" href="$classPlatformUtils.html#acddd420e3f04cd70a8932b5472fce01d" title="Clears the terminal screen." alt="" coords="878,140,1070,165"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="790,150,864,150,864,155,790,155"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="429,267,546,233,607,218,608,223,547,238,431,272"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="479,277,564,269,564,274,479,282"/>
+<area shape="poly" id="edge14_Node000010_Node000015" title=" " alt="" coords="479,295,571,301,570,306,479,300"/>
+<area shape="poly" id="edge16_Node000010_Node000016" title=" " alt="" coords="445,307,620,354,618,359,443,313"/>
+<area shape="rect" id="Node000013" href="$classPlatformUtils.html#ae3607ef4c4fbee33349ec982eda7bf07" title="Resets terminal color to default." alt="" coords="883,248,1065,273"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="786,258,869,258,869,263,786,263"/>
+<area shape="rect" id="Node000014" href="$classPlatformUtils.html#a48de38e18726881bbe61e398ebabb97e" title="Sets terminal text color." alt="" coords="1132,273,1303,299"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="1066,268,1118,273,1118,278,1065,273"/>
+<area shape="poly" id="edge15_Node000015_Node000014" title=" " alt="" coords="779,304,1118,288,1118,293,779,309"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Projectile::update" name="Projectile::update">
+<area shape="rect" id="Node000001" title="Updates projectile state (travels and self&#45;destructs)." alt="" coords="5,5,141,31"/>
+<area shape="rect" id="Node000002" href="$classGameObject.html#a801c8cf8e8e188ec698364327f977ecf" title="Applies damage to the object." alt="" coords="189,5,384,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,15,176,15,176,21,142,21"/>
+</map>

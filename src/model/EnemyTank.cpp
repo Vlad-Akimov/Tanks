@@ -1,3 +1,14 @@
+/**
+ * @file EnemyTank.cpp
+ * @author Vld251
+ * @brief Implementation of enemy tank AI behaviors, movement patterns, and combat logic.
+ * @version 0.1
+ * @date 2025-12-07
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "EnemyTank.h"
 #include <cstdlib>
 #include <algorithm>

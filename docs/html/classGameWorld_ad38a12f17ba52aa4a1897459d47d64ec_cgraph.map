@@ -1,0 +1,10 @@
+<map id="GameWorld::isValidBonusPosition" name="GameWorld::isValidBonusPosition">
+<area shape="rect" id="Node000001" title="Checks if position is valid for bonus placement." alt="" coords="5,56,247,81"/>
+<area shape="rect" id="Node000002" href="$classBonus.html#a532f21a230da61103eac3be853721245" title=" " alt="" coords="353,5,475,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,53,339,28,339,34,199,59"/>
+<area shape="rect" id="Node000003" href="$classObstacle.html#aa1936373d282c8dba39f529526b6143d" title="Checks if obstacle is passable for tanks." alt="" coords="581,81,736,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="247,72,568,87,567,92,247,77"/>
+<area shape="rect" id="Node000004" href="$classGameWorld.html#aa179c4b1c5c4659bdcdd05a5c85867ab" title="Checks if position is accessible for tanks." alt="" coords="295,107,533,132"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="199,79,328,102,327,107,199,84"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="533,104,567,101,568,106,534,110"/>
+</map>

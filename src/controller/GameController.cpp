@@ -1,3 +1,14 @@
+/**
+ * @file GameController.cpp
+ * @author Vld251
+ * @brief Implementation of main game controller and game loop logic.
+ * @version 0.1
+ * @date 2025-12-07
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "GameController.h"
 #include <ctime>
 #include <thread>

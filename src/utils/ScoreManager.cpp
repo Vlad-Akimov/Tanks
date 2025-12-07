@@ -1,3 +1,14 @@
+/**
+ * @file ScoreManager.cpp
+ * @author Vld251
+ * @brief Implementation of high scores system with file storage.
+ * @version 0.1
+ * @date 2025-12-07
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "ScoreManager.h"
 #include <fstream>
 #include <algorithm>

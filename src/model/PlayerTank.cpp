@@ -1,3 +1,14 @@
+/**
+ * @file PlayerTank.cpp
+ * @author Vld251
+ * @brief Implementation of player-controlled tank with lives, score, and bonus management.
+ * @version 0.1
+ * @date 2025-12-07
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "PlayerTank.h"
 
 PlayerTank::PlayerTank(Point pos): Tank(pos, Direction::UP, 1, 3, 2), lives(3), score(0) {

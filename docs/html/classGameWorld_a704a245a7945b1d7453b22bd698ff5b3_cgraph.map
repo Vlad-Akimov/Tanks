@@ -1,0 +1,11 @@
+<map id="GameWorld::createLevelObstacles" name="GameWorld::createLevelObstacles">
+<area shape="rect" id="Node000001" title="Creates obstacles for level." alt="" coords="5,55,252,80"/>
+<area shape="rect" id="Node000002" href="$classGameWorld.html#af148052443ed7c0e22a0ed325429fd1e" title="Adjusts difficulty based on level." alt="" coords="300,5,505,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,52,317,31,318,36,200,57"/>
+<area shape="rect" id="Node000003" href="$classGameObject.html#aa4dd19d6b0ea5701d860b64b08435ae6" title="Gets current position of the object." alt="" coords="311,55,495,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="252,65,297,65,297,70,252,70"/>
+<area shape="rect" id="Node000004" href="$classGameWorld.html#a44dd38e9393e523caefeac7448cfc18c" title="Checks if position is valid." alt="" coords="302,104,503,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="200,77,318,99,317,104,199,83"/>
+<area shape="rect" id="Node000005" href="$classObstacle.html#aa1936373d282c8dba39f529526b6143d" title="Checks if obstacle is passable for tanks." alt="" coords="553,104,708,129"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="503,114,539,114,539,119,503,119"/>
+</map>

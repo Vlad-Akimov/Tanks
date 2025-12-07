@@ -1,0 +1,73 @@
+<map id="src/view/ConsoleRenderer.cpp" name="src/view/ConsoleRenderer.cpp">
+<area shape="rect" id="Node000001" title="Implementation of console&#45;based game rendering with ASCII/Unicode support." alt="" coords="481,5,698,31"/>
+<area shape="rect" id="Node000002" href="$ConsoleRenderer_8h.html" title="Renders game state, menus, and UI elements to the console." alt="" coords="517,79,661,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="592,31,592,65,587,65,587,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="566,519,629,544"/>
+<area shape="poly" id="edge44_Node000001_Node000004" title=" " alt="" coords="481,27,335,39,256,50,180,64,112,82,57,105,36,118,21,132,11,147,8,164,8,386,10,405,16,420,25,431,38,439,70,453,109,468,146,480,197,491,321,507,552,525,552,530,320,513,196,496,145,485,107,473,68,458,35,444,22,435,11,422,5,406,3,386,3,163,6,145,17,128,33,113,55,100,110,77,179,59,255,45,335,34,480,21"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="501,225,560,251"/>
+<area shape="poly" id="edge43_Node000001_Node000018" title=" " alt="" coords="563,33,532,52,518,65,508,80,498,114,500,150,509,184,521,212,516,214,504,186,495,151,493,113,503,78,514,61,529,48,560,28"/>
+<area shape="rect" id="Node000025" title=" " alt="" coords="805,152,885,177"/>
+<area shape="poly" id="edge42_Node000001_Node000025" title=" " alt="" coords="608,29,725,102,808,144,806,148,723,106,605,33"/>
+<area shape="rect" id="Node000026" title=" " alt="" coords="736,79,787,104"/>
+<area shape="poly" id="edge45_Node000001_Node000026" title=" " alt="" coords="618,28,724,72,722,77,616,33"/>
+<area shape="rect" id="Node000003" href="$GameWorld_8h.html" title="Main game world manager handling objects, collisions, states, and game logic." alt="" coords="990,225,1157,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="622,102,744,150,769,163,794,175,889,202,981,220,980,226,888,207,792,180,767,168,742,154,620,107"/>
+<area shape="poly" id="edge41_Node000002_Node000004" title=" " alt="" coords="517,100,384,113,307,124,232,138,164,156,109,179,88,192,72,206,62,221,59,237,59,386,63,403,74,419,92,434,116,448,180,471,256,490,339,504,420,514,553,525,552,530,420,519,338,509,255,495,178,476,114,453,89,439,70,423,58,405,53,386,53,236,57,219,68,202,84,188,106,174,163,151,231,133,307,119,383,108,517,94"/>
+<area shape="rect" id="Node000017" href="$MapManager_8h.html" title="Manages game maps, level generation, and procedural content." alt="" coords="568,152,731,177"/>
+<area shape="poly" id="edge25_Node000002_Node000017" title=" " alt="" coords="601,103,633,140,629,143,597,106"/>
+<area shape="poly" id="edge40_Node000002_Node000018" title=" " alt="" coords="584,105,558,153,539,212,534,211,554,151,580,103"/>
+<area shape="rect" id="Node000020" href="$PlatformUtils_8h.html" title="Cross&#45;platform utilities for console I/O, colors, and terminal manipulation." alt="" coords="266,152,430,177"/>
+<area shape="poly" id="edge33_Node000002_Node000020" title=" " alt="" coords="551,107,401,151,400,145,550,101"/>
+<area shape="poly" id="edge39_Node000002_Node000025" title=" " alt="" coords="631,101,793,146,792,151,630,107"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="990,244,904,250,811,260,729,276,697,288,675,300,647,382,608,506,602,505,642,380,671,297,695,283,727,271,810,254,903,244,990,239"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="1035,299,1112,324"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="1076,251,1076,285,1071,285,1071,251"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1136,299,1221,324"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="1092,248,1152,289,1149,293,1089,253"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1245,299,1317,324"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="1108,248,1235,292,1234,297,1106,253"/>
+<area shape="rect" id="Node000008" href="$GameObject_8h.html" title="Base class and structures for all game objects with position, direction, and health." alt="" coords="967,519,1081,544"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="1157,241,1255,247,1364,258,1463,274,1503,284,1533,296,1568,316,1596,340,1606,353,1610,368,1608,383,1599,399,1585,414,1565,427,1513,451,1449,471,1376,488,1224,513,1095,527,1095,522,1223,508,1375,483,1447,466,1512,446,1562,422,1581,410,1595,396,1603,381,1605,368,1601,356,1592,343,1565,321,1531,301,1502,289,1462,279,1363,263,1255,253,1157,246"/>
+<area shape="rect" id="Node000009" href="$PlayerTank_8h.html" title="Player&#45;controlled tank with lives, score system, and special abilities." alt="" coords="1342,299,1447,324"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="1126,248,1330,293,1329,298,1124,253"/>
+<area shape="rect" id="Node000011" href="$Projectile_8h.html" title="Projectile class for bullets fired by tanks with collision detection." alt="" coords="878,445,973,471"/>
+<area shape="poly" id="edge22_Node000003_Node000011" title=" " alt="" coords="991,247,963,254,936,265,911,280,891,300,883,316,880,332,883,368,896,403,912,432,907,435,891,405,878,370,874,332,878,314,887,297,908,276,933,260,961,249,989,242"/>
+<area shape="rect" id="Node000012" href="$Bonus_8h.html" title="Power&#45;up bonuses with various effects for enhancing player abilities." alt="" coords="1061,445,1136,471"/>
+<area shape="poly" id="edge21_Node000003_Node000012" title=" " alt="" coords="1157,237,1242,241,1333,251,1412,269,1442,281,1462,297,1475,317,1480,335,1478,352,1469,367,1454,381,1434,393,1384,414,1325,430,1262,442,1150,455,1149,450,1261,436,1324,424,1383,409,1432,389,1451,377,1464,364,1473,350,1475,335,1470,319,1458,300,1439,286,1410,274,1332,256,1242,247,1157,243"/>
+<area shape="rect" id="Node000013" href="$EnemyTank_8h.html" title="AI&#45;controlled enemy tanks with various behaviors, types, and difficulty levels." alt="" coords="901,299,1011,324"/>
+<area shape="poly" id="edge16_Node000003_Node000013" title=" " alt="" coords="1056,253,988,294,986,289,1053,248"/>
+<area shape="rect" id="Node000015" href="$Obstacle_8h.html" title="Environmental obstacles including walls, water, forests, and their properties." alt="" coords="685,299,776,324"/>
+<area shape="poly" id="edge19_Node000003_Node000015" title=" " alt="" coords="1019,253,790,301,789,295,1018,248"/>
+<area shape="rect" id="Node000016" href="$Explosion_8h.html" title="Visual explosion effects for game events like tank destruction." alt="" coords="1487,372,1585,397"/>
+<area shape="poly" id="edge23_Node000003_Node000016" title=" " alt="" coords="1157,238,1251,243,1353,253,1444,270,1480,282,1506,297,1518,310,1527,326,1536,358,1531,359,1522,328,1514,313,1502,301,1478,287,1443,275,1352,258,1250,248,1157,244"/>
+<area shape="rect" id="Node000010" href="$Tank_8h.html" title="Abstract tank base class with shooting, bonuses, and combat mechanics." alt="" coords="1007,372,1071,397"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1342,326,1085,377,1084,372,1341,321"/>
+<area shape="poly" id="edge10_Node000010_Node000008" title=" " alt="" coords="1040,398,1029,505,1024,505,1035,398"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="1022,400,957,440,954,436,1019,395"/>
+<area shape="poly" id="edge14_Node000010_Node000012" title=" " alt="" coords="1051,396,1082,433,1078,437,1047,399"/>
+<area shape="poly" id="edge13_Node000011_Node000004" title=" " alt="" coords="879,472,643,523,641,518,877,467"/>
+<area shape="poly" id="edge12_Node000011_Node000008" title=" " alt="" coords="943,469,998,508,995,513,940,473"/>
+<area shape="poly" id="edge15_Node000012_Node000008" title=" " alt="" coords="1089,473,1048,511,1044,507,1085,469"/>
+<area shape="poly" id="edge17_Node000013_Node000010" title=" " alt="" coords="971,322,1016,361,1013,365,968,326"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="911,372,982,397"/>
+<area shape="poly" id="edge18_Node000013_Node000014" title=" " alt="" coords="957,325,953,359,947,358,952,324"/>
+<area shape="poly" id="edge20_Node000015_Node000008" title=" " alt="" coords="734,324,739,353,750,393,768,434,796,469,832,493,872,509,914,520,953,525,953,531,913,525,871,514,830,497,793,473,764,436,745,394,734,354,729,325"/>
+<area shape="poly" id="edge24_Node000016_Node000008" title=" " alt="" coords="1496,400,1078,517,1077,512,1495,395"/>
+<area shape="poly" id="edge30_Node000017_Node000003" title=" " alt="" coords="718,175,992,220,991,226,717,180"/>
+<area shape="poly" id="edge27_Node000017_Node000004" title=" " alt="" coords="644,179,617,234,605,271,600,310,600,386,600,505,595,505,595,386,595,310,600,270,612,232,640,176"/>
+<area shape="poly" id="edge29_Node000017_Node000008" title=" " alt="" coords="705,175,750,193,771,207,790,224,805,244,813,263,816,310,816,386,820,411,830,432,845,451,865,468,911,494,960,512,958,517,909,499,861,472,841,455,825,435,815,412,811,386,811,310,808,265,801,247,786,227,768,211,747,198,703,180"/>
+<area shape="poly" id="edge32_Node000017_Node000013" title=" " alt="" coords="697,175,763,194,833,223,888,255,933,288,930,292,885,260,831,228,761,200,696,180"/>
+<area shape="poly" id="edge31_Node000017_Node000015" title=" " alt="" coords="653,177,660,211,676,249,690,270,708,287,704,291,686,273,671,252,655,212,648,178"/>
+<area shape="poly" id="edge26_Node000017_Node000018" title=" " alt="" coords="632,180,563,220,561,216,629,175"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="685,225,776,251"/>
+<area shape="poly" id="edge28_Node000017_Node000019" title=" " alt="" coords="664,175,709,214,705,218,661,179"/>
+<area shape="poly" id="edge34_Node000020_Node000018" title=" " alt="" coords="378,175,489,218,487,223,376,180"/>
+<area shape="rect" id="Node000021" title=" " alt="" coords="294,225,378,251"/>
+<area shape="poly" id="edge35_Node000020_Node000021" title=" " alt="" coords="349,178,343,212,338,211,343,177"/>
+<area shape="rect" id="Node000022" title=" " alt="" coords="403,225,477,251"/>
+<area shape="poly" id="edge36_Node000020_Node000022" title=" " alt="" coords="364,175,416,215,413,219,361,179"/>
+<area shape="rect" id="Node000023" title=" " alt="" coords="94,225,157,251"/>
+<area shape="poly" id="edge37_Node000020_Node000023" title=" " alt="" coords="313,180,170,225,169,220,311,175"/>
+<area shape="rect" id="Node000024" title=" " alt="" coords="181,225,269,251"/>
+<area shape="poly" id="edge38_Node000020_Node000024" title=" " alt="" coords="330,180,258,221,256,216,327,175"/>
+</map>

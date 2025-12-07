@@ -1,3 +1,14 @@
+/**
+ * @file GameWorld.cpp
+ * @author Vld251
+ * @brief Core game simulation with object management, collisions, and level generation.
+ * @version 0.1
+ * @date 2025-12-07
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "GameWorld.h"
 #include <cstdlib>
 #include <ctime>

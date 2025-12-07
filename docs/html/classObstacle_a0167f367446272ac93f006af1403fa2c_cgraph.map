@@ -1,0 +1,5 @@
+<map id="Obstacle::takeDamage" name="Obstacle::takeDamage">
+<area shape="rect" id="Node000001" title="Applies damage to the obstacle." alt="" coords="5,5,176,31"/>
+<area shape="rect" id="Node000002" href="$classGameObject.html#a51ac0947e5c628f04657cafecc9fe36b" title="Checks if object is destroyed." alt="" coords="224,5,413,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="177,15,211,15,211,21,177,21"/>
+</map>

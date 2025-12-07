@@ -1,0 +1,9 @@
+<map id="PlayerTank" name="PlayerTank">
+<area shape="rect" id="Node000001" title="Class representing the player&#45;controlled tank." alt="" coords="10,243,103,268"/>
+<area shape="rect" id="Node000002" href="$classTank.html" title="Abstract base class for all tank entities." alt="" coords="31,168,83,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,208,59,242,54,242,54,208"/>
+<area shape="rect" id="Node000003" href="$classGameObject.html" title="Abstract base class for all game objects." alt="" coords="5,93,108,119"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="59,133,59,168,54,168,54,133"/>
+<area shape="rect" id="Node000004" href="$structPoint.html" title="Structure representing a 2D point with integer coordinates." alt="" coords="29,5,84,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="59,45,59,93,54,93,54,45"/>
+</map>

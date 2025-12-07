@@ -1,0 +1,7 @@
+<map id="ConsoleRenderer::ConsoleRenderer" name="ConsoleRenderer::ConsoleRenderer">
+<area shape="rect" id="Node000001" title="Constructs a ConsoleRenderer object." alt="" coords="5,5,199,45"/>
+<area shape="rect" id="Node000002" href="$classConsoleRenderer.html#aae418386985b5ad1286af9cb8a7726c9" title="Updates terminal size information." alt="" coords="247,13,516,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,23,233,23,233,28,199,28"/>
+<area shape="rect" id="Node000003" href="$classPlatformUtils.html#a9fb2159f36325087d8c93e7937d6da0b" title="Gets current terminal dimensions." alt="" coords="564,13,784,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="516,23,550,23,550,28,516,28"/>
+</map>

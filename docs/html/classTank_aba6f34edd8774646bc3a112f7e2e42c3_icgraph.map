@@ -1,0 +1,7 @@
+<map id="Tank::setReloadTime" name="Tank::setReloadTime">
+<area shape="rect" id="Node000001" title="Sets reload time for the tank." alt="" coords="233,31,392,56"/>
+<area shape="rect" id="Node000002" href="$classEnemyTank.html#af07a4df76315bfd6ce3745c9597b1447" title="Constructs an EnemyTank object." alt="" coords="5,5,185,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,35,185,31,186,26,220,30"/>
+<area shape="rect" id="Node000003" href="$classPlayerTank.html#a79a2bbc44cf5cc8f2c46aaca320b8b47" title="Constructs a PlayerTank object." alt="" coords="9,55,181,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="220,56,182,60,181,55,219,51"/>
+</map>

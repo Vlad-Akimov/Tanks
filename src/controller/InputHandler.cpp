@@ -1,3 +1,14 @@
+/**
+ * @file InputHandler.cpp
+ * @author Vld251
+ * @brief Implementation of input handling with keyboard and Unicode support.
+ * @version 0.1
+ * @date 2025-12-07
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "InputHandler.h"
 
 InputHandler::InputHandler() {

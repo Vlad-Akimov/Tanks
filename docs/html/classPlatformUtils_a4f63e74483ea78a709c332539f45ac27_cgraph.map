@@ -1,0 +1,5 @@
+<map id="PlatformUtils::readUTF8Char" name="PlatformUtils::readUTF8Char">
+<area shape="rect" id="Node000001" title="Reads a single UTF&#45;8 character from input." alt="" coords="5,5,215,31"/>
+<area shape="rect" id="Node000002" href="$classPlatformUtils.html#ab1da035f72ad2772a6ec8fbc4b34560a" title="Checks if a key has been pressed." alt="" coords="263,5,412,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,15,248,15,248,21,215,21"/>
+</map>

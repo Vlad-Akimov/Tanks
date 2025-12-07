@@ -1,0 +1,13 @@
+<map id="Tank::reload" name="Tank::reload">
+<area shape="rect" id="Node000001" title="Decrements reload timer." alt="" coords="440,79,541,104"/>
+<area shape="rect" id="Node000002" href="$classTank.html#aba6f34edd8774646bc3a112f7e2e42c3" title="Sets reload time for the tank." alt="" coords="233,29,392,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="430,77,359,57,360,52,432,72"/>
+<area shape="rect" id="Node000005" href="$classEnemyTank.html#a7ae5efc6eff4e7a19abb7f37b44835fc" title="Updates enemy tank state and AI decisions." alt="" coords="237,79,388,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="426,94,388,94,388,89,426,89"/>
+<area shape="rect" id="Node000006" href="$classPlayerTank.html#abad271395c1c5d171eb954a0c2d52687" title="Updates player tank state." alt="" coords="239,128,386,153"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="432,110,360,130,359,125,430,105"/>
+<area shape="rect" id="Node000003" href="$classEnemyTank.html#af07a4df76315bfd6ce3745c9597b1447" title="Constructs an EnemyTank object." alt="" coords="5,5,185,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="219,34,185,31,186,25,220,29"/>
+<area shape="rect" id="Node000004" href="$classPlayerTank.html#a79a2bbc44cf5cc8f2c46aaca320b8b47" title="Constructs a PlayerTank object." alt="" coords="9,55,181,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="220,55,182,60,181,55,219,50"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="GameWorld::applySlowToEnemies" name="GameWorld::applySlowToEnemies">
+<area shape="rect" id="Node000001" title="Applies slow effect to all enemies." alt="" coords="5,31,248,56"/>
+<area shape="rect" id="Node000002" href="$classEnemyTank.html#ac30fc0d640fb804d2e382603b424faa7" title="Applies slow effect to enemy tank." alt="" coords="296,5,505,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="248,29,282,26,282,32,248,35"/>
+<area shape="rect" id="Node000004" href="$classGameObject.html#a51ac0947e5c628f04657cafecc9fe36b" title="Checks if object is destroyed." alt="" coords="306,55,495,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="248,51,292,55,292,61,248,57"/>
+<area shape="rect" id="Node000003" href="$classTank.html#ad2c4d964485d2fa5b948f92ae0a76250" title="Applies slow effect to the tank." alt="" coords="553,5,717,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="505,15,540,15,540,21,505,21"/>
+</map>

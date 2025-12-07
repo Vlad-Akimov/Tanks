@@ -1,0 +1,5 @@
+<map id="MapManager::createDefaultMaps" name="MapManager::createDefaultMaps">
+<area shape="rect" id="Node000001" title="Creates default maps if none exist." alt="" coords="5,5,244,31"/>
+<area shape="rect" id="Node000002" href="$classMapManager.html#a567c17018afe3a29cd1fb783d54ef098" title="Saves map to file." alt="" coords="292,5,503,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="244,15,278,15,278,21,244,21"/>
+</map>

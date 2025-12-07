@@ -1,0 +1,16 @@
+<map id="src/model/Projectile.cpp" name="src/model/Projectile.cpp">
+<area shape="rect" id="Node000001" title="Implementation of projectile movement, collision detection, and damage calculation." alt="" coords="6,5,185,31"/>
+<area shape="rect" id="Node000002" href="$Projectile_8h.html" title="Projectile class for bullets fired by tanks with collision detection." alt="" coords="5,152,100,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,32,63,139,57,138,89,30"/>
+<area shape="rect" id="Node000005" href="$Tank_8h.html" title="Abstract tank base class with shooting, bonuses, and combat mechanics." alt="" coords="102,79,166,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="104,30,124,65,119,68,99,32"/>
+<area shape="rect" id="Node000003" href="$GameObject_8h.html" title="Base class and structures for all game objects with position, direction, and health." alt="" coords="95,225,210,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="70,175,127,215,124,219,67,180"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="8,225,71,251"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="53,178,47,212,41,211,48,177"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="123,106,78,145,74,141,119,102"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="138,104,152,211,147,212,133,105"/>
+<area shape="rect" id="Node000006" href="$Bonus_8h.html" title="Power&#45;up bonuses with various effects for enhancing player abilities." alt="" coords="175,152,250,177"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="148,102,192,141,188,145,145,106"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="205,179,173,217,169,213,201,176"/>
+</map>

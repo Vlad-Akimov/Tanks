@@ -1,0 +1,10 @@
+<map id="EnemyTank" name="EnemyTank">
+<area shape="rect" id="Node000001" title="Class representing enemy tanks with AI behavior." alt="" coords="5,256,103,281"/>
+<area shape="rect" id="Node000002" href="$classTank.html" title="Abstract base class for all tank entities." alt="" coords="99,181,151,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,219,67,258,64,254,101,215"/>
+<area shape="rect" id="Node000003" href="$classGameObject.html" title="Abstract base class for all game objects." alt="" coords="87,93,189,119"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="150,132,150,158,137,182,132,180,145,157,145,132"/>
+<area shape="rect" id="Node000004" href="$structPoint.html" title="Structure representing a 2D point with integer coordinates." alt="" coords="15,5,69,31"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="35,44,21,96,18,127,19,157,34,212,51,254,46,256,29,214,14,158,12,126,16,95,30,43"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="67,38,126,91,123,95,63,42"/>
+</map>

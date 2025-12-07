@@ -1,0 +1,9 @@
+<map id="GameWorld::handleTankTankCollision" name="GameWorld::handleTankTankCollision">
+<area shape="rect" id="Node000001" title="Handles tank&#45;tank collision." alt="" coords="5,47,216,87"/>
+<area shape="rect" id="Node000002" href="$classGameObject.html#a650b9622507919864b54aadcaab92110" title="Gets current direction of the object." alt="" coords="264,5,455,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,45,281,31,282,36,213,50"/>
+<area shape="rect" id="Node000003" href="$classGameObject.html#aa4dd19d6b0ea5701d860b64b08435ae6" title="Gets current position of the object." alt="" coords="267,55,451,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,65,253,65,253,70,216,70"/>
+<area shape="rect" id="Node000004" href="$classGameObject.html#a8e1f77d21a8ed8a894ae29f0e4126618" title="Sets new position for the object." alt="" coords="268,104,451,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="213,85,282,99,281,104,212,90"/>
+</map>

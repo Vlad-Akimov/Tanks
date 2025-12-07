@@ -1,0 +1,23 @@
+<map id="src/model/EnemyTank.cpp" name="src/model/EnemyTank.cpp">
+<area shape="rect" id="Node000001" title="Implementation of enemy tank AI behaviors, movement patterns, and combat logic." alt="" coords="127,5,319,31"/>
+<area shape="rect" id="Node000002" href="$EnemyTank_8h.html" title="AI&#45;controlled enemy tanks with various behaviors, types, and difficulty levels." alt="" coords="56,79,165,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,33,142,73,139,69,203,28"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="190,79,255,104"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="225,31,225,65,220,65,220,31"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="280,79,365,104"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="240,29,297,68,294,73,237,33"/>
+<area shape="rect" id="Node000003" href="$Tank_8h.html" title="Abstract tank base class with shooting, bonuses, and combat mechanics." alt="" coords="33,152,97,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="105,106,82,142,78,139,101,103"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="122,152,193,177"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="121,103,144,139,140,142,116,106"/>
+<area shape="rect" id="Node000004" href="$GameObject_8h.html" title="Base class and structures for all game objects with position, direction, and health." alt="" coords="5,299,120,324"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="53,179,34,200,19,226,17,242,21,258,41,287,37,290,16,260,11,243,13,224,30,197,49,176"/>
+<area shape="rect" id="Node000005" href="$Projectile_8h.html" title="Projectile class for bullets fired by tanks with collision detection." alt="" coords="127,225,222,251"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="84,175,147,215,144,220,81,180"/>
+<area shape="rect" id="Node000007" href="$Bonus_8h.html" title="Power&#45;up bonuses with various effects for enhancing player abilities." alt="" coords="28,225,103,251"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="68,178,68,212,63,212,63,178"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="158,253,94,293,91,289,155,248"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="145,299,207,324"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="178,251,178,285,173,285,172,251"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="68,251,66,285,61,285,62,251"/>
+</map>

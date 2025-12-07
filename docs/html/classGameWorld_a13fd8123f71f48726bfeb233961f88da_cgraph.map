@@ -1,0 +1,28 @@
+<map id="GameWorld::loadLevel" name="GameWorld::loadLevel">
+<area shape="rect" id="Node000001" title="Loads specified level." alt="" coords="5,155,175,180"/>
+<area shape="rect" id="Node000002" href="$classGameWorld.html#a82921d6b419e2aa8244c5cf69feac3ff" title="Creates enemies for level." alt="" coords="245,55,447,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,152,157,120,222,89,246,81,248,86,224,94,160,125,111,157"/>
+<area shape="rect" id="Node000003" href="$classGameWorld.html#a704a245a7945b1d7453b22bd698ff5b3" title="Creates obstacles for level." alt="" coords="223,104,469,129"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="155,152,267,129,268,135,156,157"/>
+<area shape="rect" id="Node000008" href="$classPlayerTank.html#a59e06eac615955573cfa6842e37f41ad" title="Resets player tank to initial state." alt="" coords="279,228,413,253"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="136,178,288,222,287,227,135,183"/>
+<area shape="rect" id="Node000012" href="$classGameObject.html#a8e1f77d21a8ed8a894ae29f0e4126618" title="Sets new position for the object." alt="" coords="529,351,711,376"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="106,178,156,220,189,243,224,262,297,292,374,316,515,346,514,352,372,321,295,297,222,267,186,247,153,224,103,182"/>
+<area shape="rect" id="Node000004" href="$classGameWorld.html#af148052443ed7c0e22a0ed325429fd1e" title="Adjusts difficulty based on level." alt="" coords="517,5,723,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="438,101,468,89,482,78,491,65,500,52,516,40,530,33,532,38,519,44,504,56,496,68,486,81,471,94,440,106"/>
+<area shape="rect" id="Node000005" href="$classGameObject.html#aa4dd19d6b0ea5701d860b64b08435ae6" title="Gets current position of the object." alt="" coords="528,55,712,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="417,101,534,80,535,85,418,107"/>
+<area shape="rect" id="Node000006" href="$classGameWorld.html#a44dd38e9393e523caefeac7448cfc18c" title="Checks if position is valid." alt="" coords="519,104,721,129"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="470,114,506,114,506,119,470,119"/>
+<area shape="rect" id="Node000007" href="$classObstacle.html#aa1936373d282c8dba39f529526b6143d" title="Checks if obstacle is passable for tanks." alt="" coords="771,104,925,129"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="721,114,757,114,757,119,721,119"/>
+<area shape="rect" id="Node000009" href="$classGameObject.html#a4bc41ca14c07e61dafa74a03c4f3e2df" title="Rotates the object to face new direction." alt="" coords="545,153,695,179"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="387,225,517,187,548,179,550,185,518,193,388,230"/>
+<area shape="rect" id="Node000010" href="$classGameObject.html#ae1bd24d3b8b67f3c5006ceb1b2159d11" title="Sets destroyed state of the object." alt="" coords="521,203,719,228"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="413,232,507,223,507,228,414,237"/>
+<area shape="rect" id="Node000011" href="$classGameObject.html#a3cf581673b5b0099d250a434fed52f4d" title="Sets new health value for the object." alt="" coords="533,252,707,277"/>
+<area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="414,244,519,253,519,259,413,249"/>
+<area shape="poly" id="edge11_Node000008_Node000012" title=" " alt="" coords="383,251,426,270,471,295,495,317,504,327,519,337,534,344,532,349,516,342,501,331,491,321,468,299,424,275,381,256"/>
+<area shape="rect" id="Node000013" href="$classTank.html#a1c5feece02579ec3508781a825f97c83" title="Sets base speed for the tank." alt="" coords="560,301,680,327"/>
+<area shape="poly" id="edge12_Node000008_Node000013" title=" " alt="" coords="392,251,518,286,554,295,553,301,517,291,390,256"/>
+</map>

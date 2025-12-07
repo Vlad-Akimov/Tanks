@@ -1,0 +1,7 @@
+<map id="ConsoleRenderer::resetColor" name="ConsoleRenderer::resetColor">
+<area shape="rect" id="Node000001" title="Resets terminal color to default." alt="" coords="5,5,213,31"/>
+<area shape="rect" id="Node000002" href="$classPlatformUtils.html#ae3607ef4c4fbee33349ec982eda7bf07" title="Resets terminal color to default." alt="" coords="261,5,444,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,15,247,15,247,21,213,21"/>
+<area shape="rect" id="Node000003" href="$classPlatformUtils.html#a48de38e18726881bbe61e398ebabb97e" title="Sets terminal text color." alt="" coords="492,5,663,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="444,15,478,15,478,21,444,21"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="EnemyTank::applySlowEffect" name="EnemyTank::applySlowEffect">
+<area shape="rect" id="Node000001" title="Applies slow effect to enemy tank." alt="" coords="5,5,215,31"/>
+<area shape="rect" id="Node000002" href="$classTank.html#ad2c4d964485d2fa5b948f92ae0a76250" title="Applies slow effect to the tank." alt="" coords="263,5,427,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,15,249,15,249,21,215,21"/>
+</map>

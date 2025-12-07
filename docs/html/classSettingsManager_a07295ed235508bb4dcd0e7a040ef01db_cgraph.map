@@ -1,0 +1,9 @@
+<map id="SettingsManager::SettingsManager" name="SettingsManager::SettingsManager">
+<area shape="rect" id="Node000001" title="Constructs a SettingsManager object." alt="" coords="5,5,199,45"/>
+<area shape="rect" id="Node000002" href="$classSettingsManager.html#ac666cd35e1136facad31de99a6c44bd3" title="Loads settings from configuration file." alt="" coords="247,13,468,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,23,233,23,233,28,199,28"/>
+<area shape="rect" id="Node000003" href="$classSettingsManager.html#a9eb3e4c128197920e5d078728dba654c" title="Sets default settings if configuration file doesn&#39;t exist." alt="" coords="516,5,724,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="468,23,503,23,503,28,468,28"/>
+<area shape="rect" id="Node000004" href="$classPlatformUtils.html#a3cb085d8a5a464f034989e1a3f4a956e" title="Checks and reports Unicode support status." alt="" coords="772,5,979,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="724,23,758,23,758,28,724,28"/>
+</map>
