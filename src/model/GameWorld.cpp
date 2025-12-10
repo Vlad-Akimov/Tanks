@@ -963,7 +963,7 @@ void GameWorld::updateEnemyAI() {
             // Обновляем позицию игрока для ИИ врага
             enemy->setPlayerPosition(playerPos);
             
-            // ДОБАВЛЯЕМ: Обновляем врага с проверкой столкновений
+            // Обновляем врага с проверкой столкновений
             updateEnemyMovement(enemy);
         }
     }
