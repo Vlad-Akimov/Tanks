@@ -1,5 +1,5 @@
-<map id="src/utils/PlatformUtils.cpp" name="src/utils/PlatformUtils.cpp">
-<area shape="rect" id="Node000001" title="Implementation of cross&#45;platform console utilities." alt="" coords="255,5,446,31"/>
+<map id="utils/PlatformUtils.cpp" name="utils/PlatformUtils.cpp">
+<area shape="rect" id="Node000001" title="Implementation of cross&#45;platform console utilities." alt="" coords="267,5,434,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="64,79,144,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="312,33,158,77,156,72,310,28"/>
 <area shape="rect" id="Node000003" href="$PlatformUtils_8h.html" title="Cross&#45;platform utilities for console I/O, colors, and terminal manipulation." alt="" coords="168,79,288,104"/>

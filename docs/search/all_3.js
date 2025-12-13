@@ -8,7 +8,7 @@ var searchData=
   ['defensive_5',['DEFENSIVE',['../EnemyTank_8h.html#a8ed04b1fdc6b990bb8ed5b795c5ead9ba2eb55245a9af88526f5f073add88349b',1,'EnemyTank.h']]],
   ['defensivebehavior_6',['defensiveBehavior',['../classEnemyTank.html#a39add8a8beb8bb7b69124753ec2dae74',1,'EnemyTank']]],
   ['defensivemove_7',['defensiveMove',['../classEnemyTank.html#a85bd09ffb86b2c36c6b76fe6f6752324',1,'EnemyTank']]],
-  ['description_8',['description',['../structMapInfo.html#ac020dd2c3fdd862f40791bb558da6500',1,'MapInfo']]],
+  ['description_8',['description',['../index.html#autotoc_md1',1,'Description'],['../structMapInfo.html#ac020dd2c3fdd862f40791bb558da6500',1,'MapInfo::description']]],
   ['destructible_9',['destructible',['../classGameObject.html#ab86a92a2d4335578085c80593a49d3c0',1,'GameObject']]],
   ['difficulty_10',['difficulty',['../classEnemyTank.html#a02a6b8fff57c69620ed6afd14da63ab4',1,'EnemyTank']]],
   ['difficultyparams_11',['DifficultyParams',['../structGameWorld_1_1DifficultyParams.html',1,'GameWorld']]],

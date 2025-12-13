@@ -1,27 +1,27 @@
-<map id="src/model/EnemyTank.h" name="src/model/EnemyTank.h">
-<area shape="rect" id="Node000001" title="AI&#45;controlled enemy tanks with various behaviors, types, and difficulty levels." alt="" coords="222,5,399,31"/>
-<area shape="rect" id="Node000002" href="$EnemyTank_8cpp.html" title="Implementation of enemy tank AI behaviors, movement patterns, and combat logic." alt="" coords="5,79,197,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="265,38,136,81,134,76,263,33"/>
-<area shape="rect" id="Node000003" href="$GameWorld_8h.html" title="Main game world manager handling objects, collisions, states, and game logic." alt="" coords="221,79,400,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="313,44,313,79,308,79,308,44"/>
-<area shape="rect" id="Node000008" href="$MapManager_8h.html" title="Manages game maps, level generation, and procedural content." alt="" coords="351,152,524,177"/>
-<area shape="poly" id="edge14_Node000001_Node000008" title=" " alt="" coords="357,34,387,52,414,77,425,96,433,116,439,151,434,152,428,118,420,98,410,80,384,56,354,39"/>
-<area shape="rect" id="Node000004" href="$GameController_8h.html" title="Central game controller coordinating model, view, and input systems." alt="" coords="253,299,478,324"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="316,117,325,178,341,250,362,297,357,300,336,251,319,179,310,118"/>
-<area shape="rect" id="Node000007" href="$GameWorld_8cpp.html" title="Core game simulation with object management, collisions, and level generation." alt="" coords="30,152,223,177"/>
-<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="269,111,158,154,156,149,267,106"/>
-<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="344,108,418,149,415,154,342,113"/>
-<area shape="rect" id="Node000010" href="$ConsoleRenderer_8h.html" title="Renders game state, menus, and UI elements to the console." alt="" coords="72,225,275,251"/>
-<area shape="poly" id="edge13_Node000003_Node000010" title=" " alt="" coords="294,117,238,179,188,227,184,223,234,175,290,113"/>
-<area shape="rect" id="Node000005" href="$GameController_8cpp.html" title="Implementation of main game controller and game loop logic." alt="" coords="147,372,387,397"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="340,334,284,374,281,370,337,330"/>
-<area shape="rect" id="Node000006" href="$main_8cpp.html" title="Main entry point for the Tank Simulator game." alt="" coords="411,372,517,397"/>
-<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="394,330,449,370,446,374,390,334"/>
-<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="491,180,521,192,545,209,558,229,559,240,553,252,537,269,518,283,476,301,474,296,516,278,534,265,548,249,553,239,553,230,541,213,518,197,489,185"/>
-<area shape="rect" id="Node000009" href="$MapManager_8cpp.html" title="Implementation for loading, creating, and managing game maps." alt="" coords="350,225,538,251"/>
-<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="442,191,446,225,440,225,437,191"/>
-<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="382,183,217,228,215,223,381,178"/>
-<area shape="poly" id="edge11_Node000010_Node000004" title=" " alt="" coords="218,253,335,296,333,301,216,258"/>
-<area shape="rect" id="Node000011" href="$ConsoleRenderer_8cpp.html" title="Implementation of console&#45;based game rendering with ASCII/Unicode support." alt="" coords="11,299,229,324"/>
-<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="159,263,131,300,127,297,154,260"/>
+<map id="model/EnemyTank.h" name="model/EnemyTank.h">
+<area shape="rect" id="Node000001" title="AI&#45;controlled enemy tanks with various behaviors, types, and difficulty levels." alt="" coords="200,5,355,31"/>
+<area shape="rect" id="Node000002" href="$EnemyTank_8cpp.html" title="Implementation of enemy tank AI behaviors, movement patterns, and combat logic." alt="" coords="6,79,175,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,38,122,81,120,76,234,33"/>
+<area shape="rect" id="Node000003" href="$GameWorld_8h.html" title="Main game world manager handling objects, collisions, states, and game logic." alt="" coords="200,79,355,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="280,44,280,79,275,79,275,44"/>
+<area shape="rect" id="Node000008" href="$MapManager_8h.html" title="Manages game maps, level generation, and procedural content." alt="" coords="317,152,467,177"/>
+<area shape="poly" id="edge14_Node000001_Node000008" title=" " alt="" coords="317,35,345,53,369,77,380,96,387,116,394,151,388,152,382,118,375,98,365,80,341,57,314,39"/>
+<area shape="rect" id="Node000004" href="$GameController_8h.html" title="Central game controller coordinating model, view, and input systems." alt="" coords="224,299,427,324"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="282,117,290,178,305,250,323,298,318,299,300,251,285,179,277,118"/>
+<area shape="rect" id="Node000007" href="$GameWorld_8cpp.html" title="Core game simulation with object management, collisions, and level generation." alt="" coords="19,152,189,177"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="238,112,133,154,131,149,236,107"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="309,109,375,150,372,154,306,113"/>
+<area shape="rect" id="Node000010" href="$ConsoleRenderer_8h.html" title="Renders game state, menus, and UI elements to the console." alt="" coords="61,225,240,251"/>
+<area shape="poly" id="edge13_Node000003_Node000010" title=" " alt="" coords="260,116,163,227,159,223,256,113"/>
+<area shape="rect" id="Node000005" href="$GameController_8cpp.html" title="Implementation of main game controller and game loop logic." alt="" coords="129,372,346,397"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="302,335,253,374,250,370,299,330"/>
+<area shape="rect" id="Node000006" href="$main_8cpp.html" title="Main entry point for the Tank Simulator game." alt="" coords="371,372,453,397"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="351,330,400,370,396,374,348,335"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="440,180,466,194,488,210,499,230,499,241,494,252,479,269,460,283,417,301,415,296,457,279,475,266,490,249,494,240,494,231,484,214,463,198,437,185"/>
+<area shape="rect" id="Node000009" href="$MapManager_8cpp.html" title="Implementation for loading, creating, and managing game maps." alt="" coords="315,225,480,251"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="397,191,399,225,394,225,391,191"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="341,184,190,228,189,223,339,179"/>
+<area shape="poly" id="edge11_Node000010_Node000004" title=" " alt="" coords="192,253,298,296,296,301,190,258"/>
+<area shape="rect" id="Node000011" href="$ConsoleRenderer_8cpp.html" title="Implementation of console&#45;based game rendering with ASCII/Unicode support." alt="" coords="5,299,200,324"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="137,264,113,300,108,297,133,261"/>
 </map>

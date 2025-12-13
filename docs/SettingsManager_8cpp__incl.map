@@ -1,5 +1,5 @@
-<map id="src/utils/SettingsManager.cpp" name="src/utils/SettingsManager.cpp">
-<area shape="rect" id="Node000001" title="Implementation of settings management with file persistence." alt="" coords="203,5,417,31"/>
+<map id="utils/SettingsManager.cpp" name="utils/SettingsManager.cpp">
+<area shape="rect" id="Node000001" title="Implementation of settings management with file persistence." alt="" coords="215,5,405,31"/>
 <area shape="rect" id="Node000002" href="$SettingsManager_8h.html" title="Manages game configuration settings and user preferences." alt="" coords="5,79,148,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="273,33,128,77,127,72,272,28"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="172,79,245,104"/>

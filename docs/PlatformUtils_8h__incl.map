@@ -1,5 +1,5 @@
-<map id="src/utils/PlatformUtils.h" name="src/utils/PlatformUtils.h">
-<area shape="rect" id="Node000001" title="Cross&#45;platform utilities for console I/O, colors, and terminal manipulation." alt="" coords="147,5,322,31"/>
+<map id="utils/PlatformUtils.h" name="utils/PlatformUtils.h">
+<area shape="rect" id="Node000001" title="Cross&#45;platform utilities for console I/O, colors, and terminal manipulation." alt="" coords="159,5,311,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,79,64,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,33,78,78,76,72,202,28"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="89,79,173,104"/>

@@ -1,5 +1,5 @@
-<map id="src/controller/InputHandler.cpp" name="src/controller/InputHandler.cpp">
-<area shape="rect" id="Node000001" title="Implementation of input handling with keyboard and Unicode support." alt="" coords="104,5,325,31"/>
+<map id="controller/InputHandler.cpp" name="controller/InputHandler.cpp">
+<area shape="rect" id="Node000001" title="Implementation of input handling with keyboard and Unicode support." alt="" coords="115,5,314,31"/>
 <area shape="rect" id="Node000002" href="$InputHandler_8h.html" title="Handles user input and maps keystrokes to game commands." alt="" coords="156,79,273,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,31,217,65,212,65,212,31"/>
 <area shape="rect" id="Node000003" href="$PlatformUtils_8h.html" title="Cross&#45;platform utilities for console I/O, colors, and terminal manipulation." alt="" coords="133,152,297,177"/>

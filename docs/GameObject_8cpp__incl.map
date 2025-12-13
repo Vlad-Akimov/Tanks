@@ -1,5 +1,5 @@
-<map id="src/model/GameObject.cpp" name="src/model/GameObject.cpp">
-<area shape="rect" id="Node000001" title="Implementation of base game object methods for movement, rotation, and damage." alt="" coords="5,5,204,31"/>
-<area shape="rect" id="Node000002" href="$GameObject_8h.html" title="Base class and structures for all game objects with position, direction, and health." alt="" coords="47,79,162,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,31,107,65,102,65,102,31"/>
+<map id="model/GameObject.cpp" name="model/GameObject.cpp">
+<area shape="rect" id="Node000001" title="Implementation of base game object methods for movement, rotation, and damage." alt="" coords="5,5,180,31"/>
+<area shape="rect" id="Node000002" href="$GameObject_8h.html" title="Base class and structures for all game objects with position, direction, and health." alt="" coords="35,79,150,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,31,95,65,90,65,90,31"/>
 </map>

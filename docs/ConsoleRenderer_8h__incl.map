@@ -1,9 +1,9 @@
-<map id="src/view/ConsoleRenderer.h" name="src/view/ConsoleRenderer.h">
-<area shape="rect" id="Node000001" title="Renders game state, menus, and UI elements to the console." alt="" coords="860,5,1063,31"/>
+<map id="view/ConsoleRenderer.h" name="view/ConsoleRenderer.h">
+<area shape="rect" id="Node000001" title="Renders game state, menus, and UI elements to the console." alt="" coords="872,5,1051,31"/>
 <area shape="rect" id="Node000002" href="$GameWorld_8h.html" title="Main game world manager handling objects, collisions, states, and game logic." alt="" coords="398,152,565,177"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="924,33,533,151,532,145,923,28"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="50,445,113,471"/>
-<area shape="poly" id="edge40_Node000001_Node000003" title=" " alt="" coords="860,27,623,42,341,69,211,88,105,110,64,122,33,136,14,149,8,164,8,312,13,348,27,381,45,410,63,433,59,437,41,413,22,383,8,349,3,313,3,163,10,146,31,131,62,117,104,105,210,82,340,64,622,37,860,21"/>
+<area shape="poly" id="edge40_Node000001_Node000003" title=" " alt="" coords="872,26,636,41,350,68,217,87,108,109,66,122,34,135,15,149,8,164,8,312,13,348,27,381,45,410,63,433,59,437,41,413,22,383,8,349,3,313,3,163,10,146,32,130,64,117,107,104,216,81,349,63,636,36,872,21"/>
 <area shape="rect" id="Node000016" href="$MapManager_8h.html" title="Manages game maps, level generation, and procedural content." alt="" coords="821,79,984,104"/>
 <area shape="poly" id="edge24_Node000001_Node000016" title=" " alt="" coords="954,33,923,70,919,67,950,29"/>
 <area shape="rect" id="Node000017" title=" " alt="" coords="1083,152,1141,177"/>

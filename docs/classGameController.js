@@ -1,0 +1,28 @@
+var classGameController =
+[
+    [ "GameController", "classGameController.html#a54d4ccea0379465b0806dae60d1baeb2", null ],
+    [ "handleTerminalResize", "classGameController.html#a19dc0995b5ee51a87bf49dff90f4e991", null ],
+    [ "loadNextLevel", "classGameController.html#a4086fc466d91f45c41b2bc5df06af77a", null ],
+    [ "loadSelectedMap", "classGameController.html#a09c76a5ae9b8f514163dafe31273f44f", null ],
+    [ "pauseGame", "classGameController.html#a637ea4e72ed2be4a2884b30160b3e8ab", null ],
+    [ "processCommand", "classGameController.html#a971b3d8f6296a74f0bebc83b5e79c186", null ],
+    [ "processGameTurn", "classGameController.html#af2367e58f03d8a1441c9a574967fd360", null ],
+    [ "runGame", "classGameController.html#ac958989c8f7f08488546930e5fcb0d82", null ],
+    [ "saveSettings", "classGameController.html#a7514ccf5a5be758a7e95bdc91c59b95f", null ],
+    [ "showLevelCompleteScreen", "classGameController.html#a85bcf4ecfd197aad278e116215a3717b", null ],
+    [ "showMapSelection", "classGameController.html#a4a9c94fe33cf6c73bb5dfc415d04d309", null ],
+    [ "showMenu", "classGameController.html#a9d11b5a6255b7249bddba49df0837cf3", null ],
+    [ "showSettings", "classGameController.html#a24f5cae258418d4a5934e6f412c28945", null ],
+    [ "toggleAdvancedGraphics", "classGameController.html#a47c26eedd973ec104d31a7c96b60d658", null ],
+    [ "currentMapIndex", "classGameController.html#acb4f28346ff080d90e87fe64d781b3f2", null ],
+    [ "inputHandler", "classGameController.html#ad8779d21e001a8d181f7d918bc5c2c63", null ],
+    [ "mapManager", "classGameController.html#ac2e6a2a54f94df2501ec1d2e79a23ec9", null ],
+    [ "model", "classGameController.html#a6ca0d995f11962d11e66b5f9eae51786", null ],
+    [ "running", "classGameController.html#a0ddc8c9bc9985090a8c5a84ac453a678", null ],
+    [ "scoreManager", "classGameController.html#a2a326d8846f1f2f418e506b5e9fcf9dc", null ],
+    [ "scoreSaved", "classGameController.html#afda63abe53962add46c79e230a0ef280", null ],
+    [ "selectedMap", "classGameController.html#a17c4130d3b6455db57c7a4cb9c4c7e45", null ],
+    [ "settingsManager", "classGameController.html#a1cc29fd25fd00fb4b23e22c671ebff67", null ],
+    [ "useCustomMap", "classGameController.html#aca9c2379e0f950e70c768fad939bd4ca", null ],
+    [ "view", "classGameController.html#ab50b149eb9353549cebb04ab07907c29", null ]
+];

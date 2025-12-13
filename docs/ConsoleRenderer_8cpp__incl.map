@@ -1,9 +1,9 @@
-<map id="src/view/ConsoleRenderer.cpp" name="src/view/ConsoleRenderer.cpp">
-<area shape="rect" id="Node000001" title="Implementation of console&#45;based game rendering with ASCII/Unicode support." alt="" coords="481,5,698,31"/>
+<map id="view/ConsoleRenderer.cpp" name="view/ConsoleRenderer.cpp">
+<area shape="rect" id="Node000001" title="Implementation of console&#45;based game rendering with ASCII/Unicode support." alt="" coords="492,5,687,31"/>
 <area shape="rect" id="Node000002" href="$ConsoleRenderer_8h.html" title="Renders game state, menus, and UI elements to the console." alt="" coords="517,79,661,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="592,31,592,65,587,65,587,31"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="566,519,629,544"/>
-<area shape="poly" id="edge44_Node000001_Node000004" title=" " alt="" coords="481,27,335,39,256,50,180,64,112,82,57,105,36,118,21,132,11,147,8,164,8,386,10,405,16,420,25,431,38,439,70,453,109,468,146,480,197,491,321,507,552,525,552,530,320,513,196,496,145,485,107,473,68,458,35,444,22,435,11,422,5,406,3,386,3,163,6,145,17,128,33,113,55,100,110,77,179,59,255,45,335,34,480,21"/>
+<area shape="poly" id="edge44_Node000001_Node000004" title=" " alt="" coords="492,26,346,38,265,48,187,62,116,81,59,103,38,117,21,131,11,147,8,164,8,386,10,405,16,420,25,431,38,439,70,453,109,468,146,480,197,491,321,507,552,525,552,530,320,513,196,496,145,485,107,473,68,458,35,444,22,435,11,422,5,406,3,386,3,163,6,145,17,128,34,112,57,99,115,76,186,57,264,43,345,33,491,21"/>
 <area shape="rect" id="Node000018" title=" " alt="" coords="501,225,560,251"/>
 <area shape="poly" id="edge43_Node000001_Node000018" title=" " alt="" coords="563,33,532,52,518,65,508,80,498,114,500,150,509,184,521,212,516,214,504,186,495,151,493,113,503,78,514,61,529,48,560,28"/>
 <area shape="rect" id="Node000025" title=" " alt="" coords="805,152,885,177"/>

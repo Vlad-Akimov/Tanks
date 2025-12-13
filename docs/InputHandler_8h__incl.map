@@ -1,5 +1,5 @@
-<map id="src/controller/InputHandler.h" name="src/controller/InputHandler.h">
-<area shape="rect" id="Node000001" title="Handles user input and maps keystrokes to game commands." alt="" coords="111,5,318,31"/>
+<map id="controller/InputHandler.h" name="controller/InputHandler.h">
+<area shape="rect" id="Node000001" title="Handles user input and maps keystrokes to game commands." alt="" coords="123,5,306,31"/>
 <area shape="rect" id="Node000002" href="$PlatformUtils_8h.html" title="Cross&#45;platform utilities for console I/O, colors, and terminal manipulation." alt="" coords="133,79,297,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,31,217,65,212,65,212,31"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="5,152,64,177"/>

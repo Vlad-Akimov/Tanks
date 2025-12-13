@@ -5,10 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Tanks Game: Main Page</title>
+<title>Tanks Game: Tanks</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,6 +53,22 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('index.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -70,14 +90,47 @@ $(function() {
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Tanks Game Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Tanks </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__2home_2vlad_2_xD0_xA0_xD0_xB0_xD0_xB1_xD0_xBE_xD1_x87_xD0_xB8_xD0_xB9_01_xD1_x81_xD1_x82_xD0_xBE_xD0_xBB_2Tanks_2README"></a> </p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Description</h1>
+<p>bla bla bla</p>
+<hr  />
+<blockquote class="doxtable">
+<p>&zwj;This project made for the "Educational practice on C++" course at Bauman Moscow State Technical University </p>
+</blockquote>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Requirements</h1>
+<p>The following must be installed on the device:</p>
+<ul>
+<li>C++17</li>
+<li>Cmake 3.10</li>
+<li>Make</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Installation</h1>
+<p>Check the releases tab to catch the last release</p>
+<p>Or, you can build project by yourself:</p>
+<div class="fragment"><div class="line">git clone https://github.com/Vlad-Akimov/Tanks</div>
+<div class="line">cd Tanks</div>
+<div class="line">mkdir build</div>
+<div class="line">cd build</div>
+<div class="line">cmake ..</div>
+<div class="line">make</div>
+</div><!-- fragment --><p>Here we go!</p>
+<p>To run the game type this from <code>build</code> folder:</p>
+<div class="fragment"><div class="line">./TanksGame</div>
+</div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 14 2025 01:48:05 for Tanks Game by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sun Dec 14 2025 02:03:05 for Tanks Game by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,5 +1,5 @@
-<map id="src/model/Tank.cpp" name="src/model/Tank.cpp">
-<area shape="rect" id="Node000001" title="Implementation of tank mechanics including movement, firing, and bonus effects." alt="" coords="41,5,188,31"/>
+<map id="model/Tank.cpp" name="model/Tank.cpp">
+<area shape="rect" id="Node000001" title="Implementation of tank mechanics including movement, firing, and bonus effects." alt="" coords="53,5,177,31"/>
 <area shape="rect" id="Node000002" href="$Tank_8h.html" title="Abstract tank base class with shooting, bonuses, and combat mechanics." alt="" coords="33,79,97,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,33,83,69,79,66,104,29"/>
 <area shape="rect" id="Node000007" title=" " alt="" coords="121,79,207,104"/>

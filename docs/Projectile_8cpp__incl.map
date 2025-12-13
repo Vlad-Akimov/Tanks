@@ -1,5 +1,5 @@
-<map id="src/model/Projectile.cpp" name="src/model/Projectile.cpp">
-<area shape="rect" id="Node000001" title="Implementation of projectile movement, collision detection, and damage calculation." alt="" coords="6,5,185,31"/>
+<map id="model/Projectile.cpp" name="model/Projectile.cpp">
+<area shape="rect" id="Node000001" title="Implementation of projectile movement, collision detection, and damage calculation." alt="" coords="18,5,173,31"/>
 <area shape="rect" id="Node000002" href="$Projectile_8h.html" title="Projectile class for bullets fired by tanks with collision detection." alt="" coords="5,152,100,177"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,32,63,139,57,138,89,30"/>
 <area shape="rect" id="Node000005" href="$Tank_8h.html" title="Abstract tank base class with shooting, bonuses, and combat mechanics." alt="" coords="102,79,166,104"/>
