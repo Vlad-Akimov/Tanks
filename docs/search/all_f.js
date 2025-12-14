@@ -10,7 +10,7 @@ var searchData=
   ['remapkey_7',['remapKey',['../classInputHandler.html#a0184fb3758334f15878f7cb965721322',1,'InputHandler']]],
   ['remaputf8key_8',['remapUTF8Key',['../classInputHandler.html#a0340d80248c3a677b19c08756590b10a',1,'InputHandler']]],
   ['render_9',['render',['../classConsoleRenderer.html#ab34fa7af4ede79de3951f1d5271d7a27',1,'ConsoleRenderer']]],
-  ['requirements_10',['Requirements',['../index.html#autotoc_md2',1,'']]],
+  ['requirements_10',['Requirements',['../index.html#autotoc_md4',1,'']]],
   ['reset_11',['reset',['../classPlayerTank.html#a59e06eac615955573cfa6842e37f41ad',1,'PlayerTank']]],
   ['resetbackgroundcolor_12',['resetBackgroundColor',['../classPlatformUtils.html#a4beb970cf8341aff6e4de13d02936580',1,'PlatformUtils']]],
   ['resetcolor_13',['resetcolor',['../classPlatformUtils.html#ae3607ef4c4fbee33349ec982eda7bf07',1,'PlatformUtils::resetColor()'],['../classConsoleRenderer.html#a39097953ecd72be19860424c9d00b0ea',1,'ConsoleRenderer::resetColor()']]],

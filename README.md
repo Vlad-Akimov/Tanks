@@ -2,7 +2,26 @@
 
 ## Description
 
-bla bla bla
+Tanks is a classic console-based arcade tank battle game developed as part of the Educational Practice in C++ course at Bauman Moscow State Technical University. The game features player-controlled tanks, enemy combatants, destructible obstacles, various power-ups, and a scoring system.
+
+### Key features
+
++ Player tank control via keyboard
++ Different enemy tank types with unique behaviors
++ Destructible and indestructible obstacles
++ Bonus system (speed boost, armor upgrade, extra lives, etc.)
++ Dynamic explosion and visual effects system
++ Support for multiple game maps
++ Console rendering using ASCII graphics
++ Game configuration through settings files
++ Score saving and loading
+
+### Controls
+
++ Arrow keys or WASD — move tank
++ Space or Enter — shoot
++ P — pause
++ ESC — exit game
 
 ***
 

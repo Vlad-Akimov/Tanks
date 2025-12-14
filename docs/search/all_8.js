@@ -3,7 +3,7 @@ var searchData=
   ['inputhandler_0',['inputhandler',['../classInputHandler.html#a698aa4af4f326a9881835fda251ca996',1,'InputHandler::InputHandler()'],['../classGameController.html#ad8779d21e001a8d181f7d918bc5c2c63',1,'GameController::inputHandler'],['../classInputHandler.html',1,'InputHandler']]],
   ['inputhandler_2ecpp_1',['InputHandler.cpp',['../InputHandler_8cpp.html',1,'']]],
   ['inputhandler_2eh_2',['InputHandler.h',['../InputHandler_8h.html',1,'']]],
-  ['installation_3',['Installation',['../index.html#autotoc_md3',1,'']]],
+  ['installation_3',['Installation',['../index.html#autotoc_md5',1,'']]],
   ['isactive_4',['isActive',['../classBonus.html#a532f21a230da61103eac3be853721245',1,'Bonus']]],
   ['isdamageflashactive_5',['isDamageFlashActive',['../classGameWorld.html#a8c0869284a43dbe64a93aca4d71a3415',1,'GameWorld']]],
   ['isdestroyed_6',['isDestroyed',['../classGameObject.html#a51ac0947e5c628f04657cafecc9fe36b',1,'GameObject']]],
