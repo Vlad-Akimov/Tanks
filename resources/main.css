@@ -205,26 +205,6 @@ h1::after {
     box-shadow: 0 0 20px rgba(0, 171, 240, 0.2);
 }
 
-#content pre::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, 
-        transparent, 
-        var(--main-color), 
-        transparent);
-    animation: scanline 3s linear infinite;
-}
-
-@keyframes scanline {
-    0% { top: 0; }
-    100% { top: 100%; }
-}
-
-
 #content pre::before {
     content: 'Code';
     position: absolute;
@@ -497,7 +477,6 @@ h1::after {
     margin: 2rem 0;
 }
 
-/* Стили для кнопки GitHub */
 .github-btn {
     position: relative;
     display: inline-flex;
@@ -589,7 +568,6 @@ h1::after {
     }
 }
 
-/* Контейнер для центрирования кнопки */
 .github-container {
     text-align: center;
     padding: 3rem 0;
