@@ -14,7 +14,7 @@
     <script>
         async function loadReadme() {
             try {
-                const response = await fetch('../README.md');
+                const response = await fetch('README.md');
                 if (!response.ok) throw new Error('File not found');
                 const markdown = await response.text();
                 document.getElementById('content').innerHTML = marked.parse(markdown);
