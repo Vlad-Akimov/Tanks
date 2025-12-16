@@ -25,7 +25,7 @@ Tanks is a classic console-based arcade tank battle game developed as part of th
 + P — pause
 + ESC — exit game
 
-***
+####
 
 > This project made for the "Educational practice on C++" course at Bauman Moscow State Technical University
 

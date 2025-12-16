@@ -36,7 +36,27 @@ body {
     line-height: 1.8;
     min-height: 100vh;
     overflow-x: hidden;
-    cursor: url('cursors/arrow.cur'), default;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 171, 240, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(187, 24, 148, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(106, 57, 175, 0.1) 0%, transparent 50%);
+    z-index: -1;
+    animation: gradient-shift 15s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    33% { transform: scale(1.1) rotate(120deg); }
+    66% { transform: scale(0.9) rotate(240deg); }
 }
 
 h1 {
@@ -195,7 +215,30 @@ h1::after {
     border-left: 4px solid var(--main-color);
     margin: 2rem 0;
     position: relative;
+    background: linear-gradient(45deg, var(--bg-color), var(--second-bg-color));
+    border: 2px solid var(--main-color);
+    box-shadow: 0 0 20px rgba(0, 171, 240, 0.2);
 }
+
+#content pre::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--main-color), 
+        transparent);
+    animation: scanline 3s linear infinite;
+}
+
+@keyframes scanline {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
 
 #content pre::before {
     content: 'Code';
@@ -207,7 +250,7 @@ h1::after {
     padding: 0.5rem 1rem;
     font-size: 1.2rem;
     font-weight: 600;
-    border-radius: 0 0.8rem 0 0.8rem;
+    border-radius: 0 0.1rem 0 0.9rem;
 }
 
 #content pre code {
@@ -232,8 +275,114 @@ h1::after {
     padding-left: 0;
 }
 
+#content ul li {
+    position: relative;
+    padding-left: 25px;
+}
+
 #content ul li::before {
-    display: none;
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--main-color);
+    font-size: 18px;
+    transition: all 0.3s ease;
+    animation: listMarkerFloat 2s infinite;
+}
+
+@keyframes listMarkerFloat {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(3px); }
+}
+
+#content ul li:hover::before {
+    content: '▶';
+    color: #a0d2ff;
+    transform: scale(1.2);
+}
+
+#content table tr {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+#content table tr::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 0;
+    background: var(--main-color);
+    transition: height 0.3s ease;
+}
+
+#content table tr:hover {
+    background: rgba(0, 171, 240, 0.15);
+    transform: translateX(5px);
+}
+
+#content table tr:hover::after {
+    height: 100%;
+    animation: tableRowGlow 1s infinite;
+}
+
+@keyframes tableRowGlow {
+    0%, 100% { background: var(--main-color); }
+    50% { background: #a0d2ff; }
+}
+
+.table-copy-cell {
+    position: relative;
+}
+
+.table-copy-cell:hover::after {
+    content: '📋';
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.table-copy-cell:hover::after:hover {
+    opacity: 1;
+}
+
+.expandable-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    background: rgba(0, 171, 240, 0.05);
+    border-radius: 0 0 10px 10px;
+    margin-top: -10px;
+}
+
+.expandable-content.expanded {
+    max-height: 500px;
+    padding: 15px;
+    border: 1px solid var(--main-color);
+    border-top: none;
+}
+
+.expand-toggle {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.expand-toggle::after {
+    content: '▼';
+    margin-left: 10px;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.expand-toggle.expanded::after {
+    transform: rotate(180deg);
 }
 
 #content ol {
@@ -288,20 +437,6 @@ h1::after {
     top: -1rem;
     left: 1rem;
     opacity: 0.3;
-}
-
-#content table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 2rem 0;
-    font-size: 1.6rem;
-    border: 2px solid var(--main-color);
-    border-radius: 0.8rem;
-    overflow: hidden;
-}
-
-#content table, #content th, #content td {
-    border: 1px solid var(--main-color);
 }
 
 #content th, #content td {
