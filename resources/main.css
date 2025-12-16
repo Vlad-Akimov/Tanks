@@ -95,6 +95,14 @@ h1::after {
     z-index: -1;
 }
 
+#content img[src*=".gif"] {
+    max-width: 700px; /* Максимальная ширина */
+    max-height: 700px; /* Максимальная высота */
+    width: auto; /* Автоматическая ширина для сохранения пропорций */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+    object-fit: contain; /* Сохранять пропорции, не обрезая */
+}
+
 #content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
     color: var(--text-color);
     margin-top: 2.5em;
@@ -699,6 +707,11 @@ h1::after {
     
     #content h6 {
         font-size: 1.4rem;
+    }
+
+    #content img[src*=".gif"] {
+        max-width: 100%;
+        max-height: 300px;
     }
 }
 
