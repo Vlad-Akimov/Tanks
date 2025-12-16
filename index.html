@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanks Game Documentation</title>
+    <link rel="stylesheet" href="resources/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <h1>Tanks Game Documentation</h1>
+    <div id="content">Loading README.md...</div>
+    
+    <script>
+        async function loadReadme() {
+            try {
+                const response = await fetch('../README.md');
+                if (!response.ok) throw new Error('File not found');
+                const markdown = await response.text();
+                document.getElementById('content').innerHTML = marked.parse(markdown);
+            } catch (error) {
+                document.getElementById('content').innerHTML = 
+                    '<div class="error">Error loading README.md: ' + error.message + '</div>';
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', loadReadme);
+    </script>
+</body>
+</html>
