@@ -30,7 +30,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classBonus.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classBonus.html" target="_top" xlink:title="Represents a bonus object in the game.">
 <polygon fill="white" stroke="#666666" points="47,-74 0,-74 0,-55 47,-55 47,-74"/>
 <text text-anchor="middle" x="23.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">Bonus</text>
 </a>

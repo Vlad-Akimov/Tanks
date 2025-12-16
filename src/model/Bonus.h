@@ -19,7 +19,7 @@ class PlayerTank;
 enum class BonusType { SHIELD, DOUBLE_FIRE, SPEED_BOOST, LIFE_UP };
 
 /**
- * Represents a bonus object in the game.
+ * @brief Represents a bonus object in the game.
  */
 class Bonus : public GameObject {
 private:

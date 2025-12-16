@@ -170,13 +170,13 @@ void GameWorld::checkProjectileCollisions() {
                     
                     // Используем точку, которая ближе к границе
                     if (distLastToBorder < distCurrentToBorder) {
-                        explosions.emplace_back(std::make_unique<Explosion>(lastValidPoint));
+                        explosions.emplace_back(new Explosion(lastValidPoint));
                     } else {
-                        explosions.emplace_back(std::make_unique<Explosion>(explosionPoint));
+                        explosions.emplace_back(new Explosion(explosionPoint));
                     }
                 } else {
                     // Если первая точка уже за границей, создаем взрыв на границе
-                    explosions.emplace_back(std::make_unique<Explosion>(explosionPoint));
+                    explosions.emplace_back(new Explosion(explosionPoint));
                 }
                 hit = true;
                 break;
@@ -230,7 +230,7 @@ bool GameWorld::handleProjectileHit(GameObject* target, Projectile* projectile, 
             obstacle->takeDamage(damage);
             
             if (!wasDestroyed && obstacle->isDestroyed()) {
-                explosions.emplace_back(std::make_unique<Explosion>(obstacle->getPosition()));
+                explosions.emplace_back(new Explosion(obstacle->getPosition()));
             }
 
             // Начисляем очки за разрушение препятствия
@@ -262,7 +262,7 @@ bool GameWorld::handleProjectileHit(GameObject* target, Projectile* projectile, 
         tank->takeDamage(damage);
         
         if (!wasDestroyed && tank->isDestroyed()) {
-            explosions.emplace_back(std::make_unique<Explosion>(tank->getPosition()));
+            explosions.emplace_back(new Explosion(tank->getPosition()));
         }
 
         // Начисляем очки игроку за уничтожение врага с бонусами за тип танка
@@ -533,8 +533,7 @@ void GameWorld::spawnBonus() {
     }
     
     // Создаем бонус
-    auto bonus = std::make_unique<Bonus>(bonusPos, type);
-    bonuses.push_back(std::move(bonus));
+    bonuses.emplace_back(new Bonus(bonusPos, type));
 }
 
 bool GameWorld::isValidBonusPosition(const Point& pos) const {
@@ -948,8 +947,7 @@ void GameWorld::createEnemies(int level) {
             }
         }
         
-        auto enemy = std::make_unique<EnemyTank>(pos, behavior, difficulty, tankType);
-        objects.push_back(std::move(enemy));
+        objects.emplace_back(new EnemyTank(pos, behavior, difficulty, tankType));
         enemyCount++;
     }
 }

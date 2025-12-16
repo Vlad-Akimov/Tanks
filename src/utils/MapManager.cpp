@@ -15,6 +15,13 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
+#include <sys/stat.h>
+#include <dirent.h> 
+
+#ifdef _WIN32
+    #include <direct.h>
+    #define mkdir _mkdir
+#endif
 
 MapManager::MapManager(const std::string& directory) 
     : mapsDirectory(directory) {
@@ -28,24 +35,34 @@ bool MapManager::loadMaps() {
     maps.clear();
     
     try {
-        std::filesystem::create_directories(mapsDirectory);
+        // Создаем директорию если не существует
+        mkdir(mapsDirectory.c_str(), 0755);
         
-        if (!std::filesystem::exists(mapsDirectory)) {
+        // Проверяем существование директории
+        DIR* dir = opendir(mapsDirectory.c_str());
+        if (!dir) {
             std::cerr << "Directory does not exist: " << mapsDirectory << std::endl;
             createDefaultMaps();
             return false;
         }
         
         // Ищем все .map файлы в директории
-        for (const auto& entry : std::filesystem::directory_iterator(mapsDirectory)) {
-            if (entry.is_regular_file() && entry.path().extension() == ".map") {
-                std::cout << "Found map file: " << entry.path() << std::endl;
+        struct dirent* entry;
+        while ((entry = readdir(dir)) != nullptr) {
+            std::string filename = entry->d_name;
+            
+            // Проверяем расширение .map
+            if (filename.length() > 4 && 
+                filename.substr(filename.length() - 4) == ".map") {
+                
+                std::string fullPath = mapsDirectory + "/" + filename;
+                std::cout << "Found map file: " << fullPath << std::endl;
                 
                 MapInfo mapInfo;
-                mapInfo.filename = entry.path().filename().string();
+                mapInfo.filename = filename;
                 
                 // Читаем информацию о карте из файла
-                std::ifstream file(entry.path());
+                std::ifstream file(fullPath);
                 if (file.is_open()) {
                     std::string line;
                     
@@ -100,10 +117,12 @@ bool MapManager::loadMaps() {
                         std::cerr << "Incorrect number of lines in map " << mapInfo.filename << ": " << mapInfo.layout.size() << " instead of " << mapInfo.height << std::endl;
                     }
                 } else {
-                    std::cerr << "Failed to open file: " << entry.path() << std::endl;
+                    std::cerr << "Failed to open file: " << fullPath << std::endl;
                 }
             }
         }
+        
+        closedir(dir);
         
         // Если карт нет, создаем несколько примеров
         if (maps.empty()) {
@@ -126,7 +145,7 @@ void MapManager::createDefaultMaps() {
     std::cout << "Creating default maps..." << std::endl;
     
     // Создаем директорию, если она не существует
-    std::filesystem::create_directories(mapsDirectory);
+    mkdir(mapsDirectory.c_str(), 0755);
     
     // Карта 1: Классическая
     MapInfo map1;
@@ -284,8 +303,7 @@ void MapManager::createDefaultMaps() {
 // Исправленный метод для сохранения карты в файл
 void MapManager::saveMapToFile(const MapInfo& map) {
     // Правильное создание пути к файлу
-    std::filesystem::path dirPath(mapsDirectory);
-    std::filesystem::path filePath = dirPath / map.filename;
+    std::string filePath = mapsDirectory + "/" + map.filename;
     
     std::ofstream file(filePath);
     if (file.is_open()) {
@@ -433,7 +451,7 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
     // РАСПРЕДЕЛЕНИЕ ТИПОВ ТАНКОВ В ЗАВИСИМОСТИ ОТ УРОВНЯ
     std::vector<EnemyTankType> tankTypes;
     
-    for (const auto& pos : enemyPositions) {
+    for (size_t i = 0; i < enemyPositions.size(); i++) {
         EnemyTankType tankType = getRandomTankType(level, gen);
         tankTypes.push_back(tankType);
     }
@@ -443,8 +461,7 @@ void MapManager::createWorldFromMap(GameWorld& world, const MapInfo& map) {
         AIBehavior behavior = getAIBehaviorForDifficulty(enemyDifficulty, gen);
         EnemyTankType tankType = tankTypes[i];
         
-        auto enemy = std::make_unique<EnemyTank>(enemyPositions[i], behavior, enemyDifficulty, tankType);
-        objects.push_back(std::move(enemy));
+        objects.emplace_back(new EnemyTank(enemyPositions[i], behavior, enemyDifficulty, tankType));
         enemyCount++;
     }
     

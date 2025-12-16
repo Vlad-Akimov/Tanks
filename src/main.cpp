@@ -50,7 +50,9 @@ int main() {
         }
 
         // Get current terminal dimensions
-        auto [termWidth, termHeight] = PlatformUtils::getTerminalSize();
+        auto terminalSize = PlatformUtils::getTerminalSize();
+        int termWidth = terminalSize.first;
+        int termHeight = terminalSize.second;
 
         // Calculate game dimensions based on terminal size
         // Use minimum of required and available dimensions

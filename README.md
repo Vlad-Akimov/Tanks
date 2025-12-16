@@ -4,6 +4,8 @@
 
 Tanks is a classic console-based arcade tank battle game developed as part of the Educational Practice in C++ course at Bauman Moscow State Technical University. The game features player-controlled tanks, enemy combatants, destructible obstacles, various power-ups, and a scoring system.
 
+![Demo](resources/demo.gif)
+
 ### Key features
 
 + Player tank control via keyboard
@@ -31,7 +33,7 @@ Tanks is a classic console-based arcade tank battle game developed as part of th
 
 The following must be installed on the device:
 
-+ C++17
++ C++11
 + Cmake 3.10
 + Make
 

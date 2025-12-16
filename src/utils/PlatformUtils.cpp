@@ -50,12 +50,16 @@ std::pair<int, int> PlatformUtils::getTerminalSize() {
 }
 
 bool PlatformUtils::isTerminalSizeValid(int minWidth, int minHeight) {
-    auto [width, height] = getTerminalSize();
+    auto terminalSize = PlatformUtils::getTerminalSize();
+    int width = terminalSize.first;
+    int height = terminalSize.second;
     return width >= minWidth && height >= minHeight;
 }
 
 void PlatformUtils::showResizeMessage(int requiredWidth, int requiredHeight) {
-    auto [currentWidth, currentHeight] = getTerminalSize();
+    auto terminalSize = PlatformUtils::getTerminalSize();
+    int currentWidth = terminalSize.first;
+    int currentHeight = terminalSize.second;
     
     clearScreen();
     std::cout << "============================================\n";
